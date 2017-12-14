@@ -91,14 +91,42 @@
 \section{Introduction}
 \section{Testing the consistency between different multipoles of the gravitational radiation}
 \subsection{Method}\label{ssec:Method}
+A gravitational wave (GW) $\mathrm{h}(t)$, can be decomposed into its two independent polarisations $(\mathrm{h} _+,\mathrm{h} _x)$ as: $\mathrm{h}(t) = \mathrm{h} _+(t) - i \mathrm{h} _x(t)$. It can also be expanded in a basis of spin -2 weighted spherical harmonics, as:
+
+\begin{equation}
+\mathrm{h}(t; \iota, \phi_0) = \sum _{l=2}^{\infty} \sum _{m=-l}^{l} \mathcal{Y}_{lm}^{-2} (\iota, \phi_0)\mathrm{h}_{lm}(t)
+\label{eq:spherical_harmonics}
+\end{equation}
+Eq. ~\ref{eq:spherical_harmonics} can be rewritten to split the contributions from the dominant $(2,\pm 2)$ mode of gravitational radiation, and the sub-dominant or higher-order multipole moments. 
+
+\begin{equation}
+\mathrm{h}(t; \iota, \phi_0) = \mathcal{Y}_{2,\pm 2}^{-2} (\iota, \phi_0)\mathrm{h}_{2,\pm 2}(t) + \sum _{\text{H.O.M}} \mathcal{Y}_{lm}^{-2} (\iota, \phi_0)\mathrm{h}_{lm}(t)
+\label{eq:test_HM}
+\end{equation}
+where the subscript H.O.M on the summation in the second term on the RHS indicates contribution from just the higher-order multipole moments of the gravitational radiation.
+
+In this paper, we develop a test of general relativity (GR) which checks for consistency between estimates of a common set of parameters, the chirp mass $M_c$ and the asymmetric mass ratio $q$, independently measured using the dominant and the sub-dominant modes of the gravitational waveform respectively. If GR is correct, then these estimates should be consistent with each other. Alternatively, we define parameters describing the fractional differences in the estimates of $(M_c,q)$ from the $(2,\pm 2)$ and higher-order modes, as:
+
+\begin{eqnarray}
+\epsilon &=& \frac{\Delta M _c}{M _c} = \frac{M_c - M_c '}{M _c} \\
+\sigma &=& \frac{\Delta q}{q} = \frac{q - q '}{q}
+\end{eqnarray}
+where $(M_c, q)$ are estimates from the dominant $(2,\pm 2)$ mode, and $(M_c', q')$ are estimates from the higher-order modes. By definition, if GR is correct, the posterior PDF on $(\epsilon, \sigma)$ should be consistent with $(0,0)$.
+
+
 \subsection{Analysis pipeline}
-A gravitational wave (GW) detector records changes in the differential arm-length (DARM) between the two arms of the interferometer or \emph{strain} $d(t)$, due to noise $n(t)$, or the occasional passage of a GW, $h(t)$. Assuming an additive model for the strain:
+A GW detector records changes in the differential arm-length (DARM) between the two arms of the interferometer or \emph{strain} $d(t)$, due to noise $n(t)$, or the occasional passage of a GW, $h(t)$. Assuming an additive model for the strain:
 
 \begin{equation}
 d(t) = n(t) + h(t)
 \label{eq:detector_strain}
 \end{equation}
-The noise $n(t)$ is assumed to describe a Gaussian random process with a given power spectral density (PSD), $S_n(f)$. Assuming a GW signal from the coalescence of a binary black hole (BBH) system in a quasi-circular orbit, $h(t)$ can be completely described by a 15-dimensional parameter space $\theta$ in general relativity (GR). The challenge of parameter estimation lies in inferring this paramater set $\theta$, given data $d$ and assuming a particular model of the waveform as our hypothesis $H$. The waveform model considered here is described in section.~\ref{ssec:Method}. One can then use the Bayes' theorem to obtain the posterior probability density function (PDF) on $\theta$ as:
+The noise $n(t)$ is assumed to describe a Gaussian random process with a given power spectral density (PSD), $S_n(f)$. The strain $h(t)$ depends on the two independent polarisations of GWs through the antenna pattern functions of the GW detector $(F_+, F_x)$ as:
+
+\begin{equation}
+h(t) = F_+(\theta, \phi, \psi)\mathrm{h}_+(t) + F_x(\theta, \phi, \psi)\mathrm{h}_x(t)
+\end{equation}
+where $(\theta, \phi, \psi)$ define the sky position and polarisation of the GW source respectively. Assuming a GW signal from the coalescence of a binary black hole (BBH) system in a quasi-circular orbit, $h(t)$ can be completely described by a 15-dimensional parameter space $\theta$ in GR. The challenge of parameter estimation lies in inferring this paramater set $\theta$, given data $d$ and assuming a particular model of the waveform as our hypothesis $H$. The waveform model considered here is described in section.~\ref{ssec:Method}. One can then use the Bayes' theorem to obtain the posterior probability density function (PDF) on $\theta$ as:
 
 \begin{equation}
 p(\theta|d, H, I) = \frac{P(\theta|H, I) \mathcal{L}(d|\theta, H, I)}{E(d|H, I)}

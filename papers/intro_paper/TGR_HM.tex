@@ -94,24 +94,28 @@
 A gravitational wave (GW) $\mathrm{h}(t)$, can be decomposed into its two independent polarisations $(\mathrm{h} _+,\mathrm{h} _{\times})$ as: $\mathrm{h}(t) = \mathrm{h} _+(t) - i \mathrm{h} _{\times}(t)$. It can also be expanded in a basis of spin $-2$ weighted spherical harmonics, as:
 
 \begin{equation}
-\mathrm{h}(t; \iota, \phi_0) = \sum _{l=2}^{\infty} \sum _{m=-l}^{l} \mathcal{Y}_{lm}^{-2} (\iota, \phi_0)\mathrm{h}_{lm}(t)
+\mathrm{h}(t; \iota, \phi_0, \lambda) = \sum _{l=2}^{\infty} \sum _{m=-l}^{l} \mathcal{Y}_{lm}^{-2} (\iota, \phi_0)\mathrm{h}_{lm}(t, \lambda)
 \label{eq:spherical_harmonics}
 \end{equation}
-where $(\iota, \phi_0)$ define the direction of radiation in the source frame. Eq. ~\ref{eq:spherical_harmonics} can be rewritten to split the contributions from the dominant $(2,\pm 2)$ mode of gravitational radiation, and the sub-dominant or higher-order multipole moments:
+where $(\iota, \phi_0)$ define the direction of radiation in the source frame, and $\lambda$ defines the complimentary set of parameters required for waveform generation. These are the chirp mass $M_c$, asymmetric mass ratio $q$, luminosity distance $d_L$ and time of arrival $t_0$. Eq. ~\ref{eq:spherical_harmonics} can be rewritten to split the contributions from the dominant $(2,\pm 2)$ mode of gravitational radiation, and the sub-dominant or higher-order multipole moments:
 
 \begin{equation}
-\mathrm{h}(t; \iota, \phi_0) = \mathcal{Y}_{2,\pm 2}^{-2} (\iota, \phi_0)\mathrm{h}_{2,\pm 2}(t) + \sum _{\text{H.O.M}} \mathcal{Y}_{lm}^{-2} (\iota, \phi_0)\mathrm{h}_{lm}(t)
+\mathrm{h}(t; \iota, \phi_0, \lambda) = \mathcal{Y}_{2,\pm 2}^{-2} (\iota, \phi_0)\mathrm{h}_{2,\pm 2}(t, \lambda) + \sum _{\text{H.O.M}} \mathcal{Y}_{lm}^{-2} (\iota, \phi_0)\mathrm{h}_{lm}(t, \lambda)
 \label{eq:test_HM}
 \end{equation}
 where the subscript H.O.M underneath the summation in the second term on the RHS indicates contribution from just the higher-order multipole moments of the gravitational radiation.
 
-In this paper, we develop a test of general relativity (GR) which checks for consistency between estimates of a common set of parameters, the chirp mass $M_c$ and the asymmetric mass ratio $q$, independently measured using the dominant and the sub-dominant modes of the gravitational waveform respectively. If GR is correct, then these estimates should be consistent with each other. Alternatively, we define parameters describing the fractional differences in the estimates of $(M_c,q)$ from the $(2,\pm 2)$ and higher-order modes, as:
+In this paper, we develop a test of general relativity (GR) which checks for consistency between estimates of $\lambda$, independently measured using the dominant and the sub-dominant modes of the gravitational waveform respectively. We redefine eq.~\ref{eq:test_HM} as:
 
-\begin{eqnarray}
-\epsilon &=& \frac{\Delta M _c}{M _c} = \frac{M_c - M_c '}{M _c} \\
-\sigma &=& \frac{\Delta q}{q} = \frac{q - q '}{q}
-\end{eqnarray}
-where $(M_c, q)$ are estimates from the dominant $(2,\pm 2)$ mode, and $(M_c', q')$ are estimates from the higher-order modes. By definition, if GR is correct, the posterior PDF on $(\epsilon, \sigma)$ should be consistent with $(0,0)$.
+\begin{equation}
+\mathrm{h}(t; \iota, \phi_0, \lambda, \lambda') = \mathcal{Y}_{2,\pm 2}^{-2} (\iota, \phi_0)\mathrm{h}_{2,\pm 2}(t, \lambda) + \sum _{\text{H.O.M}} \mathcal{Y}_{lm}^{-2} (\iota, \phi_0)\mathrm{h}_{lm}(t, \lambda')
+\end{equation}
+where $\lambda$ are estimates from the dominant $(2,\pm 2)$ mode, and $\lambda'$ are estimates from the higher-order modes. If GR is correct, then these estimates should be consistent with each other. Alternatively, we define parameters describing the difference in the two independent estimates as:
+
+\begin{equation}
+\lambda ' = \lambda + \Delta \lambda
+\end{equation}
+By definition, if GR is correct, the posterior PDF on $\Delta \lambda$ should be consistent with zero.
 
 For the remainder of our analysis we use the higher-mode model described in Mehta et al, 2017 [\textcolor{red}{Description of model in Mehta et al, 2017}].
 

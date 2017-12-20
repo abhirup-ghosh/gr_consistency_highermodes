@@ -89,15 +89,25 @@
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
 \section{Introduction}
-\section{Testing the consistency between different multipoles of the gravitational radiation}
-\subsection{Method}\label{ssec:Method}
-A gravitational wave (GW) $\mathrm{h}(t)$, can be decomposed into its two independent polarisations $(\mathrm{h} _+,\mathrm{h} _{\times})$ as: $\mathrm{h}(t) = \mathrm{h} _+(t) - i \mathrm{h} _{\times}(t)$. It can also be expanded in a basis of spin $-2$ weighted spherical harmonics, as:
 
+Recent observations of gravitational-wave (GW) signals from merging binaries of black holes~\cite{bbh_refs} and neutron stars~\cite{bns_ref} by LIGO~\cite{ligo_ref} and Virgo~\cite{virgo_ref} have enabled the first tests of General Relativity (GR) in the highly relativistic regime. 
+
+\section{Testing the consistency between different multipoles of the gravitational radiation}
+An interferometric GW detector observes a linear combination of the two polarizations $h_+(t)$ and $h_\times(t)$ of the GW signal, given by 
 \begin{equation}
-\mathrm{h}(t; \iota, \phi_0, \lambda) = \sum _{l=2}^{\infty} \sum _{m=-l}^{l} \mathcal{Y}_{lm}^{-2} (\iota, \phi_0)\mathrm{h}_{lm}(t, \lambda)
+h(t) = F_+(\theta, \phi, \psi) \, h_+(t-t_0) + F_{\times}(\theta, \phi, \psi), {h}_{\times}(t-t_0), 
+\end{equation}
+where $F_+$ and $F_x$ are the antenna pattern functions of the GW detector, $t_0$ is the time of arrival of the signal at the detector, and $(\theta, \phi, \psi)$ define the sky position and polarisation of the GW source respectively. The two GW polarizations $\h := h_+(t) -i h_\times(t)$ can be expanded in a basis of spin $-2$ weighted spherical harmonics, as:
+\begin{equation}
+\h(t; \iota, \phi_0, \blambda) = \sum _{\ell=2}^{\infty} \sum _{m=-\ell}^{\ell} \Ylm (\iota, \phi_0) \, \frac{{\h}_{lm}(t; \blambda)}{d_L}, 
 \label{eq:spherical_harmonics}
 \end{equation}
-where $(\iota, \phi_0)$ define the direction of radiation in the source frame, and $\lambda$ defines the complimentary set of parameters required for waveform generation. These are the chirp mass $M_c$, asymmetric mass ratio $q$, luminosity distance $d_L$ and time of arrival $t_0$. Eq. ~\ref{eq:spherical_harmonics} can be rewritten to split the contributions from the dominant $(2,\pm 2)$ mode of gravitational radiation, and the sub-dominant or higher-order multipole moments:
+where $\Ylm$ are the basis functions of spin $-2$ spherical harmonics, $(\iota, \phi_0)$ define the direction of radiation in the source frame, $d_L$ is  the luminosity distance to the binary, and 
+${\h}_{lm}(t; \blambda)$ are the spherical harmonic modes of the waveform, which are completely described by the intrinsic parameters $\blambda := \{m_1, m_2\}$ of the system. We assume that the black holes are non-spinning and the binary to be qusi-circular. Hence $\blambda$ consists of only the masses $m_1$ and $m_2$ of the black holes. 
+
+In GR, the set of intrinsic parameters $\blambda$ completely determines the multipolar structure of the waveform ${\h}_{lm}(t)$. Any inconsistency between the different multipoles of the radiation can point to a deviation from GR. In this paper, we propose a test of GR based on the consistency of different multipoles of the gravitational radiation from binary black holes. 
+
+Eq. ~\ref{eq:spherical_harmonics} can be rewritten to split the contributions from the dominant $(2,\pm 2)$ mode of gravitational radiation, and the sub-dominant or higher-order multipole moments:
 
 \begin{equation}
 \mathrm{h}(t; \iota, \phi_0, \lambda) = \mathcal{Y}_{2,\pm 2}^{-2} (\iota, \phi_0)\mathrm{h}_{2,\pm 2}(t, \lambda) + \sum _{\text{H.O.M}} \mathcal{Y}_{lm}^{-2} (\iota, \phi_0)\mathrm{h}_{lm}(t, \lambda)

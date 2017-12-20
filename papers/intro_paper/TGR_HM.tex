@@ -96,6 +96,7 @@ Recent observations of gravitational-wave (GW) signals from merging binaries of 
 An interferometric GW detector observes a linear combination of the two polarizations $h_+(t)$ and $h_\times(t)$ of the GW signal, given by 
 \begin{equation}
 h(t) = F_+(\theta, \phi, \psi) \, h_+(t-t_0) + F_{\times}(\theta, \phi, \psi), {h}_{\times}(t-t_0), 
+\label{eq:det_response}
 \end{equation}
 where $F_+$ and $F_x$ are the antenna pattern functions of the GW detector, $t_0$ is the time of arrival of the signal at the detector, and $(\theta, \phi, \psi)$ define the sky position and polarisation of the GW source respectively. The two GW polarizations $\h := h_+(t) -i h_\times(t)$ can be expanded in a basis of spin $-2$ weighted spherical harmonics, as:
 \begin{equation}
@@ -105,55 +106,29 @@ where $F_+$ and $F_x$ are the antenna pattern functions of the GW detector, $t_0
 where $\Ylm$ are the basis functions of spin $-2$ spherical harmonics, $(\iota, \phi_0)$ define the direction of radiation in the source frame, $d_L$ is  the luminosity distance to the binary, and 
 ${\h}_{lm}(t; \blambda)$ are the spherical harmonic modes of the waveform, which are completely described by the intrinsic parameters $\blambda := \{m_1, m_2\}$ of the system. We assume that the black holes are non-spinning and the binary to be qusi-circular. Hence $\blambda$ consists of only the masses $m_1$ and $m_2$ of the black holes. 
 
-In GR, the set of intrinsic parameters $\blambda$ completely determines the multipolar structure of the waveform ${\h}_{lm}(t)$. Any inconsistency between the different multipoles of the radiation can point to a deviation from GR. In this paper, we propose a test of GR based on the consistency of different multipoles of the gravitational radiation from binary black holes. 
-
-Eq. ~\ref{eq:spherical_harmonics} can be rewritten to split the contributions from the dominant $(2,\pm 2)$ mode of gravitational radiation, and the sub-dominant or higher-order multipole moments:
-
-\begin{equation}
-\mathrm{h}(t; \iota, \phi_0, \lambda) = \mathcal{Y}_{2,\pm 2}^{-2} (\iota, \phi_0)\mathrm{h}_{2,\pm 2}(t, \lambda) + \sum _{\text{H.O.M}} \mathcal{Y}_{lm}^{-2} (\iota, \phi_0)\mathrm{h}_{lm}(t, \lambda)
+In GR, the set of intrinsic parameters $\blambda$ completely determines the multipolar structure of the waveform ${\h}_{lm}(t)$. Any inconsistency between the different multipoles of the radiation can point to a deviation from GR. In this paper, we propose a test of GR based on the consistency of different multipoles of the gravitational radiation from binary black holes. In order to formulate a consistency test between different multipoles, we rewrite Eq.(\ref{eq:spherical_harmonics}) by splitting the contributions from the dominant $(\ell = 2, m = \pm 2)$ mode of gravitational radiation, and the sub-dominant (higher order) modes 
+\begin{eqnarray}
+\h(t; \iota, \phi_0, \blambda) & = & \sum_{m = -2,2} Y^{-2}_{2m} (\iota, \phi_0) {\h}_{2m}(t, \blambda)  \nonumber \\ 
+ & + & \sum _{\text{H.O.M}} \Ylm (\iota, \phi_0) \h_{lm}(t, \blambda+\Delta \blambda)
 \label{eq:test_HM}
-\end{equation}
-where the subscript H.O.M underneath the summation in the second term on the RHS indicates contribution from just the higher-order multipole moments of the gravitational radiation.
+\end{eqnarray}
+where the subscript H.O.M underneath the summation in the second term on the RHS indicates contribution from just the higher-order multipoles of the gravitational radiation. Note that we allow a possibility of inconsistency between the dominant mode and higher order modes by introducing a deviation $\Delta \blambda$ in the set of intrinsic parameters that describe the higher order modes; in GR,  $\Delta \blambda = 0$. 
 
-In this paper, we develop a test of general relativity (GR) which checks for consistency between estimates of $\lambda$, independently measured using the dominant and the sub-dominant modes of the gravitational waveform respectively. We redefine eq.~\ref{eq:test_HM} as:
-
-\begin{equation}
-\mathrm{h}(t; \iota, \phi_0, \lambda, \lambda') = \mathcal{Y}_{2,\pm 2}^{-2} (\iota, \phi_0)\mathrm{h}_{2,\pm 2}(t, \lambda) + \sum _{\text{H.O.M}} \mathcal{Y}_{lm}^{-2} (\iota, \phi_0)\mathrm{h}_{lm}(t, \lambda')
-\end{equation}
-where $\lambda$ are estimates from the dominant $(2,\pm 2)$ mode, and $\lambda'$ are estimates from the higher-order modes. If GR is correct, then these estimates should be consistent with each other. Alternatively, we define parameters describing the difference in the two independent estimates as:
-
-\begin{equation}
-\lambda ' = \lambda + \Delta \lambda
-\end{equation}
-By definition, if GR is correct, the posterior PDF on $\Delta \lambda$ should be consistent with zero.
-
-For the remainder of our analysis we use the higher-mode model described in Mehta et al, 2017 [\textcolor{red}{Description of model in Mehta et al, 2017}].
-
-
-\subsection{Analysis pipeline}
-A GW detector records changes in the differential arm-length (DARM) between the two arms of the interferometer or \emph{strain} $d(t)$, due to noise $n(t)$, or the occasional passage of a GW, $h(t)$. Assuming an additive model for the strain:
-
+The data $d(t)$ contains the observed signal $h(t)$ given in Eq.~(\ref{eq:det_response}) along with noise, which is well described by a stationary Gaussian random process characterized by a power spectral density $S_n(f)$. 
 \begin{equation}
 d(t) = n(t) + h(t)
 \label{eq:detector_strain}
 \end{equation}
-The noise $n(t)$ is assumed to describe a Gaussian random process with a given power spectral density (PSD), $S_n(f)$. The strain $h(t)$ is a linear combination of the two independent polarisations of GWs:
-
+For coalescencing binary black hole (BBH) systems in quasi-circular orbits, the observed signal $h(t)$ is described by a set of 9 parameters $\btheta := \{m_1, m_2, t_0, \phi_0, d_L, \theta, \phi, \psi, \iota\}$ in GR. Given data $d$ and assuming a particular model of the waveform as our hypothesis $H$, it is possible to compute the posterior distribution of $\btheta$ making use of the Bayes theorem, which states: 
 \begin{equation}
-h(t) = F_+(\theta, \phi, \psi)\mathrm{h}_+(t) + F_{\times}(\theta, \phi, \psi)\mathrm{h}_{\times}(t)
-\end{equation}
-where $(F_+, F_x)$ are the antenna pattern functions of the GW detector, and $(\theta, \phi, \psi)$ define the sky position and polarisation of the GW source respectively. Assuming a GW signal from the coalescence of a binary black hole (BBH) system in a quasi-circular orbit, $h(t)$ can be completely described by a 15-dimensional parameter space $\theta$ in GR. The challenge of parameter estimation lies in inferring this paramater set $\theta$, given data $d$ and assuming a particular model of the waveform as our hypothesis $H$. The waveform model considered here is described in section.~\ref{ssec:Method}. One can then use the Bayes' theorem to obtain the posterior probability density function (PDF) on $\theta$ as:
-
-\begin{equation}
-p(\theta|d, H, I) = \frac{P(\theta|H, I) \mathcal{L}(d|\theta, H, I)}{E(d|H, I)}
+P(\btheta|d, H, I) = \frac{P(\btheta|H, I) \, \mathcal{L}(d|\btheta, H, I)}{Z(d|H, I)}
 \label{eq:Bayes_theorem}
 \end{equation} 
-The first term of the numerator on the RHS, $P(\theta|H,I)$ is the \emph{prior} PDF, the second term $\mathcal{L}(d|\theta, H,I)$ is the \emph{likelihood} function, and the term in the denominator $E(d|\theta, H,I)$ is a normalisation constant, called the \emph{evidence}. \emph{I} is any other information used in the analysis. The computation of the likelihood function is found to be less expensive in the Fourier domain, and hence, assuming Gaussian noise with a PSD given by $S_n(f)$, can be defined as:
-
+The first term of the numerator on the RHS, $P(\theta|H,I)$ is the \emph{prior} distribution of $\btheta$, the second term $\mathcal{L}(d|\btheta, H,I)$ is the \emph{likelihood} function, and the term in the denominator $E(d|H,I)$ is a normalisation constant, called the \emph{evidence}, and \emph{I} is any other information used in the analysis. For stationary Gaussian noise with power spectral density $S_n(f)$, the likelihiood can be written as:
 \begin{equation}
-\mathcal{L}(\tilde{d}(f)|\theta, H,I) = \text{exp}\Big[ -\frac{1}{2}\int_{f_{low}}^{f_{high}} \frac{|\tilde{d}(f) - \tilde{h}(f;\theta, H)|^2}{S_n(f)}df\Big]
+\mathcal{L}(\tilde{d}(f)|\theta, H,I) = \text{exp}\Big[ -\frac{1}{2}\int_{f_\mathrm{low}}^{f_\mathrm{high}} \frac{|\tilde{d}(f) - \tilde{h}(f;\theta, H)|^2}{S_n(f)}df\Big]
 \end{equation}
-where $f_{low}$ and $f_{high}$ define the sensitivity bandwidth of the detector, and $(\tilde{d}(f), \tilde{h}(f))$ are the Fourier transforms of $(d(t), h(t))$ respectively. It is assumed that the detector response outside of this bandwidth is zero. 
+where $f_\mathrm{low}$ and $f_\mathrm{high}$ define the sensitivity bandwidth of the detector, while $\tilde{d}(f)$ and $\tilde{h}(f)$ are the Fourier transforms of $(d(t)$ and $h(t))$, respectively. 
 
 Using the above definition for the likelihood function, one proceeds to estimate $\theta$ by stochastically sampling over the entire parameter space using  \emph{emcee}~\cite{goodman2010ensemble,foreman2013emcee}, an ensemble Markhov chain Monte Carlo sampler, which uses the underlying property of affine invariance of all Gaussian distributions to sample from highly skewed distributions a lot faster than standard single-particle methods, such as Metropolis-Hastings implementations. A MCMC scheme is a random walk through the parameter space $\theta$ generating samples of $\theta$ with a probability density which ultimately converges to the stationary distribution of the Markhov chain, the posterior PDF $p(\theta|d, H, I)$, using the equation of detailed balance. An \emph{ensemble} MCMC sampler implements a coordinated random walk of multiple "walkers" through the parameter space, such that each step of the Markhov chain, or updating the position of any one walker at a paricular time step, is influenced by the positions of the rest of the walkers. The specific move used by the sampler is called the \emph{stretch} move (described in detail in section 2. of ~\cite{goodman2010ensemble}). The algorithm requires the hand-tuning of a small set of 1-2 parameters, and can be easily parallelised to use multiple CPU cores, giving it major advantages over traditional MCMC algorithms.
 

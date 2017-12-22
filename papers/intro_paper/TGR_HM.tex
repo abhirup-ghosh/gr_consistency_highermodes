@@ -88,11 +88,11 @@
 \preprint{LIGO-}
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
-\section{Introduction}
+\paragraph{Introduction:---}
 
 Recent observations of gravitational-wave (GW) signals from merging binaries of black holes~\cite{bbh_refs} and neutron stars~\cite{bns_ref} by LIGO~\cite{ligo_ref} and Virgo~\cite{virgo_ref} have enabled the first tests of General Relativity (GR) in the highly relativistic regime. 
 
-\section{Testing the consistency between different multipoles of the gravitational radiation}
+\paragraph{Testing the consistency between different multipoles of the gravitational radiation:--}
 An interferometric GW detector observes a linear combination of the two polarizations $h_+(t)$ and $h_\times(t)$ of the GW signal, given by 
 \begin{equation}
 h(t) = F_+(\theta, \phi, \psi) \, h_+(t-t_0) + F_{\times}(\theta, \phi, \psi), {h}_{\times}(t-t_0), 
@@ -114,7 +114,7 @@ In GR, the set of intrinsic parameters $\blambda$ completely determines the mult
 \end{eqnarray}
 where the subscript H.O.M underneath the summation in the second term on the RHS indicates contribution from just the higher-order multipoles of the gravitational radiation. Note that we allow a possibility of inconsistency between the dominant mode and higher order modes by introducing a deviation $\Delta \blambda$ in the set of intrinsic parameters that describe the higher order modes; in GR,  $\Delta \blambda = 0$. 
 
-The data $d(t)$ contains the observed signal $h(t)$ given in Eq.~(\ref{eq:det_response}) along with noise, which is well described by a stationary Gaussian random process characterized by a power spectral density $S_n(f)$. 
+The data $d(t)$ contains the observed signal $h(t)$ given in Eq.~(\ref{eq:det_response}) along with noise, which is well described by a stationary Gaussian random process 
 \begin{equation}
 d(t) = n(t) + h(t)
 \label{eq:detector_strain}
@@ -126,16 +126,25 @@ P(\btheta|d, H, I) = \frac{P(\btheta|H, I) \, \mathcal{L}(d|\btheta, H, I)}{Z(d|
 \end{equation} 
 The first term of the numerator on the RHS, $P(\theta|H,I)$ is the \emph{prior} distribution of $\btheta$, the second term $\mathcal{L}(d|\btheta, H,I)$ is the \emph{likelihood} function, and the term in the denominator $E(d|H,I)$ is a normalisation constant, called the \emph{evidence}, and \emph{I} is any other information used in the analysis. For stationary Gaussian noise with power spectral density $S_n(f)$, the likelihiood can be written as:
 \begin{equation}
-\mathcal{L}(\tilde{d}(f)|\theta, H,I) = \text{exp}\Big[ -\frac{1}{2}\int_{f_\mathrm{low}}^{f_\mathrm{high}} \frac{|\tilde{d}(f) - \tilde{h}(f;\theta, H)|^2}{S_n(f)}df\Big]
+\mathcal{L}({d}|\theta, H,I) = \text{exp}\Big[ -\frac{1}{2}\int_{f_\mathrm{low}}^{f_\mathrm{high}} \frac{|\tilde{d}(f) - \tilde{h}(f;\theta, H)|^2}{S_n(f)}df\Big]
 \end{equation}
 where $f_\mathrm{low}$ and $f_\mathrm{high}$ define the sensitivity bandwidth of the detector, while $\tilde{d}(f)$ and $\tilde{h}(f)$ are the Fourier transforms of $(d(t)$ and $h(t))$, respectively. 
 
 Using the above definition for the likelihood function, one proceeds to estimate $\theta$ by stochastically sampling over the entire parameter space using  \emph{emcee}~\cite{goodman2010ensemble,foreman2013emcee}, an ensemble Markhov chain Monte Carlo sampler, which uses the underlying property of affine invariance of all Gaussian distributions to sample from highly skewed distributions a lot faster than standard single-particle methods, such as Metropolis-Hastings implementations. A MCMC scheme is a random walk through the parameter space $\theta$ generating samples of $\theta$ with a probability density which ultimately converges to the stationary distribution of the Markhov chain, the posterior PDF $p(\theta|d, H, I)$, using the equation of detailed balance. An \emph{ensemble} MCMC sampler implements a coordinated random walk of multiple "walkers" through the parameter space, such that each step of the Markhov chain, or updating the position of any one walker at a paricular time step, is influenced by the positions of the rest of the walkers. The specific move used by the sampler is called the \emph{stretch} move (described in detail in section 2. of ~\cite{goodman2010ensemble}). The algorithm requires the hand-tuning of a small set of 1-2 parameters, and can be easily parallelised to use multiple CPU cores, giving it major advantages over traditional MCMC algorithms.
 
-\section{Simulations and results}
-\subsection{Simulations using GR waveforms}
-\subsection{Simulations using modified-GR waveforms}
-\section{Conclusions and future work}
+\paragraph{Simulations and results:---}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[htb] \begin{center}
+\includegraphics[width=3.4in]{figs/triangle_plot_gr.png}
+\includegraphics[width=3.4in]{figs/triangle_plot_mod_gr.png}
+\caption{}
+\label{fig:contour_plots}
+\end{center} \end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\paragraph{Conclusions and future work:---}
 %
 %
 \bibliographystyle{apsrev-nourl}

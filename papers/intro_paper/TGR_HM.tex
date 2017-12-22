@@ -128,24 +128,89 @@ The first term of the numerator on the RHS, $P(\theta|H,I)$ is the \emph{prior} 
 \begin{equation}
 \mathcal{L}({d}|\theta, H,I) = \text{exp}\Big[ -\frac{1}{2}\int_{f_\mathrm{low}}^{f_\mathrm{high}} \frac{|\tilde{d}(f) - \tilde{h}(f;\theta, H)|^2}{S_n(f)}df\Big]
 \end{equation}
-where $f_\mathrm{low}$ and $f_\mathrm{high}$ define the sensitivity bandwidth of the detector, while $\tilde{d}(f)$ and $\tilde{h}(f)$ are the Fourier transforms of $(d(t)$ and $h(t))$, respectively. 
+where $f_\mathrm{low}$ and $f_\mathrm{high}$ define the sensitivity bandwidth of the detector, while $\tilde{d}(f)$ and $\tilde{h}(f)$ are the Fourier transforms of $d(t)$ and $h(t)$, respectively. 
 
-Using the above definition for the likelihood function, one proceeds to estimate $\theta$ by stochastically sampling over the entire parameter space using  \emph{emcee}~\cite{goodman2010ensemble,foreman2013emcee}, an ensemble Markhov chain Monte Carlo sampler, which uses the underlying property of affine invariance of all Gaussian distributions to sample from highly skewed distributions a lot faster than standard single-particle methods, such as Metropolis-Hastings implementations. A MCMC scheme is a random walk through the parameter space $\theta$ generating samples of $\theta$ with a probability density which ultimately converges to the stationary distribution of the Markhov chain, the posterior PDF $p(\theta|d, H, I)$, using the equation of detailed balance. An \emph{ensemble} MCMC sampler implements a coordinated random walk of multiple "walkers" through the parameter space, such that each step of the Markhov chain, or updating the position of any one walker at a paricular time step, is influenced by the positions of the rest of the walkers. The specific move used by the sampler is called the \emph{stretch} move (described in detail in section 2. of ~\cite{goodman2010ensemble}). The algorithm requires the hand-tuning of a small set of 1-2 parameters, and can be easily parallelised to use multiple CPU cores, giving it major advantages over traditional MCMC algorithms.
-
-\paragraph{Simulations and results:---}
+Using the above definition for the likelihood function, one proceeds to estimate $\theta$ by stochastically sampling over the entire parameter space of interest. In this work, we use the \textsc{emcee}~\cite{goodman2010ensemble,foreman2013emcee} package, an ensemble Markhov chain Monte-Carlo (MCMC) sampler. \textsc{emcee} uses the underlying property of affine invariance of all Gaussian distributions to sample from highly skewed distributions faster than standard single-particle methods, such as Metropolis-Hastings implementations. A MCMC scheme is a random walk through the parameter space $\theta$ generating samples of $\theta$ with a probability density which ultimately converges to the stationary distribution of the Markhov chain, the posterior PDF $p(\theta|d, H, I)$, using the equation of detailed balance. An \emph{ensemble} MCMC sampler implements a coordinated random walk of multiple ``walkers" through the parameter space, such that each step of the Markhov chain, or updating the position of any one walker at a paricular time step, is influenced by the positions of the rest of the walkers. %The specific move used by the sampler is called the \emph{stretch} move (described in detail in section 2. of ~\cite{goodman2010ensemble}). 
+The algorithm requires the hand-tuning of a small set of 1-2 parameters, and can be easily parallelised to use multiple CPU cores, giving it major advantages over traditional MCMC algorithms.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}[htb] \begin{center}
 \includegraphics[width=3.4in]{figs/triangle_plot_gr.png}
 \includegraphics[width=3.4in]{figs/triangle_plot_mod_gr.png}
-\caption{}
+\caption{The left figure shows 1-D and 2-D posterior distribution of $\Delta \blambda$ for GR waveform.The black 1-D posteriors and 2-D posterior distribution is obtained via varying both $\Delta M_c$ and $\Delta q$.The blue 1-D posterior distribution of $\Delta M_c$  is obtained by fixing $\Delta q$=0.The blue 1-D posterior distribution of $\Delta q$  is obtained by fixing $\Delta M_c$=0.The show agreement with (0,0) for 2-D posteriors and 0 for 1-D posterior distributions.}
+
+
 \label{fig:contour_plots}
 \end{center} \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\paragraph{Simulations using GR waveforms}
+We have performed the test using a template having one deviation parameter either $\Delta M_c$ or $\Delta q$ fixing other parameter to zero.The test is also performed using a template which has two deviation parameters $\Delta \blambda={\Delta M_c, \Delta q}$.We show in fig.1 that both tests varying either one parameter or two parameters agrees with zero for the system M=80$M_{\odot}$, $q=9$, $ {\iota}=60^{\circ} $ for total SNR=25 (SNR in HM=10.18). We can observe performing test with one deviation parameter has more power.
 
-\paragraph{Conclusions and future work:---}
-%
+In fig.2 we show the type of systems which give the best results.For a total mass M=40$M_{\odot}$ and total SNR of 25 we show the width of $\Delta M/M$ for various configurations.A system having higher mass ratio will be giving best results in this test.
+
+
+% \begin{figure*}[h]
+% 	\includegraphics*[scale=0.5]{./../../plots/triangle_plot_gr}
+% 	\caption{This figure shows 1-D and 2-D posterior distribution of $\Delta \blambda$ for GR waveform.The black 1-D posteriors and 2-D posterior distribution is obtained via varying both $\Delta M_c$ and $\Delta q$.The blue 1-D posterior distribution of $\Delta M_c$  is obtained by fixing $\Delta q$=0.The blue 1-D posterior distribution of $\Delta q$  is obtained by fixing $\Delta M_c$=0.The show agreement with (0,0) for 2-D posteriors and 0 for 1-D posterior distributions.}
+% \end{figure*}
+
+\begin{figure*}[h]
+	\includegraphics*[scale=0.5]{./../../plots/90_percent_width_dM}
+	\caption{This figure shows the 90$\%$ width of $\Delta \blambda/\blambda$ where $\blambda$=M for various configurations of total mass $40M_{\odot}$.The best results of the test can be seen in the systems with high mass ratio.}
+\end{figure*}
+
+\paragraph{Simulations using modified-GR waveforms}
+We have performed the test using a template having one deviation parameter either $\Delta M_c$ or $\Delta q$ fixing other parameter to zero.The test is also performed using a template which has two deviation parameters $\Delta \blambda={\Delta M_c, \Delta q}$.We show in fig.1 that both tests varying either one parameter or two parameters agrees with zero for the system M=80$M_{\odot}$, $q=9$, $ {\iota}=60^{\circ} $ for total SNR=25 (SNR in HM=10.18). We can observe performing test with one deviation parameter has more power.
+
+In fig.2 we show the type of systems which give the best results.For a total mass M=40$M_{\odot}$ and total SNR of 25 we show the width of $\Delta M/M$ for various configurations.A system having higher mass ratio will be giving best results in this test.
+
+\paragraph{Simulations using modified-GR waveforms}
+For the modified GR waveform we have chosen Chern-Simmons gravity which has a parity violating term in the action.
+\begin{equation}
+S=\frac{1}{16\pi}\int d^4 x\Big(\sqrt{-g}R+\frac{1}{4}\theta\textbf{R*R}\Big)
+\end{equation}
+
+
+where $g$ is the determinant of spacetime metric, $R$ is 
+Ricci scalar and 
+\begin{equation}
+\textbf{R*R}=\frac{1}{2}R_{\alpha\beta\gamma\delta}\epsilon^{\alpha\beta\mu\nu}{R^{\gamma\delta}}_{\mu\nu}
+\end{equation}
+in terms of Riemann and Levi-Cevita tensors.
+
+
+A circularly polarised, plane GW, propagating on
+an FRW spacetime, under Chern-Simons
+modification to gravity, would show amplitude
+birefringence and parity violation. [Yunes et al,
+PRD 82, 064017 (2010)].Compared to GR, R-circularly polarised waves are enhanced (suppressed) and L-circularly are suppressed (enhanced) exponentially, as they propogate.
+
+\begin{equation}
+h_{R,L}=\hat{h}e^{-i\delta \phi_{R,L}}
+\end{equation}
+where $\delta \phi_{R,L}$ is an additional phase difference from GR
+\begin{equation}
+\delta \phi_{R,L}=i\lambda_{R,L} \pi f z\Big(\dot{\theta_0}-\frac{\ddot{\theta_0}}{H_0}\Big)
+\end{equation}
+in terms of redshift, present hubble constant and scalar field. Here, $\lambda_{R}=-\lambda_{L}=\pm1$ and $\delta \phi_{R,L}$ is purely imaginary which results in amplitude birefringence.The solar system constraints $|\dot{\theta_0}-\ddot{\theta_0}/{H_0}|<2000$km as given in Yunes et al.
+
+We have constructed such a GR waveform using GR waveforms of $h_+$,$h_{\times}$. Using relations
+
+\begin{equation}
+h_R=\frac{h_++ih_{\times}}{\sqrt{2}},h_L=\frac{h_+-ih_{\times}}{\sqrt{2}}
+\end{equation}
+
+one can construct $h_R,h_L$,introduce modification and reconstruct modified $h_+,h_{\times}$.Example of such a modification is shown in fig.3 for a system M=80$M_{\odot}$, q=9, $\iota=90^{\circ}$,solar system constraint at a distance of 200Mpc.The match between GR and mod.GR waveform is greater than 0.96 for such a departure.
+
+If such a modified GR waveform is recovered using GR templates having $h_R(\blambda)$ and $h_L(\blambda+\Delta \blambda)$, one expects
+the posteriors on $\Delta \blambda$ to not be consistent with
+zero.This result can be seen in fig.4 from 1D and 2D posteriors.
+\begin{figure*}[h]
+	\includegraphics*[scale=0.5]{./../../plots/kludge_amplitude_birefringence_log_log}
+	\caption{This shows the amplitude difference between GR and modified GR for $\delta \phi =i*0.001f$.The system configuration is M=80$M_{\odot}$, q=9, $\iota=90^{\circ}$ at 200Mpc.The match between GR and mod.GR waveform is greater than 0.96 for such a departure.}
+\end{figure*}
+
 %
 \bibliographystyle{apsrev-nourl}
 \bibliography{TGR_HM}

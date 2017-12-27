@@ -4,17 +4,16 @@ matplotlib.use("Pdf")
 import numpy as np
 import matplotlib.pyplot as plt
 import emcee
-import template_hm as phhsi#template to get hpf,hcf
+import template_hm as phhsi
 from pycbc  import  detector
 from lal import MSUN_SI, MTSUN_SI, PC_SI, PI, PC_SI, C_SI, GAMMA, MRSUN_SI
-import time
-#start_time = time.time()
+
 
 
 
 def lnlike(theta,dr,di,f1,psd):
 	M,q,dL,iota,t0,phase=theta	
-	f,hpf,hcf=phhsi.phenomhh_waveform_SI(M,q,dL,iota,t0,phase,f1[200],0.1,10000,phase)# f1[200] is lower cutoff=20Hz,df=0.1, N*df=1000 is higher cutoff frequency.
+	f,hpf,hcf=phhsi.phenomhh_waveform_SI(M,q,dL,iota,t0,phase,f1[200],0.1)
 	ra=1.
 	dec =1.
 	pol=0.
@@ -22,7 +21,7 @@ def lnlike(theta,dr,di,f1,psd):
 	signal=Fp*hpf+Fc*hcf
 	signalr=np.real(signal)
 	signali=np.imag(signal)
-	like_list=-((dr[200:-1]-signalr[200:-1])*(dr[200:-1]-signalr[200:-1])+(di[200:-1]-signali[200:-1])*(di[200:-1]-signali[200:-1]))/(psd[200:-1]) #likelihood list	
+	like_list=-((dr[200:9998]-signalr[200:9998])*(dr[200:9998]-signalr[200:9998])+(di[200:9998]-signali[200:9998])*(di[200:9998]-signali[200:9998]))/(psd[200:9998]) #likelihood list	
 	like= 0.2*np.sum(like_list)#0.2 = 0.5*4.*df from the inner-product definition
 	return like#log-likelihood
 
@@ -77,8 +76,3 @@ for result in sampler.sample(pos, iterations=6000, storechain=False):
 		f.write("{0:1d} {1:2f} {2:3f} {3:4f} {4:5f} {5:6f} {6:7f}\n".format(k,p[0],p[1],p[2],p[3],p[4],p[5]))
 	f.close()
 
-"""
-f1=open("%s/time_phase_par.txt"%loc, "w")
-
-f1.write("execution--- %s seconds ---" % (time.time() - start_time))
-f1.close()"""

@@ -14,35 +14,53 @@ import corner
 
 
 
-def lnlike(theta, dr, di, f1, psd):
-	M,q,dL,iota,t0,phase=theta	
-	f,hpf,hcf=phhsi.phenomhh_waveform_SI(M,q,dL,iota,t0,phase,f1[200],0.1)
+def lnlike(param_vec, dr, di, freq, psd):
+	"""
+	compute the log likelihood
+	
+	inputs: 
+	param_vec : vector of parameters 
+	dr, di, 
+	freq : Fourier freq 
+	psd : psd vector 
+
+	output: 
+	log_likelhood 
+	"""
+	
+	# unpacking the parameter vector 
+	M, q, dL, iota, t0, phase = param_vec	
+
+	# generate the waveform 
+	f, hpf, hcf = phhsi.phenomhh_waveform_SI(M, q, dL, iota, t0, phase, freq[200], 0.1)
 	ra=1.
 	dec =1.
 	pol=0.
+
+	# compute antenna patterns 
 	Fp,Fc = detector.overhead_antenna_pattern(ra, dec, pol)	
 	signal=Fp*hpf+Fc*hcf
 	signalr=np.real(signal)
 	signali=np.imag(signal)
+
 	like_list=-((dr[200:9998]-signalr[200:9998])*(dr[200:9998]-signalr[200:9998])+(di[200:9998]-signali[200:9998])*(di[200:9998]-signali[200:9998]))/(psd[200:9998]) #likelihood list	
 	like= 0.2*np.sum(like_list)#0.2 = 0.5*4.*df from the inner-product definition
 	return like#log-likelihood
 
 
-
-def lnprior(theta):
-	M,q,dL,iota,t0,phase = theta
+def lnprior(param_vec):
+	M,q,dL,iota,t0,phase = param_vec
 	if 1 < M < 200 and 0.097 < q <= 1. and 1.<dL<10000 and 0. <= iota <= pi and 0.<= t0 <= 15. and 0. <= phase <= 2.*pi:
 		return 0.0
 	return -np.inf
 
 
 
-def lnprob(theta):
-	lp = lnprior(theta)
+def lnprob(param_vec):
+	lp = lnprior(param_vec)
 	if not np.isfinite(lp):
 		return -np.inf
-	return lp + lnlike(theta,dr,di,f1,psd)
+	return lp + lnlike(param_vec,dr,di,freq,psd)
 
 
 ##########################################################
@@ -69,17 +87,17 @@ num_iter = 1000
 
 
 # read the detector data in Fourier domain. [fourier freq, real part of the data, imaginary part of the data, psd]
-f1, dr, di, psd = np.loadtxt(loc+'/'+data_fname, unpack=True)
+freq, dr, di, psd = np.loadtxt(loc+'/'+data_fname, unpack=True)
 data = dr + 1j*di 
 
 # plot the data and the psd 
-df = np.mean(np.diff(f1))
-idx = np.logical_and(f1 > 20, f1 < 500)
+df = np.mean(np.diff(freq))
+idx = np.logical_and(freq > 20, freq < 500)
 snr = 2*np.sqrt(df*np.sum(abs(data[idx])**2/psd[idx]))
 
 plt.figure(figsize=(8,6))
-plt.loglog(f1, abs(data), 'r')
-plt.loglog(f1, psd**0.5, 'c')
+plt.loglog(freq, abs(data), 'r')
+plt.loglog(freq, psd**0.5, 'c')
 plt.xlim(20,1e3)
 plt.ylim(1e-24,5e-23)
 plt.xlabel('$f$ [Hz]')
@@ -109,3 +127,4 @@ for result in sampler.sample(pos, iterations=num_iter, storechain=False):
 		f.write("{0:1d} {1:2f} {2:3f} {3:4f} {4:5f} {5:6f} {6:7f}\n".format(k,p[0],p[1],p[2],p[3],p[4],p[5]))
 	f.close()
 
+# add the final corner plots here 

@@ -80,8 +80,6 @@ loc='/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/201708_pe_results_p
 loc = '/home/ajith/working/cbc/gr_consistency_highermodes/runs/201708_pe_results_phenomhh/m_70_q_5_i_90/22_plus_HM/data'
 loc = '/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/experiments_201709/M_80/q_9/i_60/data'
 loc = '/home/ajith/working/cbc/gr_consistency_highermodes/runs/experiments_201709/M_80/q_9/i_60/data'
-input_loc  = 
-output_loc = 
 
 result=[21.4140366758,1./5,198.717477328,np.cos(pi/2),6.,pi]#initial guess around which walkers start. This is also true value.Mc,q,dL,i,t0,initial_phase 
 data_fname = 'detected_data.txt'
@@ -92,13 +90,14 @@ param_label = ['$M_c$', '$q$', '$dL$', 'cos($\iota$)', '$t_0$', '$\phi_0$']
 
 ndim, nwalkers = 6, 100
 num_threads = 24 
-num_iter = 1000 
+num_iter = 100 
 # ------------------------------------------------------ # 
 
 
 # read the detector data in Fourier domain. [fourier freq, real part of the data, imaginary part of the data, psd]
 freq, dr, di, psd = np.loadtxt(loc+'/'+data_fname, unpack=True)
 data = dr + 1j*di 
+print '... read data' 
 
 # plot the data and the psd 
 df = np.mean(np.diff(freq))
@@ -115,6 +114,7 @@ plt.ylabel('$h(f)$ and $S_h(f)$')
 plt.title('snr = %2.1f' %snr)
 plt.savefig('%s/data.png'%loc, dpi=200)
 
+print '... plotted data' 
 
 # create initial walkers 
 pos = [result + np.array([0.002*result[0]*np.random.random_sample()-0.001*result[0],0.002*result[1]*np.random.random_sample()-0.001*result[1],0.002*result[2]*np.random.random_sample()-0.001*result[2],0.002*result[3]*np.random.random_sample()-0.001*result[3],0.002*result[4]*np.random.random_sample()-0.001*result[4],0.002*result[5]*np.random.random_sample()-0.001*result[5]]) for i in range(nwalkers)]
@@ -124,6 +124,8 @@ plt.figure()
 figure = corner.corner(pos, labels=param_label, bins=10)
 figure.tight_layout()
 figure.savefig('%s/initial_walkers_corner.png' %loc, dpi=200)    
+
+print '... generated initial walkers. starting sampling...' 
 
 # sample the likelihood using EMCEE 
 sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, threads=num_threads)
@@ -138,7 +140,6 @@ for result in sampler.sample(pos, iterations=num_iter, storechain=False):
 	f.close()
 
 # add the final corner plots here
-
 data=np.genfromtxt('%s/chain_file.dat'%loc,delimiter=' ')
 
 chain_length=int(len(data[:,0])/n_walkers)
@@ -147,11 +148,10 @@ x=np.zeros(s)
 
 i=0
 for j in range(x.shape[1]):
-       	for l in range(x.shape[0]):
+	for l in range(x.shape[0]):
 		for k in range(x.shape[2]):
-	               	x[l][j][k]=data[i][k+1]
-               	i+=1
-
+			x[l][j][k]=data[i][k+1]
+		i+=1
 
 samples = x[:,:,:].reshape((-1, ndim))
 

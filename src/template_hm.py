@@ -20,12 +20,8 @@ import matplotlib.pyplot as plt
 import pycbc.types.frequencyseries
 from pycbc.types import TimeSeries, FrequencySeries, zeros
 
-f_low=20. #lower cutoff frequency
-df=0.1
-N=10000
 
-
-def ringdown(Mc,q,l,m):
+def ringdown(Mc,q,l,m,Ncs,df):
         M=((1.+q)**1.2)*Mc/(q**0.6)
         m1=M/(q+1.)
         m2=M*q/(q+1.)
@@ -46,17 +42,17 @@ def ringdown(Mc,q,l,m):
         eta_p3=eta_p2*eta
 
         f_ring =  f_ring_coef[2] + f_ring_coef[1]*eta + f_ring_coef[0]*eta_p2
-        f_ring = f_ring/(mt*MTSUN_SI)
-        f_ring = 10*f_ring
-        f_ring = np.int(f_ring)+10000
-        return f_ring
+        f_ring = f_ring/(mt*MTSUN_SI) #SI unit conversion
+
+        N = np.int(f_ring/df)+Ncs
+        return N
 
 
 
 
-def phenomhh_waveform_SI(Mc,q,r,iota,t0,phase,f_low,df):
+def phenomhh_waveform_SI(Mc,q,r,iota,t0,phase,f_low,df,Ncs):
 
-	N=np.max(np.array([ringdown(Mc,q,2,2),ringdown(Mc,q,4,4),ringdown(Mc,q,3,3),ringdown(Mc,q,2,1)]))
+	N=np.int(np.max(np.array([ringdown(Mc,q,2,2,Ncs,df),ringdown(Mc,q,4,4,Ncs,df),ringdown(Mc,q,3,3,Ncs,df),ringdown(Mc,q,2,1,Ncs,df)])))
 
 	M=((1.+q)**1.2)*Mc/(q**0.6)
 	m1=M/(q+1.)

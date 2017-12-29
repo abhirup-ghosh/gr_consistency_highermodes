@@ -20,12 +20,8 @@ import matplotlib.pyplot as plt
 import pycbc.types.frequencyseries
 from pycbc.types import TimeSeries, FrequencySeries, zeros
 
-f_low=20. #lower cutoff frequency
-df=0.1
-N=10000
 
-
-def ringdown(Mc,q,l,m):
+def ringdown(Mc,q,l,m,Ncs,df):
         M=((1.+q)**1.2)*Mc/(q**0.6)
         m1=M/(q+1.)
         m2=M*q/(q+1.)
@@ -46,17 +42,17 @@ def ringdown(Mc,q,l,m):
         eta_p3=eta_p2*eta
 
         f_ring =  f_ring_coef[2] + f_ring_coef[1]*eta + f_ring_coef[0]*eta_p2
-        f_ring = f_ring/(mt*MTSUN_SI)
-        f_ring = 10*f_ring
-        f_ring = np.int(f_ring)+10000
-        return f_ring
+        f_ring = f_ring/(mt*MTSUN_SI) #SI unit conversion
+
+        N = np.int(f_ring/df)+Ncs
+        return N
 
 
 
 
-def phenomhh_waveform_SI(Mc,q,r,iota,t0,phase,f_low,df):
+def phenomhh_waveform_SI(Mc,q,r,iota,t0,phase,f_low,df,Ncs):
 
-	N=ringdown(Mc,q,2,2)
+	N=ringdown(Mc,q,2,2,Ncs,df)
 
 	M=((1.+q)**1.2)*Mc/(q**0.6)
 	m1=M/(q+1.)
@@ -67,14 +63,14 @@ def phenomhh_waveform_SI(Mc,q,r,iota,t0,phase,f_low,df):
 	incl_angle=iota 
 	phi=0. 
 	lmax=4
-	Psi_ref=0.
+	Psi_ref=phase
 	
 	hpf22,hcf22 = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[2,2]], Psi_ref) 
 	
 	f=np.linspace(0., df*(N-1), N)
 	
-	hpf22=hpf22*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2j*phase)*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
-	hcf22=hcf22*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2j*phase)*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+	hpf22=hpf22*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+	hcf22=hcf22*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
 
 	hpf=hpf22
 	hcf=hcf22

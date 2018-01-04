@@ -66,12 +66,9 @@ def calc_cred_intervals_in_1d(P, x):
 
         return P_s1, P_s2, x_s1_l, x_s1_r, x_s2_l, x_s2_r
 
-parser = OptionParser()
-parser.add_option("-d", "--post-loc", dest="post_loc", help="path to data folder")
-parser.add_option("-n", "--Nbins", dest="Nbins", help="Nbins for the binning")
-(options, args) = parser.parse_args()
-post_loc = options.post_loc
-Nbins = options.Nbins
+post_loc, outname = '../data/data_gr.txt', 'fig1_gr'
+#post_loc, outname = '../data/data_modgr.txt', 'fig1_modgr'
+Nbins = 101
 
 color = ['#0072b2', '#CC79A7']
 
@@ -147,6 +144,6 @@ ax2.set_xticks([])
 ax2.set_yticks(np.arange(-0.002, 0.001, 0.0005))
 ax2.yaxis.tick_right()
 plt.tight_layout()
-plt.savefig('../papers/intro_paper/figs/fig1_modGR.png', dpi=300)
-plt.savefig('../papers/intro_paper/figs/fig1_modGR.pdf')
+plt.savefig('../papers/intro_paper/figs/%s.png'%outname, dpi=300)
+plt.savefig('../papers/intro_paper/figs/%s.pdf'%outname)
 plt.show()

@@ -29,7 +29,7 @@ def modGR_waveform_SI(M,q,r,iota,Psi_ref,f_low,df,N,t0):
 		inlination angle iota
 		lower freq f_low
 		frequency resol	df
-		Total_number of points N where N*df is f_high
+		Total_number of points N where (N-2)*df is f_high
 		time of arrival t0
 		initial phase Psi_ref
 
@@ -101,6 +101,7 @@ M=80.          ###### Total Mass in M_SUN
 q=1./9         ###### Mass ratio
 SNR_req=25.    ###### Required SNR
 iota=pi/2
+Psi_ref=pi
 t0=0.          ###### time of arrival
 
 ra=1.          ##### Sky localisation
@@ -110,9 +111,9 @@ pol=0.
 
 ##### Output location and data file name #######
 
-loc ='/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/kludge_injections_pv_biref/M_80/q_9/i_90/data'
+loc ='/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/scripts/final_scripts'#'/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/kludge_injections_pv_biref/M_80/q_9/i_90/data'
 data_fname = 'detected_data_mod_GR.txt'
-####### Output data contains [freq,Real.part,Imag.part,PSD] of data where data is non-zero starting from f_low######
+####### Output data contains [freq,Real.part,Imag.part,PSD] of data where data is non-zero starting from f_low. Last entry of freq is (N-2)*df######
 
 
 ################################################
@@ -120,13 +121,13 @@ data_fname = 'detected_data_mod_GR.txt'
 f,hpf,hcf= modGR_waveform_SI(M, q, 1., iota, Psi_ref, f_low, df, N, t0)
 
 Fp,Fc = detector.overhead_antenna_pattern(ra, dec, pol)
-psd = pycbc.psd.aLIGOZeroDetHighPower(len(hpf), df, 20.)
+psd = pycbc.psd.aLIGOZeroDetHighPower(len(hpf), df, f_low)
 
 signal=Fp*hpf+Fc*hcf
 signal_freq=pycbc.types.frequencyseries.FrequencySeries(signal,delta_f=df,dtype=complex)
 SNR=mfilter.sigma(signal_freq,psd=psd,low_frequency_cutoff=f_low)
 
-print 'SNR at 1Mpc is...' SNR
+print 'SNR at 1Mpc is... %f'%SNR 
 
 r=SNR/SNR_req
 f,hpf,hcf= modGR_waveform_SI( M, q, r, iota, Psi_ref, f_low, df, N, t0)
@@ -137,9 +138,9 @@ SNR=mfilter.sigma(signal_freq,psd=psd,low_frequency_cutoff=f_low)
 
 Mc=(M*q**0.6)/((1.+q)**1.2)
 
-print 'The SNR is... ' SNR
-print 'dL for the output SNR is..' r 'Mpc'
-print 'Chirp mass is..' Mc 'solar mass'
+print 'The SNR is... %f'%SNR
+print 'dL for the output SNR is.. %f Mpc'%r
+print 'Chirp mass is.. %f solar mass'%Mc
 
 ### Generating noise from psd ###
 #noise=pycbc.noise.gaussian.frequency_noise_from_psd(psd, seed=None)
@@ -149,4 +150,4 @@ data=signal#+noise ## comment noise to generate noise free data
 datar=np.real(data)
 datai=np.imag(data)
 
-np.savetxt(loc+'/'+data_fname,np.c_[f,datar,datai,psd])
+np.savetxt(loc+'/'+data_fname,np.c_[f[:-1],datar[:-1],datai[:-1],psd[:-1]])

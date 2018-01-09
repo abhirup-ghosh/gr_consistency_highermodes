@@ -1,5 +1,5 @@
 """
-program to generate phenomhh_waveform in SI units given masses and distances. Remember to source Ajithm profile before running the program
+Code to generate mod_GR waveform
 """
 
 from numpy import sqrt, sin, cos, pi,exp

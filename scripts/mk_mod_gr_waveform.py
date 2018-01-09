@@ -111,10 +111,16 @@ pol=0.
 
 ##### Output location and data file name #######
 
-loc ='/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/scripts/final_scripts'#'/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/kludge_injections_pv_biref/M_80/q_9/i_90/data'
+loc ='/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/kludge_injections_pv_biref/M_80/q_9/i_90/data'
 data_fname = 'detected_data_mod_GR.txt'
-####### Output data contains [freq,Real.part,Imag.part,PSD] of data where data is non-zero starting from f_low. Last entry of freq is (N-2)*df######
 
+'''
+Description of output data:
+
+Output data contains [freq ,Real.part of signal ,Imag.part of signal ,PSD] in the same order
+Data is non-zero starting from f_low. Last entry of data is (N-2)*df
+
+'''
 
 ################################################
 

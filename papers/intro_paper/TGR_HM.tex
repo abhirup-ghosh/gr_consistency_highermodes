@@ -134,36 +134,18 @@ We perform the test by introducing variations in the higher order modes: The hig
 
 \paragraph{Simulations using modified-GR waveforms:---}
 
-%For the modified GR waveform we have chosen Chern-Simmons gravity which has a parity violating term in the action.
-%\begin{equation}
-%S=\frac{1}{16\pi}\int d^4 x\Big(\sqrt{-g}R+\frac{1}{4}\theta\textbf{R*R}\Big)
-%\end{equation}
-
-%where $g$ is the determinant of spacetime metric, $R$ is Ricci scalar and 
-%\begin{equation}
-%\textbf{R*R}=\frac{1}{2}R_{\alpha\beta\gamma\delta}\epsilon^{\alpha\beta\mu\nu}{R^{\gamma\delta}}_{\mu\nu}
-%\end{equation}
-%in terms of Riemann and Levi-Cevita tensors.
-
-We also investigate the efficacy of our test in detecting deviations from GR. We introduce a phenomenological deviation from GR, as predicted by the Chern-Simons gravity. A circularly polarised, plane GW, propagating on
-an FRW spacetime, under Chern-Simons
-modification to gravity, would show amplitude
-birefringence and parity violation~\cite{yunes:2010xx}. Compared to GR, right circularly polarised waves are enhanced (suppressed) and left circularly are suppressed (enhanced) exponentially, as they propogate.
+We also investigate the efficacy of our test in detecting deviations from GR. We introduce a deviation from GR in the simulated signals --- a propagation effect predicted by the Chern-Simons (CS) gravity. Under the CS modification to GR, a circularly polarised plane GW, propagating on an Friedmann–Lema\^itre–Robertson–Walker spacetime, would show amplitude birefringence and parity violation~\cite{Yunes:2010yf}. Compared to GR, right circularly polarised waves will be exponentially enhanced or suppressed with respect to left circularly polarized waves, as they propogate. That is, 
 % 
 \begin{equation}
-h_\mathrm{R,L} = \hat{h} \, e^{-i \, \delta \, \phi_\mathrm{R,L}}
+\h_\mathrm{R,L}^\mathrm{mod} = \h_\mathrm{R,L} \, e^{-i \, \delta\phi_\mathrm{R,L}},
 \end{equation}
-where $\delta \phi_{R,L}$ is an additional phase difference from GR
+where $\h_\mathrm{R,L} = (h_+ \pm h_\times)/\sqrt{2}$ are the right/left circularly polarized polarization states predicted by GR and $\delta \phi_{R,L}$ is an additional phase contribution due to the CS correction, given by 
 \begin{equation}
-\delta \phi_\mathrm{R,L}=i \, \lambda_\mathrm{R,L} \, \pi f z \, \Big(\dot{\theta_0}-\frac{\ddot{\theta_0}}{H_0}\Big)
+\delta \phi_\mathrm{R,L}=i \, \lambda_\mathrm{R,L} \, \pi f z \, \Big(\dot{\theta_0}-\frac{\ddot{\theta_0}}{H_0}\Big).
 \end{equation}
-in terms of redshift, present hubble constant and scalar field. Here, $\lambda_{R}=-\lambda_{L}=\pm1$ and $\delta \phi_{R,L}$ is purely imaginary which results in amplitude birefringence.The solar system constraints $|\dot{\theta_0}-\ddot{\theta_0}/{H_0}|<2000$km as given in Yunes et al.
+Here, $\lambda_\mathrm{R,L}=\pm1$, $f$ is the Fourier frequency measured by the observer, $z$ is the cosmological redshift at source, and ${H_0}$ is the value of the Hubble constant measured by the observer, while $\dot{\theta_0}$ and $\ddot{\theta_0}$ denote the first and second time-derivative of the CS coupling field. Note that the CS correction is purely imaginary which results in amplitude birefringence. Solar system observations of the LAGEOS satellites have allowed us to derive a bound $|\dot{\theta_0}-\frac{\ddot{\theta_0}}{H_0}| < 2000 \mathrm{km}$~\cite{Yunes:2010yf,Smith:2007jm}.
 
-We have constructed such a GR waveform using GR waveforms of $h_+$,$h_{\times}$. Using relations $h_R= \h^\star/\sqrt{2}, ~~ h_L= \h/\sqrt{2}$. One can construct $h_R,h_L$,introduce modification and reconstruct modified $h_+,h_{\times}$. Example of such a modification is shown in Fig.~\ref{fig:mod_gr_waveform} for a system $M = 80M_{\odot}$, $q =9$, $\iota = 90^{\circ}$,solar system constraint at a distance of 200Mpc.The match between GR and modGR waveform is greater than 0.96 for such a departure.
-
-If such a modified GR waveform is recovered using GR templates having $h_R(\blambda)$ and $h_L(\blambda+\Delta \blambda)$, one expects
-the posteriors on $\Delta \blambda$ to not be consistent with
-zero.This result can be seen in fig.4 from 1D and 2D posteriors.
+We have constructed such a GR waveform using GR waveforms of $h_+$,$h_{\times}$. Using relations $h_R= \h^\star/\sqrt{2}, ~~ h_L= \h/\sqrt{2}$. One can construct $h_R,h_L$,introduce modification and reconstruct modified $h_+,h_{\times}$. Example of such a modification is shown in Fig.~\ref{fig:mod_gr_waveform} for a system $M = 80M_{\odot}$, $q =9$, $\iota = 90^{\circ}$,solar system constraint at a distance of 200Mpc.The match between GR and modGR waveform is greater than 0.96 for such a departure. If such a modified GR waveform is recovered using GR templates having $h_R(\blambda)$ and $h_L(\blambda+\Delta \blambda)$, one expects the posteriors on $\Delta \blambda$ to not be consistent with zero (right panel of Fig.~\ref{fig:contour_plots}). 
 \begin{figure}[h]
 	\includegraphics*[width=3.5in]{figs/fig2.pdf}
 	\caption{This shows the amplitudes of GR and modified GR for $\delta \phi =i*0.001f$.The system configuration is M=80$M_{\odot}$, q=9, $\iota=90^{\circ}$ at 200Mpc.The match between GR and mod.GR waveform is greater than 0.96 for such a departure.}

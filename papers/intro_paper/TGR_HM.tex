@@ -25,6 +25,7 @@
 \DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.10] pzcmi7t}{}
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 
+\newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\comment}[1]{\textcolor{blue}{\textit{#1}}}
 \newcommand{\ajith}[1]{\textcolor{red}{\textit{Ajith:#1}}}
 \newcommand{\checkthis}{\textcolor{magenta}{(CHECKTHIS)}}
@@ -60,6 +61,7 @@
 \author{Siddharth Dhanpal}
 \affiliation{International Centre for Theoretical Sciences, Tata Institute of Fundamental Research, Bangalore 560012, India}
 \author{Abhirup Ghosh}
+\author{Ajit Kumar Mehta}
 \affiliation{International Centre for Theoretical Sciences, Tata Institute of Fundamental Research, Bangalore 560012, India}
 \author{Parameswaran~Ajith}
 \affiliation{International Centre for Theoretical Sciences, Tata Institute of Fundamental Research, Bangalore 560012, India}
@@ -132,32 +134,38 @@ We perform the test by introducing variations in the higher order modes: The hig
 
  We have experimented with different choices for the deviation parameter $\Delta\blambda$ --- both by introducing one deviation parameter at a time ($\Delta\blambda = \{\Delta M_c\}$ or $\Delta\blambda = \{\Delta q\}$ where $M_c$ is the chirp mass and $q := m_1/m_2$ is the mass ratio of the binary) and by introducing a combined deviation in two parameters $\Delta \blambda = \{\Delta M_c, \Delta q\}$. We show in Fig.~\ref{fig:contour_plots} (left plot) the results of the tests perforemd by varying either one parameter or two parameters, for the system with total mass $M := m_1 + m_2 = 80M_{\odot}$, mass ratio $q=9$, inclination angle $ {\iota}=60^{\circ} $ producing a signal-to-noise ratin  (SNR)  of 25 (SNR in higher modes is $\sim 10$). It can be seen that the results are consistent with the expected value in GR. As expected, the width of the posteriors are smaller when only one variation is introduced at a time. 
 
+Figure~\ref{fig:dMc_dq_posteriors_gr} shows the expected width of the 90\% credible regions of the posteriors of the parameters describing deviations from GR, for the case of binaries with different masses, mass ratios and inclination angles. For all cases, the SNR of the injections is set to \red{XX}.  
+
+\begin{figure}[h]
+	\includegraphics*[width=3.5in]{figs/fig3.pdf}
+	\caption{This figure shows the 90$\%$ width of $\Delta \blambda/\blambda$ where $\blambda$=M for various configurations of total mass $40M_{\odot}$.The best results of the test can be seen in the systems with high mass ratio.}
+	\label{fig:dMc_dq_posteriors_gr}
+\end{figure}
+
+
 \paragraph{Simulations using modified-GR waveforms:---}
 
 We also investigate the efficacy of our test in detecting deviations from GR. We introduce a deviation from GR in the simulated signals --- a propagation effect predicted by the Chern-Simons (CS) gravity. Under the CS modification to GR, a circularly polarised plane GW, propagating on an Friedmann–Lema\^itre–Robertson–Walker spacetime, would show amplitude birefringence and parity violation~\cite{Yunes:2010yf}. Compared to GR, right circularly polarised waves will be exponentially enhanced or suppressed with respect to left circularly polarized waves, as they propogate. That is, 
 % 
 \begin{equation}
 \h_\mathrm{R,L}^\mathrm{mod} = \h_\mathrm{R,L} \, e^{-i \, \delta\phi_\mathrm{R,L}},
+\label{eq:cs_modification_h}
 \end{equation}
 where $\h_\mathrm{R,L} = (h_+ \pm h_\times)/\sqrt{2}$ are the right/left circularly polarized polarization states predicted by GR and $\delta \phi_{R,L}$ is an additional phase contribution due to the CS correction, given by 
 \begin{equation}
 \delta \phi_\mathrm{R,L}=i \, \lambda_\mathrm{R,L} \, \pi f z \, \Big(\dot{\theta_0}-\frac{\ddot{\theta_0}}{H_0}\Big).
+\label{eq:cs_modification_dphi}
 \end{equation}
-Here, $\lambda_\mathrm{R,L}=\pm1$, $f$ is the Fourier frequency measured by the observer, $z$ is the cosmological redshift at source, and ${H_0}$ is the value of the Hubble constant measured by the observer, while $\dot{\theta_0}$ and $\ddot{\theta_0}$ denote the first and second time-derivative of the CS coupling field. Note that the CS correction is purely imaginary which results in amplitude birefringence. Solar system observations of the LAGEOS satellites have allowed us to derive a bound $|\dot{\theta_0}-\frac{\ddot{\theta_0}}{H_0}| < 2000 \mathrm{km}$~\cite{Yunes:2010yf,Smith:2007jm}.
+Here, $\lambda_\mathrm{R,L}=\pm1$, $f$ is the Fourier frequency measured by the observer, $z$ is the cosmological redshift at source, and ${H_0}$ is the value of the Hubble constant measured by the observer, while $\dot{\theta_0}$ and $\ddot{\theta_0}$ denote the first and second time-derivative of the CS coupling field. Note that the CS correction is purely imaginary which results in amplitude birefringence. Solar system observations of the LAGEOS satellites have allowed us to derive a bound $|\dot{\theta_0}-\frac{\ddot{\theta_0}}{H_0}| < 2000~\mathrm{km}$~\cite{Yunes:2010yf,Smith:2007jm}.
 
-We have constructed such a GR waveform using GR waveforms of $h_+$,$h_{\times}$. Using relations $h_R= \h^\star/\sqrt{2}, ~~ h_L= \h/\sqrt{2}$. One can construct $h_R,h_L$,introduce modification and reconstruct modified $h_+,h_{\times}$. Example of such a modification is shown in Fig.~\ref{fig:mod_gr_waveform} for a system $M = 80M_{\odot}$, $q =9$, $\iota = 90^{\circ}$,solar system constraint at a distance of 200Mpc.The match between GR and modGR waveform is greater than 0.96 for such a departure. If such a modified GR waveform is recovered using GR templates having $h_R(\blambda)$ and $h_L(\blambda+\Delta \blambda)$, one expects the posteriors on $\Delta \blambda$ to not be consistent with zero (right panel of Fig.~\ref{fig:contour_plots}). 
+From the $+,\times$ polarizations of the GR waveforms discussed in the earlier section, we construct a modified-GR waveforms by introducing the propagation effects described in Eq.\eqref{eq:cs_modification_h}, with $\dot{\theta_0}-\frac{\ddot{\theta_0}}{H_0} = 2000~\mathrm{km}$. Example of such a modified waveform is shown in Fig.~\ref{fig:mod_gr_waveform} for a system $M = 80M_{\odot}$, $q =9$, $\iota = 90^{\circ}$,solar system constraint at a distance of 200Mpc. We inject this waveform into simulated noise and perform the Bayesian parameter estimation described earlier. The resulting injected waveform has an optimal SNR of \red{XXX} in the detector, of which \red{$\sim XX\%$} is distributed in the non-quadrupole modes. Figure~\ref{fig:contour_plots} (right panel) shows the posteriors on parameters describing describing deviations from the GR prediction. It can be seen that the posteriors on deviation parameters $\{\Delta M_c, \Delta q\}$ are inconsistent with the GR prediction, $\{0, 0\}$. 
+
 \begin{figure}[h]
 	\includegraphics*[width=3.5in]{figs/fig2.pdf}
 	\caption{This shows the amplitudes of GR and modified GR for $\delta \phi =i*0.001f$.The system configuration is M=80$M_{\odot}$, q=9, $\iota=90^{\circ}$ at 200Mpc.The match between GR and mod.GR waveform is greater than 0.96 for such a departure.}
 \label{fig:mod_gr_waveform}
 \end{figure}
 
-\begin{figure}[h]
-	\includegraphics*[width=3.5in]{figs/fig3.pdf}
-	\caption{This figure shows the 90$\%$ width of $\Delta \blambda/\blambda$ where $\blambda$=M for various configurations of total mass $40M_{\odot}$.The best results of the test can be seen in the systems with high mass ratio.}
-\end{figure}
-
-In fig.2 we show the type of systems which give the best results.For a total mass M=40$M_{\odot}$ and total SNR of 25 we show the width of $\Delta M/M$ for various configurations.A system having higher mass ratio will be giving best results in this test.
 
 \paragraph{Conclusions and future work:---} 
 Possiblity of observing high mass ratio systems 

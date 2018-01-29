@@ -55,38 +55,20 @@ def modGR_waveform_SI(M,q,r,iota,Psi_ref,f_low,df,N,t0):
         lmax=4
 
         f=np.linspace(0., df*(N-1), N)
-        hpf_22,hcf_22 = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[2,2]], Psi_ref)
-        h_r_22=(hpf_22+1j*hcf_22)/np.sqrt(2)
-        h_l_22=(hpf_22-1j*hcf_22)/np.sqrt(2)
-
-        hpf_33,hcf_33 = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[3,3]], Psi_ref)
-        h_r_33=(hpf_33+1j*hcf_33)/np.sqrt(2)
-        h_l_33=(hpf_33-1j*hcf_33)/np.sqrt(2)
-
-        hpf_44,hcf_44 = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[4,4]], Psi_ref)
-        h_r_44=(hpf_44+1j*hcf_44)/np.sqrt(2)
-        h_l_44=(hpf_44-1j*hcf_44)/np.sqrt(2)
-
-        hpf_21,hcf_21 = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[2,1]], Psi_ref)
-        h_r_21=(hpf_21+1j*hcf_21)/np.sqrt(2)
-        h_l_21=(hpf_21-1j*hcf_21)/np.sqrt(2)
+        hpf,hcf = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[2,2],[2,1],[3,3],[4,4]], Psi_ref)
 
 	#### Quantitative modification [dphase = 0 gives GR waveform]####
         dphase = 0.001*f
 
 	######### amplitude modification of h_r and h_l##########
-        h_r = h_r_22*exp(-2*dphase)+h_r_21*exp(-1*dphase)+h_r_33*exp(-3*dphase)+h_r_44*exp(-4*dphase)
-        h_l = h_l_22*exp(2*dphase)+h_l_21*exp(1*dphase)+h_l_33*exp(3*dphase)+h_l_44*exp(4*dphase)
-
-	######### moified h_plus and h_cross#######
-        hpf = (h_r+h_l)/np.sqrt(2)
-        hcf = ((h_r-h_l)*(-1j))/np.sqrt(2)
+        mod_hpf = hpf + 1j*dphase*hcf
+        mod_hcf = hcf - 1j*dphase*hpf
 	
 	######### SI units of h_plus and h_cross######
-        hpf=hpf*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
-        hcf=hcf*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+        mod_hpf=mod_hpf*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+        mod_hcf=mod_hcf*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
 
-	return f,hpf,hcf
+	return f,mod_hpf,mod_hcf
 
 
 
@@ -95,23 +77,23 @@ def modGR_waveform_SI(M,q,r,iota,Psi_ref,f_low,df,N,t0):
 ### parameters of the output data####
 f_low=20.
 df=0.1
-N=10000
+N=20000
 
-M=80.          ###### Total Mass in M_SUN
-q=1./9         ###### Mass ratio
-SNR_req=25.    ###### Required SNR
-iota=pi/2
+M=20.          ###### Total Mass in M_SUN
+q=1./2         ###### Mass ratio
+r=200.         ###### Luminosity distance in Mpc
+iota=0.
 Psi_ref=pi
-t0=0.          ###### time of arrival
+t0=6.          ###### time of arrival
 
-ra=1.          ##### Sky localisation
-dec =1.
-pol=0.
+ra = 0.          ##### Sky localisation
+dec = 0.
+pol = pi/8
 
 
 ##### Output location and data file name #######
 
-loc ='/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/kludge_injections_pv_biref/M_80/q_9/i_90/data'
+loc ='/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/kludge_injections_pv_biref/M_20/q_2/i_0/data'
 data_fname = 'detected_data_mod_GR.txt'
 
 '''
@@ -124,18 +106,9 @@ Data is non-zero starting from f_low. Last entry of data is (N-2)*df
 
 ################################################
 
-f,hpf,hcf= modGR_waveform_SI(M, q, 1., iota, Psi_ref, f_low, df, N, t0)
-
 Fp,Fc = detector.overhead_antenna_pattern(ra, dec, pol)
 psd = pycbc.psd.aLIGOZeroDetHighPower(len(hpf), df, f_low)
 
-signal=Fp*hpf+Fc*hcf
-signal_freq=pycbc.types.frequencyseries.FrequencySeries(signal,delta_f=df,dtype=complex)
-SNR=mfilter.sigma(signal_freq,psd=psd,low_frequency_cutoff=f_low)
-
-print 'SNR at 1Mpc is... %f'%SNR 
-
-r=SNR/SNR_req
 f,hpf,hcf= modGR_waveform_SI( M, q, r, iota, Psi_ref, f_low, df, N, t0)
 
 signal=Fp*hpf+Fc*hcf

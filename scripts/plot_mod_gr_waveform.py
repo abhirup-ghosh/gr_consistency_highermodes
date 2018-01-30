@@ -11,10 +11,7 @@ import plotsettings
 import numpy as np
 import phenomhh as phh
 import lal 
-import standard_cosmology as cosmo
 import lalinspiral.sbank.psds as psds
-
-
 
 # input paramseters 
 f_low = 20.
@@ -33,23 +30,20 @@ lmax=4								# max l to be included in phenom_hh
 
 K_SC_vec = [0., 1e-3]	# values of K_SC := pi z (theta_0_dot - theta_0_ddot/H0)
 
+# plotting specs 
 col_vec = ['r', 'k']
 lw_vec = [3, 1]
 ls_vec = ['-', '-']
 alpha_vec = [0.4, 1]
 
-
-# calculate the redshift corresponding to the chosen luminosity dist
-z = cosmo.redshift(dL*cosmo.H0/cosmo.c)
-
 # antenna patters 
 Fp = 0.5*(1 + np.cos(theta)**2)*np.cos(2*phi)*np.cos(2*psi) - np.cos(theta)*np.sin(2*phi)*np.sin(2*psi)
 Fc = 0.5*(1 + np.cos(theta)**2)*np.cos(2*phi)*np.sin(2*psi) + np.cos(theta)*np.sin(2*phi)*np.cos(2*psi)
-
-print '... Fp = %f Fc = %f' %(Fp, Fc)
+print '... Antenna patterns: Fp = %f Fc = %f' %(Fp, Fc)
 
 plt.figure(figsize=(4.5,4.25))
 
+# loop over mass ratios 
 for iQ, q in enumerate(q_vec):
 
 	m1 = M/(q+1.)
@@ -59,6 +53,7 @@ for iQ, q in enumerate(q_vec):
 	f = np.linspace(0., df*(N-1), N)
 	hpf, hcf = phh.generate_phenomhmv1_fd(m1*lal.MSUN_SI, m2*lal.MSUN_SI, incl_angle, phi, f_low, df, N, lmax,[[2,2],[2,1],[3,3],[4,4]], phi0)
 
+	# loop over different values of the dephasing (CS modification to GR) 
 	for i, K_SC in enumerate(K_SC_vec): 
 
 		# amplitude modification of h_r and h_l
@@ -76,16 +71,18 @@ for iQ, q in enumerate(q_vec):
 		Sh = psds.noise_models['aLIGOZeroDetHighPower'](f)
 		band_idx = f >= f_low 
 		rho = 2*np.sqrt(df*np.sum(abs(hf[band_idx])**2/Sh[band_idx]))
+		print '... SNR = ', rho 
 
-		print '### SNR = ', rho 
-
+		# plot 
 		plt.loglog(f, abs(hf), color=col_vec[iQ], lw=lw_vec[i], alpha=alpha_vec[i], ls=ls_vec[i])
 		plt.ylabel('$|h(f)|$')
 		plt.xlim(20, 600)
 		plt.ylim(1e-25,1e-22)
 
+# save plot 
 plt.text(220, 1e-23, '$ q = 1$')
 plt.text(110, 2e-24, '$ q = 9$')
 plt.xlabel('$f$ [Hz]')
 plt.tight_layout()
 plt.savefig('mod_GR_waveform.pdf')
+plt.close()

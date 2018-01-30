@@ -62,8 +62,8 @@ for iQ, q in enumerate(q_vec):
 
 		# amplitude modification of h_r and h_l
 		deltaphi = 1j*f*np.pi*z*K_SC			# dephasing due to ampl birefringence dphi := i f pi z (theta_0_dot - theta_0_ddot/H0) 
-		mod_hpf = hpf + hcf*deltaphi
-		mod_hcf = hcf - hpf*deltaphi 
+		mod_hpf = hpf - hcf*deltaphi
+		mod_hcf = hcf + hpf*deltaphi 
 
 		# compute the detector response 
 		hf = mod_hpf*Fp + mod_hcf*Fc

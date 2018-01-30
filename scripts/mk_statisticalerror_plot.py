@@ -26,7 +26,7 @@ rc_params = {'backend': 'ps',
 
 color = ['#0072b2', '#CC79A7']
 
-post_loc = '../data/90_percent_width_dM_t.txt'
+post_loc = '../data/90_percent_width_dMc_t.txt'
 q, i_30, i_45, i_60, i_80, i_90 = np.loadtxt(post_loc, unpack=True)
 
 plt.figure(figsize=(5,5))
@@ -38,7 +38,7 @@ ax.semilogy(q, i_80, color='b', marker='o', label='$\iota = 80^{\circ}$')
 ax.semilogy(q, i_90, color='k', marker='o', label='$\iota = 90^{\circ}$')
 plt.legend(loc='best', frameon=False, fontsize=12)
 ax.set_xlabel('Asymmetric Mass Ratio (q)', labelpad=10, fontsize=12)
-ax.set_ylabel('90% width of $\Delta M/M$', labelpad=10, fontsize=12)
+ax.set_ylabel('90% width of $\Delta M_c/M_c$', labelpad=10, fontsize=12)
 plt.tight_layout()
 plt.savefig('../papers/intro_paper/figs/fig3.png', dpi=300)
 plt.savefig('../papers/intro_paper/figs/fig3.pdf')

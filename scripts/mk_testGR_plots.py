@@ -1,5 +1,5 @@
 import matplotlib as mpl
-#mpl.use('Agg')
+mpl.use('Agg')
 import numpy as np
 import matplotlib.pyplot as plt
 import plotsettings
@@ -66,13 +66,13 @@ def calc_cred_intervals_in_1d(P, x):
 
         return P_s1, P_s2, x_s1_l, x_s1_r, x_s2_l, x_s2_r
 
-#post_loc, outname = '../data/data_gr.txt', 'fig1_gr'
-post_loc, outname = '../data/data_mod_gr.txt', 'fig1_modgr'
+post_file, outname = '../data/data_gr.txt', 'fig1_gr'
+post_file, outname = '../data/data_mod_gr.txt', 'fig1_modgr'
 Nbins = 101
 
 color = ['c', 'k', '#0072b2', '#CC79A7']
 
-dmc_2d, dq_2d, dmc_1d, dq_1d = np.loadtxt(post_loc, unpack=True)
+dmc_2d, dq_2d, dmc_1d, dq_1d = np.loadtxt(post_file, unpack=True)
 
 dmc_bins = np.linspace(-0.2, 0.2, Nbins)
 dq_bins = np.linspace(-0.002, 0.001, Nbins)
@@ -106,45 +106,54 @@ ax3 = plt.subplot2grid((3,3), (1,0), colspan=2, rowspan=2)
 
 ax1.plot(dmc_intp, tgr.gf(P_dmc_1d),color=color[0], lw=1)
 ax1.plot(dmc_intp, tgr.gf(P_dmc_marg),color=color[1], lw=1)
-ax1.axvline(0.,color='k', ls='-.')
-#ax1.axvline(x=left1_1d_v1, color='b', ls='-.')
-#ax1.axvline(x=right1_1d_v1, color='b', ls='-.')
-ax1.axvline(x=left2_1d_v1, color=color[0], ls='--')
-ax1.axvline(x=right2_1d_v1, color=color[0], ls='--')
-#ax1.axvline(x=left1_marg_v1, color='k', ls='-.')
-#ax1.axvline(x=right1_marg_v1, color='k', ls='-.')
-ax1.axvline(x=left2_marg_v1, color=color[1], ls='--')
-ax1.axvline(x=right2_marg_v1, color=color[1], ls='--')
+ax1.axvline(0.,color='k', ls='-', lw=0.5)
+ax1.axvline(x=left2_1d_v1, color=color[0], ls=':', lw=0.5)
+ax1.axvline(x=right2_1d_v1, color=color[0], ls=':', lw=0.5)
+ax1.axvline(x=left2_marg_v1, color=color[1], ls=':', lw=0.5)
+ax1.axvline(x=right2_marg_v1, color=color[1], ls=':', lw=0.5)
 ax1.set_ylabel('$P(\Delta M_c)$',fontsize=14)
-ax1.set_xticks(np.arange(-0.2, 0.2, 0.1))
+ax1.set_xticks(np.arange(-0.2, 0.25, 0.1))
+ax1.set_xticklabels(np.arange(-0.2, 0.25, 0.1), fontsize=12)
+ax1.set_xlim(-0.2,0.2)
+ax1.set_ylim(0,np.max(P_dmc_1d)*1.01)
 ax1.xaxis.tick_top()
 ax1.set_yticks([])
 
 #ax3.pcolormesh(dmc_bins, dq_bins, tgr.gf(P_dmc_dq_2d), cmap='YlOrBr')
 ax3.contour(dmc_intp, dq_intp, tgr.gf(P_dmc_dq_2d), levels=(s2_2d,s1_2d), linewidths=(1,1.5), colors=color[1])
 ax3.plot(0, 0, 'k+', ms=12, mew=2) # for mod gr make the marker k+ , for gr make the marker w+
-ax3.set_xlabel('$\Delta M_c (M_\odot)$',fontsize=14, labelpad=10)
-ax3.set_ylabel('$\Delta q$',fontsize=14)
+ax3.set_xlabel('$\Delta M_c ~ (M_\odot)$',fontsize=14, labelpad=10)
+ax3.set_ylabel('$\Delta q \, \\times \, 10^{3}$',fontsize=14)
 ax3.set_xticks([])
 ax3.set_yticks([])
+ax3.set_xlim(-0.2,0.2)
+if post_file == '../data/data_mod_gr.txt':
+	ax3.set_ylim(-1.5e-3,5e-4)
+else: 
+	ax3.set_ylim(-1e-3,1e-3)
 
 ax2.plot(tgr.gf(P_dq_1d), dq_intp,color=color[0], lw=1)
 ax2.plot(tgr.gf(P_dq_marg), dq_intp,color=color[1], lw=1)
-ax2.axhline(0.,color='k', ls='-.')
-#ax2.axhline(y=left1_1d_v2, color='b', ls='-.')
-#ax2.axhline(y=right1_1d_v2, color='b', ls='-.')
-ax2.axhline(y=left2_1d_v2, color=color[0], ls='--')
-ax2.axhline(y=right2_1d_v2, color=color[0], ls='--')
-#ax2.axhline(y=left1_marg_v2, color='k', ls='-.')
-#ax2.axhline(y=right1_marg_v2, color='k', ls='-.')
-ax2.axhline(y=left2_marg_v2, color=color[1], ls='--')
-ax2.axhline(y=right2_marg_v2, color=color[1], ls='--')
-ax2.set_xlabel('$P(\Delta q) [\\times 10^{-3}]$',fontsize=14, labelpad=10)
+ax2.axhline(0.,color='k', ls='-', lw=0.5)
+ax2.axhline(y=left2_1d_v2, color=color[0], ls=':', lw=0.5)
+ax2.axhline(y=right2_1d_v2, color=color[0], ls=':', lw=0.5)
+ax2.axhline(y=left2_marg_v2, color=color[1], ls=':', lw=0.5)
+ax2.axhline(y=right2_marg_v2, color=color[1], ls=':', lw=0.5)
+ax2.set_xlabel('$P(\Delta q)$',fontsize=14, labelpad=10)
 ax2.set_xticks([])
-ax2.set_yticks(np.arange(-0.002, 0.001, 0.0005))
-ax2.set_yticklabels(np.arange(-2, 1, 0.5))
+
+if post_file == '../data/data_mod_gr.txt':
+	ax2.set_yticks(np.arange(-0.0015, 0.0015, 0.0005))
+	ax2.set_yticklabels(np.arange(-1.5, 1.5, 0.5), fontsize=12)
+	ax2.set_ylim(-1.5e-3,5e-4)
+else: 
+	ax2.set_yticks(np.arange(-0.001, 0.0011, 0.0005))
+	ax2.set_yticklabels(np.arange(-1., 1.01, 0.5), fontsize=12)
+	ax2.set_ylim(-1e-3,1e-3)
+
+ax2.set_xlim(0,np.max(P_dq_1d)*1.01)
 ax2.yaxis.tick_right()
 plt.tight_layout()
 plt.savefig('../papers/intro_paper/figs/%s.png'%outname, dpi=300)
 plt.savefig('../papers/intro_paper/figs/%s.pdf'%outname)
-plt.show()
+plt.close()

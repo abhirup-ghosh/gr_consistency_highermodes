@@ -21,7 +21,7 @@ N = 20000
 
 M = 80.          			# Total Mass in M_SUN
 q_vec = [1., 9.]			# vector of mass ratios 
-dL = 200.         		# Luminosity distance in Mpc
+dL = 400.         		# Luminosity distance in Mpc
 phi0 = 0.							# initial phase of the binary 
 incl_angle = np.pi/3.	# inclination angle 
 theta = 0. 						# sky location - polar (detector frame) 
@@ -84,8 +84,8 @@ for iQ, q in enumerate(q_vec):
 		plt.ylim(1e-25,1e-22)
 
 # save plot 
-plt.text(220, 1e-23, '$ q = 1$')
-plt.text(110, 2e-24, '$ q = 9$')
+plt.text(220, 0.8e-23, '$ q = 1$')
+plt.text(110, 1e-24, '$ q = 9$')
 plt.xlabel('$f$ [Hz]')
 plt.tight_layout()
 plt.savefig('mod_GR_waveform.pdf')

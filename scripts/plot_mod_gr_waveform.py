@@ -12,6 +12,7 @@ import numpy as np
 import phenomhh as phh
 import lal 
 import lalinspiral.sbank.psds as psds
+import standard_cosmology as sc
 
 # input paramseters 
 f_low = 20.
@@ -28,7 +29,7 @@ phi=0.								# sky location - azimuth (detector frame)
 psi = np.pi/6. 				# polarization angle 
 lmax=4								# max l to be included in phenom_hh 
 
-K_SC_vec = [0., 1e-3]	# values of K_SC := pi z (theta_0_dot - theta_0_ddot/H0)
+K_SC_vec = [0., 2e6/lal.C_SI]	# values of K_SC := (theta_0_dot - theta_0_ddot/H0)
 
 # plotting specs 
 col_vec = ['r', 'k']
@@ -40,6 +41,9 @@ alpha_vec = [0.4, 1]
 Fp = 0.5*(1 + np.cos(theta)**2)*np.cos(2*phi)*np.cos(2*psi) - np.cos(theta)*np.sin(2*phi)*np.sin(2*psi)
 Fc = 0.5*(1 + np.cos(theta)**2)*np.cos(2*phi)*np.sin(2*psi) + np.cos(theta)*np.sin(2*phi)*np.cos(2*psi)
 print '... Antenna patterns: Fp = %f Fc = %f' %(Fp, Fc)
+
+# cosmological redshift corresponding to dL 
+z = sc.redshift(dL*sc.H0/sc.c)
 
 plt.figure(figsize=(4.5,4.25))
 
@@ -57,7 +61,7 @@ for iQ, q in enumerate(q_vec):
 	for i, K_SC in enumerate(K_SC_vec): 
 
 		# amplitude modification of h_r and h_l
-		deltaphi = 1j*f*K_SC			# dephasing due to ampl birefringence K_SC := pi z (theta_0_dot - theta_0_ddot/H0) 
+		deltaphi = 1j*f*np.pi*z*K_SC			# dephasing due to ampl birefringence dphi := i f pi z (theta_0_dot - theta_0_ddot/H0) 
 		mod_hpf = hpf + hcf*deltaphi
 		mod_hcf = hcf - hpf*deltaphi 
 

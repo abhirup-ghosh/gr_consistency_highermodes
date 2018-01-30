@@ -14,7 +14,7 @@ import corner
 
 
 
-def lnlike(param_vec, dr, di, freq, psd, f_low, f_cut):
+def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 	"""
 	compute the log likelihood
 	
@@ -40,7 +40,8 @@ def lnlike(param_vec, dr, di, freq, psd, f_low, f_cut):
 	Mc, q, dL, ci, t0, phi_0 = param_vec	
 
 	# generate the waveform 
-	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, dL, np.arccos(ci), t0, phi_0, flow, df, Ncs)
+	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, dL, np.arccos(ci), t0, phi_0, f_low, df, Ncs)
+
 
 	ra=1.
 	dec =1.
@@ -67,7 +68,7 @@ def lnprob(param_vec):
 	lp = lnprior(param_vec)
 	if not np.isfinite(lp):
 		return -np.inf
-	return lp + lnlike(param_vec,dr,di,freq,psd)
+	return lp + lnlike(param_vec, data, freq, psd, f_low, f_cut)
 
 
 ##########################################################
@@ -80,17 +81,21 @@ loc='/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/201708_pe_results_p
 loc = '/home/ajith/working/cbc/gr_consistency_highermodes/runs/201708_pe_results_phenomhh/m_70_q_5_i_90/22_plus_HM/data'
 loc = '/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/experiments_201709/M_80/q_9/i_60/data'
 loc = '/home/ajith/working/cbc/gr_consistency_highermodes/runs/experiments_201709/M_80/q_9/i_60/data'
+loc = '/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/201711_pe_results_noise_free_analysis/M_70/q_9/i_60/data'
+loc = '/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/scripts/final_scripts'
 
-result=[21.4140366758,1./5,198.717477328,np.cos(pi/2),6.,pi]#initial guess around which walkers start. This is also true value.Mc,q,dL,i,t0,initial_phase 
+result=[ 1.886407405431894801e+01, 1./9, 3.885969673824694723e+02, np.cos(pi/3), 6., pi]#result=[16.4140366758,1./9,198.717477328,np.cos(pi/2),6.,pi]#[21.4140366758,1./5,198.717477328,np.cos(pi/2),6.,pi]#initial guess around which walkers start. This is also true value.Mc,q,dL,i,t0,initial_phase 
 data_fname = 'detected_data.txt'
 
 # labels of the parameter vector 
 param_label = ['$M_c$', '$q$', '$dL$', 'cos($\iota$)', '$t_0$', '$\phi_0$']
 
+f_low = 20.
+f_cut = 999.
 
 ndim, nwalkers = 6, 100
 num_threads = 24 
-num_iter = 100 
+num_iter = 2500 
 # ------------------------------------------------------ # 
 
 
@@ -133,16 +138,16 @@ sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, threads=num_threads)
 # writing data for each itteration.
 for result in sampler.sample(pos, iterations=num_iter, storechain=False):
 	position = result[0]
-	f = open("%s/chain_file.dat"%loc, "a")
+	f = open("%s/chain_hm_plus_22.dat"%loc, "a")
 	for k in range(position.shape[0]):
 		p=position[k]
 		f.write("{0:1d} {1:2f} {2:3f} {3:4f} {4:5f} {5:6f} {6:7f}\n".format(k,p[0],p[1],p[2],p[3],p[4],p[5]))
 	f.close()
 
 # add the final corner plots here
-data=np.genfromtxt('%s/chain_file.dat'%loc,delimiter=' ')
+chain_data=np.genfromtxt('%s/chain_hm_plus_22.dat'%loc,delimiter=' ')
 
-chain_length=int(len(data[:,0])/n_walkers)
+chain_length=int(len(chain_data[:,0])/n_walkers)
 s=(nwalkers,chain_length,ndim)
 x=np.zeros(s)
 
@@ -150,13 +155,13 @@ i=0
 for j in range(x.shape[1]):
 	for l in range(x.shape[0]):
 		for k in range(x.shape[2]):
-			x[l][j][k]=data[i][k+1]
+			x[l][j][k]=chain_data[i][k+1]
 		i+=1
 
 samples = x[:,:,:].reshape((-1, ndim))
 
 plt.figure()
 corner.corner(samples, labels=param_label)
-plt.savefig("%s/final_corner_plot_without_burnin.png"%loc_plots)
+plt.savefig("%s/final_corner_plot_without_burnin.png"%loc)
 plt.close()
  

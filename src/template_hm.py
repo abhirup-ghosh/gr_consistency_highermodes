@@ -1,5 +1,5 @@
 """
-program to generate phenomhh_waveform in SI units given masses and distances. Remember to source Ajithm profile before running the program
+template of all modes included
 """
 
 from numpy import sqrt, sin, cos, pi,exp
@@ -63,31 +63,14 @@ def phenomhh_waveform_SI(Mc,q,r,iota,t0,phase,f_low,df,Ncs):
 	incl_angle=iota 
 	phi=0. 
 	lmax=4
-	Psi_ref=0.
+	Psi_ref=phase
 	
-	hpf22,hcf22 = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[2,2]], Psi_ref) 
-	hpf21,hcf21 = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[2,1]], Psi_ref)
-	hpf33,hcf33 = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[3,3]], Psi_ref)
-	hpf44,hcf44 = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[4,4]], Psi_ref)
+	hpf,hcf = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[2,2],[2,1],[3,3],[4,4]], Psi_ref) 
 	
 	f=np.linspace(0., df*(N-1), N)
 	
-	hpf22=hpf22*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2j*phase)*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
-	hcf22=hcf22*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2j*phase)*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
-
-        hpf21=hpf21*mt*MRSUN_SI*MTSUN_SI*mt*exp(-1j*phase)*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
-        hcf21=hcf21*mt*MRSUN_SI*MTSUN_SI*mt*exp(-1j*phase)*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
-
-        hpf33=hpf33*mt*MRSUN_SI*MTSUN_SI*mt*exp(-3j*phase)*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
-        hcf33=hcf33*mt*MRSUN_SI*MTSUN_SI*mt*exp(-3j*phase)*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
-
-        hpf44=hpf44*mt*MRSUN_SI*MTSUN_SI*mt*exp(-4j*phase)*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
-        hcf44=hcf44*mt*MRSUN_SI*MTSUN_SI*mt*exp(-4j*phase)*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
-
-
-	hpf=hpf22+hpf21+hpf33+hpf44
-	hcf=hcf22+hcf21+hcf33+hcf44
-
+	hpf=hpf*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+	hcf=hcf*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
 
 	return f,hpf,hcf
 

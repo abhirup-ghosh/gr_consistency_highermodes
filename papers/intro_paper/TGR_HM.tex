@@ -54,6 +54,7 @@
 \newcommand{\btheta}{\bm{\theta}}
 \newcommand{\bxi}{\bm{\xi}}
 \newcommand{\etal}{\emph{et al}}
+\newcommand{\n}{\mathbf{n}}
 
 \begin{document}
 
@@ -70,6 +71,7 @@
 \affiliation{Penn State University}
 
 \begin{abstract}
+One of the predictions of the black-hole ``no-hair'' theorem in General Relativity (GR) is that gravitational radiation from a perturbed Kerr black hole (\emph{quasi-normal modes}) is uniquely determined by its mass and spin. Thus, different quasi-normal modes have to be consistent with the same value of the black-hole mass and spin. Similarly, the gravitational radiation from coalescing binary black holes is uniquely determined by a small number of parameters (masses and spins of the black holes and orbital eccentricity). Thus, consistency between different spherical harminc modes of the radiation is a powerful probe of the consistency of the signal with a binary black hole system in GR. We formulate such a test of GR, develop a Bayesian implementation and demonstrates its performance on simulated data. 
 \end{abstract}
 \preprint{LIGO-}
 \maketitle
@@ -96,15 +98,16 @@ h(t) = F_+(\theta, \phi, \psi) \, h_+(t-t_0) + F_{\times}(\theta, \phi, \psi)\, 
 \end{equation}
 where $F_+$ and $F_x$ are the antenna pattern functions of the GW detector, $t_0$ is the time of arrival of the signal at the detector, and $(\theta, \phi, \psi)$ define the sky position and polarisation of the GW source respectively. The two GW polarizations $\h := h_+(t) - i \, h_\times(t)$ can be expanded in a basis of spin $-2$ weighted spherical harmonics, as:
 \begin{equation}
-\h(t; \iota, \phi_0, \blambda) = \sum _{\ell=2}^{\infty} \sum _{m=-\ell}^{\ell} \Ylm (\iota, \phi_0) \, \frac{{\h}_{lm}(t; \blambda)}{d_L}, 
+\h(t; \n, \blambda) =  \frac{1}{d_L} \sum _{\ell=2}^{\infty} \sum _{m=-\ell}^{\ell} \Ylm (\n) \, {{\hlm}(t; \blambda)}, 
 \label{eq:spherical_harmonics}
 \end{equation}
-where $\Ylm$ are the basis functions of spin $-2$ spherical harmonics, $(\iota, \phi_0)$ define the direction of radiation in the source frame, $d_L$ is  the luminosity distance to the binary, and ${\h}_{lm}(t; \blambda)$ are the spherical harmonic modes of the waveform, which are completely described by the intrinsic parameters $\blambda$ of the system. We assume that the black holes are non-spinning and the binary to be qusi-circular. Hence $\blambda$ consists of only the masses $m_1$ and $m_2$ of the black holes. 
+where $\Ylm$ are the basis functions of spin $-2$ spherical harmonics, $\n := \{\iota, \phi_0\}$ define the direction of radiation in the source frame, $d_L$ is  the luminosity distance to the binary, and ${\h}_{lm}(t; \blambda)$ are the spherical harmonic modes of the waveform, which are completely described by the intrinsic parameters $\blambda$ of the system. We assume that the black holes are non-spinning and the binary to be qusi-circular. Hence $\blambda$ consists of only the masses $m_1$ and $m_2$ of the black holes. 
 
 In GR, the set of intrinsic parameters $\blambda$ completely determines the multipolar structure of the waveform ${\h}_{lm}(t)$. Any inconsistency between the different multipoles of the radiation can point to a deviation from GR. In this paper, we propose a test of GR based on the consistency of different multipoles of the gravitational radiation from binary black holes. In order to formulate a consistency test between different multipoles, we rewrite Eq.(\ref{eq:spherical_harmonics}) by splitting the contributions from the dominant $(\ell = 2, m = \pm 2)$ mode of gravitational radiation, and the sub-dominant (higher order) modes 
 \begin{eqnarray}
-\h(t; \iota, \phi_0, \blambda, \Delta \blambda) & = & \sum_{m = \pm2} Y^{-2}_{2m} (\iota, \phi_0) {\h}_{2m}(t, \blambda)  \nonumber \\ 
- & + & \sum _{\text{H.O.M}} \Ylm (\iota, \phi_0) \h_{lm}(t, \blambda+\Delta \blambda)
+\h(t; \n, \blambda, \Delta \blambda) & = & \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
+& + & \sum _{\text{H.O.M}} \Ylm (\n) \hlm(t, \blambda+\Delta \blambda)
+%\h(t; \n, \blambda, \Delta \blambda)  =  \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda)  + \sum _{\text{H.O.M}} \Ylm (\n) \hlm(t, \blambda+\Delta \blambda)
 \label{eq:test_HM}
 \end{eqnarray}
 where the subscript H.O.M underneath the summation in the second term on the RHS indicates contribution from just the higher-order multipoles of the gravitational radiation. Note that we allow a possibility of inconsistency between the dominant mode and higher order modes by introducing a deviation $\Delta \blambda$ in the set of intrinsic parameters that describe the higher order modes; in GR,  $\Delta \blambda = 0$. 
@@ -148,12 +151,12 @@ Figure~\ref{fig:dMc_dq_posteriors_gr} shows the expected width of the 90\% credi
 We also investigate the efficacy of our test in detecting deviations from GR. We introduce a deviation from GR in the simulated signals --- a propagation effect predicted by the Chern-Simons (CS) gravity. Under the CS modification to GR, a circularly polarised plane GW, propagating on an Friedmann–Lema\^itre–Robertson–Walker spacetime, would show amplitude birefringence and parity violation~\cite{Yunes:2010yf}. Compared to GR, right circularly polarised waves will be exponentially enhanced or suppressed with respect to left circularly polarized waves, as they propogate. That is, 
 % 
 \begin{equation}
-\h_\mathrm{R,L}^\mathrm{mod} = \h_\mathrm{R,L} \, e^{-i \, \delta\phi_\mathrm{R,L}} \simeq  \h_\mathrm{R,L} \, (1 -i \, \delta\phi_\mathrm{R,L}),
+\h_\mathrm{R,L}^\mathrm{mod} = \h_\mathrm{R,L} \, e^{-i \, \delta\phi_\mathrm{R,L}} \simeq  \h_\mathrm{R,L} \, (1 \mp i \, \delta\phi),
 \label{eq:cs_modification_h}
 \end{equation}
-where $\h_\mathrm{R,L} = (h_+ \pm h_\times)/\sqrt{2}$ are the right/left circularly polarized polarization states predicted by GR and $\delta \phi_{R,L}$ is an additional phase contribution due to the CS correction, given by 
+where $\h_\mathrm{R,L} = (h_+ \pm h_\times)/\sqrt{2}$ are the right/left circularly polarized polarization states predicted by GR and $\delta \phi$ is an additional phase contribution due to the CS correction, given by 
 \begin{equation}
-\delta \phi_\mathrm{R,L}= \pm i \, f \, \pi \, z \, \Big(\dot{\theta_0}-\frac{\ddot{\theta_0}}{H_0}\Big).
+\delta \phi = i \, f \, \pi \, z \, \Big(\dot{\theta_0}-\frac{\ddot{\theta_0}}{H_0}\Big).
 \label{eq:cs_modification_dphi}
 \end{equation}
 Here, $f$ is the Fourier frequency measured by the observer, $z$ is the cosmological redshift at source, and ${H_0}$ is the value of the Hubble constant measured by the observer, while $\dot{\theta_0}$ and $\ddot{\theta_0}$ denote the first and second time-derivative of the CS coupling field. Note that the CS correction is purely imaginary which results in amplitude birefringence. Solar system observations of the LAGEOS satellites have allowed us to derive a bound $|\dot{\theta_0}-\frac{\ddot{\theta_0}}{H_0}| < 2000~\mathrm{km}$~\cite{Yunes:2010yf,Smith:2007jm}.

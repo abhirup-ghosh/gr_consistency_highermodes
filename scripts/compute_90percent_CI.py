@@ -27,6 +27,7 @@ def calc_conf_intervals_in_1d(P, x):
 in_dir_root = '../runs/Mc_q_deltaMc'
 burnin = 1000
 
+mc_spread = []
 M_inj = 40
 q_inj_list = [2,3,4,5,6,7,8,9]
 iota_inj_list = [30, 45, 60, 80, 90]
@@ -47,4 +48,31 @@ for q_inj in q_inj_list:
 
     s1_1d_v1, s2_1d_v1, left1_1d_v1, right1_1d_v1, left2_1d_v1, right2_1d_v1 = calc_conf_intervals_in_1d(P_dmcbymc_1d, dmcbymc_intp)
 
-    print '40 %d %d %.6f'%(q_inj, iota_inj, right2_1d_v1-left2_1d_v1) 
+    #print '40 %d %d %.6f'%(q_inj, iota_inj, right2_1d_v1-left2_1d_v1)
+    mc_spread.append(right2_1d_v1-left2_1d_v1)
+
+i_90=[]
+i_80=[]
+i_60=[]
+i_45=[]
+i_30=[]
+n=0
+while n<=39:
+        i_30.append(mc_spread[n])
+        i_45.append(mc_spread[n+1])
+        i_60.append(mc_spread[n+2])
+        i_80.append(mc_spread[n+3])
+        i_90.append(mc_spread[n+4])
+        n=n+5
+
+
+q=np.array([2,3,4,5,6,7,8,9])
+
+i_30=np.array(i_30)
+i_45=np.array(i_45)
+i_60=np.array(i_60)
+i_80=np.array(i_80)
+i_90=np.array(i_90)
+
+for i in range(len(q)): 
+    print '%.6f %.6f %.6f %.6f %.6f %.6f'%(q[i],i_90[i],i_80[i],i_60[i],i_45[i],i_30[i]) 

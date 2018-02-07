@@ -38,8 +38,8 @@ for q_inj in q_inj_list:
     
     dmcbymc_1d = (mc[burnin:] - mc1[burnin:])/mc[burnin:]
 
-    Nbins = 1601
-    dmcbymc_bins = np.linspace(-20.0, 20.0, Nbins)
+    Nbins = 101
+    dmcbymc_bins = np.linspace(min(dmcbymc_1d), max(dmcbymc_1d), Nbins)
     dmcbymc = np.mean(np.diff(dmcbymc_bins))
     dmcbymc_intp = (dmcbymc_bins[:-1] + dmcbymc_bins[1:])/2.
 
@@ -47,4 +47,4 @@ for q_inj in q_inj_list:
 
     s1_1d_v1, s2_1d_v1, left1_1d_v1, right1_1d_v1, left2_1d_v1, right2_1d_v1 = calc_conf_intervals_in_1d(P_dmcbymc_1d, dmcbymc_intp)
 
-    print '90 percent CI for M=40, q=%d, iota=%d: %.4f'%(q_inj, iota_inj, right2_1d_v1-left2_1d_v1) 
+    print '40 %d %d %.6f'%(q_inj, iota_inj, right2_1d_v1-left2_1d_v1) 

@@ -41,7 +41,7 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 	Mc, q, Mc1, q1, dL, i, t0, phi0 = param_vec	
 
 	# generate the waveform 
-	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, Mc1, q1, dL, i, t0, (phi0 %(2.*pi)), f_low, df, Ncs)
+	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, Mc, q1, dL, i, t0, (phi0 %(2.*pi)), f_low, df, Ncs)
 
 
 	ra=1.
@@ -97,8 +97,8 @@ f_low = 20.
 f_cut = 999.
 
 ndim, nwalkers = 8, 100
-num_threads = 32
-num_iter = 3000 
+num_threads = 24
+num_iter = 3000
 # ------------------------------------------------------ # 
 
 
@@ -111,7 +111,7 @@ print '... read data'
 
 mc_init, q_init, mc1_init, q1_init, dL_init, iota_init, t0_init, phi0_init = result
 
-pos = [result + 1e-4*np.random.randn()*np.ones(ndim) for i in range(nwalkers)]
+pos = [result + 1e-4*np.random.randn(ndim) for i in range(nwalkers)]
 
 print '... generated initial walkers. starting sampling...' 
 

@@ -48,7 +48,7 @@ for q_inj in q_inj_list:
 
     s1_1d_v1, s2_1d_v1, left1_1d_v1, right1_1d_v1, left2_1d_v1, right2_1d_v1 = calc_conf_intervals_in_1d(P_dmcbymc_1d, dmcbymc_intp)
 
-    #print '40 %d %d %.6f'%(q_inj, iota_inj, right2_1d_v1-left2_1d_v1)
+#    print '40 %d %d %.6f'%(q_inj, iota_inj, right2_1d_v1-left2_1d_v1)
     mc_spread.append(right2_1d_v1-left2_1d_v1)
 
 i_90=[]
@@ -74,5 +74,6 @@ i_60=np.array(i_60)
 i_80=np.array(i_80)
 i_90=np.array(i_90)
 
+print '#q i=90 i=80 i=60 i=45 i=30'
 for i in range(len(q)): 
     print '%.6f %.6f %.6f %.6f %.6f %.6f'%(q[i],i_90[i],i_80[i],i_60[i],i_45[i],i_30[i]) 

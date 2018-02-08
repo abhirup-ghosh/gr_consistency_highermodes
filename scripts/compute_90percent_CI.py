@@ -24,56 +24,34 @@ def calc_conf_intervals_in_1d(P, x):
 # MAIN
 ##################################################
 
-in_dir_root = '../runs/Mc_q_deltaMc'
+in_dir_root = '../runs/Mc_q_deltaq'
 burnin = 1000
 
-mc_spread = []
 M_inj = 40
 q_inj_list = [2,3,4,5,6,7,8,9]
 iota_inj_list = [30, 45, 60, 80, 90]
 
-for q_inj in q_inj_list:
-  for iota_inj in iota_inj_list:
+out_matrix = np.zeros([len(q_inj_list), len(iota_inj_list)+1])
+
+for (i, q_inj) in enumerate(q_inj_list):
+  for (j, iota_inj) in enumerate(iota_inj_list):
+
     post_loc = in_dir_root + '/M_40_q_%d_iota_%d/emcee_samples.dat'%(q_inj, iota_inj)
     mc, q, mc1, q1, dL, iota, t0, phi0 = np.loadtxt(post_loc, unpack=True)
-    
-    dmcbymc_1d = (mc[burnin:] - mc1[burnin:])/mc[burnin:]
+    x, x1 = q, q1    
+
+    dxbyx_1d = (x[burnin:] - x1[burnin:])/x[burnin:]
 
     Nbins = 101
-    dmcbymc_bins = np.linspace(min(dmcbymc_1d), max(dmcbymc_1d), Nbins)
-    dmcbymc = np.mean(np.diff(dmcbymc_bins))
-    dmcbymc_intp = (dmcbymc_bins[:-1] + dmcbymc_bins[1:])/2.
+    dxbyx_bins = np.linspace(min(dxbyx_1d), max(dxbyx_1d), Nbins)
+    dxbyx = np.mean(np.diff(dxbyx_bins))
+    dxbyx_intp = (dxbyx_bins[:-1] + dxbyx_bins[1:])/2.
 
-    P_dmcbymc_1d, dmcbymc_bins = np.histogram(dmcbymc_1d,bins=dmcbymc_bins, normed=True)
+    P_dxbyx_1d, dxbyx_bins = np.histogram(dxbyx_1d,bins=dxbyx_bins, normed=True)
 
-    s1_1d_v1, s2_1d_v1, left1_1d_v1, right1_1d_v1, left2_1d_v1, right2_1d_v1 = calc_conf_intervals_in_1d(P_dmcbymc_1d, dmcbymc_intp)
+    s1_1d, s2_1d, left1_1d, right1_1d, left2_1d, right2_1d = calc_conf_intervals_in_1d(P_dxbyx_1d, dxbyx_intp)
 
-#    print '40 %d %d %.6f'%(q_inj, iota_inj, right2_1d_v1-left2_1d_v1)
-    mc_spread.append(right2_1d_v1-left2_1d_v1)
+    out_matrix[i, 0] = q_inj
+    out_matrix[i, j+1] = right2_1d-left2_1d
 
-i_90=[]
-i_80=[]
-i_60=[]
-i_45=[]
-i_30=[]
-n=0
-while n<=39:
-        i_30.append(mc_spread[n])
-        i_45.append(mc_spread[n+1])
-        i_60.append(mc_spread[n+2])
-        i_80.append(mc_spread[n+3])
-        i_90.append(mc_spread[n+4])
-        n=n+5
-
-
-q=np.array([2,3,4,5,6,7,8,9])
-
-i_30=np.array(i_30)
-i_45=np.array(i_45)
-i_60=np.array(i_60)
-i_80=np.array(i_80)
-i_90=np.array(i_90)
-
-print '#q i=90 i=80 i=60 i=45 i=30'
-for i in range(len(q)): 
-    print '%.6f %.6f %.6f %.6f %.6f %.6f'%(q[i],i_90[i],i_80[i],i_60[i],i_45[i],i_30[i]) 
+np.savetxt('../data/90_percent_width_dq_t_abhi.txt', out_matrix, header='q i_30 i_45 i_60 i_80 i_90')

@@ -78,11 +78,12 @@ One of the consequences of the black-hole ``no-hair'' theorem in General Relativ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
 \paragraph{Introduction:---}
 
-Recent observations of gravitational-wave (GW) signals from merging binaries of black holes~\cite{gw150914, gw151226, gw170104, gw170814} and neutron stars~\cite{gw170817} by LIGO~\cite{advancedLIGO-2015} and Virgo~\cite{advancedVIRGO-2015} have enabled the first tests of General Relativity (GR) in the highly relativistic regime~\cite{tgr-papers}. The large number of signals anticipated in the upcoming LIGO-Virgo observations~\cite{rates} will enable us to perform some precision tests of GR and the true nature of these compact objects. 
 
-One of the remarkable predictions of General Relativity (GR) is that a stationary black hole can be fully described by a small number of parameters --- its mass, spin angular momentum and electric charge~\cite{uniqueness-theorems}. As a consequence of this ``no-hair'' theorem, the gravitational radiation (\emph{quasi-normal modes}) from a perturbed black hole is fully determined by these parameters. Astrophysical black holes are expected to possess negligible electric charge. Thus, different quasi-normal modes have to be consistent with the same value of the mass and spin. Similarly, the dynamics and gravitational radiation from a binary black hole system are uniquely determined by a small number of parameters (masses and spins of the black holes and the orbital eccentricity), and hence different spherical harmonic modes of the radiation have to be consistent with the same values of this small set of parameters. Hence, the consistency between different modes of the radiation is a powerful test of the consistency of the signal with a binary black hole system in GR --- in the same spirit as the consistency between multiple quasi-normal modes providing a test of the ``no-hair'' theorem. 
+One of the remarkable predictions of general relativity (GR) is that a stationary black hole can be fully described by a small number of parameters --- its mass, spin angular momentum and electric charge~\cite{uniqueness-theorems}. As a consequence of this ``no-hair'' theorem, the gravitational radiation (\emph{quasi-normal modes}) from a perturbed black hole is fully determined by these parameters. Astrophysical black holes are expected to possess negligible electric charge. Thus, different quasi-normal modes have to be consistent with the same value of the mass and spin. Similarly, the dynamics and gravitational radiation from a binary black hole system are uniquely determined by a small number of parameters (masses and spins of the black holes and the orbital eccentricity), and hence different spherical harmonic modes of the radiation have to be consistent with the same values of this small set of parameters. We argue that the consistency between different modes of the radiation is a powerful test of the consistency of the signal with a binary black hole system in GR --- in the same spirit as the consistency between multiple quasi-normal modes providing a test of the ``no-hair'' theorem for isolated black holes.  
 
-The coalescence of binary black holes are expected to produce a perturbed Kerr black hole as the remnant, and the late time GW signal is described by a spectrum of quasi-normal modes~\cite{xxx}. While the relatively simple structure of quasi-normal modes has been known from black-hole perturbation theory for a long time~\cite{bhp-review}, the polarization modes from the full coalescence (inspiral, merger and ringdown) have a much more complex structure. Fortunately, recent numerical-relativity simulations along with high-order analytical calculations have produced semi-analytical waveforms describing the polarization modes that are relevant for observations~\cite{eobnr,phenom,refs,Mehta:2017jpq}. Employing template waveforms containing the full polarization modes is expected to improve the precision of the estimation of source parameters from the data~\cite{xx}. Here, we develop a powerful test of GR based on the consistency of different modes of the expected radiation.  
+The coalescence of binary black holes are expected to produce a perturbed Kerr black hole as the remnant, and the late time GW signal is described by a spectrum of quasi-normal modes~\cite{xxx}. While the relatively simple structure of quasi-normal modes has been known from black-hole perturbation theory for a long time~\cite{bhp-review}, the radiation from the full coalescence (inspiral, merger and ringdown) have a much more complex structure. Fortunately, recent numerical-relativity simulations along with high-order analytical calculations have produced semi-analytical waveforms describing the polarization modes that are relevant for observations~\cite{eobnr,phenom,refs,Mehta:2017jpq}. Employing template waveforms containing the full polarization modes is expected to improve the precision of the estimation of source parameters from the data~\cite{xx}. Here, we develop a powerful test of GR based on the consistency of different modes of the expected radiation.  
+
+%Recent observations of gravitational-wave (GW) signals from merging binaries of black holes~\cite{gw150914, gw151226, gw170104, gw170814} and neutron stars~\cite{gw170817} by LIGO~\cite{advancedLIGO-2015} and Virgo~\cite{advancedVIRGO-2015} have enabled the first tests of General Relativity (GR) in the highly relativistic regime~\cite{tgr-papers}. The large number of signals anticipated in the upcoming LIGO-Virgo observations~\cite{rates} will enable us to perform some precision tests of GR and the true nature of these compact objects. 
 
 \paragraph{Testing the consistency between different multipoles of the gravitational radiation:--}
 
@@ -95,28 +96,28 @@ The coalescence of binary black holes are expected to produce a perturbed Kerr b
 \end{center} \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-An interferometric GW detector observes a linear combination of the two polarizations $h_+(t)$ and $h_\times(t)$ of the GW signal, given by 
-\begin{equation}
-h(t) = F_+(\theta, \phi, \psi) \, h_+(t-t_0) + F_{\times}(\theta, \phi, \psi)\, {h}_{\times}(t-t_0), 
-\label{eq:det_response}
-\end{equation}
-where $F_+$ and $F_x$ are the antenna pattern functions of the GW detector, $t_0$ is the time of arrival of the signal at the detector, and $(\theta, \phi, \psi)$ define the sky position and polarisation of the GW source respectively. The two GW polarizations $\h(t) := h_+(t) - i \, h_\times(t)$ can be expanded in a basis of spin $-2$ weighted spherical harmonics, as:
+The two polarizations $h_+(t)$ and $h_\times(t)$ of gravitational radiation in GR can be written as a complex time series $\h(t) := h_+(t) - i \, h_\times(t)$, which can be expanded in a basis of spin $-2$ weighted spherical harmonics, as:
 \begin{equation}
 \h(t; \n, \blambda) =  \frac{1}{d_L} \sum _{\ell=2}^{\infty} \sum _{m=-\ell}^{\ell} \Ylm (\n) \, {{\hlm}(t; \blambda)}, 
 \label{eq:spherical_harmonics}
 \end{equation}
 where $\Ylm$ are the basis functions of spin $-2$ spherical harmonics, $\n := \{\iota, \phi_0\}$ define the direction of radiation in the source frame, $d_L$ is  the luminosity distance to the binary, and ${\h}_{lm}(t; \blambda)$ are the spherical harmonic modes of the waveform, which are completely described by the intrinsic parameters $\blambda$ of the system. We assume that the black holes are non-spinning and the binary to be quasi-circular. Hence $\blambda$ consists of only the masses $m_1$ and $m_2$ of the black holes. 
 
-In GR, the set of intrinsic parameters $\blambda$ completely determines the multipolar structure of the waveform ${\h}_{lm}(t)$. Any inconsistency between the different multipoles of the radiation can point to a deviation from GR. In this paper, we propose a test of GR based on the consistency of different multipoles of the gravitational radiation from binary black holes. In order to formulate a consistency test between different multipoles, we rewrite Eq.(\ref{eq:spherical_harmonics}) by splitting the contributions from the dominant $(\ell = 2, m = \pm 2)$ mode of gravitational radiation, and the sub-dominant (higher order) modes 
+In GR, the set of intrinsic parameters $\blambda$ completely determines the multipolar structure (i.e., spherical harmonic modes) of the waveform ${\h}_{lm}(t)$. Any inconsistency between the different multipoles of the radiation can point to a deviation from GR. In this paper, we propose a test of GR based on the consistency of different multipoles of the gravitational radiation from binary black holes. In order to formulate a consistency test between different multipoles, we rewrite Eq.(\ref{eq:spherical_harmonics}) by splitting the contributions from the dominant $(\ell = 2, m = \pm 2)$ mode of gravitational radiation, and the sub-dominant (higher order) modes 
 \begin{eqnarray}
 \h(t; \n, \blambda, \Delta \blambda) & = & \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
 & + & \sum _{\text{H.O.M}} \Ylm (\n) \hlm(t, \blambda+\Delta \blambda)
 %\h(t; \n, \blambda, \Delta \blambda)  =  \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda)  + \sum _{\text{H.O.M}} \Ylm (\n) \hlm(t, \blambda+\Delta \blambda)
 \label{eq:test_HM}
 \end{eqnarray}
-where the subscript H.O.M underneath the summation in the second term on the RHS indicates contribution from just the higher-order multipoles of the gravitational radiation. Note that we allow a possibility of inconsistency between the dominant mode and higher order modes by introducing a deviation $\Delta \blambda$ in the set of intrinsic parameters that describe the higher order modes; in GR,  $\Delta \blambda = 0$. 
+where the subscript H.O.M underneath the summation in the second term on the RHS indicates contribution from just the higher-order modes of the gravitational radiation. Note that we allow a possibility of inconsistency between the dominant mode and higher order modes by introducing a deviation $\Delta \blambda$ in the set of intrinsic parameters that describe the higher order modes; in GR,  $\Delta \blambda = 0$. 
 
-The data $d(t)$ contains the observed signal $h(t)$ given in Eq.~(\ref{eq:det_response}) along with noise, which is modeled as a stationary Gaussian random process 
+An interferometric GW detector observes a linear combination of the two polarizations $h_+(t)$ and $h_\times(t)$, given by 
+\begin{equation}
+h(t) = F_+(\theta, \phi, \psi) \, h_+(t-t_0) + F_{\times}(\theta, \phi, \psi)\, {h}_{\times}(t-t_0), 
+\label{eq:det_response}
+\end{equation}
+where $F_+$ and $F_x$ are the antenna pattern functions of the GW detector, $t_0$ is the time of arrival of the signal at the detector, and $(\theta, \phi, \psi)$ define the sky position and polarisation angle of the GW source respectively. The data $d(t)$ contains the observed signal $h(t)$ given in Eq.~(\ref{eq:det_response}) along with noise $n(t)$, which is modeled as a stationary Gaussian random process 
 \begin{equation}
 d(t) = n(t) + h(t). 
 \label{eq:detector_strain}
@@ -169,7 +170,7 @@ From the $+,\times$ polarizations of the GR waveforms discussed in the earlier s
 
 \begin{figure}[h]
 	\includegraphics*[width=3.1in]{figs/mod_GR_waveform.pdf}
-	\caption{Amplitudes of GR and modified GR waveform with the modification $\delta \phi_\mathrm{R,L} = \pm i \, 10^{-3} f$ [see, Eq.\eqref{eq:cs_modification_dphi}]. The system configuration is $M = 80 M_{\odot}$, $q = 9$, $\iota=90^{\circ}$ at a distance of 200 Mpc. The match between GR and mod.GR waveform is greater than 0.96 for such a departure.}
+	\caption{Fourier-domain amplitudes of GR and modified GR waveform with the modification $\delta \phi_\mathrm{R,L} = \pm i \, 10^{-3} f$ [see, Eq.\eqref{eq:cs_modification_dphi}]. The system configuration is $M = 80 M_{\odot}$, $q = 9$, $\iota=60^{\circ}$ at a distance of 400 Mpc. The match between GR and modified-GR waveform is greater than \red{XX}.}
 \label{fig:mod_gr_waveform}
 \end{figure}
 

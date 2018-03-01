@@ -37,15 +37,11 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
         Ncs=np.int(f_cut/df)  #N_cut_signal
 	
 	# unpacking the parameter vector 
-	Mc, q, Mc1, q1, dL, i, t0, phi_0 = param_vec	
+	Mc, q, Mc1, q1, dL, i, t0, phi_0,  ra, dec, pol= param_vec	
 
 	# generate the waveform 
 	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, Mc1, q1, dL, i, t0, (phi_0 %(2.*pi)), f_low, df, Ncs)
 
-
-	ra=1.
-	dec =1.
-	pol=0.
 	# compute antenna patterns 
 	Fp,Fc = detector.overhead_antenna_pattern(ra, dec, pol)	
 
@@ -57,8 +53,8 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 
 
 def lnprior(param_vec):
-	Mc, q, Mc1, q1, dL, i, t0, phi_0 = param_vec
-	if 1 < Mc < 200 and 0.05 < q <= 1. and  1 < Mc1 < 200 and 0.05 < q1 <= 1. and 1.<dL<10000 and 0.<= i <= pi and 0.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi:
+	Mc, q, Mc1, q1, dL, i, t0, phi_0, ra, dec, pol = param_vec
+	if 1 < Mc < 200 and 0.05 < q <= 1. and  1 < Mc1 < 200 and 0.05 < q1 <= 1. and 1.<dL<10000 and 0.<= i <= pi and 0.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and -pi <= ra < 3.*pi and -pi <= dec < 3.*pi and -pi < pol <3.*pi:
 		return 0.0
 	return -np.inf
 
@@ -79,16 +75,16 @@ def lnprob(param_vec):
 # -------------------- inputs -------------------------- # 
 loc = '/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/scripts/final_scripts'#'/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/201711_pe_deviations_noise_free_analysis/M_80/q_9/i_60/data'
 
-result=[ 1.886407405431894801e+01, 1./9, 1.886407405431894801e+01, 1./9, 3.885969673824694723e+02, pi/3, 6., pi]#initial guess around which walkers start. This is also true value.Mc,q,dL,i,t0,initial_phase for quicker convergence. *If any injection value is 0 add 0.01 to it. 
+result=[ 1.886407405431894801e+01, 1./9, 1.886407405431894801e+01, 1./9, 489.747597, pi/3, 6., pi, pi/2, pi/2, 5.15]#initial guess around which walkers start. This is also true value.Mc,q,dL,i,t0,initial_phase for quicker convergence. *If any injection value is 0 add 0.01 to it. 
 data_fname = 'detected_data.txt'
 
 # labels of the parameter vector 
-param_label = ['$M_c$', '$q$', '$M_c_1$', '$q_1$' ,'$dL$', '$\iota$', '$t_0$', '$\phi_0$']
+param_label = ['$M_c$', '$q$', '$M_c_1$', '$q_1$' ,'$dL$', '$\iota$', '$t_0$', '$\phi_0$', '$ra$', '$dec$', '$\Psi$']
 
 f_low = 20.
 f_cut = 999.
 
-ndim, nwalkers = 8, 100
+ndim, nwalkers = 11, 100
 num_threads = 24 
 num_iter = 3000 
 # ------------------------------------------------------ # 
@@ -100,7 +96,7 @@ data = dr + 1j*di
 print '... read data' 
 
 # create initial walkers 
-pos = [result + np.array([0.0002*result[0]*np.random.random_sample()-0.0001*result[0],0.002*result[1]*np.random.random_sample()-0.001*result[1],0.0002*result[2]*np.random.random_sample()-0.0001*result[2],0.002*result[3]*np.random.random_sample()-0.001*result[3],0.002*result[4]*np.random.random_sample()-0.001*result[4],0.002*result[5]*np.random.random_sample()-0.001*result[5],0.0002*result[6]*np.random.random_sample()-0.0001*result[6],0.002*result[7]*np.random.random_sample()-0.001*result[7]]) for i in range(nwalkers)]
+pos = [result + np.array([0.0002*result[0]*np.random.random_sample()-0.0001*result[0],0.002*result[1]*np.random.random_sample()-0.001*result[1],0.0002*result[2]*np.random.random_sample()-0.0001*result[2],0.002*result[3]*np.random.random_sample()-0.001*result[3],0.002*result[4]*np.random.random_sample()-0.001*result[4],0.002*result[5]*np.random.random_sample()-0.001*result[5],0.0002*result[6]*np.random.random_sample()-0.0001*result[6],0.002*result[7]*np.random.random_sample()-0.001*result[7],0.002*result[8]*np.random.random_sample()-0.001*result[8],0.002*result[9]*np.random.random_sample()-0.001*result[9],0.002*result[10]*np.random.random_sample()-0.001*result[10]]) for i in range(nwalkers)]
 
 ##make corner plot of the initial walkers 
 #plt.figure()
@@ -119,7 +115,7 @@ for result in sampler.sample(pos, iterations=num_iter, storechain=False):
 	f = open("%s/chain_tgr_2_var.dat"%loc, "a")
 	for k in range(position.shape[0]):
 		p=position[k]
-		f.write("{0:1d} {1:2f} {2:3f} {3:4f} {4:5f} {5:6f} {6:7f} {7:8f}{8:9f}\n".format(k,p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]%(2.*pi)))# Order: walker number, Mc, q, Mc1, q1, dL, iota, t0, phi_0 
+                f.write("{0:1d} {1:2f} {2:3f} {3:4f} {4:5f} {5:6f} {6:7f} {7:8f} {8:8f} {9:8f} {10:8f} {11:8f}\n".format(k,p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]%(2.*pi),p[8]%(2.*pi),p[9]%(2.*pi),p[10]%(2.*pi)))# Order: walker number, Mc, q, Mc1, q1, dL, iota, t0, phi_0, ra, dec, pol
 	f.close()
 
 

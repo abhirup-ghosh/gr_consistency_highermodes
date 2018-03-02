@@ -54,8 +54,8 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 
 def lnprior(param_vec):
 	Mc, q, Mc1, q1, dL, i, t0, phi_0, ra, dec, pol = param_vec
-	if 1 < Mc < 200 and 0.05 < q <= 1. and  1 < Mc1 < 200 and 0.05 < q1 <= 1. and 1.<dL<10000 and 0.<= i <= pi and 0.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and -pi <= ra < 3.*pi and -pi <= dec < 3.*pi and -pi < pol <3.*pi:
-		return 0.0
+	if 1 < Mc < 200 and 0.05 < q <= 1. and  1 < Mc1 < 200 and 0.05 < q1 <= 1. and 1.<dL<10000 and 0.<= i <= pi and 0.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and 0. <= ra < 2.*pi and -pi/2 <= dec <= pi/2 and 0. <= pol <= pi:
+		return 2.*np.log(dL)+np.log(np.sin(i))
 	return -np.inf
 
 

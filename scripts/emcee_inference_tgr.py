@@ -75,7 +75,7 @@ def lnprob(param_vec):
 # -------------------- inputs -------------------------- # 
 loc = '/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/scripts/final_scripts'#'/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/201711_pe_deviations_noise_free_analysis/M_80/q_9/i_60/data'
 
-result=[ 1.886407405431894801e+01, 1./9, 1.886407405431894801e+01, 1./9, 489.747597, pi/3, 6., pi, pi/2, np.sin(pi/2), 2.008]#initial guess around which walkers start. This is also true value.Mc,q,dL,i,t0,initial_phase for quicker convergence. *If any injection value is 0 add 0.01 to it. 
+result=[ 1.886407405431894801e+01, 1./9, 1.886407405431894801e+01, 1./9, 489.747597, pi/3, 6., pi, 1., np.sin(1.), 0.01]#initial guess around which walkers start. This is also true value.Mc,q,dL,i,t0,initial_phase for quicker convergence. *If any injection value is 0 add 0.01 to it. 
 data_fname = 'detected_data.txt'
 
 # labels of the parameter vector 

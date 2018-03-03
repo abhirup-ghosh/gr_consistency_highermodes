@@ -37,13 +37,13 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
         Ncs=np.int(f_cut/df)  #N_cut_signal
 	
 	# unpacking the parameter vector 
-	Mc, q, Mc1, q1, dL, i, t0, phi_0,  ra, dec, pol= param_vec	
+	Mc, q, Mc1, q1, dL, i, t0, phi_0, ra, sin_dec, pol= param_vec	
 
 	# generate the waveform 
 	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, Mc1, q1, dL, i, t0, (phi_0 %(2.*pi)), f_low, df, Ncs)
 
 	# compute antenna patterns 
-	Fp,Fc = detector.overhead_antenna_pattern(ra, dec, pol)	
+	Fp,Fc = detector.overhead_antenna_pattern(ra, np.arcsin(sin_dec), pol)	
 
 	signal=Fp*hpf+Fc*hcf
 
@@ -53,9 +53,9 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 
 
 def lnprior(param_vec):
-	Mc, q, Mc1, q1, dL, i, t0, phi_0, ra, dec, pol = param_vec
-	if 1 < Mc < 200 and 0.05 < q <= 1. and  1 < Mc1 < 200 and 0.05 < q1 <= 1. and 1.<dL<10000 and 0.<= i <= pi and 0.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and 0. <= ra < 2.*pi and -pi/2 <= dec <= pi/2 and 0. <= pol <= pi:
-		return 2.*np.log(dL)+np.log(np.sin(i))+ np.log(np.cos(dec))
+	Mc, q, Mc1, q1, dL, i, t0, phi_0, ra, sin_dec, pol = param_vec
+	if 1 < Mc < 200 and 0.05 < q <= 1. and  1 < Mc1 < 200 and 0.05 < q1 <= 1. and 1.<dL<10000 and 0.<= i <= pi and 0.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and 0. <= ra < 2.*pi and -1. <= sin_dec <= 1. and 0. <= pol <= pi:
+		return 2.*np.log(dL)+np.log(np.sin(i))
 	return -np.inf
 
 
@@ -75,11 +75,11 @@ def lnprob(param_vec):
 # -------------------- inputs -------------------------- # 
 loc = '/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/scripts/final_scripts'#'/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/201711_pe_deviations_noise_free_analysis/M_80/q_9/i_60/data'
 
-result=[ 1.886407405431894801e+01, 1./9, 1.886407405431894801e+01, 1./9, 489.747597, pi/3, 6., pi, pi/2, pi/2, 2.008]#initial guess around which walkers start. This is also true value.Mc,q,dL,i,t0,initial_phase for quicker convergence. *If any injection value is 0 add 0.01 to it. 
+result=[ 1.886407405431894801e+01, 1./9, 1.886407405431894801e+01, 1./9, 489.747597, pi/3, 6., pi, pi/2, np.sin(pi/2), 2.008]#initial guess around which walkers start. This is also true value.Mc,q,dL,i,t0,initial_phase for quicker convergence. *If any injection value is 0 add 0.01 to it. 
 data_fname = 'detected_data.txt'
 
 # labels of the parameter vector 
-param_label = ['$M_c$', '$q$', '$M_c_1$', '$q_1$' ,'$dL$', '$\iota$', '$t_0$', '$\phi_0$', '$ra$', '$dec$', '$\Psi$']
+param_label = ['$M_c$', '$q$', '$M_c_1$', '$q_1$' ,'$dL$', '$\iota$', '$t_0$', '$\phi_0$', '$ra$', '$sin(dec)$', '$\Psi$']
 
 f_low = 20.
 f_cut = 999.

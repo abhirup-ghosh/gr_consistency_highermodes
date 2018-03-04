@@ -38,17 +38,13 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
         Ncs=np.int(f_cut/df)  #N_cut_signal
 	
 	# unpacking the parameter vector 
-	Mc, q, Mc1, q1, dL, i, t0, phi0 = param_vec	
+	Mc, q, Mc1, q1, dL, i, t0, phi0,  ra, sin_dec, pol= param_vec
 
 	# generate the waveform 
-	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, Mc, q1, dL, i, t0, (phi0 %(2.*pi)), f_low, df, Ncs)
+	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, Mc1, q, dL, i, t0, (phi0 %(2.*pi)), f_low, df, Ncs)
 
-
-	ra=1.
-	dec =1.
-	pol=0.
 	# compute antenna patterns 
-	Fp,Fc = detector.overhead_antenna_pattern(ra, dec, pol)	
+	Fp,Fc = detector.overhead_antenna_pattern(ra, np.arcsin(sin_dec), pol)
 
 	signal=Fp*hpf+Fc*hcf
 
@@ -58,9 +54,9 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 
 
 def lnprior(param_vec):
-	Mc, q, Mc1, q1, dL, i, t0, phi0 = param_vec
-	if 1 < Mc < 200 and 0.05 < q <= 1. and  1 < Mc1 < 200 and 0.05 < q1 <= 1. and 1.<dL<10000 and 0.<= i <= pi and 0.<= t0 <= 15. and -pi <= phi0 <= 3.*pi:
-		return 0.0
+	Mc, q, Mc1, q1, dL, i, t0, phi_0, ra, sin_dec, pol = param_vec
+	if 1 < Mc < 200 and 0.05 < q <= 1. and  1 < Mc1 < 200 and 0.05 < q1 <= 1. and 1.<dL<10000 and 0.<= i <= pi and 0.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and 0. <= ra < 2.*pi and -1. <= sin_dec <= 1. and 0. <= pol <= pi:
+		return 2.*np.log(dL)+np.log(np.sin(i))
 	return -np.inf
 
 
@@ -96,8 +92,8 @@ os.system('cp %s %s' %(__file__, out_dir))
 f_low = 20.
 f_cut = 999.
 
-ndim, nwalkers = 8, 100
-num_threads = 24
+ndim, nwalkers = 11, 100
+num_threads = 30
 num_iter = 3000
 # ------------------------------------------------------ # 
 
@@ -109,7 +105,7 @@ print '... read data'
 
 # create initial walkers
 
-mc_init, q_init, mc1_init, q1_init, dL_init, iota_init, t0_init, phi0_init = result
+mc_init, q_init, mc1_init, q1_init, dL_init, iota_init, t0_init, phi0_init, ra_init, sin_dec_init, pol_init = result
 
 pos = [result + 1e-4*np.random.randn(ndim) for i in range(nwalkers)]
 
@@ -119,18 +115,16 @@ print '... generated initial walkers. starting sampling...'
 sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, threads=num_threads)
 sampler.run_mcmc(pos, num_iter)
 
-mc_chain, q_chain, mc1_chain, q1_chain, dL_chain, iota_chain, t0_chain, phi0_chain = sampler.chain[:, :, 0].T, sampler.chain[:, :, 1].T, sampler.chain[:, :, 2].T, sampler.chain[:, :, 3].T, sampler.chain[:, :, 4].T, sampler.chain[:, :, 5].T, sampler.chain[:, :, 6].T, sampler.chain[:, :, 7].T
+mc_chain, q_chain, mc1_chain, q1_chain, dL_chain, iota_chain, t0_chain, phi0_chain, ra_chain, sin_dec_chain, pol_chain = sampler.chain[:, :, 0].T, sampler.chain[:, :, 1].T, sampler.chain[:, :, 2].T, sampler.chain[:, :, 3].T, sampler.chain[:, :, 4].T, sampler.chain[:, :, 5].T, sampler.chain[:, :, 6].T, sampler.chain[:, :, 7].T, sampler.chain[:, :, 8].T, sampler.chain[:, :, 9].T, sampler.chain[:, :, 10].T
 
 samples = sampler.chain[:, :, :].reshape((-1, ndim))
-
-mc, q, mc1, q1, dL, iota, t0, phi0 = samples[:,0], samples[:,1], samples[:,2], samples[:,3], samples[:,4], samples[:,5], samples[:,6], samples[:,7]
 
 #################################################################
 # plotting and saving data
 #################################################################
 
 # save the data
-np.savetxt(out_dir+'/emcee_samples.dat', np.c_[mc, q, mc1, q1, dL, iota, t0, phi0])
+np.savetxt(out_dir+'/emcee_samples.dat', samples, header='mc q mc1 q1 dL i t0 phi0 ra sin(dec) pol')
 
 # plot the data and the psd 
 df = np.mean(np.diff(freq))
@@ -151,51 +145,66 @@ print '... plotted data'
 
 # Inspiral Chain plot
 plt.figure(figsize=(16,8))
-plt.subplot(421)
+plt.subplot(621)
 plt.plot(mc_chain, color="k", alpha=0.4, lw=0.5)
 plt.plot(mc_init + np.std(mc_chain, axis=1), 'r')
 plt.axhline(y=mc_init, color='g')
 plt.ylabel('mc')
-plt.subplot(422)
+plt.subplot(622)
 plt.plot(q_chain, color="k", alpha=0.4, lw=0.5)
 plt.plot(q_init + np.std(q_chain, axis=1), 'r')
 plt.axhline(y=q_init, color='g')
 plt.ylabel('q')
-plt.subplot(423)
+plt.subplot(623)
 plt.plot(mc1_chain, color="k", alpha=0.4, lw=0.5)
 plt.plot(mc1_init + np.std(mc1_chain, axis=1), 'r')
 plt.axhline(y=mc1_init, color='g')
 plt.ylabel('mc1')
-plt.subplot(424)
+plt.subplot(624)
 plt.plot(q1_chain, color="k", alpha=0.4, lw=0.5)
 plt.plot(q1_init + np.std(q1_chain, axis=1), 'r')
 plt.axhline(y=q1_init, color='g')
 plt.ylabel('q1')
-plt.subplot(425)
+plt.subplot(625)
 plt.plot(dL_chain, color="k", alpha=0.4, lw=0.5)
 plt.plot(dL_init + np.std(dL_chain, axis=1), 'r')
 plt.axhline(y=dL_init, color='g')
 plt.ylabel('dL')
-plt.subplot(426)
+plt.subplot(626)
 plt.plot(iota_chain, color="k", alpha=0.4, lw=0.5)
 plt.plot(iota_init + np.std(iota_chain, axis=1), 'r')
 plt.axhline(y=iota_init, color='g')
 plt.ylabel('iota')
-plt.subplot(427)
+plt.subplot(627)
 plt.plot(t0_chain, color="k", alpha=0.4, lw=0.5)
 plt.plot(t0_init + np.std(t0_chain, axis=1), 'r')
 plt.axhline(y=t0_init, color='g')
 plt.ylabel('t0')
-plt.subplot(428)
+plt.subplot(628)
 plt.plot(phi0_chain, color="k", alpha=0.4, lw=0.5)
 plt.plot(phi0_init + np.std(phi0_chain, axis=1), 'r')
 plt.axhline(y=phi0_init, color='g')
 plt.ylabel('phi0')
+plt.subplot(629)
+plt.plot(ra_chain, color="k", alpha=0.4, lw=0.5)
+plt.plot(ra_init + np.std(ra_chain, axis=1), 'r')
+plt.axhline(y=ra_init, color='g')
+plt.ylabel('ra')
+plt.subplot(6,2,10)
+plt.plot(sin_dec_chain, color="k", alpha=0.4, lw=0.5)
+plt.plot(sin_dec_init + np.std(sin_dec_chain, axis=1), 'r')
+plt.axhline(y=sin_dec_init, color='g')
+plt.ylabel('dec')
+plt.subplot(6,2,11)
+plt.plot(pol_chain, color="k", alpha=0.4, lw=0.5)
+plt.plot(pol_init + np.std(pol_chain, axis=1), 'r')
+plt.axhline(y=pol_init, color='g')
+plt.ylabel('pol')
 plt.savefig(out_dir + '/samples_chain.png', dpi=300)
 
 # corner plots
 plt.figure()
-corner.corner(samples, labels=['mc', 'q', 'mc1', 'q1', 'dL', 'i', 't0', 'phi0'])
+corner.corner(samples, labels=['mc', 'q', 'mc1', 'q1', 'dL', 'i', 't0', 'phi0', 'ra', 'sin(dec)', 'pol'])
 plt.savefig("%s/corner_plot_wo_burnin.png"%out_dir)
 plt.close()
 

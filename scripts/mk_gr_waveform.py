@@ -65,27 +65,13 @@ N=10000
 M=80.          ###### Total Mass in M_SUN
 q=1./9         ###### Mass ratio
 SNR_req=25.    ###### Required SNR
-iota=pi/3
+iota=pi/3.
 Psi_ref=pi
 t0=6.          ###### time of arrival
 
 ra=1.          ##### Sky localisation
 dec =1.
 pol=0.
-
-
-##### Output location and data file name #######
-
-loc ='/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/scripts/final_scripts'#'/home/siddharth.dhanpal/Work/projects/imrtestgr_hh/runs/201711_pe_deviations_noise_free_analysis/M_80/q_9/i_60/data'
-data_fname = 'detected_data.txt'
-
-'''
-Description of output data:
-
-Output data contains [freq ,Real.part of signal ,Imag.part of signal ,PSD] in the same order
-Data is non-zero starting from f_low. Last entry of data is (N-2)*df
-
-'''
 
 ################################################
 
@@ -113,6 +99,17 @@ print 'The SNR is... %f'%SNR
 print 'dL for the output SNR is.. %f Mpc'%r
 print 'Chirp mass is.. %f solar mass'%Mc
 
+##### Output location and data file name #######
+
+'''
+Description of output data:
+
+Output data contains [freq ,Real.part of signal ,Imag.part of signal ,PSD] in the same order
+Data is non-zero starting from f_low. Last entry of data is (N-2)*df
+
+'''
+out_file = 'GR_M_%.2f_Mc_%.2f_q_%.2f_snr_25_i_%.2f_dL_%.2f_phiref_%.2f_t0_%.2f_ra_%.2f_dec_%.2f_psi_%.2f_flow_20Hz_fig1.dat'%(M,Mc,q,iota, r, Psi_ref, t0, ra, dec, pol)
+
 ### Generating noise from psd ###
 #noise=pycbc.noise.gaussian.frequency_noise_from_psd(psd, seed=None)
 data=signal#+noise ## comment noise to generate noise free data
@@ -121,4 +118,6 @@ data=signal#+noise ## comment noise to generate noise free data
 datar=np.real(data)
 datai=np.imag(data)
 
-np.savetxt(loc+'/'+data_fname,np.c_[f[:-1],datar[:-1],datai[:-1],psd[:-1]])
+np.savetxt('../injections/9_param_runs/'+out_file, np.c_[f[:-1],datar[:-1],datai[:-1],psd[:-1]], header='f real_data imag_data psd')
+
+print "python emcee_inference_tgr_abhi.py -d ../injections/9_param_runs/%s -o ../runs/9_param_runs/Mc_q_deltaMc_deltaq/M_%d_q_%d_iota_%d -i '%.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f'"%(out_file,M,1./q, np.ceil(np.degrees(iota)), Mc, q, Mc, q, r, iota, t0, Psi_ref, ra, np.sin(dec), pol)

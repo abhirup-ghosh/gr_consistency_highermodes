@@ -66,16 +66,16 @@ def calc_cred_intervals_in_1d(P, x):
 
         return P_s1, P_s2, x_s1_l, x_s1_r, x_s2_l, x_s2_r
 
-post_file, outname = '../data/data_gr.txt', 'fig1_gr'
-post_file, outname = '../data/data_mod_gr.txt', 'fig1_modgr'
+post_file, outname = '../data/data_gr_9dim_abhi.dat', 'fig1_gr_9dim_abhi'
+#post_file, outname = '../data/data_mod_gr.txt', 'fig1_modgr'
 Nbins = 101
 
 color = ['c', 'k', '#0072b2', '#CC79A7']
 
 dmc_2d, dq_2d, dmc_1d, dq_1d = np.loadtxt(post_file, unpack=True)
 
-dmc_bins = np.linspace(-0.2, 0.2, Nbins)
-dq_bins = np.linspace(-0.002, 0.001, Nbins)
+dmc_bins = np.linspace(-0.3, 0.3, Nbins)
+dq_bins = np.linspace(-0.002, 0.002, Nbins)
 dmc = np.mean(np.diff(dmc_bins))
 dq = np.mean(np.diff(dq_bins))
 
@@ -130,7 +130,7 @@ ax3.set_xlim(-0.2,0.2)
 if post_file == '../data/data_mod_gr.txt':
 	ax3.set_ylim(-1.5e-3,5e-4)
 else: 
-	ax3.set_ylim(-1e-3,1e-3)
+	ax3.set_ylim(-1e-3,1.5e-3)
 
 ax2.plot(tgr.gf(P_dq_1d), dq_intp,color=color[0], lw=1)
 ax2.plot(tgr.gf(P_dq_marg), dq_intp,color=color[1], lw=1)
@@ -147,9 +147,9 @@ if post_file == '../data/data_mod_gr.txt':
 	ax2.set_yticklabels(np.arange(-1.5, 1.5, 0.5), fontsize=12)
 	ax2.set_ylim(-1.5e-3,5e-4)
 else: 
-	ax2.set_yticks(np.arange(-0.001, 0.0011, 0.0005))
-	ax2.set_yticklabels(np.arange(-1., 1.01, 0.5), fontsize=12)
-	ax2.set_ylim(-1e-3,1e-3)
+	ax2.set_yticks(np.arange(-0.001, 0.00151, 0.0005))
+	ax2.set_yticklabels(np.arange(-1., 1.51, 0.5), fontsize=12)
+	ax2.set_ylim(-1e-3,1.5e-3)
 
 ax2.set_xlim(0,np.max(P_dq_1d)*1.01)
 ax2.yaxis.tick_right()

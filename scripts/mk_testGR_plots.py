@@ -90,8 +90,8 @@ P_dq_marg = np.sum(P_dmc_dq_2d, axis=1) * dmc
 P_dmc_1d, dmc_bins = np.histogram(dmc_1d,bins=dmc_bins, normed=True)
 P_dq_1d, dq_bins = np.histogram(dq_1d,bins=dq_bins, normed=True)
 
-s1_2d = ba.nsigma_value(P_dmc_dq_2d, 0.68)
-s2_2d = ba.nsigma_value(P_dmc_dq_2d, 0.95)
+s1_2d = ba.nsigma_value(P_dmc_dq_2d, 0.5)
+s2_2d = ba.nsigma_value(P_dmc_dq_2d, 0.9)
 
 s1_1d_v1, s2_1d_v1, left1_1d_v1, right1_1d_v1, left2_1d_v1, right2_1d_v1 = calc_cred_intervals_in_1d(P_dmc_1d, dmc_intp)
 s1_1d_v2, s2_1d_v2, left1_1d_v2, right1_1d_v2, left2_1d_v2, right2_1d_v2 = calc_cred_intervals_in_1d(P_dq_1d, dq_intp)
@@ -119,7 +119,7 @@ ax1.set_ylim(0,np.max(P_dmc_1d)*1.01)
 ax1.xaxis.tick_top()
 ax1.set_yticks([])
 
-#ax3.pcolormesh(dmc_bins, dq_bins, tgr.gf(P_dmc_dq_2d), cmap='YlOrBr')
+ax3.pcolormesh(dmc_bins, dq_bins, tgr.gf(P_dmc_dq_2d), cmap='YlOrBr')
 ax3.contour(dmc_intp, dq_intp, tgr.gf(P_dmc_dq_2d), levels=(s2_2d,s1_2d), linewidths=(1,1.5), colors=color[1])
 ax3.plot(0, 0, 'k+', ms=12, mew=2) # for mod gr make the marker k+ , for gr make the marker w+
 ax3.set_xlabel('$\Delta M_c ~ (M_\odot)$',fontsize=14, labelpad=10)

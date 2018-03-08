@@ -25,9 +25,8 @@ from scipy import interpolate
 
 col = 'k'
 
-fname_vec_q = ['../data/90_percent_width_dMc_t_abhi.txt', '../data/90_percent_width_dq_t_abhi.txt']
-fname_vec_M = ['../data/90_percent_width_dMc_t_diffM_abhi.txt', '../data/90_percent_width_dq_t_diffM_abhi.txt']
-fname_vec_q = ['../data/90_percent_width_dMc_t_sidharth.txt', '../data/90_percent_width_dq_t_sidharth.txt']
+fname_vec_q = ['../data/90_percent_width_9dim_DeltaMcbyMc_diffq_abhi.txt', '../data/90_percent_width_9dim_Deltaqbyq_diffq_abhi.txt']
+fname_vec_M = ['../data/90_percent_width_9dim_DeltaMcbyMc_diffM_abhi.txt', '../data/90_percent_width_9dim_Deltaqbyq_diffM_abhi.txt']
 
 plt.figure(figsize=(4,4))
 
@@ -52,8 +51,8 @@ for i, fname in enumerate(fname_vec_q):
 
 ax.set_xlabel('Mass ratio $q$', labelpad=5, fontsize=10)
 plt.tight_layout()
-plt.savefig('../papers/intro_paper/figs/fig3a.png', dpi=300)
-plt.savefig('../papers/intro_paper/figs/fig3a.pdf')
+plt.savefig('../papers/intro_paper/figs/fig3a_9dim_abhi.png', dpi=300)
+plt.savefig('../papers/intro_paper/figs/fig3a_9dim_abhi.pdf')
 plt.close()
 
 plt.figure(figsize=(4,4))
@@ -74,11 +73,11 @@ for i, fname in enumerate(fname_vec_M):
                 ax.set_ylabel('90\% width of $\Delta M_c/M_c$', labelpad=5, fontsize=10)
                 plt.legend(loc='best', frameon=False, fontsize=8)
         else:
-                ax.set_ylim(1e-3, 1e-2)
+                ax.set_ylim(1e-3, 1e-1)
 		ax.set_ylabel('90\% width of $\Delta q$', labelpad=7, fontsize=10)
 
 ax.set_xlabel('Total mass $M (M_{\odot})$', labelpad=5, fontsize=10)
 plt.tight_layout()
-plt.savefig('../papers/intro_paper/figs/fig3b.png', dpi=300)
-plt.savefig('../papers/intro_paper/figs/fig3b.pdf')
+plt.savefig('../papers/intro_paper/figs/fig3b_9dim_abhi.png', dpi=300)
+plt.savefig('../papers/intro_paper/figs/fig3b_9dim_abhi.pdf')
 plt.close()

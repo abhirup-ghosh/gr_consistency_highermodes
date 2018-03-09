@@ -41,7 +41,7 @@ for i, fname in enumerate(fname_vec_q):
         ax.semilogy(q, i_80, color='k', marker='d',  markeredgecolor='k', label='$\iota = 80^{\circ}$', alpha=1, lw=1, ls='--')
         ax.semilogy(q, i_90, color='deeppink', marker='v',  markeredgecolor='deeppink', label='$\iota = 90^{\circ}$', alpha=1, lw=1)
 	ax.set_ylim(1e-3,1e-1)
-	ax.set_xlim(2, 9)
+	ax.set_xlim(1, 9)
 
 	if i == 0:
 		ax.set_ylabel('90\% width of $\Delta M_c/M_c$', labelpad=5, fontsize=10)
@@ -69,14 +69,17 @@ for i, fname in enumerate(fname_vec_M):
         ax.semilogy(M, i_90, color='deeppink', marker='v',  markeredgecolor='deeppink', label='$\iota = 90^{\circ}$', alpha=1, lw=1)
 
         if i == 0:
-        	ax.set_ylim(1e-4,1e-2)
-                ax.set_ylabel('90\% width of $\Delta M_c/M_c$', labelpad=5, fontsize=10)
-                plt.legend(loc='best', frameon=False, fontsize=8)
+					ax.set_ylim(1e-4,1e-2)
+					ax.set_ylabel('90\% width of $\Delta M_c/M_c$', labelpad=5, fontsize=10)
+					plt.legend(loc='best', frameon=False, fontsize=8)
+					ax.set_xlim(min(M), max(M))
         else:
-                ax.set_ylim(1e-3, 1e-1)
-		ax.set_ylabel('90\% width of $\Delta q$', labelpad=7, fontsize=10)
+					ax.set_ylim(1e-3, 1e-1)
+					ax.set_xlim(min(M), max(M))
+					ax.set_ylabel('90\% width of $\Delta q$', labelpad=7, fontsize=10)
 
 ax.set_xlabel('Total mass $M (M_{\odot})$', labelpad=5, fontsize=10)
+ax.set_xlim(min(M), max(M))
 plt.tight_layout()
 plt.savefig('../papers/intro_paper/figs/fig3b_9dim_abhi.png', dpi=300)
 plt.savefig('../papers/intro_paper/figs/fig3b_9dim_abhi.pdf')

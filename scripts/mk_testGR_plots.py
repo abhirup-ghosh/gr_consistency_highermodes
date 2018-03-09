@@ -104,8 +104,8 @@ ax1 = plt.subplot2grid((3,3), (0,0), colspan=2)
 ax2 = plt.subplot2grid((3,3), (1,2), rowspan=2)
 ax3 = plt.subplot2grid((3,3), (1,0), colspan=2, rowspan=2)
 
-ax1.plot(dmc_intp, tgr.gf(P_dmc_1d),color=color[0], lw=1)
-ax1.plot(dmc_intp, tgr.gf(P_dmc_marg),color=color[1], lw=1)
+ax1.plot(dmc_intp, tgr.gf(P_dmc_1d),color=color[0], lw=1.5)
+ax1.plot(dmc_intp, tgr.gf(P_dmc_marg),color=color[1], lw=1.5)
 ax1.axvline(0.,color='k', ls='-', lw=0.5)
 ax1.axvline(x=left2_1d_v1, color=color[0], ls=':', lw=0.5)
 ax1.axvline(x=right2_1d_v1, color=color[0], ls=':', lw=0.5)
@@ -119,9 +119,9 @@ ax1.set_ylim(0,np.max(P_dmc_1d)*1.01)
 ax1.xaxis.tick_top()
 ax1.set_yticks([])
 
-ax3.pcolormesh(dmc_bins, dq_bins, tgr.gf(P_dmc_dq_2d), cmap='YlOrBr')
+ax3.pcolormesh(dmc_bins, dq_bins, tgr.gf(P_dmc_dq_2d), cmap='RdPu')
 ax3.contour(dmc_intp, dq_intp, tgr.gf(P_dmc_dq_2d), levels=(s2_2d,s1_2d), linewidths=(1,1.5), colors=color[1])
-ax3.plot(0, 0, 'k+', ms=12, mew=2) # for mod gr make the marker k+ , for gr make the marker w+
+ax3.plot(0, 0, '+', color='white', ms=12, mew=2) # for mod gr make the marker k+ , for gr make the marker w+
 ax3.set_xlabel('$\Delta M_c ~ (M_\odot)$',fontsize=14, labelpad=10)
 ax3.set_ylabel('$\Delta q \, \\times \, 10^{3}$',fontsize=14)
 ax3.set_xticks([])
@@ -132,8 +132,8 @@ if post_file == '../data/data_mod_gr.txt':
 else: 
 	ax3.set_ylim(-1e-3,1.5e-3)
 
-ax2.plot(tgr.gf(P_dq_1d), dq_intp,color=color[0], lw=1)
-ax2.plot(tgr.gf(P_dq_marg), dq_intp,color=color[1], lw=1)
+ax2.plot(tgr.gf(P_dq_1d), dq_intp,color=color[0], lw=1.5)
+ax2.plot(tgr.gf(P_dq_marg), dq_intp,color=color[1], lw=1.5)
 ax2.axhline(0.,color='k', ls='-', lw=0.5)
 ax2.axhline(y=left2_1d_v2, color=color[0], ls=':', lw=0.5)
 ax2.axhline(y=right2_1d_v2, color=color[0], ls=':', lw=0.5)

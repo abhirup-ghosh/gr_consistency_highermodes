@@ -44,7 +44,7 @@ for i, fname in enumerate(fname_vec_q):
 
 	if i == 0:
 		ax.set_ylim(1e-3,1e-1)
-		ax.set_ylabel('90\% width of $\Delta M_c/M_{c,inj}$', labelpad=5, fontsize=10)
+		ax.set_ylabel('90\% width of $\Delta M_c/M_{c}^\mathrm{inj}$', labelpad=5, fontsize=10)
 		plt.legend(loc='best', frameon=False, fontsize=8)
 	else: 
 		ax.set_ylim(1e-4,1e-1)
@@ -71,16 +71,16 @@ for i, fname in enumerate(fname_vec_M):
 
         if i == 0:
 		ax.set_ylim(1e-4,1e-2)
-		ax.set_ylabel('90\% width of $\Delta M_c/M_{c,inj}$', labelpad=5, fontsize=10)
+		ax.set_ylabel('90\% width of $\Delta M_c/M_{c}^\mathrm{inj}$', labelpad=5, fontsize=10)
 		plt.legend(loc='best', frameon=False, fontsize=8)
-		ax.set_xlim(min(M), max(M))
+		ax.set_xlim(40, max(M))
         else:
 		ax.set_ylim(1e-4, 1e-2)
-		ax.set_xlim(min(M), max(M))
+		ax.set_xlim(40, max(M))
 		ax.set_ylabel('90\% width of $\Delta q$', labelpad=7, fontsize=10)
 
 ax.set_xlabel('Total mass $M (M_{\odot})$', labelpad=5, fontsize=10)
-ax.set_xlim(min(M), max(M))
+ax.set_xlim(40, max(M))
 plt.tight_layout()
 plt.savefig('../papers/intro_paper/figs/fig3b_9dim_dmcbymcinj_dq_abhi.png', dpi=300)
 plt.savefig('../papers/intro_paper/figs/fig3b_9dim_dmcbymcinj_dq_abhi.pdf')

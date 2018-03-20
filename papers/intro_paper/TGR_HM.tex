@@ -20,7 +20,7 @@
 \allowdisplaybreaks
 \textwidth 7 in
 \hoffset -0.1in
-\textheight 10in
+\textheight 10.1in
 \DeclareFontFamily{OT1}{pzc}{}
 \DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.10] pzcmi7t}{}
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
@@ -63,6 +63,7 @@
 
 \author{Siddharth Dhanpal}
 \affiliation{International Centre for Theoretical Sciences, Tata Institute of Fundamental Research, Bangalore 560012, India}
+\affiliation{UM-DAE Centre for Excellence in Basic Sciences, Mumbai 400098, India}
 \author{Abhirup Ghosh}
 \author{Ajit Kumar Mehta}
 \affiliation{International Centre for Theoretical Sciences, Tata Institute of Fundamental Research, Bangalore 560012, India}
@@ -76,7 +77,7 @@
 \begin{abstract}
 One of the consequences of the black-hole ``no-hair'' theorem in general relativity (GR) is that gravitational radiation (\emph{quasi-normal modes}) from a perturbed Kerr black hole is uniquely determined by its mass and spin. Thus, the spectrum quasi-normal mode frequencies have to be all consistent with the same value of the mass and spin. Similarly, the gravitational radiation from a coalescing binary black hole system is uniquely determined by a small number of parameters (masses and spins of the black holes and the orbital eccentricity). Thus, consistency between different spherical harmonic modes of the radiation is a powerful test that the observed system is a binary black hole predicted by GR. We formulate such a test, develop a Bayesian implementation, demonstrate its performance on simulated data and investigate the possibility of performing such a test using previous and upcoming gravitational wave observations. 
 \end{abstract}
-\preprint{LIGO-P1800056-v1}
+\preprint{LIGO-P1800056-v3}
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
 \paragraph{Introduction:---}
@@ -144,7 +145,7 @@ We perform the test by introducing variations in the higher order modes: The hig
 \item By introducing \emph{one} deviation parameter at a time. That is, $\Delta\blambda = {\Delta M_c}$ or $\Delta\blambda = {\Delta q}$. 
 \item By introducing a concurrent deviation in \emph{two} parameters $\Delta \blambda = \{\Delta M_c, \Delta q\}$. 
 \end{enumerate}
-We show in Fig.~\ref{fig:contour_plots} the results of the tests performed by varying either one parameter or two parameters, for a binary with total mass $M = 80M_{\odot}$, mass ratio $q=9$, inclination angle $ {\iota}=60^{\circ} $ producing a signal-to-noise ratio  (SNR)  of 25 (SNR in higher modes is $\sim 10$). We see that the posterior probability density for the parameters $\Delta q$ and $\Delta M_c$ are consistent with zero as in GR. As expected, the width of the posterior is smaller when only one non-GR parameter is allowed to vary at a time. Figures~\ref{fig:dMc_dq_posteriors_gr_vs_q} and \ref{fig:dMc_dq_posteriors_gr_vs_M} show the 90\% credible regions of the posteriors of non-GR parameters for the case of binaries with different masses, mass ratios and inclination angles. In all cases, the SNR is set to \red{25}.  It is clear that binaries with large mass ratios ($q > 2$) and inclination angles ($\iota > 60 ^\circ $) will allow precision tests of the GR predictions, reaching statistical uncertainties of $< 10^{-2}$ for $\Delta M_c/Mc$ and $\Delta q$.   
+We show in Fig.~\ref{fig:contour_plots} the results of the tests performed by varying either one parameter or two parameters, for a binary with total mass $M = 40M_{\odot}$, mass ratio $q=9$, inclination angle $ {\iota}=60^{\circ} $ producing a signal-to-noise ratio  (SNR)  of 25 (SNR in higher modes is $\sim 10$). We see that the posterior probability density for the parameters $\Delta q$ and $\Delta M_c$ are consistent with zero as in GR. As expected, the width of the posterior is smaller when only one non-GR parameter is allowed to vary at a time. Figures~\ref{fig:dMc_dq_posteriors_gr_vs_q} and \ref{fig:dMc_dq_posteriors_gr_vs_M} show the 90\% credible regions of the posteriors of non-GR parameters for the case of binaries with different masses, mass ratios and inclination angles. In all cases, the SNR is set to {25}.  It is clear that binaries with large mass ratios ($q > 2$) and inclination angles ($\iota > 60 ^\circ $) will allow precision tests of the GR predictions, reaching statistical uncertainties of $< 10^{-2}$ for $\Delta M_c/Mc$ and $\Delta q$.   
 
 \begin{figure}[tbh]
 	\includegraphics*[width=3.5in]{figs/fig3a_9dim_dmcbymcinj_dq_abhi.pdf}

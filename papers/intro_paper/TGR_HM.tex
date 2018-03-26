@@ -58,7 +58,6 @@
 
 \begin{document}
 
-%\title{A consistency test of general relativity using different multipoles of \\gravitational radiation from binary black holes}
 \title{A ``no-hair'' test for binary black holes}
 
 \author{Siddharth Dhanpal}
@@ -202,10 +201,12 @@ In both cases, binaries are distributed uniformly in the sky with isotropic orie
 
 \paragraph{Conclusions and future work:---} In this paper, we proposed a new method to test the consistency of an observed GW signal with a binary black hole system predicted by GR. The test relies on the fact that the multipolar structure of the radiated GW signal is uniquely determined in GR by the masses and spins of the black holes and no other parameters. Thus, if we estimate the parameters of the binary from different spherical harmonic modes of the observed signal independently, those estimates will have to be consistent with one another. Any inconsistency between the different estimates will point to a deviation from GR or to the non-black hole nature of the binary compact objects. We have used Bayesian parameter inference to identify potential deviations from GR predictions, using simulated GW signals.  We provided the first estimates of the expected precision of such tests that can be performed using GW observations of binary black holes anticipated by Advanced LIGO and Virgo in the next few years. 
 
+The specific implementation of the test presented in this paper checks for the consistency of the masses estimated from different modes (and spins, in the case of spinning binaries). This is analogous to checking the consistency of different quasi-normal mode frequencies, as the frequency evolution of the binary is determined by these intrinsic parameters. In addition, one could also check the consistency of the amplitudes of different modes, by introducing extra parameters describing deviations from the predicted amplitudes. While this would expand the scope of this test, in general, introducing more parameters would increase the statistical uncertainties, due to correlations between different parameters. 
+
 In this paper we have assumed, for simplicity, that the companion black holes of the binary have negligible spins. Nevertheless, the method can be easily generalized to the case of binaries consisting of spinning black holes. We have also neglected the systematic errors due to inaccuracies in waveform modeling and detector calibration; these need to be understood before implementing the test on real observations. We leave these investigations to future work. 
 
 \paragraph{Acknowledgments:---}
-We thank Chandra Kant Mishra for help with the numerical implementation of the waveform model used in this paper and M.K.Haris for the astrophysical simulations. This research was supported by the Indo-US Centre for the Exploration of Extreme Gravity funded by the Indo-US Science and Technology Forum (IUSSTF/JC-029/2016). PA's research was, in addition, supported by a Ramanujan Fellowship from the Science and Engineering Research Board, India and by the Max Planck Society through a Max Planck Partner Group at ICTS-TIFR and BSS's research was supported by NSF Grants AST-1716394 and AST-1708146. Computations were performed at the ICTS cluster Alice. 
+We thank Chandra Kant Mishra for help with the numerical implementation of the waveform model used in this paper and M.~K.~Haris for the astrophysical simulations. This research was supported by the Indo-US Centre for the Exploration of Extreme Gravity funded by the Indo-US Science and Technology Forum (IUSSTF/JC-029/2016). PA's research was, in addition, supported by a Ramanujan Fellowship from the Science and Engineering Research Board, India and by the Max Planck Society through a Max Planck Partner Group at ICTS-TIFR and BSS's research was supported by NSF Grants AST-1716394 and AST-1708146. Computations were performed at the ICTS cluster Alice. 
 
 %
 \bibliographystyle{apsrev-nourl}

@@ -35,13 +35,15 @@ for i, fname in enumerate(fname_vec_q):
 
 	q, i_30, i_45, i_60, i_80, i_90 = np.loadtxt(fname, unpack=True)
 
+	q_ticks = ['1/9','1/8','1/7','1/6','1/5','1/4','1/3','1/2', '2/3', '1']
 	ax = plt.subplot(2,1,i+1)
-	ax.semilogy(q, i_30, color='lightgray', marker='^', markeredgecolor='lightgray',label='$\iota = 30^{\circ}$', alpha=1)
-        ax.semilogy(q, i_45, color='lightpink', marker='s',  markeredgecolor='lightpink', label='$\iota = 45^{\circ}$', alpha=1)
-        ax.semilogy(q, i_60, color='crimson', marker='o',  markeredgecolor='crimson', label='$\iota = 60^{\circ}$', alpha=1)
-        ax.semilogy(q, i_80, color='k', marker='d',  markeredgecolor='k', label='$\iota = 80^{\circ}$', alpha=1, lw=1, ls='--')
-        ax.semilogy(q, i_90, color='deeppink', marker='v',  markeredgecolor='deeppink', label='$\iota = 90^{\circ}$', alpha=1, lw=1)
-	ax.set_xlim(1, 9)
+	ax.loglog(1./q, i_30, color='lightgray', marker='^', markeredgecolor='lightgray',label='$\iota = 30^{\circ}$', alpha=1)
+        ax.loglog(1./q, i_45, color='lightpink', marker='s',  markeredgecolor='lightpink', label='$\iota = 45^{\circ}$', alpha=1)
+        ax.loglog(1./q, i_60, color='crimson', marker='o',  markeredgecolor='crimson', label='$\iota = 60^{\circ}$', alpha=1)
+        ax.loglog(1./q, i_80, color='k', marker='d',  markeredgecolor='k', label='$\iota = 80^{\circ}$', alpha=1, lw=1, ls='--')
+        ax.loglog(1./q, i_90, color='deeppink', marker='v',  markeredgecolor='deeppink', label='$\iota = 90^{\circ}$', alpha=1, lw=1)
+	ax.set_xlim(1./9, 1)
+	plt.xticks(1/q,q_ticks[::-1])
 
 	if i == 0:
 		ax.set_ylim(1e-3,1e-1)
@@ -53,8 +55,8 @@ for i, fname in enumerate(fname_vec_q):
 
 ax.set_xlabel('Mass ratio $q$', labelpad=5, fontsize=10)
 plt.tight_layout()
-#plt.savefig('../papers/intro_paper/figs/fig3a_9dim_dmcbymcinj_dq_abhi.png', dpi=300)
-#plt.savefig('../papers/intro_paper/figs/fig3a_9dim_dmcbymcinj_dq_abhi.pdf')
+plt.savefig('../papers/intro_paper/figs/fig3a_9dim_dmcbymcinj_dq_abhi_q_leq_1.png', dpi=300)
+plt.savefig('../papers/intro_paper/figs/fig3a_9dim_dmcbymcinj_dq_abhi_q_leq_1.pdf')
 plt.close()
 
 plt.figure(figsize=(4,4))
@@ -77,7 +79,7 @@ for i, fname in enumerate(fname_vec_M):
 		plt.legend(loc='best', frameon=False, fontsize=8)
 		ax.set_xlim(40, max(M))
         else:
-		ax.set_ylim(1e-4, 1e-2)
+		#ax.set_ylim(1e-4, 1e-2)
 		ax.set_xlim(40, max(M))
 
 ax.set_xlabel('Total mass $M (M_{\odot})$', labelpad=5, fontsize=10)

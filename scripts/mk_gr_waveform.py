@@ -118,6 +118,5 @@ data=signal#+noise ## comment noise to generate noise free data
 datar=np.real(data)
 datai=np.imag(data)
 
-np.savetxt('../injections/9_param_runs/'+out_file, np.c_[f[:-1],datar[:-1],datai[:-1],psd[:-1]], header='f real_data imag_data psd')
+np.savetxt(out_file, np.c_[f[:-1],datar[:-1],datai[:-1],psd[:-1]], header='f real_data imag_data psd')
 
-print "python emcee_inference_tgr_abhi.py -d ../injections/9_param_runs/%s -o ../runs/9_param_runs/Mc_q_deltaMc_deltaq/M_%d_q_%d_iota_%d -i '%.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f, %.4f'"%(out_file,M,1./q, np.ceil(np.degrees(iota)), Mc, q, Mc, q, r, iota, t0, Psi_ref, ra, np.sin(dec), pol)

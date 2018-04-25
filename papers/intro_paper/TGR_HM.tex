@@ -71,12 +71,12 @@
 \affiliation{Canadian Institute for Advanced Research, CIFAR Azrieli Global Scholar, MaRS Centre, West Tower, 661 University Ave., Suite 505, Toronto, ON M5G 1M1, Canada}
 \author{B.~S.~Sathyaprakash}
 \affiliation{Department of Physics and Department of Astronomy and Astrophysics, The Pennsylvania State University, University Park, PA 16802, USA}
-\affiliation{School of Physics and Astronomy, Cardiff University, Cardiff, UK, CF24 3AA}
+\affiliation{School of Physics and Astronomy, Cardiff University, Cardiff, CF24 3AA, UK}
 
 \begin{abstract}
 One of the consequences of the black-hole ``no-hair'' theorem in general relativity (GR) is that gravitational radiation (\emph{quasi-normal modes}) from a perturbed Kerr black hole is uniquely determined by its mass and spin. Thus, the spectrum of quasi-normal mode frequencies have to be all consistent with the same value of the mass and spin. Similarly, the gravitational radiation from a coalescing binary black hole system is uniquely determined by a small number of parameters (masses and spins of the black holes and orbital parameters). Thus, consistency between different spherical harmonic modes of the radiation is a powerful test that the observed system is a binary black hole predicted by GR. We formulate such a test, develop a Bayesian implementation, demonstrate its performance on simulated data and investigate the possibility of performing such a test using previous and upcoming gravitational wave observations. 
 \end{abstract}
-\preprint{LIGO-P1800056-v3}
+\preprint{LIGO-P1800056-v4}
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
 \paragraph{Introduction:---}
@@ -196,7 +196,7 @@ Recent observations of GW signals from merging binaries of black holes~\cite{gw1
 
 Here we investigate the  prospect of performing the proposed test on binary black hole events that Advanced LIGO and Virgo could observe over the next few years.  We simulate populations of binary black holes based on reasonable astrophysical assumptions, and examine the distributions of the mass ratio and inclination angle of detectable signals. In particular, we simulate binaries with two assumed distributions of component masses in the source-frame~\cite{Abbott:2016nhf}:
 \begin{enumerate}
-\item Masses following a power-law $p(m_{1,2}) = m_{1,2}^{-1}$   with $5 M_\odot \leq m_1, m_2  \leq 100 M_\odot$. 
+\item Masses following a power-law $p(m_{1,2}) = m_{1,2}^{-1}$   with $m_1, m_2 \geq 5 M_\odot$ and $m_1 + m_2  \leq 100 M_\odot$. 
 \item Masses following a power-law $p(m_1) = m_1^{-2.35}$ on the mass of the larger black hole, with the smaller mass distributed uniformly in $q$ and with $5 M_\odot \leq m_1, m_2  \leq 100 M_\odot$. 
 \end{enumerate}
 In both cases, binaries are distributed uniformly in the sky with isotropic orientations. The distribution of the mergers in redshift is chosen according to the prescription given in~\cite{Dominik:2013tma}. The cosmological redshift on the GW signals can be absorbed by a rescaling of the masses $m_{1,2} (1+z)$ where $z$ is the redshift. From the simulated events, we compute the SNR expected  in Advanced LIGO and apply an SNR threshold for detection (the probability distributions are independent of the exact value of the SNR threshold). The cumulative distribution of the mass ratio $q$ and inclination angle $\iota$ of binaries crossing the detection threshold is plotted in Fig.~\ref{fig:q_iota_distribution}. It can be seen that $\sim 20 - 40\%$ of the detectable binaries will have a mass ratio greater than 2, out of which  $\sim 15\%$ will  be observed with inclination angle greater than $60^\circ$. Thus, only a few percent of the observed systems are likely to have large mass ratios ($q < 1/2$) and inclined orbits ($\iota > 60^\circ$). However, since Advanced LIGO and Virgo are expected to observe hundreds of binary black hole mergers over the next few years~\cite{Abbott:2016nhf}, we conclude that the proposed test could be performed when detectors reach their design sensitivity over the next few years, if not sooner.

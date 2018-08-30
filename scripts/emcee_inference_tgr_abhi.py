@@ -1,4 +1,4 @@
-import os
+import os, sys
 from numpy import sqrt, sin, cos, pi
 import matplotlib
 matplotlib.use("Pdf")
@@ -7,6 +7,7 @@ import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 import emcee
+sys.path.insert(0, '/home/abhirup/Documents/Work/gr_consistency_highermodes/src')
 import template_tgr as phhsi
 from pycbc  import  detector
 from lal import MSUN_SI, MTSUN_SI, PC_SI, PI, PC_SI, C_SI, GAMMA, MRSUN_SI
@@ -29,14 +30,14 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 	output: 
 	log_likelhood 
 	"""
-	df = np.mean(np.diff(freq))
+	df = np.diff(freq)[0]#np.mean(np.diff(freq))
 
         N_low=np.int((f_low-freq[0])/df)
         N_cut=np.int((f_cut-freq[0])/df)
 
         Nls=np.int(f_low/df)  #N_low_signal
         Ncs=np.int(f_cut/df)  #N_cut_signal
-	
+
 	# unpacking the parameter vector 
 	Mc, q, Mc1, q1, dL, i, t0, phi0,  ra, sin_dec, pol= param_vec
 
@@ -55,7 +56,7 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 
 def lnprior(param_vec):
 	Mc, q, Mc1, q1, dL, i, t0, phi_0, ra, sin_dec, pol = param_vec
-	if 1 < Mc < 200 and 0.05 < q <= 1. and  1 < Mc1 < 200 and 0.05 < q1 <= 1. and 1.<dL<10000 and 0.<= i <= pi and 0.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and 0. <= ra < 2.*pi and -1. <= sin_dec <= 1. and 0. <= pol <= pi:
+	if 1 < Mc < 200 and 0.05 < q <= 1. and  1 < Mc1 < 200 and 0.05 < q1 <= 1. and 1.<dL<10000 and 0.<= i <= pi and 0.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and 0. <= ra < 2.*pi and -1. <= sin_dec <= 1. and -pi <= pol <= 0.:
 		return 2.*np.log(dL)+np.log(np.sin(i))
 	return -np.inf
 

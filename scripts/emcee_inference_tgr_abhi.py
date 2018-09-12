@@ -91,11 +91,11 @@ os.system('cp -r %s %s'%(data_fname, out_dir))
 os.system('cp %s %s' %(__file__, out_dir))
 
 f_low = 20.
-f_cut = 999.
+f_cut = 4096.
 
 ndim, nwalkers = 11, 100
-num_threads = 30
-num_iter = 3000
+num_threads = 32
+num_iter = 2000
 # ------------------------------------------------------ # 
 
 

@@ -79,12 +79,13 @@ start_time = time.time()
 parser = OptionParser()
 parser.add_option("-d", "--data-fname", dest="data_fname", help="data filename")
 parser.add_option("-o", "--out-dir", dest="out_dir", help="output directory")
-parser.add_option("-i", "--init-cond", dest="result", help="initial conditions")
+parser.add_option("-i", "--init-loc", dest="init_loc", help="location for initial conditions")
+parser.add_option("--save-incremental-progress", dest="sip", help="save incremental progress", default=True)
 (options, args) = parser.parse_args()
 data_fname = options.data_fname
 out_dir = options.out_dir
-result = options.result
-result = map(float, result.strip('[]').split(','))
+init_loc = options.init_loc
+sip = options.sip
 
 os.system('mkdir -p %s'%out_dir)
 os.system('cp -r %s %s'%(data_fname, out_dir))
@@ -94,8 +95,8 @@ f_low = 20.
 f_cut = 4096.
 
 ndim, nwalkers = 11, 100
-num_threads = 32
-num_iter = 2000
+num_threads = 28
+num_iter = 5000
 # ------------------------------------------------------ # 
 
 
@@ -105,7 +106,7 @@ data = dr + 1j*di
 print '... read data' 
 
 # create initial walkers
-
+result = np.loadtxt(init_loc, unpack=True)
 mc_init, q_init, mc1_init, q1_init, dL_init, iota_init, t0_init, phi0_init, ra_init, sin_dec_init, pol_init = result
 
 pos = [result + 1e-4*np.random.randn(ndim) for i in range(nwalkers)]
@@ -114,7 +115,25 @@ print '... generated initial walkers. starting sampling...'
 
 # sample the likelihood using EMCEE 
 sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, threads=num_threads)
-sampler.run_mcmc(pos, num_iter)
+
+# tracking changes in average autocorrelation time estimate
+index = 0
+autocorr = np.empty(num_iter)
+old_tau = np.inf
+
+if sip == False:
+	sampler.run_mcmc(pos, num_iter)
+
+else:
+	for result in sampler.sample(pos, iterations=num_iter, storechain=False):
+
+            position = result[0]
+
+            f = open(out_dir+"/chain_incremental.dat", "a")
+            for k in range(position.shape[0]):
+                p=position[k]
+                f.write("{0:1d} {1:2f} {2:3f} {3:4f} {4:5f} {5:6f} {6:7f} {7:8f} {8:8f} {9:8f} {10:8f} {11:8f}\n".format(k,p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]%(2.*pi),p[8],p[9],p[10]))# Order: walker number, Mc, q, Mc1, q1, dL, iota, t0, phi_0, ra, sin(dec), pol
+            f.close()
 
 mc_chain, q_chain, mc1_chain, q1_chain, dL_chain, iota_chain, t0_chain, phi0_chain, ra_chain, sin_dec_chain, pol_chain = sampler.chain[:, :, 0].T, sampler.chain[:, :, 1].T, sampler.chain[:, :, 2].T, sampler.chain[:, :, 3].T, sampler.chain[:, :, 4].T, sampler.chain[:, :, 5].T, sampler.chain[:, :, 6].T, sampler.chain[:, :, 7].T, sampler.chain[:, :, 8].T, sampler.chain[:, :, 9].T, sampler.chain[:, :, 10].T
 

@@ -2,9 +2,12 @@ import matplotlib as mpl
 mpl.use('Agg')
 import numpy as np
 import matplotlib.pyplot as plt
-np.set_printoptions(threshold=np.nan)
+from optparse import OptionParser
 
-post_loc = '../runs/modGR_simulations/NSBH_iota_0.000_pol_-3.140'
+parser = OptionParser()
+parser.add_option("-p", "--post-loc", dest="post_loc", help="location of posterior samples directory")
+(options, args) = parser.parse_args()
+post_loc = options.post_loc
 
 data = np.loadtxt(post_loc + '/chain_incremental.dat', unpack=True, usecols=(1,2,3,4,5,6,7,8,9,10,11))
 

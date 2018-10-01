@@ -30,7 +30,7 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 	output: 
 	log_likelhood 
 	"""
-	df = np.diff(freq)[0]#np.mean(np.diff(freq))
+	df = np.diff(freq)[0]
 
         N_low=np.int((f_low-freq[0])/df)
         N_cut=np.int((f_cut-freq[0])/df)
@@ -95,8 +95,8 @@ f_low = 20.
 f_cut = 4096.
 
 ndim, nwalkers = 11, 100
-num_threads = 28
-num_iter = 5000
+num_threads = 30
+num_iter = 2000
 # ------------------------------------------------------ # 
 
 

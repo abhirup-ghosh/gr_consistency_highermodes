@@ -1,6 +1,0 @@
-universe   = vanilla
-executable = run_emcee_condor.sh
-output     = run_emcee_condor.out
-error      = run_emcee_condor.err
-log        = run_emcee_condor.log
-queue

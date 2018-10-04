@@ -25,7 +25,7 @@ Mc=(M*q**0.6)/((1.+q)**1.2)
 SNR_req=25.    
 iota_list=[0.00]#,0.79,1.57]
 Psi_ref=0.
-t0=6.
+t0=0.
 
 ra=0.          
 dec =0.
@@ -41,7 +41,7 @@ for cbc in cbc_list:
     for pol in pol_list:
 	start_time = time.time()
 
-	out_file = '%s_iota_%.3f_pol_%.3f_t0_6'%(cbc, iota, pol)
+	out_file = '%s_iota_%.3f_pol_%.3f_t0_0'%(cbc, iota, pol)
 
 	print "... case:", cbc, iota, pol
 
@@ -78,20 +78,28 @@ for cbc in cbc_list:
 	# plotting waveform before and after interpolation (and Foft_SI)
 	plt.figure(figsize=(10,10))
         plt.subplot(511)
-        plt.plot(t_SI_rstrctd, hp_SI_rstrctd, 'k', lw=0.2)
-        plt.plot(t_SI_rstrctd_interp, hp_SI_rstrctd_interp, 'r--',alpha=0.2, lw=0.2)
+        plt.plot(t_SI_rstrctd, hp_SI_rstrctd, 'k', lw=0.5, label='before')
+        plt.plot(t_SI_rstrctd_interp, hp_SI_rstrctd_interp, 'r--',lw=0.5, label='after')
+	plt.legend(loc='best')
+	plt.ylabel('$h_p$')
         plt.subplot(512)
-        plt.plot(t_SI_rstrctd, hc_SI_rstrctd, 'k', lw=0.2)
-        plt.plot(t_SI_rstrctd_interp, hc_SI_rstrctd_interp, 'r--',alpha=0.2, lw=0.2)
+        plt.plot(t_SI_rstrctd, hc_SI_rstrctd, 'k', lw=0.5, label='before')
+        plt.plot(t_SI_rstrctd_interp, hc_SI_rstrctd_interp, 'r--',lw=0.5, label='after')
+	plt.legend(loc='best')
+	plt.ylabel('$h_c$')
 	plt.subplot(513)
         plt.plot(t_SI_rstrctd, phi_SI_rstrctd, 'k', lw=0.2)
+	plt.ylabel('$\phi(t)$')
 	plt.subplot(514)
         plt.plot(t_SI_rstrctd, Foft_SI_rstrctd, 'k', lw=0.2)
 	plt.axhline(y=15, color='r', ls='--')
+	plt.ylabel('$F(t)$')
 	plt.subplot(515)
         plt.plot(t_SI_rstrctd, Foft_SI_rstrctd, 'k', lw=0.2)
+	plt.ylabel('$F(t)$')
 	plt.xlim([1672, 1672.05])
         plt.axhline(y=15, color='r', ls='--')
+	plt.tight_layout()
 	plt.savefig(out_dir + '/%s_interpolation.png'%out_file, dpi=300)
         plt.close()
 

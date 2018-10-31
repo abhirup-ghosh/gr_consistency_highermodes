@@ -62,15 +62,15 @@ f_low=20.
 df=0.1
 N=10000
 
-M=80.          ###### Total Mass in M_SUN
-q=1./9         ###### Mass ratio
+M=70.          ###### Total Mass in M_SUN
+q=1./6         ###### Mass ratio
 SNR_req=25.    ###### Required SNR
-iota=pi/3.
-Psi_ref=pi
-t0=6.          ###### time of arrival
+iota=0.
+Psi_ref=0.
+t0=0.          ###### time of arrival
 
-ra=1.          ##### Sky localisation
-dec =1.
+ra=0.          ##### Sky localisation
+dec =0.
 pol=0.
 
 ################################################
@@ -119,4 +119,3 @@ datar=np.real(data)
 datai=np.imag(data)
 
 np.savetxt(out_file, np.c_[f[:-1],datar[:-1],datai[:-1],psd[:-1]], header='f real_data imag_data psd')
-

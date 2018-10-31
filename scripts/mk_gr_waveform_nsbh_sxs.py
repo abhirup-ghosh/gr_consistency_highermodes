@@ -15,17 +15,18 @@ from scipy import interpolate
 import time
 
 # signal parameters
-flow=20.
+flow=10.
+flow_snr=20.
 srate = 2048.
 
 m1, m2 = 60.0, 10.0
 M=m1+m2          # in MSUN
-q=m2/m1         
+q=m2/m1  
+eta=m1*m2/M**2.       
 Mc=(M*q**0.6)/((1.+q)**1.2)
 SNR_req=25.    
 iota_list=[0.00]#,0.79,1.57]
 Psi_ref=0.
-t0=0.
 
 ra=0.          
 dec =0.
@@ -41,7 +42,7 @@ for cbc in cbc_list:
     for pol in pol_list:
 	start_time = time.time()
 
-	out_file = '%s_iota_%.3f_pol_%.3f_t0_0'%(cbc, iota, pol)
+	out_file = '%s_M_%.2f_iota_%.3f_pol_%.3f'%(cbc, M, iota, pol)
 
 	print "... case:", cbc, iota, pol
 
@@ -60,6 +61,13 @@ for cbc in cbc_list:
 	h_SI = hp_SI + 1j*hc_SI
 	phi_SI = np.unwrap(np.angle(h_SI))
 	Foft_SI = np.gradient(phi_SI)/np.gradient(t_SI)/(2*np.pi)
+
+	# defining t0 as the time at ISCO, and redefining it as 0
+	f_ISCO = (1./(6.*np.sqrt(6)))*((3.e8)**3./((6.67e-11)*M*(1.989*10**30)))
+        t0 = t_SI[np.where(Foft_SI >= f_ISCO)][0]
+        print '... t0 (time corresponding to ISCO of initial (non-spinning) binary): %.4f seconds'%t0
+        t_SI = t_SI - t_SI[0] - t0
+        t0 = 0.
 
 	# restricting waveform to instantaneous frequencies above flow
 	idx_rstrctd, = np.where(Foft_SI > flow)
@@ -113,7 +121,7 @@ for cbc in cbc_list:
 	
 	signal=Fp*hp_SI_rstrctd_interp+Fc*hc_SI_rstrctd_interp
 	signal_time=pycbc.types.timeseries.TimeSeries(signal,delta_t=dt_SI_rstrctd_interp,dtype=float)
-        SNR=mfilter.sigma(signal_time,psd=psd,low_frequency_cutoff=flow)
+        SNR=mfilter.sigma(signal_time,psd=psd,low_frequency_cutoff=flow_snr)
 
 	print '... initial SNR:%f'%SNR
 
@@ -125,7 +133,7 @@ for cbc in cbc_list:
 	# sanity check: recomputing SNR for rescaled waveform (confirm SNR = 25)
 	signal=Fp*hp_SI_rescaled+Fc*hc_SI_rescaled
         signal_time=pycbc.types.timeseries.TimeSeries(signal,delta_t=dt_SI_rstrctd_interp,dtype=float)
-        SNR=mfilter.sigma(signal_time,psd=psd,low_frequency_cutoff=flow)
+        SNR=mfilter.sigma(signal_time,psd=psd,low_frequency_cutoff=flow_snr)
 
 	print '... rescaled distance: %f Mpc for a fixed SNR: %f'%(r, SNR)
 

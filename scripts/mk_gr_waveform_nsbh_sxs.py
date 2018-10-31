@@ -62,17 +62,16 @@ for cbc in cbc_list:
 	phi_SI = np.unwrap(np.angle(h_SI))
 	Foft_SI = np.gradient(phi_SI)/np.gradient(t_SI)/(2*np.pi)
 
-	# defining t0 as the time at ISCO, and redefining it as 0
-	f_ISCO = (1./(6.*np.sqrt(6)))*((3.e8)**3./((6.67e-11)*M*(1.989*10**30)))
-        t0 = t_SI[np.where(Foft_SI >= f_ISCO)][0]
-        print '... t0 (time corresponding to ISCO of initial (non-spinning) binary): %.4f seconds'%t0
-        t_SI = t_SI - t_SI[0] - t0
-        t0 = 0.
-
 	# restricting waveform to instantaneous frequencies above flow
 	idx_rstrctd, = np.where(Foft_SI > flow)
 	phi_SI_rstrctd, Foft_SI_rstrctd = phi_SI[idx_rstrctd], Foft_SI[idx_rstrctd]
 	t_SI_rstrctd, hp_SI_rstrctd, hc_SI_rstrctd = t_SI[idx_rstrctd], hp_SI[idx_rstrctd], hc_SI[idx_rstrctd]
+
+	# defining t0 as the time at ISCO, and redefining it as 0
+        t0 = (5./256.)*M*lal.MTSUN_SI/((np.pi*M*lal.MTSUN_SI*flow)**(8./3.)*eta)
+        print '... t0 (time corresponding to ISCO of initial (non-spinning) binary): %.4f seconds'%t0
+        t_SI_rstrctd = t_SI_rstrctd - t_SI_rstrctd[0] - t0
+        t0 = 0.
 
 	# interpolating h_p(t) and h_c(t) over a equally-space time series with sampling rate 16kHz
 	t_SI_rstrctd_interp = np.arange(t_SI_rstrctd[0], t_SI_rstrctd[-1], 1./srate)

@@ -42,7 +42,7 @@ for cbc in cbc_list:
     for pol in pol_list:
 	start_time = time.time()
 
-	out_file = '%s_M_%.2f_iota_%.3f_pol_%.3f'%(cbc, M, iota, pol)
+	out_file = '%s_M_%.2f_iota_%.3f_pol_%.3f_t0_0'%(cbc, M, iota, pol)
 
 	print "... case:", cbc, iota, pol
 
@@ -105,7 +105,7 @@ for cbc in cbc_list:
 	plt.subplot(515)
         plt.plot(t_SI_rstrctd, Foft_SI_rstrctd, 'k', lw=0.2)
 	plt.ylabel('$F(t)$')
-	plt.xlim([1672, 1672.05])
+	plt.xlim([-0.02, 0.02])
         plt.axhline(y=15, color='r', ls='--')
 	plt.tight_layout()
 	plt.savefig(out_dir + '/%s_interpolation.png'%out_file, dpi=300)

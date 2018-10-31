@@ -39,7 +39,7 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
         Ncs=np.int(f_cut/df)  #N_cut_signal
 
 	# unpacking the parameter vector 
-	Mc, q, dL, i, t0, phi0,  ra, sin_dec, pol= param_vec
+	Mc, q, dL, i, t0, phi0,  ra, sin_dec, pol = param_vec
 
 	# generate the waveform 
 	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, dL, i, t0, (phi0 %(2.*pi)), f_low, df, Ncs)
@@ -56,7 +56,7 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 
 def lnprior(param_vec):
 	Mc, q, dL, i, t0, phi_0, ra, sin_dec, pol = param_vec
-	if 1 < Mc < 200 and 0.05 < q <= 1. and  1.<dL<10000 and 0.<= i <= pi and 0.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and 0. <= ra < 2.*pi and -1. <= sin_dec <= 1. and -pi <= pol <= 0.:
+	if 1 < Mc < 200 and 0.05 < q <= 1. and  1.<dL<10000 and 0.<= i <= pi and -15.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and 0. <= ra < 2.*pi and -1. <= sin_dec <= 1. and 0. <= pol <= pi:
 		return 2.*np.log(dL)+np.log(np.sin(i))
 	return -np.inf
 
@@ -91,12 +91,12 @@ os.system('mkdir -p %s'%out_dir)
 os.system('cp -r %s %s'%(data_fname, out_dir))
 os.system('cp %s %s' %(__file__, out_dir))
 
-f_low = 30.
-f_cut = 999.
+f_low = 20.
+f_cut = 1024.
 
 ndim, nwalkers = 9, 100
 num_threads = 30
-num_iter = 5000
+num_iter = 10000
 # ------------------------------------------------------ # 
 
 
@@ -107,8 +107,7 @@ print '... read data'
 
 # create initial walkers
 result = np.loadtxt(init_loc, unpack=True)
-mc_init, q_init, mc1_init, q1_init, dL_init, iota_init, t0_init, phi0_init, ra_init, sin_dec_init, pol_init = result
-result = mc_init, q_init, dL_init, iota_init, t0_init, phi0_init, ra_init, sin_dec_init, pol_init 
+mc_init, q_init, dL_init, iota_init, t0_init, phi0_init, ra_init, sin_dec_init, pol_init = result
 
 pos = [result + 1e-4*np.random.randn(ndim) for i in range(nwalkers)]
 
@@ -117,10 +116,12 @@ print '... generated initial walkers. starting sampling...'
 # sample the likelihood using EMCEE 
 sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, threads=num_threads)
 
-#if sip == False:
-sampler.run_mcmc(pos, num_iter)
-"""
+if sip == 'False':
+	print '... running sampler'
+	sampler.run_mcmc(pos, num_iter)
+
 else:
+	print '... running incremental sampler'
 	for result in sampler.sample(pos, iterations=num_iter, storechain=False):
 
             position = result[0]
@@ -130,7 +131,7 @@ else:
                 p=position[k]
                 f.write("{0:1d} {1:8f} {2:8f} {3:8f} {4:8f} {5:8f} {6:8f} {7:8f} {8:8f} {9:8f}\n".format(k,p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]%(2.*pi),p[8]))# Order: walker number, Mc, q, dL, iota, t0, phi_0, ra, sin(dec), pol
             f.close()
-"""
+
 mc_chain, q_chain, dL_chain, iota_chain, t0_chain, phi0_chain, ra_chain, sin_dec_chain, pol_chain = sampler.chain[:, :, 0].T, sampler.chain[:, :, 1].T, sampler.chain[:, :, 2].T, sampler.chain[:, :, 3].T, sampler.chain[:, :, 4].T, sampler.chain[:, :, 5].T, sampler.chain[:, :, 6].T, sampler.chain[:, :, 7].T, sampler.chain[:, :, 8].T
 
 samples = sampler.chain[:, :, :].reshape((-1, ndim))
@@ -144,13 +145,13 @@ np.savetxt(out_dir+'/emcee_samples.dat', samples, header='mc q dL i t0 phi0 ra s
 
 # plot the data and the psd 
 df = np.mean(np.diff(freq))
-idx = np.logical_and(freq > 20, freq < 999)
+idx = np.logical_and(freq > f_low, freq < f_cut)
 snr = 2*np.sqrt(df*np.sum(abs(data[idx])**2/psd[idx]))
 
 plt.figure(figsize=(8,6))
 plt.loglog(freq, abs(data), 'r')
 plt.loglog(freq, psd**0.5, 'c')
-plt.xlim(20,1e3)
+plt.xlim(f_low, f_cut)
 plt.ylim(1e-24,5e-23)
 plt.xlabel('$f$ [Hz]')
 plt.ylabel('$h(f)$ and $S_h(f)$')

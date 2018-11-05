@@ -19,7 +19,7 @@ flow=10.
 flow_snr=20.
 srate = 2048.
 
-m1, m2 = 60.0, 10.0
+m1, m2 = 120.0, 20.0
 M=m1+m2          # in MSUN
 q=m2/m1  
 eta=m1*m2/M**2.       
@@ -149,10 +149,11 @@ for cbc in cbc_list:
 	plt.loglog(f_SI, psd**0.5, 'c')
 	plt.xlabel('$f$ [Hz]')
 	plt.ylabel('$h(f)$ and $S_h(f)$')
+	plt.xlim([20,1024])
+	plt.ylim(1e-24,5e-23)
 	plt.savefig(out_dir + '/%s_data.png'%out_file)
 	plt.close()
 
-	print Mc, q, r, iota, t0, Psi_ref, ra, np.sin(dec), pol
 	# saving data
 	np.savetxt(out_dir + '/%s_data.dat'%out_file, np.c_[f_SI[range(N/2)],datar[range(N/2)],datai[range(N/2)],psd[range(N/2)]], header='f real_data imag_data psd')
 	np.savetxt(out_dir + '/%s_initial.dat'%out_file, np.c_[Mc, q, r, iota, t0, Psi_ref, ra, np.sin(dec), pol], header='Mc q r iota t0 Psi_ref ra sin_dec pol')

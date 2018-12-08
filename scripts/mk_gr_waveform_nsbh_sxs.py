@@ -12,10 +12,28 @@ import glob
 import os
 import scipy
 from scipy import interpolate
+from scipy.signal import argrelextrema
 import time
 
+""" taper time domain data. h is a numpy array (Ref. Eq. (3.35) of gr-qc/0001023) """
+def taper_waveform(h):
+        h_temp = h
+        peakind = np.array(argrelextrema(abs(h_temp), np.greater)).flatten()
+        idx_peak2 = peakind[1]          # index of second extremum
+        startind = np.flatnonzero(h_temp)[0]            # index of first non-zero data point
+
+        # taper from start to second extremum 
+        n = idx_peak2 - startind
+        # do the taper using formula Eq. (3.35) of gr-qc/0001023.
+        h_temp[startind] = 0
+        for i in range(startind+1, startind+n-2):
+                z = (n - 1.)/(i-startind) + (n-1.)/(i-startind - (n-1.))
+                h_temp[i] = h_temp[i]*1./(np.exp(z) + 1)
+        return h_temp
+
+
 # signal parameters
-flow=10.
+flow=5.
 flow_snr=20.
 srate = 2048.
 
@@ -35,7 +53,7 @@ pol_list=[0.00]#,-1.57,-3.14]
 cbc_list = ['BBH']#''NSBH']
 
 data_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/data/polarizations'
-out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/modGR_simulations'
+out_dir = '/home/ajit.mehta/gr_consistency_highermodes/plots'
 
 for cbc in cbc_list:
   for iota in iota_list:
@@ -137,7 +155,7 @@ for cbc in cbc_list:
 	print '... rescaled distance: %f Mpc for a fixed SNR: %f'%(r, SNR)
 
 	# generate Fourier domain waveform
-	signal_freq = np.fft.fft(signal)*dt_SI_rstrctd_interp
+	signal_freq = np.fft.fft(taper_waveform(signal))*dt_SI_rstrctd_interp
 	data=signal_freq#+noise ## comment noise to generate noise free data
 
 	datar=np.real(data)

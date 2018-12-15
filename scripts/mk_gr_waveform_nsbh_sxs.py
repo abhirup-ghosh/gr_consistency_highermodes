@@ -33,18 +33,18 @@ def taper_waveform(h):
 
 
 # signal parameters
-flow=5.
+flow=10.
 flow_snr=20.
 srate = 2048.
 
-m1, m2 = 120.0, 20.0
+m1, m2 = 60.0, 10.0
 M=m1+m2          # in MSUN
 q=m2/m1  
 eta=m1*m2/M**2.       
 Mc=(M*q**0.6)/((1.+q)**1.2)
 SNR_req=25.    
 iota_list=[0.00]#,0.79,1.57]
-Psi_ref=0.
+Psi_ref=1.3
 
 ra=0.          
 dec =0.
@@ -53,7 +53,7 @@ pol_list=[0.00]#,-1.57,-3.14]
 cbc_list = ['BBH']#''NSBH']
 
 data_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/data/polarizations'
-out_dir = '/home/ajit.mehta/gr_consistency_highermodes/plots'
+out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/nsbh_sxs_20181209'
 
 for cbc in cbc_list:
   for iota in iota_list:
@@ -174,7 +174,7 @@ for cbc in cbc_list:
 
 	# saving data
 	np.savetxt(out_dir + '/%s_data.dat'%out_file, np.c_[f_SI[range(N/2)],datar[range(N/2)],datai[range(N/2)],psd[range(N/2)]], header='f real_data imag_data psd')
-	np.savetxt(out_dir + '/%s_initial.dat'%out_file, np.c_[Mc, q, r, iota, t0, Psi_ref, ra, np.sin(dec), pol], header='Mc q r iota t0 Psi_ref ra sin_dec pol')
+	np.savetxt(out_dir + '/%s_initial.dat'%out_file, np.c_[Mc, q, r, iota, t0, Psi_ref, ra, np.sin(dec), pol], header='Mc q r iota t0 Psi_ref ra sin_dec pol', fmt=['%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f'])
 
 	end_time = time.time()
 	print "... time taken: %.2f seconds"%(end_time-start_time)

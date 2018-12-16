@@ -89,6 +89,7 @@ sip = options.sip
 
 os.system('mkdir -p %s'%out_dir)
 os.system('cp -r %s %s'%(data_fname, out_dir))
+os.system('cp -r %s %s'%(init_loc, out_dir))
 os.system('cp %s %s' %(__file__, out_dir))
 
 f_low = 20.

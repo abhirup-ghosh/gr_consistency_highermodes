@@ -37,9 +37,7 @@ def taper_waveform(h):
 
 
 # signal parameters
-flow =5.
 f_low=20.
-flow_snr=20.
 srate = 2048.
 
 m1, m2 = 60.0, 10.0
@@ -55,10 +53,10 @@ ra=0.
 dec =0.
 pol_list=[0.00]#,-1.57,-3.14]
 
-cbc_list = ['NSBH']#''NSBH']
+cbc_list = ['BBH']#''NSBH']
 
 data_dir = '/home/ajit.mehta/Ajit_work/phenom_hh/data/polarizations/four_modes'
-out_dir = '/home/ajit.mehta/gr_consistency_highermodes/plots/four_modes'
+out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/SXS_four_modes_20181216'
 
 for cbc in cbc_list:
   for iota in iota_list:
@@ -86,16 +84,13 @@ for cbc in cbc_list:
 	hp_SI = hp_geom*(M*lal.MTSUN_SI)/(r*1e6*lal.PC_SI/lal.C_SI)
 	hc_SI = hc_geom*(M*lal.MTSUN_SI)/(r*1e6*lal.PC_SI/lal.C_SI)
 	h_SI = hp_SI + 1j*hc_SI
-	phi_SI = np.unwrap(np.angle(h_SI))
-	Foft_SI = np.gradient(phi_SI)/np.gradient(t_SI)/(2*np.pi)
 
 	# restricting waveform to  lower range in order to compute FFT.
         idx_rstrctd = np.arange(len(t_SI)-300000,len(t_SI),1)
-	phi_SI_rstrctd, Foft_SI_rstrctd = phi_SI[idx_rstrctd], Foft_SI[idx_rstrctd]
 	t_SI_rstrctd, hp_SI_rstrctd, hc_SI_rstrctd = t_SI[idx_rstrctd], hp_SI[idx_rstrctd], hc_SI[idx_rstrctd]
 
 	# defining t0 as the time at ISCO, and redefining it as 0
-        t0 = (5./256.)*M*lal.MTSUN_SI/((np.pi*M*lal.MTSUN_SI*flow)**(8./3.)*eta)
+        t0 = (5./256.)*M*lal.MTSUN_SI/((np.pi*M*lal.MTSUN_SI*f_low)**(8./3.)*eta)
         print '... t0 (time corresponding to ISCO of initial (non-spinning) binary): %.4f seconds'%t0
         t_SI_rstrctd = t_SI_rstrctd - t_SI_rstrctd[0] - t0
         t0 = 0.
@@ -110,29 +105,17 @@ for cbc in cbc_list:
         hc_SI_rstrctd_interp = hc_SI_rstrctd_interp_obj(t_SI_rstrctd_interp)
 
 	# plotting waveform before and after interpolation (and Foft_SI)
-	plt.figure(figsize=(10,10))
-        plt.subplot(511)
+	plt.figure(figsize=(10,5))
+        plt.subplot(211)
         plt.plot(t_SI_rstrctd, hp_SI_rstrctd, 'k', lw=0.5, label='before')
         plt.plot(t_SI_rstrctd_interp, hp_SI_rstrctd_interp, 'r--',lw=0.5, label='after')
 	plt.legend(loc='best')
 	plt.ylabel('$h_p$')
-        plt.subplot(512)
+        plt.subplot(212)
         plt.plot(t_SI_rstrctd, hc_SI_rstrctd, 'k', lw=0.5, label='before')
         plt.plot(t_SI_rstrctd_interp, hc_SI_rstrctd_interp, 'r--',lw=0.5, label='after')
 	plt.legend(loc='best')
 	plt.ylabel('$h_c$')
-	plt.subplot(513)
-        plt.plot(t_SI_rstrctd, phi_SI_rstrctd, 'k', lw=0.2)
-	plt.ylabel('$\phi(t)$')
-	plt.subplot(514)
-        plt.plot(t_SI_rstrctd, Foft_SI_rstrctd, 'k', lw=0.2)
-	plt.axhline(y=15, color='r', ls='--')
-	plt.ylabel('$F(t)$')
-	plt.subplot(515)
-        plt.plot(t_SI_rstrctd, Foft_SI_rstrctd, 'k', lw=0.2)
-	plt.ylabel('$F(t)$')
-	plt.xlim([-0.02, 0.02])
-        plt.axhline(y=15, color='r', ls='--')
 	plt.tight_layout()
 	plt.savefig(out_dir + '/%s_interpolation.png'%out_file, dpi=300)
         plt.close()
@@ -143,11 +126,11 @@ for cbc in cbc_list:
 	df = np.diff(f_SI)[0]
 	print '... df: %f'%df
 	Fp,Fc = detector.overhead_antenna_pattern(ra, dec, pol)
-        psd = pycbc.psd.aLIGOZeroDetHighPower(N, df, flow)
+        psd = pycbc.psd.aLIGOZeroDetHighPower(N, df, f_low)
 	
 	signal=Fp*hp_SI_rstrctd_interp+Fc*hc_SI_rstrctd_interp
 	signal_time=pycbc.types.timeseries.TimeSeries(signal,delta_t=dt_SI_rstrctd_interp,dtype=float)
-        SNR=mfilter.sigma(signal_time,psd=psd,low_frequency_cutoff=flow_snr)
+        SNR=mfilter.sigma(signal_time,psd=psd,low_frequency_cutoff=f_low)
 
 	print '... initial SNR:%f'%SNR
 
@@ -159,7 +142,7 @@ for cbc in cbc_list:
 	# sanity check: recomputing SNR for rescaled waveform (confirm SNR = 25)
 	signal=Fp*hp_SI_rescaled+Fc*hc_SI_rescaled
         signal_time=pycbc.types.timeseries.TimeSeries(signal,delta_t=dt_SI_rstrctd_interp,dtype=float)
-        SNR=mfilter.sigma(signal_time,psd=psd,low_frequency_cutoff=flow_snr)
+        SNR=mfilter.sigma(signal_time,psd=psd,low_frequency_cutoff=f_low)
 
 	print '... rescaled distance: %f Mpc for a fixed SNR: %f'%(r, SNR)
 
@@ -197,6 +180,6 @@ for cbc in cbc_list:
 
 	# saving data
 	np.savetxt(out_dir + '/%s_data.dat'%out_file, np.c_[f, datar, datai ,psd], header='f real_data imag_data psd')
-	np.savetxt(out_dir + '/%s_initial.dat'%out_file, np.c_[Mc, q, r, iota, t0, Psi_ref, ra, np.sin(dec), pol], header='Mc q r iota t0 Psi_ref ra sin_dec pol')
+	np.savetxt(out_dir + '/%s_initial.dat'%out_file, np.c_[Mc, q, r, iota, t0, Psi_ref, ra, np.sin(dec), pol], header='Mc q r iota t0 Psi_ref ra sin_dec pol', fmt=['%.4f','%.4f','%.4f','%.4f','%.4f','%.4f','%.4f','%.4f','%.4f'])
 	end_time = time.time()
 	print "... time taken: %.2f seconds"%(end_time-start_time)

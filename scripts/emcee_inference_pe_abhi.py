@@ -39,8 +39,7 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
         Ncs=np.int(f_cut/df)  #N_cut_signal
 
 	# unpacking the parameter vector 
-	Mc, q, dL, i, t0, phi0,  ra, sin_dec, pol = param_vec
-        Psi_ref = phi0
+	Mc, q, dL, i, t0, Psi_ref,  ra, sin_dec, pol = param_vec
 
 	# generate the waveform 
 	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, dL, i, t0, (Psi_ref %(2.*pi)), f_low, df, Ncs)
@@ -108,7 +107,7 @@ print '... read data'
 
 # create initial walkers
 result = np.loadtxt(init_loc, unpack=True)
-mc_init, q_init, dL_init, iota_init, t0_init, phi0_init, ra_init, sin_dec_init, pol_init = result
+mc_init, q_init, dL_init, iota_init, t0_init, Psi_ref_init, ra_init, sin_dec_init, pol_init = result
 
 pos = [result + 1e-4*np.random.randn(ndim) for i in range(nwalkers)]
 
@@ -133,7 +132,7 @@ else:
                 f.write("{0:1d} {1:8f} {2:8f} {3:8f} {4:8f} {5:8f} {6:8f} {7:8f} {8:8f} {9:8f}\n".format(k,p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]%(2.*pi),p[8]))# Order: walker number, Mc, q, dL, iota, t0, phi_0, ra, sin(dec), pol
             f.close()
 
-mc_chain, q_chain, dL_chain, iota_chain, t0_chain, phi0_chain, ra_chain, sin_dec_chain, pol_chain = sampler.chain[:, :, 0].T, sampler.chain[:, :, 1].T, sampler.chain[:, :, 2].T, sampler.chain[:, :, 3].T, sampler.chain[:, :, 4].T, sampler.chain[:, :, 5].T, sampler.chain[:, :, 6].T, sampler.chain[:, :, 7].T, sampler.chain[:, :, 8].T
+mc_chain, q_chain, dL_chain, iota_chain, t0_chain, Psi_ref_chain, ra_chain, sin_dec_chain, pol_chain = sampler.chain[:, :, 0].T, sampler.chain[:, :, 1].T, sampler.chain[:, :, 2].T, sampler.chain[:, :, 3].T, sampler.chain[:, :, 4].T, sampler.chain[:, :, 5].T, sampler.chain[:, :, 6].T, sampler.chain[:, :, 7].T, sampler.chain[:, :, 8].T
 
 samples = sampler.chain[:, :, :].reshape((-1, ndim))
 
@@ -142,7 +141,7 @@ samples = sampler.chain[:, :, :].reshape((-1, ndim))
 #################################################################
 
 # save the data
-np.savetxt(out_dir+'/emcee_samples.dat', samples, header='mc q dL i t0 phi0 ra sin(dec) pol')
+np.savetxt(out_dir+'/emcee_samples.dat', samples, header='mc q dL i t0 Psi_ref ra sin(dec) pol')
 
 # plot the data and the psd 
 df = np.mean(np.diff(freq))
@@ -189,10 +188,10 @@ plt.plot(t0_init + np.std(t0_chain, axis=1), 'r')
 plt.axhline(y=t0_init, color='g')
 plt.ylabel('t0')
 plt.subplot(526)
-plt.plot(phi0_chain, color="k", alpha=0.4, lw=0.5)
-plt.plot(phi0_init + np.std(phi0_chain, axis=1), 'r')
-plt.axhline(y=phi0_init, color='g')
-plt.ylabel('phi0')
+plt.plot(Psi_ref_chain, color="k", alpha=0.4, lw=0.5)
+plt.plot(Psi_ref_init + np.std(Psi_ref_chain, axis=1), 'r')
+plt.axhline(y=Psi_ref_init, color='g')
+plt.ylabel('Psi_ref')
 plt.subplot(527)
 plt.plot(ra_chain, color="k", alpha=0.4, lw=0.5)
 plt.plot(ra_init + np.std(ra_chain, axis=1), 'r')
@@ -212,7 +211,7 @@ plt.savefig(out_dir + '/samples_chain.png', dpi=300)
 
 # corner plots
 plt.figure()
-corner.corner(samples, labels=['mc', 'q', 'dL', 'i', 't0', 'phi0', 'ra', 'sin(dec)', 'pol'])
+corner.corner(samples, labels=['mc', 'q', 'dL', 'i', 't0', 'Psi_ref', 'ra', 'sin(dec)', 'pol'])
 plt.savefig("%s/corner_plot_wo_burnin.png"%out_dir)
 plt.close()
 

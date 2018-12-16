@@ -167,10 +167,10 @@ for cbc in cbc_list:
 	signal_freq = np.fft.fft(taper_waveform(signal))*dt_SI_rstrctd_interp
 	data=signal_freq#+noise ## comment noise to generate noise free data
 
-        phi=0.
+        Psi_ref=1.3
         t0=0.  
         incl_angle = iota
-        f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc,q,r,incl_angle,t0,phi,f_low,df,int(N/2.+1))
+        f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc,q,r,incl_angle,t0,Psi_ref,f_low,df,int(N/2.+1))
         NN = len(f)        
         data = data[0:NN]
         psd = psd[0:NN]

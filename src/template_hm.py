@@ -52,7 +52,7 @@ def ringdown(Mc,q,l,m,Ncs,df):
 
 
 
-def phenomhh_waveform_SI(Mc,q,r,iota,t0,phase,f_low,df,Ncs):
+def phenomhh_waveform_SI(Mc,q,r,iota,t0,Psi_ref,f_low,df,Ncs):
 
 	N=ringdown(Mc,q,2,2,Ncs,df)
 
@@ -65,7 +65,6 @@ def phenomhh_waveform_SI(Mc,q,r,iota,t0,phase,f_low,df,Ncs):
 	incl_angle=iota 
 	phi=0. 
 	lmax=4
-	Psi_ref=1.3
 	
 	hpf22,hcf22 = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[2,2],[2,1],[3,3],[4,4]], Psi_ref) 
 	

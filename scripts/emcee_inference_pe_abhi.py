@@ -39,11 +39,11 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
         Ncs=np.int(f_cut/df)  #N_cut_signal
 
 	# unpacking the parameter vector 
-	Mc, q, dL, i, t0, Psi_ref,  ra, sin_dec, pol = param_vec
-        phi0 = Psi_ref
+	Mc, q, dL, i, t0, phi0,  ra, sin_dec, pol = param_vec
+        Psi_ref = phi0
 
 	# generate the waveform 
-	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, dL, i, t0, (phi0 %(2.*pi)), f_low, df, Ncs)
+	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, dL, i, t0, (Psi_ref %(2.*pi)), f_low, df, Ncs)
 
 	# compute antenna patterns 
 	Fp,Fc = detector.overhead_antenna_pattern(ra, np.arcsin(sin_dec), pol)

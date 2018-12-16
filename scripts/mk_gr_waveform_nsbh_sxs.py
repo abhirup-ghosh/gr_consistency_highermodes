@@ -1,7 +1,7 @@
 import matplotlib as mpl
 mpl.use('Agg')
 import sys
-sys.path.append('/home/ajit.mehta/Ajit_work/phenom_hh/src/')
+sys.path.append('../src/')
 import pycbc
 import pycbc.filter.matchedfilter as mfilter
 import pycbc.psd
@@ -15,7 +15,7 @@ import os
 import scipy
 from scipy import interpolate
 from scipy.signal import argrelextrema
-import phenomhh_tgr as phh
+import template_hm as phhsi
 from lal import MSUN_SI, MTSUN_SI, PC_SI, PI, PC_SI, C_SI, GAMMA, MRSUN_SI
 import time
 
@@ -55,7 +55,7 @@ ra=0.
 dec =0.
 pol_list=[0.00]#,-1.57,-3.14]
 
-cbc_list = ['BBH']#''NSBH']
+cbc_list = ['NSBH']#''NSBH']
 
 data_dir = '/home/ajit.mehta/Ajit_work/phenom_hh/data/polarizations/four_modes'
 out_dir = '/home/ajit.mehta/gr_consistency_highermodes/plots/four_modes'
@@ -167,22 +167,16 @@ for cbc in cbc_list:
 	signal_freq = np.fft.fft(taper_waveform(signal))*dt_SI_rstrctd_interp
 	data=signal_freq#+noise ## comment noise to generate noise free data
 
-        m1=m1*MSUN_SI
-        m2=m2*MSUN_SI
-        mt=m1+m2
-        incl_angle = iota
         phi=0.
-        lmax=4 
-        hpf, hcf = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, int(N/2.+1), lmax, [[2,2],[2,1],[3,3],[4,4]], Psi_ref)
-        NN = int(N/2.+1)
-        f = np.linspace(0., df*(NN-1), NN)
+        t0=0.  
+        incl_angle = iota
+        f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc,q,r,incl_angle,t0,phi,f_low,df,int(N/2.+1))
+        NN = len(f)        
         data = data[0:NN]
         psd = psd[0:NN]
         datar=np.real(data)
         datai=np.imag(data)
 
-        hpf=hpf*mt*MRSUN_SI*MTSUN_SI*mt/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
-        hcf=hcf*mt*MRSUN_SI*MTSUN_SI*mt/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
         best_fit_signal=Fp*hpf+Fc*hcf
 
 	# plotting Fourier data and PSD
@@ -197,7 +191,7 @@ for cbc in cbc_list:
         plt.xlabel('f')
         plt.ylabel('$\\tilde{h}(f)$')
         plt.legend(loc='best')
-        plt.title('BBH, four modes with inclination, $\iota=%.2f$'%incl_angle)
+        plt.title('%s, four modes with inclination, $\iota=%.2f$'%(cbc,incl_angle))
         plt.savefig(out_dir + '/%s_data.png'%out_file)
 	plt.close()
 

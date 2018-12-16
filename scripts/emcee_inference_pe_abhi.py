@@ -8,7 +8,7 @@ mpl.use('Agg')
 import matplotlib.pyplot as plt
 import emcee
 sys.path.insert(0, '/home/abhirup/Documents/Work/gr_consistency_highermodes/src')
-import template_22 as phhsi
+import template_hm as phhsi
 from pycbc  import  detector
 from lal import MSUN_SI, MTSUN_SI, PC_SI, PI, PC_SI, C_SI, GAMMA, MRSUN_SI
 import corner

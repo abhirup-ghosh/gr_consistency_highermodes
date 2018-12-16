@@ -1,5 +1,7 @@
 import matplotlib as mpl
 mpl.use('Agg')
+import sys
+sys.path.append('/home/ajit.mehta/Ajit_work/phenom_hh/src/')
 import pycbc
 import pycbc.filter.matchedfilter as mfilter
 import pycbc.psd
@@ -13,6 +15,8 @@ import os
 import scipy
 from scipy import interpolate
 from scipy.signal import argrelextrema
+import phenomhh_tgr as phh
+from lal import MSUN_SI, MTSUN_SI, PC_SI, PI, PC_SI, C_SI, GAMMA, MRSUN_SI
 import time
 
 """ taper time domain data. h is a numpy array (Ref. Eq. (3.35) of gr-qc/0001023) """
@@ -33,44 +37,59 @@ def taper_waveform(h):
 
 
 # signal parameters
-flow=5.  ## this has to be as low as possible to avoid oscillations by using tapring. 5Hz works very well.
+<<<<<<< HEAD
+flow =5.
+f_low=20.
+=======
+flow=10.
+>>>>>>> e867df712b1f99e394e0e97af4c518cd1e3e95ae
 flow_snr=20.
 srate = 2048.
 
-m1, m2 = 120.0, 20.0
+m1, m2 = 60.0, 10.0
 M=m1+m2          # in MSUN
 q=m2/m1  
 eta=m1*m2/M**2.       
 Mc=(M*q**0.6)/((1.+q)**1.2)
 SNR_req=25.    
+<<<<<<< HEAD
+iota_list=[1.57]#,0.79,1.57]
+=======
 iota_list=[0.00]#,0.79,1.57]
-Psi_ref=0.
+>>>>>>> e867df712b1f99e394e0e97af4c518cd1e3e95ae
+Psi_ref=1.3
 
 ra=0.          
 dec =0.
 pol_list=[0.00]#,-1.57,-3.14]
 
-cbc_list = ['NSBH']#''NSBH']
+cbc_list = ['BBH']#''NSBH']
 
-data_dir = '/home/ajit.mehta/Ajit_work/phenom_hh/data/polarizations/new'
-out_dir = '/home/ajit.mehta/gr_consistency_highermodes/plots/new_plots'
+<<<<<<< HEAD
+data_dir = '/home/ajit.mehta/Ajit_work/phenom_hh/data/polarizations/four_modes'
+out_dir = '/home/ajit.mehta/gr_consistency_highermodes/plots/four_modes'
+=======
+data_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/data/polarizations'
+out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/nsbh_sxs_20181209'
+>>>>>>> e867df712b1f99e394e0e97af4c518cd1e3e95ae
 
 for cbc in cbc_list:
   for iota in iota_list:
     for pol in pol_list:
 	start_time = time.time()
 
-	out_file = '%s_M_%.2f_iota_%.3f_pol_%.3f_t0_0'%(cbc, M, iota, pol)
+	out_file = '%s_M_%.2f_iota_%.2f_pol_%.2f_t0_0'%(cbc, M, iota, pol)
 
 	print "... case:", cbc, iota, pol
+        print '...with Mtot = %.2f'%M
 
 	# reading data
-	data_loc = data_dir + '/NRPolzns_%s_SpEC_q6.00_spin1[0.00,0.00,-0.00]_spin2[-0.00,-0.00,-0.00]_iota_%.2f_psi_%.2f.npz'%(cbc, iota, pol)
-	data = np.load(data_loc)
+        data_loc = data_dir + '/NRPolzns_%s_SpEC_q6.00_spin1[0.00,0.00,-0.00]_spin2[-0.00,-0.00,-0.00]_iota_%.2f_psi_%.2f.npz'%(cbc, iota, pol)
+        data = np.load(data_loc)
         t_geom = data['t']
         hp_geom = data['hp']
         hc_geom = data['hc']
-	print "... read data"
+        print "... read data"
 
 	r = 1. #in Mpc
 
@@ -83,8 +102,8 @@ for cbc in cbc_list:
 	phi_SI = np.unwrap(np.angle(h_SI))
 	Foft_SI = np.gradient(phi_SI)/np.gradient(t_SI)/(2*np.pi)
 
-	# restricting waveform to instantaneous frequencies above flow
-	idx_rstrctd, = np.where(Foft_SI > flow)
+	# restricting waveform to  lower range in order to compute FFT.
+        idx_rstrctd = np.arange(len(t_SI)-300000,len(t_SI),1)
 	phi_SI_rstrctd, Foft_SI_rstrctd = phi_SI[idx_rstrctd], Foft_SI[idx_rstrctd]
 	t_SI_rstrctd, hp_SI_rstrctd, hc_SI_rstrctd = t_SI[idx_rstrctd], hp_SI[idx_rstrctd], hc_SI[idx_rstrctd]
 
@@ -161,23 +180,48 @@ for cbc in cbc_list:
 	signal_freq = np.fft.fft(taper_waveform(signal))*dt_SI_rstrctd_interp
 	data=signal_freq#+noise ## comment noise to generate noise free data
 
-	datar=np.real(data)
-	datai=np.imag(data)
+        m1=m1*MSUN_SI
+        m2=m2*MSUN_SI
+        mt=m1+m2
+        incl_angle = iota
+        phi=0.
+        lmax=4 
+        hpf, hcf = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, int(N/2.+1), lmax, [[2,2],[2,1],[3,3],[4,4]], Psi_ref)
+        NN = int(N/2.+1)
+        f = np.linspace(0., df*(NN-1), NN)
+        data = data[0:NN]
+        psd = psd[0:NN]
+        datar=np.real(data)
+        datai=np.imag(data)
+
+        hpf=hpf*mt*MRSUN_SI*MTSUN_SI*mt/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+        hcf=hcf*mt*MRSUN_SI*MTSUN_SI*mt/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+        best_fit_signal=Fp*hpf+Fc*hcf
 
 	# plotting Fourier data and PSD
 	plt.figure(figsize=(8,6))
-	plt.loglog(f_SI, abs(data), 'r')
-	plt.loglog(f_SI, psd**0.5, 'c')
+	plt.loglog(f, psd**0.5, 'c')
+        plt.loglog(f, abs(data),'r',lw=2, label='SXS')
+        plt.loglog(f, abs(best_fit_signal), 'k',lw=2,alpha=0.7,label='phenomhm')
 	plt.xlabel('$f$ [Hz]')
 	plt.ylabel('$h(f)$ and $S_h(f)$')
-	plt.xlim([20,1024])
-	plt.ylim(1e-24,5e-23)
-	plt.savefig(out_dir + '/%s_data.png'%out_file)
+	plt.xlim([f_low, 200.])
+        plt.ylim([5e-25, 5e-23])
+        plt.xlabel('f')
+        plt.ylabel('$\\tilde{h}(f)$')
+        plt.legend(loc='best')
+        plt.title('BBH, four modes with inclination, $\iota=%.2f$'%incl_angle)
+        plt.savefig(out_dir + '/%s_data.png'%out_file)
 	plt.close()
 
 	# saving data
-	np.savetxt(out_dir + '/%s_data.dat'%out_file, np.c_[f_SI[range(N/2)],datar[range(N/2)],datai[range(N/2)],psd[range(N/2)]], header='f real_data imag_data psd')
+<<<<<<< HEAD
+	np.savetxt(out_dir + '/%s_data.dat'%out_file, np.c_[f, datar, datai ,psd], header='f real_data imag_data psd')
 	np.savetxt(out_dir + '/%s_initial.dat'%out_file, np.c_[Mc, q, r, iota, t0, Psi_ref, ra, np.sin(dec), pol], header='Mc q r iota t0 Psi_ref ra sin_dec pol')
+=======
+	np.savetxt(out_dir + '/%s_data.dat'%out_file, np.c_[f_SI[range(N/2)],datar[range(N/2)],datai[range(N/2)],psd[range(N/2)]], header='f real_data imag_data psd')
+	np.savetxt(out_dir + '/%s_initial.dat'%out_file, np.c_[Mc, q, r, iota, t0, Psi_ref, ra, np.sin(dec), pol], header='Mc q r iota t0 Psi_ref ra sin_dec pol', fmt=['%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f,%.4f'])
+>>>>>>> e867df712b1f99e394e0e97af4c518cd1e3e95ae
 
 	end_time = time.time()
 	print "... time taken: %.2f seconds"%(end_time-start_time)

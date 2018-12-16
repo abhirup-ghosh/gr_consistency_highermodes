@@ -1,8 +1,10 @@
 """
-template of all modes included
+template for only (2,2) mode
 """
 
 from numpy import sqrt, sin, cos, pi,exp
+import sys
+sys.path.append('/home/ajit.mehta/Ajit_work/phenom_hh/src')
 import matplotlib
 matplotlib.use('Agg')
 import numpy as np
@@ -28,7 +30,7 @@ def ringdown(Mc,q,l,m,Ncs,df):
         mt=m1+m2
         eta=m1*m2/(M*M)
 
-        loc='/home/ajithm/Ajit_work/phenom_hh/data/PhenFits/2017-07-28_v6280:6286M_uniformweight_amplfitover_fmin_fring_lambdaRd_phasefitover_fring_phasefitorder_v12LPN_Ampfitorder_4andhalfPN/2017-07-28_v6280:6286M_uniformweight_fring_amp_asym'
+        loc = '/home/ajit.mehta/gr_consistency_highermodes/phenom_data'
 
         if l==2 and m==1 or l==2 and m==2 or l==3 and m==3 or l==4 and m==4 or l==3 and m==2:
 
@@ -52,7 +54,7 @@ def ringdown(Mc,q,l,m,Ncs,df):
 
 def phenomhh_waveform_SI(Mc,q,r,iota,t0,phase,f_low,df,Ncs):
 
-	N=np.int(np.max(np.array([ringdown(Mc,q,2,2,Ncs,df),ringdown(Mc,q,4,4,Ncs,df),ringdown(Mc,q,3,3,Ncs,df),ringdown(Mc,q,2,1,Ncs,df)])))
+	N=ringdown(Mc,q,2,2,Ncs,df)
 
 	M=((1.+q)**1.2)*Mc/(q**0.6)
 	m1=M/(q+1.)
@@ -63,14 +65,17 @@ def phenomhh_waveform_SI(Mc,q,r,iota,t0,phase,f_low,df,Ncs):
 	incl_angle=iota 
 	phi=0. 
 	lmax=4
-	Psi_ref=phase
+	Psi_ref=1.3
 	
-	hpf,hcf = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[2,2],[2,1],[3,3],[4,4]], Psi_ref) 
+	hpf22,hcf22 = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[2,2],[2,1],[3,3],[4,4]], Psi_ref) 
 	
 	f=np.linspace(0., df*(N-1), N)
 	
-	hpf=hpf*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
-	hcf=hcf*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+	hpf22=hpf22*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+	hcf22=hcf22*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+
+	hpf=hpf22
+	hcf=hcf22
 
 	return f,hpf,hcf
 

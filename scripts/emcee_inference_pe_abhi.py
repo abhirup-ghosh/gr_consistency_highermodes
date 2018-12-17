@@ -80,7 +80,7 @@ parser = OptionParser()
 parser.add_option("-d", "--data-fname", dest="data_fname", help="data filename")
 parser.add_option("-o", "--out-dir", dest="out_dir", help="output directory")
 parser.add_option("-i", "--init-loc", dest="init_loc", help="location for initial conditions")
-parser.add_option("--save-incremental-progress", dest="sip", help="save incremental progress", default=True)
+parser.add_option("--save-incremental-progress", dest="sip", help="save incremental progress", default=False)
 (options, args) = parser.parse_args()
 data_fname = options.data_fname
 out_dir = options.out_dir
@@ -97,7 +97,7 @@ f_cut = 1024.
 
 ndim, nwalkers = 9, 100
 num_threads = 30
-num_iter = 5000
+num_iter = 10000
 # ------------------------------------------------------ # 
 
 
@@ -117,7 +117,7 @@ print '... generated initial walkers. starting sampling...'
 # sample the likelihood using EMCEE 
 sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, threads=num_threads)
 
-if sip == 'False':
+if sip == False:
 	print '... running sampler'
 	sampler.run_mcmc(pos, num_iter)
 

@@ -179,7 +179,8 @@ for cbc in cbc_list:
 	plt.close()
 
 	# saving data
-	np.savetxt(out_dir + '/%s_data.dat'%out_file, np.c_[f, datar, datai ,psd], header='f real_data imag_data psd')
+	np.savetxt(out_dir + '/%s_sxs_data.dat'%out_file, np.c_[f, datar, datai ,psd], header='f real_data imag_data psd')
+	np.savetxt(out_dir + '/%s_phenomhm_data.dat'%out_file, np.c_[f, np.real(best_fit_signal), np.imag(best_fit_signal) ,psd], header='f real_data imag_data psd')
 	np.savetxt(out_dir + '/%s_initial.dat'%out_file, np.c_[Mc, q, r, iota, t0, Psi_ref, ra, np.sin(dec), pol], header='Mc q r iota t0 Psi_ref ra sin_dec pol', fmt=['%.4f','%.4f','%.4f','%.4f','%.4f','%.4f','%.4f','%.4f','%.4f'])
 	end_time = time.time()
 	print "... time taken: %.2f seconds"%(end_time-start_time)

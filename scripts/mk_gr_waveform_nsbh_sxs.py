@@ -53,7 +53,7 @@ psi_list = [0.00, -1.57]
 
 ra=0.          
 dec =0.
-pol=0.00
+pol=0.
 
 cbc_list = ['BBH','NSBH']
 

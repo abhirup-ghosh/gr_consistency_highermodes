@@ -56,7 +56,7 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 
 def lnprior(param_vec):
 	Mc, q, dL, i, t0, phi_0, ra, sin_dec, pol = param_vec
-	if 1 < Mc < 200 and 0.05 < q <= 1. and  1.<dL<10000 and 0.<= i <= pi and -15.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and 0. <= ra < 2.*pi and -1. <= sin_dec <= 1. and 0. <= pol <= pi:
+	if 10. < Mc < 200 and 0.05 < q <= 1. and  1.<dL<10000 and 0.<= i <= pi and -15.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and 0. <= ra < 2.*pi and -1. <= sin_dec <= 1. and 0. <= pol <= pi:
 		return 2.*np.log(dL)+np.log(np.sin(i))
 	return -np.inf
 
@@ -93,7 +93,7 @@ os.system('cp -r %s %s'%(init_loc, out_dir))
 os.system('cp %s %s' %(__file__, out_dir))
 
 f_low = 20.
-f_cut = 1024.
+f_cut = 999.
 
 ndim, nwalkers = 9, 100
 num_threads = 30

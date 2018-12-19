@@ -46,30 +46,32 @@ q=m2/m1
 eta=m1*m2/M**2.       
 Mc=(M*q**0.6)/((1.+q)**1.2)
 SNR_req=25.    
-iota_list=[1.57]#,0.79,1.57]
-Psi_ref=1.3
+iota_list=[0.00,0.79,1.05,1.57]
+
+phi0 = 1.3
+psi_list = [0.00, -1.57]
 
 ra=0.          
 dec =0.
-pol_list=[0.00]#,-1.57,-3.14]
+pol=0.00
 
-cbc_list = ['BBH']#''NSBH']
+cbc_list = ['BBH','NSBH']
 
 data_dir = '/home/ajit.mehta/Ajit_work/phenom_hh/data/polarizations/four_modes'
-out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/SXS_four_modes_20181216'
+out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/SXS_four_modes_20181218'
 
 for cbc in cbc_list:
   for iota in iota_list:
-    for pol in pol_list:
+    for psi in psi_list:
 	start_time = time.time()
 
-	out_file = '%s_M_%.2f_iota_%.2f_pol_%.2f_t0_0'%(cbc, M, iota, pol)
+	out_file = '%s_M_%.2f_iota_%.2f_psi_%.2f_t0_0'%(cbc, M, iota, psi)
 
-	print "... case:", cbc, iota, pol
+	print "... case:", cbc, iota, psi
         print '...with Mtot = %.2f'%M
 
 	# reading data
-        data_loc = data_dir + '/NRPolzns_%s_SpEC_q6.00_spin1[0.00,0.00,-0.00]_spin2[-0.00,-0.00,-0.00]_iota_%.2f_psi_%.2f.npz'%(cbc, iota, pol)
+        data_loc = data_dir + '/NRPolzns_%s_SpEC_q6.00_spin1[0.00,0.00,-0.00]_spin2[-0.00,-0.00,-0.00]_iota_%.2f_psi_%.2f.npz'%(cbc, iota, psi)
         data = np.load(data_loc)
         t_geom = data['t']
         hp_geom = data['hp']
@@ -150,7 +152,7 @@ for cbc in cbc_list:
 	signal_freq = np.fft.fft(taper_waveform(signal))*dt_SI_rstrctd_interp
 	data=signal_freq#+noise ## comment noise to generate noise free data
 
-        Psi_ref=1.3
+        Psi_ref=phi0 + psi
         t0=0.  
         incl_angle = iota
         f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc,q,r,incl_angle,t0,Psi_ref,f_low,df,int(N/2.+1))

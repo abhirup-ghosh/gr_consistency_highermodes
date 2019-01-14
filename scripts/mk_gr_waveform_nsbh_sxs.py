@@ -46,19 +46,21 @@ q=m2/m1
 eta=m1*m2/M**2.       
 Mc=(M*q**0.6)/((1.+q)**1.2)
 SNR_req=25.    
-iota_list=[0.00,0.79,1.05,1.57]
+iota_list=[1.57]
 
 phi0 = 1.3
-psi_list = [0.00, -1.57]
+psi_list = [0.00]
 
 ra=0.          
 dec =0.
 pol=0.
 
-cbc_list = ['BBH','NSBH']
+cbc_list = ['BBH']
 
 data_dir = '/home/ajit.mehta/Ajit_work/phenom_hh/data/polarizations/four_modes'
-out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/SXS_four_modes_20181218'
+#out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/SXS_four_modes_20181218'
+out_dir = '/home/ajit.mehta/gr_consistency_highermodes/injections/SXS_four_modes'
+out_dir = '/home/ajit.mehta/gr_consistency_highermodes/BBH_injection_1'
 
 for cbc in cbc_list:
   for iota in iota_list:
@@ -97,91 +99,97 @@ for cbc in cbc_list:
         t_SI_rstrctd = t_SI_rstrctd - t_SI_rstrctd[0] - t0
         t0 = 0.
 
-	# interpolating h_p(t) and h_c(t) over a equally-space time series with sampling rate 16kHz
-	t_SI_rstrctd_interp = np.arange(t_SI_rstrctd[0], t_SI_rstrctd[-1], 1./srate)
-	dt_SI_rstrctd_interp = np.diff(t_SI_rstrctd_interp)[0]
-	print '... srate: %f, dt:%f'%(srate, dt_SI_rstrctd_interp)
-        hp_SI_rstrctd_interp_obj = scipy.interpolate.interp1d(t_SI_rstrctd, hp_SI_rstrctd, fill_value=0., bounds_error=False)
-        hc_SI_rstrctd_interp_obj = scipy.interpolate.interp1d(t_SI_rstrctd, hc_SI_rstrctd, fill_value=0., bounds_error=False)
-        hp_SI_rstrctd_interp = hp_SI_rstrctd_interp_obj(t_SI_rstrctd_interp)
-        hc_SI_rstrctd_interp = hc_SI_rstrctd_interp_obj(t_SI_rstrctd_interp)
+	dt_SI_rstrctd = np.diff(t_SI_rstrctd)[0]
 
-	# plotting waveform before and after interpolation (and Foft_SI)
-	plt.figure(figsize=(10,5))
-        plt.subplot(211)
-        plt.plot(t_SI_rstrctd, hp_SI_rstrctd, 'k', lw=0.5, label='before')
-        plt.plot(t_SI_rstrctd_interp, hp_SI_rstrctd_interp, 'r--',lw=0.5, label='after')
-	plt.legend(loc='best')
-	plt.ylabel('$h_p$')
-        plt.subplot(212)
-        plt.plot(t_SI_rstrctd, hc_SI_rstrctd, 'k', lw=0.5, label='before')
-        plt.plot(t_SI_rstrctd_interp, hc_SI_rstrctd_interp, 'r--',lw=0.5, label='after')
-	plt.legend(loc='best')
-	plt.ylabel('$h_c$')
-	plt.tight_layout()
-	plt.savefig(out_dir + '/%s_interpolation.png'%out_file, dpi=300)
-        plt.close()
+        ## Note : There is no need to do interpolation here, as the data that I have provided is already uniformally sampled. Also, it's not good idea to             ##        interpolate complicated oscillating functions like we have for higher modes waveform.
 
 	# computing SNR for r = 1Mpc
-	N = len(hp_SI_rstrctd_interp)
-	f_SI = np.fft.fftfreq(N, d=dt_SI_rstrctd_interp)
+	N = len(hp_SI_rstrctd)
+	f_SI = np.fft.fftfreq(N, d=dt_SI_rstrctd)
 	df = np.diff(f_SI)[0]
 	print '... df: %f'%df
 	Fp,Fc = detector.overhead_antenna_pattern(ra, dec, pol)
         psd = pycbc.psd.aLIGOZeroDetHighPower(N, df, f_low)
 	
-	signal=Fp*hp_SI_rstrctd_interp+Fc*hc_SI_rstrctd_interp
-	signal_time=pycbc.types.timeseries.TimeSeries(signal,delta_t=dt_SI_rstrctd_interp,dtype=float)
+	signal=Fp*hp_SI_rstrctd+Fc*hc_SI_rstrctd
+	signal_time=pycbc.types.timeseries.TimeSeries(signal,delta_t=dt_SI_rstrctd,dtype=float)
         SNR=mfilter.sigma(signal_time,psd=psd,low_frequency_cutoff=f_low)
 
 	print '... initial SNR:%f'%SNR
 
 	# rescaling (distance, hp, hc) for fixed SNR = 25
 	r = SNR/SNR_req
-        hp_SI_rescaled = hp_SI_rstrctd_interp/r
-        hc_SI_rescaled = hc_SI_rstrctd_interp/r
+        hp_SI_rescaled = hp_SI_rstrctd/r
+        hc_SI_rescaled = hc_SI_rstrctd/r
 
 	# sanity check: recomputing SNR for rescaled waveform (confirm SNR = 25)
 	signal=Fp*hp_SI_rescaled+Fc*hc_SI_rescaled
-        signal_time=pycbc.types.timeseries.TimeSeries(signal,delta_t=dt_SI_rstrctd_interp,dtype=float)
+        signal_time=pycbc.types.timeseries.TimeSeries(signal,delta_t=dt_SI_rstrctd,dtype=float)
         SNR=mfilter.sigma(signal_time,psd=psd,low_frequency_cutoff=f_low)
 
 	print '... rescaled distance: %f Mpc for a fixed SNR: %f'%(r, SNR)
 
 	# generate Fourier domain waveform
-	signal_freq = np.fft.fft(taper_waveform(signal))*dt_SI_rstrctd_interp
-	data=signal_freq#+noise ## comment noise to generate noise free data
+	signal_freq = np.fft.fft(taper_waveform(signal))*dt_SI_rstrctd
+	data_long=signal_freq#+noise ## comment noise to generate noise free data
 
         Psi_ref=phi0 + psi
         t0=0.  
         incl_angle = iota
         f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc,q,r,incl_angle,t0,Psi_ref,f_low,df,int(N/2.+1))
         NN = len(f)        
-        data = data[0:NN]
+        data_long = data_long[0:NN]
         psd = psd[0:NN]
-        datar=np.real(data)
-        datai=np.imag(data)
-
         best_fit_signal=Fp*hpf+Fc*hcf
+
+        ## data is non-zero only for f>=f_low like phenomhh waveform.
+        data = np.zeros_like(f, dtype=np.complex128)
+        band_idx = f >= (f_low)
+        data[band_idx]=data_long[band_idx]
+
+
+        ## this is just for plotting
+        t0=0.0265
+        phase_data = np.unwrap(np.angle(data))
+        phase_tmp = np.unwrap(np.angle(best_fit_signal))-2*np.pi*f*t0
+        phase_data = phase_data - phase_data[0]
+        phase_tmp = phase_tmp - phase_tmp[0]
+
+        fmax=1000.
 
 	# plotting Fourier data and PSD
 	plt.figure(figsize=(8,6))
+        plt.subplot(221)
 	plt.loglog(f, psd**0.5, 'c')
         plt.loglog(f, abs(data),'r',lw=2, label='SXS')
         plt.loglog(f, abs(best_fit_signal), 'k',lw=2,alpha=0.7,label='phenomhm')
 	plt.xlabel('$f$ [Hz]')
 	plt.ylabel('$h(f)$ and $S_h(f)$')
-	plt.xlim([f_low, 200.])
-        plt.ylim([5e-25, 5e-23])
+	plt.xlim([f_low, fmax])
+        plt.ylim([5e-27, 5e-23])
         plt.xlabel('f')
         plt.ylabel('$\\tilde{h}(f)$')
         plt.legend(loc='best')
         plt.title('%s, four modes with inclination, $\iota=%.2f$'%(cbc,incl_angle))
+        plt.subplot(222)
+        plt.semilogx(f,phase_data,label='SXS')
+        plt.semilogx(f,phase_tmp,ls='--',label='phenom')
+        plt.ylim([0, 800.])
+        plt.xlim([f_low, fmax])
+        plt.xlabel('f')
+        plt.legend(loc='best')
+        plt.subplot(223)
+        plt.semilogx(f,phase_data-phase_tmp)
+        plt.ylim(-10,10)
+        plt.xlabel('f')
+        plt.xlim([f_low, fmax])
+        plt.tight_layout()
         plt.savefig(out_dir + '/%s_data.png'%out_file)
 	plt.close()
 
+        #t0=0.
 	# saving data
-	np.savetxt(out_dir + '/%s_sxs_data.dat'%out_file, np.c_[f, datar, datai ,psd], header='f real_data imag_data psd')
+	np.savetxt(out_dir + '/%s_sxs_data.dat'%out_file, np.c_[f, np.real(data), np.imag(data) ,psd], header='f real_data imag_data psd')
 	np.savetxt(out_dir + '/%s_phenomhm_data.dat'%out_file, np.c_[f, np.real(best_fit_signal), np.imag(best_fit_signal) ,psd], header='f real_data imag_data psd')
 	np.savetxt(out_dir + '/%s_initial.dat'%out_file, np.c_[Mc, q, r, iota, t0, Psi_ref, ra, np.sin(dec), pol], header='Mc q r iota t0 Psi_ref ra sin_dec pol', fmt=['%.4f','%.4f','%.4f','%.4f','%.4f','%.4f','%.4f','%.4f','%.4f'])
 	end_time = time.time()

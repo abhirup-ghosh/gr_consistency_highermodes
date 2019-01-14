@@ -46,21 +46,21 @@ q=m2/m1
 eta=m1*m2/M**2.       
 Mc=(M*q**0.6)/((1.+q)**1.2)
 SNR_req=25.    
-iota_list=[1.57]
+iota_list=[0.00, 0.79, 1.05, 1.57]
 
 phi0 = 1.3
-psi_list = [0.00]
+psi_list = [0.00, -1.57]
 
 ra=0.          
 dec =0.
 pol=0.
 
-cbc_list = ['BBH']
+cbc_list = ['BBH','NSBH']
 
 data_dir = '/home/ajit.mehta/Ajit_work/phenom_hh/data/polarizations/four_modes'
-#out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/SXS_four_modes_20181218'
-out_dir = '/home/ajit.mehta/gr_consistency_highermodes/injections/SXS_four_modes'
-out_dir = '/home/ajit.mehta/gr_consistency_highermodes/BBH_injection_1'
+out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/SXS_four_modes_20190114'
+#out_dir = '/home/ajit.mehta/gr_consistency_highermodes/injections/SXS_four_modes'
+#out_dir = '/home/ajit.mehta/gr_consistency_highermodes/BBH_injection_1'
 
 for cbc in cbc_list:
   for iota in iota_list:
@@ -101,7 +101,8 @@ for cbc in cbc_list:
 
 	dt_SI_rstrctd = np.diff(t_SI_rstrctd)[0]
 
-        ## Note : There is no need to do interpolation here, as the data that I have provided is already uniformally sampled. Also, it's not good idea to             ##        interpolate complicated oscillating functions like we have for higher modes waveform.
+        ## Note : There is no need to do interpolation here, as the data that I have provided is already uniformally sampled. Also, it's not good idea to             
+	##        interpolate complicated oscillating functions like we have for higher modes waveform.
 
 	# computing SNR for r = 1Mpc
 	N = len(hp_SI_rstrctd)
@@ -158,30 +159,42 @@ for cbc in cbc_list:
         fmax=1000.
 
 	# plotting Fourier data and PSD
-	plt.figure(figsize=(8,6))
-        plt.subplot(221)
+	plt.figure(figsize=(12,6))
+        plt.subplot(231)
 	plt.loglog(f, psd**0.5, 'c')
         plt.loglog(f, abs(data),'r',lw=2, label='SXS')
         plt.loglog(f, abs(best_fit_signal), 'k',lw=2,alpha=0.7,label='phenomhm')
-	plt.xlabel('$f$ [Hz]')
-	plt.ylabel('$h(f)$ and $S_h(f)$')
 	plt.xlim([f_low, fmax])
         plt.ylim([5e-27, 5e-23])
         plt.xlabel('f')
         plt.ylabel('$\\tilde{h}(f)$')
         plt.legend(loc='best')
         plt.title('%s, four modes with inclination, $\iota=%.2f$'%(cbc,incl_angle))
-        plt.subplot(222)
+        plt.subplot(232)
         plt.semilogx(f,phase_data,label='SXS')
         plt.semilogx(f,phase_tmp,ls='--',label='phenom')
         plt.ylim([0, 800.])
         plt.xlim([f_low, fmax])
         plt.xlabel('f')
+	plt.ylabel('$\phi$')
         plt.legend(loc='best')
-        plt.subplot(223)
+        plt.subplot(233)
         plt.semilogx(f,phase_data-phase_tmp)
         plt.ylim(-10,10)
         plt.xlabel('f')
+	plt.ylabel('$\phi_{data} - \phi_{template}$')
+        plt.xlim([f_low, fmax])
+	plt.subplot(234)
+	plt.loglog(f, np.real(data), ls='solid', color='k', label='data',lw=0.1)
+	plt.loglog(f, np.real(best_fit_signal), ls='dashed', color='r', label='best fit signal',lw=0.1)
+	plt.legend(loc='best')
+	plt.ylim([5e-27, 5e-23])
+	plt.xlim([f_low, fmax])
+	plt.subplot(235)
+        plt.loglog(f, np.imag(data), ls='solid', color='k', label='data',lw=0.1)
+        plt.loglog(f, np.imag(best_fit_signal), ls='dashed', color='r', label='best fit signal',lw=0.1)
+        plt.legend(loc='best')
+        plt.ylim([5e-27, 5e-23])
         plt.xlim([f_low, fmax])
         plt.tight_layout()
         plt.savefig(out_dir + '/%s_data.png'%out_file)

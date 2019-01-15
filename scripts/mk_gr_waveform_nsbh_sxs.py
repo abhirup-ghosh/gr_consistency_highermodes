@@ -47,22 +47,20 @@ eta=m1*m2/M**2.
 Mc=(M*q**0.6)/((1.+q)**1.2)
 SNR_req=25.    
 iota_list=[0.00, 0.79, 1.05, 1.57]
-iota_list=[1.57]
 
 phi0 = 1.3
 psi_list = [0.00, -1.57]
-psi_list = [0.00]
 
 ra=0.          
 dec =0.
 pol=0.
 
-cbc_list = ['BBH','NSBH']
+cbc_list = ['NSBH']#['BBH','NSBH']
 
 data_dir = '/home/ajit.mehta/Ajit_work/phenom_hh/data/polarizations/four_modes'
-#out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/SXS_four_modes_20190114'
+out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/SXS_four_modes_20190114'
 #out_dir = '/home/ajit.mehta/gr_consistency_highermodes/injections/SXS_four_modes'
-out_dir = '/home/ajit.mehta/gr_consistency_highermodes/test'
+#out_dir = '/home/ajit.mehta/gr_consistency_highermodes/test'
 
 for cbc in cbc_list:
   for iota in iota_list:

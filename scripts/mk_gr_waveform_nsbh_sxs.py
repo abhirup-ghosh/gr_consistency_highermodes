@@ -47,9 +47,11 @@ eta=m1*m2/M**2.
 Mc=(M*q**0.6)/((1.+q)**1.2)
 SNR_req=25.    
 iota_list=[0.00, 0.79, 1.05, 1.57]
+iota_list=[1.57]
 
 phi0 = 1.3
 psi_list = [0.00, -1.57]
+psi_list = [0.00]
 
 ra=0.          
 dec =0.
@@ -58,9 +60,9 @@ pol=0.
 cbc_list = ['BBH','NSBH']
 
 data_dir = '/home/ajit.mehta/Ajit_work/phenom_hh/data/polarizations/four_modes'
-out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/SXS_four_modes_20190114'
+#out_dir = '/home/abhirup/Documents/Work/gr_consistency_highermodes/injections/SXS_four_modes_20190114'
 #out_dir = '/home/ajit.mehta/gr_consistency_highermodes/injections/SXS_four_modes'
-#out_dir = '/home/ajit.mehta/gr_consistency_highermodes/BBH_injection_1'
+out_dir = '/home/ajit.mehta/gr_consistency_highermodes/test'
 
 for cbc in cbc_list:
   for iota in iota_list:
@@ -149,12 +151,20 @@ for cbc in cbc_list:
         data[band_idx]=data_long[band_idx]
 
 
-        ## this is just for plotting
-        t0=0.0265
+        ## Fitting to get t0 starts here....
+        f_isco = 2200./M
+        fmax_fit=6*f_isco
+        #t0=0.075
         phase_data = np.unwrap(np.angle(data))
-        phase_tmp = np.unwrap(np.angle(best_fit_signal))-2*np.pi*f*t0
-        phase_data = phase_data - phase_data[0]
-        phase_tmp = phase_tmp - phase_tmp[0]
+        phase_tmp = np.unwrap(np.angle(best_fit_signal))#-2*np.pi*f*t0
+        delta_phase = phase_tmp - phase_data
+        index = np.where((f>f_low)&(f<fmax_fit))
+        fit_coef = np.polyfit(2*np.pi*f[index],delta_phase[index],1)
+        t0 = fit_coef[0]
+        print '...printing fit coeffs...'
+        print fit_coef[0], fit_coef[1]
+        phase_tmp = phase_tmp - (2*np.pi*f*fit_coef[0] + fit_coef[1])
+        delta_phase_fit = 2*np.pi*f*fit_coef[0] + fit_coef[1]
 
         fmax=1000.
 
@@ -178,19 +188,23 @@ for cbc in cbc_list:
         plt.xlabel('f')
 	plt.ylabel('$\phi$')
         plt.legend(loc='best')
-        plt.subplot(233)
-        plt.semilogx(f,phase_data-phase_tmp)
-        plt.ylim(-10,10)
+        plt.subplot(234)
+        plt.semilogx(f[index],phase_data[index]-phase_tmp[index])
+        #plt.ylim(-10,10)
         plt.xlabel('f')
 	plt.ylabel('$\phi_{data} - \phi_{template}$')
-        plt.xlim([f_low, fmax])
-	plt.subplot(234)
+        plt.subplot(233)
+        plt.plot(f[index],delta_phase[index],lw=2)
+        plt.plot(f[index],delta_phase_fit[index],'--')
+        plt.ylabel('$\Delta\phi_{data,fit}$')
+        plt.xlabel('f')
+	plt.subplot(235)
 	plt.loglog(f, np.real(data), ls='solid', color='k', label='data',lw=0.1)
 	plt.loglog(f, np.real(best_fit_signal), ls='dashed', color='r', label='best fit signal',lw=0.1)
 	plt.legend(loc='best')
 	plt.ylim([5e-27, 5e-23])
 	plt.xlim([f_low, fmax])
-	plt.subplot(235)
+	plt.subplot(236)
         plt.loglog(f, np.imag(data), ls='solid', color='k', label='data',lw=0.1)
         plt.loglog(f, np.imag(best_fit_signal), ls='dashed', color='r', label='best fit signal',lw=0.1)
         plt.legend(loc='best')
@@ -200,7 +214,6 @@ for cbc in cbc_list:
         plt.savefig(out_dir + '/%s_data.png'%out_file)
 	plt.close()
 
-        #t0=0.
 	# saving data
 	np.savetxt(out_dir + '/%s_sxs_data.dat'%out_file, np.c_[f, np.real(data), np.imag(data) ,psd], header='f real_data imag_data psd')
 	np.savetxt(out_dir + '/%s_phenomhm_data.dat'%out_file, np.c_[f, np.real(best_fit_signal), np.imag(best_fit_signal) ,psd], header='f real_data imag_data psd')

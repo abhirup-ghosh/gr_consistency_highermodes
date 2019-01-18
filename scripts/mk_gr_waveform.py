@@ -65,8 +65,8 @@ N=10000
 M=70.          ###### Total Mass in M_SUN
 q=1./6         ###### Mass ratio
 SNR_req=25.    ###### Required SNR
-iota=0.
-Psi_ref=0.
+iota=1.57
+Psi_ref=1.3
 t0=0.          ###### time of arrival
 
 ra=0.          ##### Sky localisation

@@ -42,7 +42,7 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 	Mc, q, Mc1, q1, dL, cos_iota, t0, Psi_ref,  ra, sin_dec, pol= param_vec
 
 	# generate the waveform 
-	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, Mc1, q, dL, np.arccos(cos_iota), t0, (Psi_ref %(2.*pi)), f_low, df, Ncs)
+	f, hpf, hcf = phhsi.phenomhh_waveform_SI(Mc, q, Mc1, q1, dL, np.arccos(cos_iota), t0, (Psi_ref %(2.*pi)), f_low, df, Ncs)
 
 	# compute antenna patterns 
 	Fp,Fc = detector.overhead_antenna_pattern(ra, np.arcsin(sin_dec), pol)
@@ -56,7 +56,7 @@ def lnlike(param_vec, data, freq, psd, f_low, f_cut):
 
 def lnprior(param_vec):
 	Mc, q, Mc1, q1, dL, cos_iota, t0, phi_0, ra, sin_dec, pol = param_vec
-	if 10. < Mc < 200 and 0.05 < q <= 1. and  10. < Mc1 < 200 and 0.05 < q1 <= 1. and 1.<dL<10000 and -1.<= cos_iota <=1. and 0.<= t0 <= 15. and -pi <= phi_0 <= 3.*pi and 0. <= ra < 2.*pi and -1. <= sin_dec <= 1. and -pi <= pol <= 0.:
+	if 10. < Mc < 200 and 0.05 < q <= 1. and  10. < Mc1 < 200 and 0.05 < q1 <= 1. and 1.<dL<10000 and -1.<= cos_iota <=1. and -10.0 <= t0 <= 10.0 and -pi <= phi_0 <= 3.*pi and 0. <= ra < 2.*pi and -1. <= sin_dec <= 1. and 0. <= pol <= pi:
 		return 2.*np.log(dL)
 	return -np.inf
 
@@ -97,7 +97,7 @@ f_cut = 999.
 
 ndim, nwalkers = 11, 100
 num_threads = 30
-num_iter = 50000
+num_iter = 10000
 # ------------------------------------------------------ # 
 
 

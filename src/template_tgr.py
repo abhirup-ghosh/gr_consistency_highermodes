@@ -180,3 +180,61 @@ def phenomhh_waveform_modamp_dL_corr_SI(Mc,q,c0,c1,r,r1,iota,t0,phase,f_low,df,N
 
 
         return f,hpf,hcf
+
+
+############################################################################
+# consistency between two differentpolarizations hp and hc with 
+# two different M and q
+# Tousif
+############################################################################
+
+def phenomhh_waveform_modpol_SI(Mc,q,Mc1,q1,r,iota,t0,phase,f_low,df,Ncs):
+
+        N = np.max(np.array([ringdown(Mc,q,2,2,Ncs,df),ringdown(Mc,q,2,1,Ncs,df),ringdown(Mc,q,3,3,Ncs,df),ringdown(Mc,q,4,4,Ncs,df)]))
+        N = np.int(N)
+
+        mt=(((1.+q)**1.2)*Mc/(q**0.6))*MSUN_SI
+        m1=mt/(q+1.)
+        m2=mt*q/(q+1.)
+
+        mt1=(((1.+q1)**1.2)*Mc1/(q1**0.6))*MSUN_SI
+        m1b=mt1/(q1+1.)
+        m2b=mt1*q1/(q1+1.)
+
+        incl_angle=iota # inclination angle
+        phi=0.
+        lmax=4
+
+        Psi_ref = phase #initial phase  
+
+        hpf22a,hcf22a = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[2,2]], Psi_ref)
+        hpf21a,hcf21a = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[2,1]], Psi_ref)
+        hpf33a,hcf33a = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[3,3]], Psi_ref)
+        hpf44a,hcf44a = phh.generate_phenomhmv1_fd(m1, m2, incl_angle, phi, f_low, df, N, lmax,[[4,4]], Psi_ref)
+
+        f=np.linspace(0., df*(N-1), N)
+
+        hpf22a=hpf22a*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+        hpf21a=hpf21a*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+        hpf33a=hpf33a*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+        hpf44a=hpf44a*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+
+        # calculate hcf with Mc1,q1
+        hpf22b,hcf22b = phh.generate_phenomhmv1_fd(m1b, m2b, incl_angle, phi, f_low, df, N, lmax,[[2,2]], Psi_ref)
+        hpf21b,hcf21b = phh.generate_phenomhmv1_fd(m1b, m2b, incl_angle, phi, f_low, df, N, lmax,[[2,1]], Psi_ref)
+        hpf33b,hcf33b = phh.generate_phenomhmv1_fd(m1b, m2b, incl_angle, phi, f_low, df, N, lmax,[[3,3]], Psi_ref)
+        hpf44b,hcf44b = phh.generate_phenomhmv1_fd(m1b, m2b, incl_angle, phi, f_low, df, N, lmax,[[4,4]], Psi_ref)
+
+        f=np.linspace(0., df*(N-1), N)
+
+        hcf22b=hcf22b*mt1*MRSUN_SI*MTSUN_SI*mt1*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+        hcf21b=hcf21b*mt1*MRSUN_SI*MTSUN_SI*mt1*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+        hcf33b=hcf33b*mt1*MRSUN_SI*MTSUN_SI*mt1*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+        hcf44b=hcf44b*mt1*MRSUN_SI*MTSUN_SI*mt1*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
+
+        hpf=hpf22a+hpf21a+hpf33a+hpf44a
+        hcf=hcf22b+hcf21b+hcf33b+hcf44b
+
+
+        return f,hpf,hcf
+

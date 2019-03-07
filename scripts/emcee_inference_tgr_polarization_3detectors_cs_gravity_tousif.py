@@ -11,8 +11,8 @@ mpl.use('Agg')
 import matplotlib.pyplot as plt
 import emcee
 sys.path.append('/home/abhirup/Documents/Work/gr_consistency_highermodes/src')
-sys.path.append('/home/tousif.islam/gr_consistency_highermodes_old/src')
-import template_tgr_ampcorr as phhsi
+#sys.path.append('/home/tousif.islam/gr_consistency_highermodes_old/src')
+import template_tgr as phhsi
 from pycbc  import  detector
 from lal import MSUN_SI, MTSUN_SI, PC_SI, PI, PC_SI, C_SI, GAMMA, MRSUN_SI
 import corner

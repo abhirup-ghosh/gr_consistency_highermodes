@@ -128,9 +128,9 @@ os.system('cp %s %s' %(__file__, out_dir))
 f_low = 20.
 f_cut = 999.
 
-ndim, nwalkers = 10, 40
-num_threads = 18
-num_iter = 20
+ndim, nwalkers = 10, 200
+num_threads = 30
+num_iter = 20000
 # ------------------------------------------------------ # 
 
 # ------------------------------------------------------ # 

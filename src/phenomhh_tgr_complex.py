@@ -14,7 +14,7 @@
 # qCase: index to mass-ratio cases under consideration
 # lmax: highest "l" mode under consideration
 import sys
-sys.path.append('/home/ajithm/Ajit_work/phenom_hh/src')
+sys.path.append('/home/abhirup/Documents/Work/phenom_hh/src')
 import numpy as np 
 import spinm2SphHarm
 import os, socket
@@ -28,8 +28,8 @@ import time
 import h5py
 import pnmodesfreqdom
 import finalmassandspin_eobnrv2 as finalmassandspin
-import compute_mixing_coef as cmode
-import reset_lin_ini_phase as resetPsi
+#import compute_mixing_coef as cmode
+#import reset_lin_ini_phase as resetPsi
 
 ###################################################################################################################
 # PHENOM PHASE MODEL
@@ -92,7 +92,7 @@ def tf2_phase(f, l, m, eta, t0, phi0, chi1, chi2, phaseO, Psi_ref):
 def dphase_im_fit(f, l, m, eta, pol):
         v = (2.*np.pi*f/m)**(1./3.)
        
-        loc='/home/ajithm/Ajit_work/phenom_hh/data/PhenFits/2017-07-28_v6280:6286M_uniformweight_amplfitover_fmin_fring_lambdaRd_phasefitover_fring_phasefitorder_v12LPN_Ampfitorder_4andhalfPN/2017-07-28_v6280:6286M_uniformweight_fring_amp_asym'
+        loc='/home/abhirup/Documents/Work/phenom_hh/data/PhenFits/2017-07-28_v6280:6286M_uniformweight_amplfitover_fmin_fring_lambdaRd_phasefitover_fring_phasefitorder_v12LPN_Ampfitorder_4andhalfPN/2017-07-28_v6280:6286M_uniformweight_fring_amp_asym'
         
         # load the data containing the phenomenological coefficients 
         if l==2 and m==1  or l==2 and m==2 or l==3 and m==3 or l==4 and m==4 :
@@ -444,7 +444,7 @@ def amp43_pade03(f, l, m, eta, ampO):
 """FIT to the difference of Hyb and TF2 phase"""
 def ramp_fit(f, l, m, eta, ampO):
         v = (2.*np.pi*f/m)**(1./3.)
-        loc='/home/ajithm/Ajit_work/phenom_hh/data/PhenFits/2017-07-28_v6280:6286M_uniformweight_amplfitover_fmin_fring_lambdaRd_phasefitover_fring_phasefitorder_v12LPN_Ampfitorder_4andhalfPN/2017-07-28_v6280:6286M_uniformweight_fring_amp_asym'
+        loc='/home/abhirup/Documents/Work/phenom_hh/data/PhenFits/2017-07-28_v6280:6286M_uniformweight_amplfitover_fmin_fring_lambdaRd_phasefitover_fring_phasefitorder_v12LPN_Ampfitorder_4andhalfPN/2017-07-28_v6280:6286M_uniformweight_fring_amp_asym'
 
         if l==2 and m==1 or l==2 and m==2 or l==3 and m==3 or l==4 and m==4:
                 filename = 'PhenParamFitsVsEta_l%d_m%d_amp.dat' %(l, m)

@@ -24,7 +24,7 @@ import time
 
 # -------------------- likelihod -------------------------- # 
 
-def lnlike(param_vec, data1, data2, data3, freq1, psd, f_low, f_cut):
+def lnlike(param_vec, data1, data2, data3, freq1, psd, psdv, f_low, f_cut):
         """
         compute the log likelihood
         
@@ -78,7 +78,7 @@ def lnlike(param_vec, data1, data2, data3, freq1, psd, f_low, f_cut):
 
         like1 = -2.*df*np.real(np.dot(data1[N_low:N_cut]-signal1[Nls:Ncs],np.conj((data1[N_low:N_cut]-signal1[Nls:Ncs])/psd[N_low:N_cut])))
         like2 = -2.*df*np.real(np.dot(data2[N_low:N_cut]-signal2[Nls:Ncs],np.conj((data2[N_low:N_cut]-signal2[Nls:Ncs])/psd[N_low:N_cut])))
-        like3 = -2.*df*np.real(np.dot(data3[N_low:N_cut]-signal3[Nls:Ncs],np.conj((data3[N_low:N_cut]-signal3[Nls:Ncs])/psd[N_low:N_cut])))
+        like3 = -2.*df*np.real(np.dot(data3[N_low:N_cut]-signal3[Nls:Ncs],np.conj((data3[N_low:N_cut]-signal3[Nls:Ncs])/psdv[N_low:N_cut])))
         like=like1+like2+like3
 
         return like#log-likelihood
@@ -98,7 +98,7 @@ def lnprob(param_vec):
         lp = lnprior(param_vec)
         if not np.isfinite(lp):
                 return -np.inf
-        return lp + lnlike(param_vec, data1, data2, data3, freq1, psd, f_low, f_cut)
+        return lp + lnlike(param_vec, data1, data2, data3, freq1, psd, psdv, f_low, f_cut)
 
 
 ##########################################################
@@ -149,7 +149,7 @@ print '... read data from H1 detector'
 freq2, dr2, di2, psd = np.loadtxt(data_fname_L1, unpack=True)
 data2 = dr2 + 1j*di2
 print '... read data from L1 detector'
-freq3, dr3, di3, psd = np.loadtxt(data_fname_V1, unpack=True)
+freq3, dr3, di3, psdv = np.loadtxt(data_fname_V1, unpack=True)
 data3 = dr3 + 1j*di3
 print '... read data from V1 detector'
 
@@ -186,7 +186,7 @@ df = np.mean(np.diff(freq1))
 idx = np.logical_and(freq1 > 20, freq1 < 999)
 snr1 = 2*np.sqrt(df*np.sum(abs(data1[idx])**2/psd[idx]))
 snr2 = 2*np.sqrt(df*np.sum(abs(data2[idx])**2/psd[idx]))
-snr3 = 2*np.sqrt(df*np.sum(abs(data3[idx])**2/psd[idx]))
+snr3 = 2*np.sqrt(df*np.sum(abs(data3[idx])**2/psdv[idx]))
 snr=np.sqrt(snr1*snr1+snr2*snr2+snr3*snr3)
 
 plt.figure(figsize=(8,6))

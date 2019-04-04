@@ -98,7 +98,7 @@ def phenomhh_waveform_SI(Mc,q,Mc1,q1,r,iota,t0,phase,f_low,df,Ncs):
 	return f,hpf,hcf
 
 
-def phenomhh_waveform_modamp_SI(Mc,q,c0,c1,r,iota,t0,phase,f_low,df,Ncs):
+def phenomhh_waveform_real_ampcorr_SI(Mc,q,c2,c3,c4,r,iota,t0,phase,f_low,df,Ncs):
 
         N = np.max(np.array([ringdown(Mc,q,2,2,Ncs,df),ringdown(Mc,q,2,1,Ncs,df),ringdown(Mc,q,3,3,Ncs,df),ringdown(Mc,q,4,4,Ncs,df)]))
         N = np.int(N)
@@ -133,8 +133,8 @@ def phenomhh_waveform_modamp_SI(Mc,q,c0,c1,r,iota,t0,phase,f_low,df,Ncs):
         hcf44=hcf44*mt*MRSUN_SI*MTSUN_SI*mt*exp(-2*pi*1j*f*t0)/(MSUN_SI*MSUN_SI*(1.0e6*r*PC_SI))
 
 
-        hpf=(1+c0)*hpf22+(1+c1)*( hpf21+hpf33+hpf44 )
-        hcf=(1+c0)*hcf22+(1+c1)*( hcf21+hcf33+hcf44 )
+        hpf=hpf22+(1+c2)*hpf21+(1+c3)*hpf33+(1+c4)*hpf44
+        hcf=hcf22+(1+c2)*hcf21+(1+c3)*hcf33+(1+c4)*hcf44
 
 
         return f,hpf,hcf

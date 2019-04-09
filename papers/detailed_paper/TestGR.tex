@@ -7,6 +7,7 @@
 \usepackage{microtype}
 \usepackage{booktabs}
 \usepackage{times}
+\usepackage{subfigure}
 \usepackage[varg]{txfonts}
 \usepackage[colorlinks, pdfborder={0 0 0}]{hyperref}
 \usepackage[utf8]{inputenc}
@@ -144,6 +145,7 @@ We employ the recent phenomenological inspiral-merger-ringdown waveform model pr
 In this section, we present two tests of GR based on checking the consistency between different spherical harmonic modes of the observed signal. Our strategy, developed below, is to introduce extra parameters in the higher order modes of radiation, both intrinsic and extrinsic, that describe inconsistency between different modes and to constrain them using a Bayesian framework. 
 
 \subsection{Consistency between parameters estimated from different modes}
+\label{sec3a}
 The first test we consider broadly follows the outline presented in ~\cite{dhanpal2018} to check for the consistency of intrinsic parameters $\blambda := \{M_c, q\}$ estimated from the dominant mode and the higher order modes. According to this, we would estimate the chirp mass and asymmetric mas ratio of the BBH from the leading quadrapolar mode of the observed signal. Independently, we would obtain the same estimates from the higher order modes. In GR, these two estimates of $M_c$ and $q$ should match. 
 
 The test is formulated in the following way: we rewrite Eq.~(\ref{eq:spherical_harmonics}) by splitting the contributions from the dominant $(\ell = 2, m = \pm 2)$ mode of gravitational radiation, and the sub-dominant (higher order) modes 
@@ -152,7 +154,7 @@ The test is formulated in the following way: we rewrite Eq.~(\ref{eq:spherical_h
 & + & \sum _{\text{H.O.M}} \Ylm (\n) \hlm(t, \blambda+\Delta \blambda)
 \label{eq:test_HM}
 \end{eqnarray}
-where the sum in the second term on the RHS is just over the higher-order modes and incorporate a deviation $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the set of intrinsic parameters that describe the higher order modes. In the absence of any departure from GR, we expect $\Delta \blambda $ to be consistent with zero. While ~\cite{dhanpal2018} fouces on one performing this test with only one arbitrary detector, we generalize the test in realistic three detector LIGO-VIRGO setup.
+where the sum in the second term on the RHS is just over the higher-order modes and incorporate a deviation $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the set of intrinsic parameters that describe the higher order modes. In the absence of any departure from GR, we expect $\Delta \blambda $ to be consistent with zero. While ~\cite{dhanpal2018} focuses on one performing this test with only one arbitrary detector, we generalize the test in realistic three detector LIGO-VIRGO setup.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htb] \begin{center}
@@ -194,187 +196,189 @@ Up next, in Fig. \ref{fig:hm_mcq_compare-1det_3det_GR_inj} we show that, as expe
  	\label{fig:delmc_delq_varyingq}
  \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
-
-\newpage
 \subsection{Consistency between the amplitude and phase from different modes}
-We split the contributions from the dominant $(\ell = 2, m = \pm 2)$ mode of gravitational radiation, and the higher order modes 
-\begin{eqnarray}
-{\h}(t; n, \blambda, \Delta \blambda) & = & \sum_{m = \pm2} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
-& + & \sum _{\text{H.O.M}} (1+\Tilde{c_1})\Ylm (n) \hlm(t, \blambda)
-\label{eq:test_amp}
-\end{eqnarray}
-where  H.O.M represents the higher order modes, and $\blambda$ the intrinsic parameters (say, chirp mass $M_c$ and mass ratio $q$). We introduce a deviation parameter $\Tilde{c_1}$ in H.O.M amplitudes, where $\Tilde{c_1}$ is complex in nature. We estimate $\Tilde{c_1}$ in addition to the standard set of intrinsic and extrinsic parameters in general relativity (GR). $\Tilde{c_1}$ would be zero for GR.
+While one can estimate the intrinsic parameters (chirp mass and mass ratio of the BBH) from the quadrapolar mode and the higher order modes independently and formulate an efficient test of GR, that is not the only way to do so. Another interesting parameterized test of GR with using multipolar structure of the waveform would involve introducing generic possible deviation parameters in the amplitudes of the higher order modes. We consider three different  ways to formulate such tests:
 
-\newpage 
-\noindent Corner plot  - Fig \ref{fig:c1_corner};\\
-triangle plot - Fig \ref{fig:c1_triangle};\\
-90\% credible intervals of $\Tilde{c_1}$  - Fig \ref{fig:c1_bound_a}, Fig \ref{fig:c1_bound_b} \& Fig \ref{fig:c1_bound_c}
-\newpage
+ \begin{enumerate}
+ 	\item We split the contributions from the dominant $(\ell = 2, m = \pm 2)$ mode of gravitational radiation, and the higher order modes in Eq.~(\ref{eq:spherical_harmonics}) and introduce a generic extrinsic deviation parameter $\Delta \btheta=\{c_1\}$ common for all the higher modes considered i.e. $(\ell = 2, m=\pm1)$, $(\ell = 3, m=\pm3)$, $(\ell = 4, m = \pm4)$.
+ 	\begin{eqnarray}
+ 	{\h}(t; n, \blambda, \Delta \blambda) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
+ 	& + & \frac{(1+{c_1})}{d_L} \sum _{\text{H.O.M}} \Ylm (n) \hlm(t, \blambda),
+ 	\label{eq:test_c1}
+ 	\end{eqnarray}
+ 	where  H.O.M represents the higher order modes, and $\blambda$ be the intrinsic parameters. 	
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{figure}[tbh]
+ 	\begin{center}
+ 		\includegraphics[scale=0.5]{figs/hist_c1_M_80_q_9_snr_25.pdf}
+ 	\end{center} 
+ 	\caption{\textbf{FILLER} : The figure shows the posterior probability distribution of the deviation parameter $c_1$ estimated from the same simulated GR observation in \ref{fig:posterior_BBH_GR_inj}. Thin black lines shows the expected value in GR. The dotted lines mark the 90\% credible regions. }
+ 	\label{fig:c1_hist}
+ \end{figure}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ 	\item We then generalize the test by introducing a set of two different deviation parameter $\Delta \btheta=\{c_2, c_{34}\}$, where $c_2$ indicates the possible modification in the  $(\ell = 2, m=\pm1)$ mode and $c_{34}$ encodes a common deviation in $(\ell = 3, m=\pm3)$ and $(\ell = 4, m = \pm4)$ modes.
+ 	\begin{eqnarray}
+ 	{\h}(t; n, \blambda, \Delta \blambda) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
+ 	& + & \frac{(1+{c_2})}{d_L} \sum_{m = \pm1} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda) \nonumber\\
+ 	& + & \frac{(1+{c_{34}})}{d_L} \sum _{\text{33,44}} \Ylm (n) \hlm(t, \blambda),
+ 	\label{eq:test_c2_c34}
+ 	\end{eqnarray}
 
-\begin{figure}[tbh]
-\begin{center}
-\includegraphics[scale=0.25]{figs/c1_80_9_100_corner_plot_wo_burnin.png} 
-\end{center} 
-\caption{Corner plot for tests of GR with complex deviation parameter $c_1$ in the higher order modes. M=80, q=9 and SNR=100.}
-\label{fig:c1_corner}
-\end{figure}
+	
+ 	\item In a futher generalization, we keep the amplitude of the quadrapole mode as well as the $(\ell = 2, m=\pm1)$ mode as predicted in GR and choose a set of two different deviation parameter $\Delta \btheta=\{c_3, c_{4}\}$ in the amplitudes of  $(\ell = 3, m=\pm3)$ mode and $(\ell = 4, m = \pm4)$ mode respectively.
+ 	\begin{eqnarray}
+ 	{\h}(t; n, \blambda, \Delta \blambda) & = & \frac{1}{d_L} \sum_{m = \pm2,\pm1} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
+ 	& + & \frac{(1+{c_3})}{d_L} \sum_{m = \pm3} Y^{-2}_{3m} (n) {\h}_{3m}(t, \blambda) \nonumber\\
+ 	& + & \frac{(1+{c_{4}})}{d_L} \sum _{m=\pm4} Y^{-2}_{4m} (n) {\h}_{4m}(t, \blambda),
+ 	\label{eq:test_c3_c4}
+ 	\end{eqnarray}
+ \end{enumerate}
 
-\newpage
-.
-\newpage 
+The set of deviation parameters $\Delta \btheta=\{c_1\}$, $\Delta \btheta=\{c_3, c_{4}\}$ and $\Delta \btheta=\{c_3, c_{4}\}$ encodes possible departure from  GR. If there is no evidence of GR to be violated, all these deviation parameters would be consistent with zero. On the other hand, if GR is wrong, the posterior of these parameters $\Delta \btheta$, estimated from observations, would show a discrepancy with the expected value i.e. $\Delta \btheta=0$. In Fig. \ref{fig:c1_hist}, we show an example of posterior distribution of $c_1$ from a simulated GR event with SNR 25, for a binary with total mass $M = 80M_{\odot}$, mass ratio $q=1/9$ and inclination angle $ {\iota}=60^{\circ} $.  We see that the posterior distribution are consistent with zero. Figure \ref{fig:constraint_c1} shows the 90\% credible interval for $c_1$.  The posterior probability densities of $\Delta \btheta=\{c_2, c_{34}\}$ and $\Delta \btheta=\{c_3, c_{4}\}$ estimated from the same simulated GR event (shown in Fig. \ref{fig:c2_c34} and \ref{fig:c3_c4}) are also found to be consistent with zero. We now estimate the expected constraints on these deviation parameters by injecting simulated GR waveforms. The constraints on $\btheta=\{c_3, c_{4}\}$ and $\Delta \btheta=\{c_3, c_{4}\}$ calculated from GR events are presented in Fig. \ref{fig:bounds_c2}, Fig. \ref{fig:bounds_c34}, Fig. \ref{fig:bounds_c3} and Fig. \ref{fig:bounds_c4}.
 
 
-\begin{figure}[tbh]
-    \begin{center}
-    \includegraphics[scale=0.8]{figs/triangle_plot_M_80_q_9_snr_100_complex_c1.png}
-    %\includegraphics[scale=0.75]{figs/triangle_plot_M_80_q_9_snr_100_complex_c1.pdf}
-    \end{center} 
-    \caption{The middle plot shows the 50\% and 90\% credible regions in joint posteriors of two parameters: amplitude $|c_1|$ and phase $\phi$ of the complex deviation parameter $c_1$ estimated from different simulated GR signal corresponding to a binary with total mass $M=80$ $M_{\odot}$ , mass ratio $q=9$ and SNR 100.}
-    \label{fig:c1_triangle}
-\end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
-    \begin{center}
-    \includegraphics[scale=0.75]{figs/confidence_interval_c1_varying_M_q_9_snr_25.pdf} 
-    \end{center} 
-    \caption{The plots shows the width of the 90\% credible region of $|c_1|$ as a function of total mass $M$. All binaries correspond to a mass ratio $q = 1/9$ and SNR 25.}
-    \label{fig:c1_bound_a}
+	\begin{center}
+		\includegraphics[scale=0.78]{figs/90_percent_CI_c1.png}
+	\end{center} 
+	\caption{\textbf{FILLER} : The figure shows the width of 90\% credible intervals of $c_1$ for binaries with different total mass $M$ (upper panel)and mass ratio $q$ (lower panel) and inclination angle $\iota$ (legends). All binaries considered in the upper panel have a mass ratio $q=1/9$. Binaries considered in the lower panel have total mass of $40M_{\odot}$. The SNR is set to be 25.  }
+	\label{fig:constraint_c1}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[h]
-    \begin{center}
-    \includegraphics[scale=0.75]{figs/confidence_interval_c1_varying_q_M_40_snr_25.pdf} 
-    \end{center} 
-    \caption{The plots shows the width of the 90\% credible region of $|c_1|$ as a function of mass ratio $q$. All binaries correspond to a mass ratio $M = 40$ $M_{\odot}$ and SNR 25.}
-    \label{fig:c1_bound_b}
-\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[htb]
+	\centering
+	\subfigure[]{\label{fig:c2_c34}
+		\includegraphics[scale=0.55]{figs/c2_c34_M_80_q_9_SNR_25.pdf}}
+	\subfigure[]{\label{fig:c3_c4}
+		\includegraphics[scale=0.55]{figs/c3_c4_M_80_q_9_SNR_25.pdf}}\\
+	\subfigure[]{\label{fig:bounds_c2}
+		\includegraphics[scale=0.75]{figs/90_percent_bounds_c2.png}}
+	\subfigure[]{\label{fig:bounds_c34}
+		\includegraphics[scale=0.75]{figs/90_percent_bounds_c34.png}}\\
+\subfigure[]{\label{fig:bounds_c3}
+	\includegraphics[scale=0.75]{figs/90_percent_bounds_c2.png}}
+\subfigure[]{\label{fig:bounds_c4}
+	\includegraphics[scale=0.75]{figs/90_percent_bounds_c34.png}}
+	\caption{\label{fig:bounds_c2c34c3c4} \textbf{FILLER} : The figure shows the posterior probability distribution of the deviation parameter $c_1$ estimated from the same simulated GR observation in \ref{fig:posterior_BBH_GR_inj}. Same as Fig. \ref{fig:constraint_c1} except the figures reports constraints on the following deviation parameters:
+			 (a) $c_2$, (b) $c_{34}$, (c) $c_3$ \& (d) $c_4$. }
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newpage
-\begin{figure}[h]
-    \begin{center}
-    \includegraphics[scale=0.75]{figs/confidence_interval_c1_varying_snr.pdf} 
-    \end{center} 
-    \caption{The plots shows the width of the 90\% credible region of of $|c_1|$ as a function of signal to noise ratio. All binaries correspond to a mass ratio $q = 1/9$. Total mass $M={40,80}$ $M_{\odot}$.}
-    \label{fig:c1_bound_c}
-\end{figure}
+We observe that the constraints on the deviation parameters become narrower for binaries with large mass ratios ($q < 1/ 2$) and inclination angles ($\iota > 60 ^\circ $). We find that $c_1$ is better constrained than $\{c_3, c_{4}\}$ and $\{c_3, c_{4}\}$. However, the statistical uncertainties in $\Delta \btheta=\{c_1\}$, $\{c_3, c_{4}\}$ and $\{c_3, c_{4}\}$  are modest, reaching only $\sim$ $10^{-1}$. However, this constraints could be significantly improved with third-generation ground/space based detectors. We note that the efficiency of these tests largely depends on the signal-to-noise distribution in the higher modes. The low SNR in the higher modes has resulted prior railing for some of the sample chains of $\{c_3, c_{4}\}$ and $\{c_3, c_{4}\}$ during MCMC sampling for simulated GR events with binaries having smaller values of total mass, mass ratio and inclination angle. Such problems would not arise if the SNR in each of the higher order modes are reasonable high ($\sim 5$). Furthermore, the extrinsic deviation parameter introduced in our tests $\Delta \btheta$ is slightly degenerate with the luminosity distance $d_L$. This degeneracy introduces some uncertainties in our estimation of bounds. 
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{figure}[tbh]
+ 	\begin{center}
+ 		\includegraphics[scale=0.8]{figs/M_80_q_9_SNR_25_complex_c1.png}
+ 	\end{center} 
+ 	\caption{The figure shows the posterior probability distribution of the absolute value $|c_1|$and argument $\phi_c$ complex deviation parameter $\tilde{c_1}$ estimated from the simulated GR event. Details are same as in \ref{fig:posterior_BBH_GR_inj}.}
+ 	\label{fig:c1_complex}
+ \end{figure}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+A more generalized version of these tests with amplitude correction in the higher modes would be to assume that the deviation parameters $\Delta \btheta$ are complex in nature i.e. they have an amplitude as well as a phase component. To demonstrate such test, we replace the real amplitude correction $c_1$ in Eq. \ref{eq:test_c1} with a complex correction $\tilde{c_1}=|c_1|e^{\phi_c}$. In Fig. \ref{fig:c1_complex}, we show the posterior probability distribution of both the amplitude and phase of the deviation parameter $\tilde{c_1}$. We also estimate the expected bounds on $\tilde{c_1}$ from simulated GR events. We find that though the absolute value of complex correction is well constrained, the phase remains uninformative. 
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
-\newpage
 \section{Consistency between polarizations}
 \label{sec4}
+While one can exploit the multipolar structure of the gravitational wave radiation from BBH to formulate efficient tests of GR by introducing intrinsic and extrinsic deviation parameters in the higher order modes, similar tests could be devised with the `two' polarization states of the waveform. We present two such tests in this section and discuss the feasibility of performing such tests with current and future GW observations.
+ 
 \subsection{Consistency between parameters estimated from different polarizations}
-
-We allow the possibility of inconsistency between the polarization states $h_+$ and $h_\times$ by introducing deviation parameters  $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the set of intrinsic parameters for $h_\times$.
+The essence of the first test we propose is similar to the test presented in Section \ref{sec3a}. The idea is to estimate the intrinsic parameters $\blambda$ purely from the `plus' polarization of the observed gravitational waveform and then compare it with the estimates obtained from the `cross' polarization of the waveform. In GR, these two independent estimates of $\blambda$ would match. Equivalently, one can introduce deviation parameters $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the set of intrinsic parameters for $h_\times$ and rewrite the complex time series of gravitational wave radiation as:
 \begin{eqnarray} 
-\h(t; \blambda, \Delta \blambda) =  h_+(t; \blambda) - ih_\times(t; \blambda, \Delta \blambda)
+\h(t; \blambda, \Delta \blambda) =  h_+(t; \blambda) - ih_\times(t; \blambda, \Delta \blambda),
 \label{eq:test_hp_hc}
 \end{eqnarray}
-We estimate these additional parameters $\Delta \blambda$ in addition to the standard set of parameters in GR. Note that $\Delta \blambda = \{0,0\}$ in GR.
+and allow a possibility of inconsistency between the `plus' and `cross' polarization states of the signal. We estimate these parameters $\Delta \blambda$ in addition to the standard set of parameters in GR. In GR, we would have $\Delta \blambda = \{0,0\}$. However, if the signal is of non-GR nature, $\Delta \blambda$ would not be consistent with zero.
 
-\newpage 
-\noindent Corner plot  - Fig \ref{fig:hphc_corner};\\
-triangle plot - Fig \ref{fig:hphc_triangle};\\
-90\% credible intervals of $\Delta$ $M_{c}$ and $\Delta$ $q$  - Fig \ref{fig:hphc_bound_a}, \& Fig \ref{fig:hphc_bound_b};
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{figure}[tbh]
+ 	\begin{center}
+ 		\includegraphics[scale=0.7]{figs/hp_hc_M_80_q_9_SNR_25.pdf}
+ 	\end{center} 
+ 	\caption{ Same as \ref{fig:posterior_BBH_GR_inj} but shows the posterior density distributions of $\Delta \blambda$ estimated from the `cross' polarization state.}
+ 	\label{fig:hp_hc_GR}
+ \end{figure}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newpage
-
-\begin{figure}[htb]
-    \begin{center}
-    \includegraphics[scale=0.3]{figs/hp_hc_consistency_polarization_corner_plot_M_80_q_9_snr_25.png} 
-    \end{center} 
-    \caption{Corner plot for tests of GR based on checking for consistency between parameters ($M_{c}$, $q$, 
-    $\Delta$ $M_{c}$ and $\Delta$ $q$) estimated from different polarizations. }
-    \label{fig:hphc_corner}
-\end{figure}
-
-\newpage
-.
-\newpage
-
+In Fig. \ref{fig:hp_hc_GR}, we present the result of the test performed with simulated GR waveform, for a binary with total mass $M = 80M_{\odot}$, mass ratio $q=1/9$, inclination angle $ {\iota}=60^{\circ} $ with a SNR of 25. We first introduce one deviation parameter $\Delta\blambda = {\Delta M_c}$ or $\Delta\blambda = {\Delta q}$ at a time and then perform the test with both the deviation parameters. As expected, the test with only one deviation parameter results a smaller width of the posterior distribution of $\blambda$. Our subsequent analysis of the evolution of the 90\% bounds on $\blambda$ as a function of total mass, mass ratio and inclination angle of the BBH would thus only involve introducing one deviation parameter at a time. In all cases, we set the SNR at 25. In Fig. \ref{fig:hp_hc_90_CI_diffM} and \ref{fig:hp_hc_90_CI_diffq}, we present the expected constraints on ${\Delta M_c}$ and ${\Delta q}$ from simulated GR events. The uncertainties in the deviation parameters reaches well below $10^{-2}$ for both the deviation parameters. Our result shows that this test would prove to be highly efficient in picking up any departure from GR for binaries with large mass ratios ($q < 1/ 2$). Furthermore, it is evident that binaries with smaller inclination angle (even $\iota=30^0$) would also allow a precision test. This particular test thus turns out to be more stringent than the analogous test with higher modes outlined in \ref{sec3a}.  
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
-    \begin{center}
-    \includegraphics[scale=0.55]{figs/hp_hc_consistency_triangle_plot_delMc_delq_M_80_q_9_snr_25_pol.pdf} 
-    \end{center} 
-    \caption{The middle plot shows the 68\% and 95\% credible regions in joint posteriors of two parameters $\Delta$ $M_{c}$ and $\Delta$ $q$ estimated from different polarizations of simulated GR signal corresponding to a binary with total mass $M=80$ $M_{\odot}$ , mass ratio $q=9$ and SNR 25.}
-    \label{fig:hphc_triangle}
+	\begin{center}
+		\includegraphics[scale=0.78]{figs/hp_hc_consistency_confidence_interval_varying_M.pdf}
+	\end{center} 
+	\caption{The figure shows the width of the 90$\%$ confidence limit of the deviation parameters $\Delta M_c$ and $\Delta q$ estimated from the `cross' polarization for binaries with different total mass (horizontal axis) and inclination angles $\iota$ (legends). All binaries have an asymmetric mass ratio $q=1/9$.}
+	\label{fig:hp_hc_90_CI_diffM}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
-    \begin{center}
-    \includegraphics[scale=0.75]{figs/hp_hc_consistency_confidence_interval_varying_M.pdf} 
-    \end{center} 
-    \caption{The plots shows the width of the 90\% credible region of the $\Delta$ $M_{c}$ and $\Delta$ $q$ estimated from different polarizations of simulated GR signals for binaries with different total mass $M$. All binaries correspond to a mass ratio $q = 1/9$ and SNR 25.}
-    \label{fig:hphc_bound_a}
+	\begin{center}
+		\includegraphics[scale=0.78]{figs/hp_hc_consistency_confidence_interval_varying_q.pdf}
+	\end{center} 
+	\caption{Same as Fig.~\ref{fig:hp_hc_90_CI_diffM}, except that the horizontal axis reports the mass ratio $q$. All binaries correspond to a total mass $40M_{\odot}$. }
+	\label{fig:hp_hc_90_CI_diffq}
 \end{figure}
-
-\newpage
-
-\begin{figure}[]
-    \begin{center}
-    \includegraphics[scale=0.75]{figs/hp_hc_consistency_confidence_interval_varying_q.pdf} 
-    \end{center} 
-    \caption{The plots shows the width of the 90\% credible region of the $\Delta$ $M_{c}$ and $\Delta$ $q$ estimated from different polarizations of simulated GR signals for binaries with different total mass ratio $q$. All binaries correspond to a mass ratio $M=40$ $M_{\odot}$ and SNR 25.}
-    \label{fig:hphc_bound_b}
-\end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-
 \subsection{Consistency between the amplitude of different polarizations}
-\subsubsection{$v(f) = v$}
-required (?)
-\subsubsection{$v(f) = v f$}
-In GR, the gravitational radiation could be written as a complex time series $\h(t)=h_+(t) - ih_\times(t)$. However, due to birefringence, one of the polarization can get amplified while the other one may get damped. We formulate a test for amplitude birefringence by introducing a coupling parameter $v$:
+Due to amplitude birefringence, the right (left) circularly polarized gravitational waves are enhanced/suppressed (suppressed/enhanced) compared to the GR expectation as they propagate through cosmological distances. Such birefringence manifests itself through modifying  the `plus' and `cross' polarization. Each of the new `plus' and `cross' polarization is a function of both the `old' `plus' and `cross' polarization in GR and a frequency dependent coupling parameter $v(f)$. Here, we formulate a Chern-Simons gravity (CS) inspired generalized test of \textit{amplitude birefringence}. We introduce an extrinsic deviation parameter (which acts as a coupling parameter in birefringence) $\Delta \btheta=v(f)$. We choose $v(f)$ to be proportional to gravitaional wave frequency $f$ i.e. $v(f)=vf$ with $v$ being a constant. Though this choice of $v(f)$ is motivated by CS gravity, other theories of gravity would also result a frequency dependent modification, maybe with a different exponent for $f$.  The simplistic choice of frequency dependent modification would thus be to assume a liner dependence with $f$.  Our test formalism thus becomes:
+ 
 \begin{eqnarray} 
 \h(f; \blambda) =  \Hat{h_+}(f; \blambda) - i \Hat{h_\times}(f; \blambda),
 \label{eq:test_cs}
 \end{eqnarray}
-where $\Hat{h_+}(f; \blambda)=h^{GR}_+ + i v f h^{GR}_{\times}$ and $\Hat{h_\times}(f; \blambda)=h^{GR}_\times - i v f h^{GR}_{+}$.
-Corner plot  - Fig \ref{fig:cs_corner};\\
-triangle plot - Fig \ref{fig:cs_hist};\\
-90\% credible intervals of $v$  - Fig \ref{fig:cs_bound};\\
-modGR injection - Fig \ref{fig:cs_modgr};
+where $\Hat{h_+}(f; \blambda)=h^{GR}_+ + i v f h^{GR}_{\times}$ and $\Hat{h_\times}(f; \blambda)=h^{GR}_\times - i v f h^{GR}_{+}$. The deviation parameter is exactly zero in GR resulting no \textit{birefringence} at all. However, if the observed signal does not follow GR and show a \textit{birefringence} phenomenon, $v$ would not be consistent with zero any more. In Fig. \ref{fig:cs_hist}, we show an example of the posterior probability density estimated from a simulated GR waveform detected by the Advanced LIGO-VIRGO network for a binary with total mass $M = 80M_{\odot}$, mass ratio $q=1/9$, inclination angle $ {\iota}=60^{\circ} $ with a SNR of 25. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.55]{figs/v1_GR_hist_M_80_q_9_dL_250.pdf} 
+	\end{center} 
+	\caption{Posterior probability density of the deviation parameter $v$ estimated from simulated GR signal for binaries with $M=80$ $M_{\odot}$ and $q=1/9$. }
+	\label{fig:cs_hist}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We then place bounds on $v$ derived from the GR waveforms. We injected waveforms generated from BBH with varying total mass, mass ratio and inclination angle. The width of the computed 90\% credible region for $v$ is shown in Fig. \ref{fig:cs_bounds}. We find that precision tests are possible for wide range of binaries for almost all values of total mass $M$, mass ratio $q$ and inclination angle $\iota$. This corroborates our earlier result that consistency between different states of polarization gives a better test than consistency between different modes. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.8]{figs/v1_confidence_interval_pol.pdf} 
+	\end{center} 
+	\caption{The plots shows the width of the 90\% credible region of the deviation parameter $v_1$ estimated from different polarizations of simulated GR signals for binaries with different total mass $M$ and mass ratio $q$. All binaries correspond to a SNR 25.}
+	\label{fig:cs_bounds}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If the GW signal is sufficiently different from that of BBHs in GR and is affected by \textit{amplitude birefringence}, then this test should be able to identity the difference. We demonstrate this by performing the test on a simulated modGR GW signal from a BBH with a total mass of $M = 80 M_\odot$, $q=1/9$ and SNR 60. Figure~\ref{fig:cs_modgr} shows the posteriors of the deviation parameters $v$ estimated from a simulated observation containing this signal, which are \emph{inconsistent} with the GR prediction of $v=0$. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.55]{figs/v1_modgr_hist_M_80_q_9_dL_250.pdf} 
+	\end{center} 
+	\caption{Posterior probability density of the deviation parameter $v$ estimated from simulated GR as well as modGR signal for binaries with $M=80$ $M_{\odot}$ and $q=1/9$. }
+	\label{fig:cs_modgr}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-
-\begin{figure}[h!]
-    \begin{center}
-    \includegraphics[scale=0.3]{figs/v1_80925_corner_plot.png} 
-    \end{center} 
-    \caption{Corner plot for tests of GR based on checking consistency between the amplitude of different polarization.}
-    \label{fig:cs_corner}
-\end{figure}
+\section{Conclusion}
 
 \newpage
-.
-\newpage
-
-\begin{figure}[h!]
-    \begin{center}
-    \includegraphics[scale=0.7]{figs/v1_GR_hist_M_80_q_9_dL_250.pdf} 
-    \end{center} 
-    \caption{Histogram of the deviation parameter $v$ estimated from simulated GR signal for binaries with $M=80$ $M_{\odot}$ and $q=1/9$. SNR fixed at 100.}
-    \label{fig:cs_hist}
-\end{figure}
-
-
-\begin{figure}[h]
-    \begin{center}
-    \includegraphics[scale=0.75]{figs/v1_confidence_interval_pol.pdf} 
-    \end{center} 
-    \caption{The plots shows the width of the 90\% credible region of the deviation parameter $v_1$ estimated from different polarizations of simulated GR signals for binaries with different total mass $M$ and mass ratio $q$. All binaries correspond to a SNR 25.}
-    \label{fig:cs_bound}
-\end{figure}
-
-\newpage
-\begin{figure}[h!]
-    \begin{center}
-    \includegraphics[scale=0.7]{figs/v1_modgr_hist_M_80_q_9_dL_250.pdf} \end{center} 
-    \caption{Histograms of the deviation parameter $v$ estimated from simulated GR and modGR signal for binaries with $M=80$ $M_{\odot}$, $q=1/9$ and $dL=200$ Mpc.}
-    \label{fig:cs_modgr}
-\end{figure}
-
 \bibliographystyle{apsrev-nourl}
 \bibliography{TestGR.bib}
 

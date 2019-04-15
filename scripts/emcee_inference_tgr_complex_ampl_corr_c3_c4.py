@@ -137,8 +137,8 @@ f_low = 20.
 f_cut = 999.
 
 ndim, nwalkers = 13, 200
-num_threads = 15
-num_iter = 5000
+num_threads = 30
+num_iter = 20000
 # ------------------------------------------------------ # 
 
 

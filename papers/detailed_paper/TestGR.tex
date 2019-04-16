@@ -174,7 +174,6 @@ In this work, we consider a network of three global detectors consists of two Ad
 \begin{equation}
 P (d \, | \, {\bxi}, H, S_n(f)) = \prod_{i \epsilon {H,L,V}} P (d_{i} \, | \, {\bxi}, H, S_{n_{i}}(f)).
 \end{equation}
-We combine these signals with stationary Gaussian noise with power spectral density anticipated in Advanced LIGO's ``high-power, zero-detuning'' configuration~\cite{aLIGOZeroDetHighPower}, making use of Eqs.~(\ref{eq:spherical_harmonics}) and (\ref{eq:det_response}), and simulate GR observations.  
 
 Using the Bayesian framework described above, we estimate $\bxi$ by stochastically sampling over the entire parameter space of interest. We use python-based affine-invariant ensemble sampler \texttt{emcee}~\cite{foreman2013emcee} for Markov chain Monte Carlo (MCMC) proposed by \cite{goodman2010ensemble} to obtain the posterior distribution $P(\bxi \, | \, d, H)$ of the full parameter set. Posterior distributions of particular parameters of interest, for example,  the set of parameters ${\Delta \blambda}$ (or ${\Delta \btheta}$), describing deviation from the GR prediction of a BBH signal, are computed  by marginalizing the posterior over all other parameters $\{\blambda, \btheta\}$. If the data is consistent with a BBH signal in GR, we expect $P(\Delta \blambda \, | \, d, H)$ (or $P(\Delta \btheta \, | \, d, H)$) to be consistent with zero. 
 
@@ -222,7 +221,7 @@ In Fig. \ref{fig:hm_mcq_compare-1det_3det_GR_inj} we show that, as expected, the
 		\label{fig:hm_mcq_compare-1det_3det_GR_inj}
 	\end{center} \end{figure}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- Figures~\ref{fig:delmc_delq_varyingM} and \ref{fig:delmc_delq_varyingq} show the 90\% credible intervals of the posteriors of the deviation parameters for binaries with varying masses, mass ratios and inclination angles. In all cases, we set the SNR to be {25}.  We find that binaries with large mass ratios ($q < 1/ 2$) and inclination angles ($\iota > 60 ^\circ $) will allow precision tests of the GR predictions, reaching statistical uncertainties of $< 10^{-3}$ for $\Delta q$ and $< 10^{-2}$ for the dimensionless deviation parameter $\Delta M_c/M_c$. We note that the 90\% interval for both the deviation parameters decreases slightly compared to the earlier reported values in~\cite{dhanpal2018}.
+ Figures~\ref{fig:delmc_delq_varyingM} and \ref{fig:delmc_delq_varyingq} show the 90\% credible intervals of the posteriors of the deviation parameters for binaries with varying masses, mass ratios and inclination angles. In all cases, we set the SNR to be {25}.  We find that binaries with large mass ratios ($q < 1/ 2$) and inclination angles ($\iota > 60 ^\circ $) will allow precision tests of the GR predictions, reaching statistical uncertainties of $< 10^{-3}$ for $\Delta q$ and $< 10^{-2}$ for the dimensionless deviation parameter $\Delta M_c/M_c$. Our results are found to be consistent with the one detector analysis done in ~\cite{dhanpal2018}. We, however, notice that the 90\% interval for both the deviation parameters, in three detector analysis, decreases slightly compared to the one detector case.
  
  \begin{figure}[tbh]
  	\begin{center}
@@ -247,7 +246,7 @@ While one can estimate the intrinsic parameters (chirp mass and mass ratio of th
  \begin{enumerate}
  	\item We split the contributions from the dominant $(\ell = 2, m = \pm 2)$ mode of gravitational radiation, and the higher order modes in Eq.~(\ref{eq:spherical_harmonics}) and introduce a generic extrinsic deviation parameter $\Delta \btheta=\{c_1\}$ common for all the higher modes considered i.e. $(\ell = 2, m=\pm1)$, $(\ell = 3, m=\pm3)$, $(\ell = 4, m = \pm4)$.
  	\begin{eqnarray}
- 	{\h}(t; n, \blambda, \Delta \blambda) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
+ 	{\h}(t; n, \blambda, \Delta \btheta) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
  	& + & \frac{(1+{c_1})}{d_L} \sum _{\text{H.O.M}} \Ylm (n) \hlm(t, \blambda),
  	\label{eq:test_c1}
  	\end{eqnarray}
@@ -256,16 +255,16 @@ While one can estimate the intrinsic parameters (chirp mass and mass ratio of th
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \begin{figure}[tbh]
  	\begin{center}
- 		\includegraphics[scale=0.5]{figs/hist_c1_M_80_q_9_snr_25.pdf}
+ 		\includegraphics[scale=0.63]{figs/hist_c1_M_80_q_9_snr_25.pdf}
  	\end{center} 
- 	\caption{\textbf{FILLER} : The figure shows the posterior probability distribution of the deviation parameter $c_1$ estimated from the same simulated GR observation in \ref{fig:posterior_BBH_GR_inj}. Thin black lines shows the expected value in GR. The dotted lines mark the 90\% credible regions. }
+ 	\caption{The figure shows the posterior probability distribution of the deviation parameter $c_1$ estimated from the same simulated GR observation in \ref{fig:posterior_BBH_GR_inj}. Thin black lines shows the expected value in GR. The dotted lines mark the 90\% credible regions. }
  	\label{fig:c1_hist}
  \end{figure}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
  	\item We then generalize the test by introducing a set of two different deviation parameter $\Delta \btheta=\{c_2, c_{34}\}$, where $c_2$ indicates the possible modification in the  $(\ell = 2, m=\pm1)$ mode and $c_{34}$ encodes a common deviation in $(\ell = 3, m=\pm3)$ and $(\ell = 4, m = \pm4)$ modes.
  	\begin{eqnarray}
- 	{\h}(t; n, \blambda, \Delta \blambda) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
+ 	{\h}(t; n, \blambda, \Delta \btheta) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
  	& + & \frac{(1+{c_2})}{d_L} \sum_{m = \pm1} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda) \nonumber\\
  	& + & \frac{(1+{c_{34}})}{d_L} \sum _{\text{33,44}} \Ylm (n) \hlm(t, \blambda),
  	\label{eq:test_c2_c34}
@@ -274,7 +273,7 @@ While one can estimate the intrinsic parameters (chirp mass and mass ratio of th
 	
  	\item In a futher generalization, we keep the amplitude of the quadrapole mode as well as the $(\ell = 2, m=\pm1)$ mode as predicted in GR and choose a set of two different deviation parameter $\Delta \btheta=\{c_3, c_{4}\}$ in the amplitudes of  $(\ell = 3, m=\pm3)$ mode and $(\ell = 4, m = \pm4)$ mode respectively.
  	\begin{eqnarray}
- 	{\h}(t; n, \blambda, \Delta \blambda) & = & \frac{1}{d_L} \sum_{m = \pm2,\pm1} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
+ 	{\h}(t; n, \blambda, \Delta \btheta) & = & \frac{1}{d_L} \sum_{m = \pm2,\pm1} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
  	& + & \frac{(1+{c_3})}{d_L} \sum_{m = \pm3} Y^{-2}_{3m} (n) {\h}_{3m}(t, \blambda) \nonumber\\
  	& + & \frac{(1+{c_{4}})}{d_L} \sum _{m=\pm4} Y^{-2}_{4m} (n) {\h}_{4m}(t, \blambda),
  	\label{eq:test_c3_c4}
@@ -287,9 +286,9 @@ The set of deviation parameters $\Delta \btheta=\{c_1\}$, $\Delta \btheta=\{c_3,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[scale=0.78]{figs/90_percent_CI_c1.png}
+		\includegraphics[scale=0.85]{figs/90_percent_CI_c1.pdf}
 	\end{center} 
-	\caption{\textbf{FILLER} : The figure shows the width of 90\% credible intervals of $c_1$ for binaries with different total mass $M$ (upper panel)and mass ratio $q$ (lower panel) and inclination angle $\iota$ (legends). All binaries considered in the upper panel have a mass ratio $q=1/9$. Binaries considered in the lower panel have total mass of $40M_{\odot}$. The SNR is set to be 25.  }
+	\caption{The figure shows the width of 90\% credible intervals of $c_1$ for binaries with different total mass $M$ (upper panel)and mass ratio $q$ (lower panel) and inclination angle $\iota$ (legends). All binaries considered in the upper panel have a mass ratio $q=1/9$. Binaries considered in the lower panel have total mass of $40M_{\odot}$. The SNR is set to be 25.  }
 	\label{fig:constraint_c1}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -302,19 +301,19 @@ The set of deviation parameters $\Delta \btheta=\{c_1\}$, $\Delta \btheta=\{c_3,
 	\subfigure[]{\label{fig:c3_c4}
 		\includegraphics[scale=0.55]{figs/c3_c4_M_80_q_9_SNR_25.pdf}}\\
 	\subfigure[]{\label{fig:bounds_c2}
-		\includegraphics[scale=0.75]{figs/90_percent_bounds_c2.png}}
+		\includegraphics[scale=0.75]{figs/90_percent_bounds_c2.pdf}}
 	\subfigure[]{\label{fig:bounds_c34}
-		\includegraphics[scale=0.75]{figs/90_percent_bounds_c34.png}}\\
+		\includegraphics[scale=0.75]{figs/90_percent_bounds_c34.pdf}}\\
 \subfigure[]{\label{fig:bounds_c3}
-	\includegraphics[scale=0.75]{figs/90_percent_bounds_c2.png}}
+	\includegraphics[scale=0.75]{figs/90_percent_bounds_c3.pdf}}
 \subfigure[]{\label{fig:bounds_c4}
-	\includegraphics[scale=0.75]{figs/90_percent_bounds_c34.png}}
+	\includegraphics[scale=0.75]{figs/90_percent_bounds_c4.pdf}}
 	\caption{\label{fig:bounds_c2c34c3c4} \textbf{FILLER} : The figure shows the posterior probability distribution of the deviation parameter $c_1$ estimated from the same simulated GR observation in \ref{fig:posterior_BBH_GR_inj}. Same as Fig. \ref{fig:constraint_c1} except the figures reports constraints on the following deviation parameters:
 			 (a) $c_2$, (b) $c_{34}$, (c) $c_3$ \& (d) $c_4$. }
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We observe that the constraints on the deviation parameters become narrower for binaries with large mass ratios ($q < 1/ 2$) and inclination angles ($\iota > 60 ^\circ $). We find that $c_1$ is better constrained than $\{c_3, c_{4}\}$ and $\{c_3, c_{4}\}$. However, the statistical uncertainties in $\Delta \btheta=\{c_1\}$, $\{c_3, c_{4}\}$ and $\{c_3, c_{4}\}$  are modest, reaching only $\sim$ $10^{-1}$. However, this constraints could be significantly improved with third-generation ground/space based detectors. We note that the efficiency of these tests largely depends on the signal-to-noise distribution in the higher modes. The low SNR in the higher modes has resulted prior railing for some of the sample chains of $\{c_3, c_{4}\}$ and $\{c_3, c_{4}\}$ during MCMC sampling for simulated GR events with binaries having smaller values of total mass, mass ratio and inclination angle. Such problems would not arise if the SNR in each of the higher order modes are reasonable high ($\sim 5$). Furthermore, the extrinsic deviation parameter introduced in our tests $\Delta \btheta$ is slightly degenerate with the luminosity distance $d_L$. This degeneracy introduces some uncertainties in our estimation of bounds. 
+We observe that the constraints on the deviation parameters become narrower for binaries with large mass ratios ($q < 1/ 2$) and inclination angles ($\iota > 60 ^\circ $). We find that $c_1$ is better constrained than $\{c_3, c_{4}\}$ and $\{c_3, c_{4}\}$. However, the statistical uncertainties in $\Delta \btheta=\{c_1\}$, $\{c_3, c_{4}\}$ and $\{c_3, c_{4}\}$  are modest, reaching only $\sim$ $10^{-1}$. However, this constraints could be significantly improved with third-generation ground/space based detectors. We note that the efficiency of these tests largely depends on the signal-to-noise distribution in the higher modes. The low SNR in the higher modes has resulted prior railing for some of the sample chains of $\{c_3, c_{4}\}$ and $\{c_3, c_{4}\}$ during MCMC sampling for simulated GR events with binaries having smaller values of total mass, mass ratio and inclination angle. Such problems would not arise if the SNR in each of the higher order modes are reasonable high ($\sim 5$). Furthermore, the extrinsic deviation parameter $\Delta \btheta$, introduced in our tests, is slightly degenerate with the luminosity distance $d_L$. This degeneracy introduces some uncertainties in our estimation of bounds. 
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \begin{figure}[tbh]
@@ -391,7 +390,7 @@ where $\Hat{h_+}(f; \blambda)=h^{GR}_+ + i v f h^{GR}_{\times}$ and $\Hat{h_\tim
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htb]
 	\begin{center}
-		\includegraphics[scale=0.55]{figs/v1_GR_hist_M_80_q_9_dL_250.pdf} 
+		\includegraphics[scale=0.75]{figs/v1_GR_hist_M_80_q_9_dL_250.pdf} 
 	\end{center} 
 	\caption{Posterior probability density of the deviation parameter $v$ estimated from simulated GR signal for binaries with $M=80$ $M_{\odot}$ and $q=1/9$. }
 	\label{fig:cs_hist}
@@ -415,7 +414,7 @@ If the GW signal is sufficiently different from that of BBHs in GR and is affect
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[scale=0.55]{figs/v1_modgr_hist_M_80_q_9_dL_250.pdf} 
+		\includegraphics[scale=0.75]{figs/v1_modgr_hist_M_80_q_9_dL_250.pdf} 
 	\end{center} 
 	\caption{Posterior probability density of the deviation parameter $v$ estimated from simulated GR as well as modGR signal for binaries with $M=80$ $M_{\odot}$ and $q=1/9$. }
 	\label{fig:cs_modgr}

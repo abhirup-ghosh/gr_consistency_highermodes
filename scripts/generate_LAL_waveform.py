@@ -39,28 +39,28 @@ def generate_LAL_modes(approximant, q, chi1z, chi2z, dt, M, \
         hmodes = hmodes.next
     return t, mode_dict
 
-approximant = 'NRHybSur3dq8'
-dt = 1./4096        # sec
-dist_mpc = 100      # Mpc
-q = 4               # m1/m2
-chi1z = 0
-chi2z = 0
-M = 80              # total mass in Solar masses
-f_low = 20        # Hz
-f_ref = 20        # Hz
-
-# time, h32 = h_dict[(3,2)]
-t, h_dict = generate_LAL_modes(approximant, q, chi1z, chi2z, dt, M, \
-    dist_mpc, f_low, f_ref, modes_list=[(2,2),(2,1),(3,3),(4,4)])
-print h_dict.keys()
-
-# The first evaluation also loads the surrogate, which can be slow. But on
-# subsequent evaluations we don't need to reload it, so it's faster. Use
-# the second evaluation to test timing.
-import time
-start = time.time()
-t, h_dict = generate_LAL_modes(approximant, q, chi1z, chi2z, dt, M, \
-    dist_mpc, f_low, f_ref, modes_list=[(2,2),(2,1),(3,3),(4,4)])
-np.fft.fft(h_dict[(2,2)])
-end = time.time()
-print end-start
+#approximant = 'NRHybSur3dq8'
+#dt = 1./4096        # sec
+#dist_mpc = 100      # Mpc
+#q = 4               # m1/m2
+#chi1z = 0
+#chi2z = 0
+#M = 80              # total mass in Solar masses
+#f_low = 20        # Hz
+#f_ref = 20        # Hz
+#
+## time, h32 = h_dict[(3,2)]
+#t, h_dict = generate_LAL_modes(approximant, q, chi1z, chi2z, dt, M, \
+#    dist_mpc, f_low, f_ref, modes_list=[(2,2),(2,1),(3,3),(4,4)])
+#print h_dict.keys()
+#
+## The first evaluation also loads the surrogate, which can be slow. But on
+## subsequent evaluations we don't need to reload it, so it's faster. Use
+## the second evaluation to test timing.
+#import time
+#start = time.time()
+#t, h_dict = generate_LAL_modes(approximant, q, chi1z, chi2z, dt, M, \
+#    dist_mpc, f_low, f_ref, modes_list=[(2,2),(2,1),(3,3),(4,4)])
+#np.fft.fft(h_dict[(2,2)])
+#end = time.time()
+#print end-start

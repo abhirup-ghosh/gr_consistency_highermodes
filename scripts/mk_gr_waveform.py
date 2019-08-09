@@ -30,7 +30,7 @@ N=10000
 
 M=80.          ###### Total Mass in M_SUN
 q=1./9         ###### Mass ratio
-SNR_req=15.    ###### Required SNR
+SNR_req=10.    ###### Required SNR
 iota=pi/3
 Psi_ref=pi
 t0=6.          ###### time of arrival

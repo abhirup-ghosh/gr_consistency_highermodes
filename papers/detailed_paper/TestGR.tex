@@ -74,7 +74,7 @@
 \def\eea{\end{eqnarray}}
 \newcommand{\etal}{\emph{et al}}
 
-\title{Testing the ``no-hair'' nature of binary black holes from higher modes of gravitational radiation}
+\title{Testing the ``no-hair'' nature of binary black holes using the consistency of multipolar gravitational waves}
 \author{Tousif Islam}
 \affiliation{International Centre for Theoretical Sciences, Tata Institute of Fundamental Research, Bangalore 560012, India}
 \author{Ajit Kumar Mehta}
@@ -96,68 +96,86 @@
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
 \section{Introduction}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
 \section{Data analysis method}
-\subsection{Waveform model}
-Gravitational wave radiation emitted by a binary black hole in GR, located at a luminosity distance $d_L$,  is expressed as a linear combination of the `plus' and `cross' polarizations : $\h(t) := h_+(t) - i \, h_\times(t)$. The radiation can be written as a superposition of various spherical harmonic ``modes" ${\h}_{lm}(t; \blambda)$ of gravitational wave emission ~\cite{NewmanPenrose}:
+
+\subsection{Testing the consistency of different multipoles of the radiation}
+
+Gravitational wave radiation from by a binary black hole in GR consistst of two polarization states  $h_+(t)$ and $h_\times(t)$, which can be expressed as a complex time series $\h(t) := h_+(t) - i \, h_\times(t)$. The radiation can be written as a superposition of various spherical harmonic modes ${\h}_{\ell m}(t; \blambda)$ as~\cite{NewmanPenrose}:
 \begin{equation} 
 \h(t; \n, \blambda)= \frac{1}{d_L} \sum _{\ell=2}^{\infty} \sum _{m=-\ell}^{\ell} {\Ylm} (\n) \, {{\hlm}(t; {\blambda})}, 
 \label{eq:spherical_harmonics}
 \end{equation}
-where ${\Ylm}$ are spherical harmonics of weight $-2$ and $\n := \{\iota, \varphi_0\}$ define the direction of radiation in the source frame. The spherical harmonic modes, ${\h}_{lm}(t; \blambda)$, are purely functions of the intrinsic parameters $\blambda$ of the system, while all the angular dependence is captured by the spherical harmonic basis functions ${\Ylm}$. Here, we consider the black holes to be non-spinning and the binary to be quasi-circular. Hence $\blambda$ consists of only the component masses $m_1$ and $m_2$ of the black holes. However, it is more convenient to use a reparameterization of the mass plane into the \emph{chirp mass} $M_c := {(m_1m_2)^{3/5}}/{(m_1+m_2)^{1/5}}$ and asymmetric mass ratio $q = m_2/m_1 \leq 1$. The multipolar structure (i.e., ${\h}_{lm}(t)$) of the waveform  is thus completely determined by the set of intrinsic parameters $\blambda := \{M_c, q\}$ and have no dependency on the extrinsic parameters $\btheta := \{\iota, \varphi_0, d_L\}$. The inclination angle $\iota$ is measured with respect to the \textit{total} orbital angular momentum of the binary, which is same as the orbital angular momentum for a non-spinning system as in our case.
+where $d_L$ is the luminosity distance to the binary, ${\Ylm}$ are spherical harmonics of weight $-2$ and $\n := \{\iota, \varphi_0\}$ define the direction of radiation in the source frame. The spherical harmonic modes, ${\h}_{lm}(t; \blambda)$, are purely functions of the \emph{intrinsic} parameters $\blambda$ of the system, such as the masses and spin angular momenta of the black holes. All the angular dependence of the radiation is captured by the spherical harmonic basis functions ${\Ylm}$. Thus, the multipolar structure (i.e., ${\h}_{lm}(t)$) of the waveform  is thus completely determined by the intrinsic parameters $\blambda$. 
 
- In GR, the leading contribution in gravitational radiation from a non-spinning binaries comes from the quadrupole modes ($\ell = 2, m = \pm 2$). The relative contribution of the higher modes depends on the total mass $M$, mass ratio $q$ and the inclination angle $\iota$.  Non-quadrupole modes becomes important when the black holes have  significantly unequal masses i.e higher values of $q$. Furthermore, the strength of the higher mode amplitudes grows as the total mass and inclination angle increases. 
+ In GR, the leading order radiation is quadrupolar; i.e.,$\ell = 2, m = \pm 2$. The relative contribution of the higher modes depends on the total mass $M$, mass ratio $q$, spin angular momenta ${\mathbf S}_{1,2}$ and the inclination angle $\iota$.  Non-quadrupole modes becomes important when the black holes have  significantly unequal masses or when the spins are significantly misaligned with the orbital angular momentum. Furthermore, the strength of the higher mode amplitudes grows as the total mass and inclination angle increases. 
 
-To simulate GR waveforms, we employ the recent phenomenological inspiral-merger-ringdown waveform model proposed by~\cite{Mehta:2017jpq}, which provide accurate Fourier-domain models of three sub-dominant spherical harmonic modes ($(\ell = 2, m=\pm1)$, $(\ell = 3, m=\pm3)$, $(\ell = 4, m = \pm4)$) apart from the dominant $(\ell = 2, m = \pm2)$ mode of the expected GW signals from non-spinning BBHs. The other spherical harmonic modes neglected in this work only introduce an inaccuracy (mismatch) of less than 1\% in the waveforms~\cite{Mehta:2017jpq}. We consider binaries with total mass $M := m_1 + m_2$ in the range $40 M_\odot$ -- 200 $M_\odot$ with mass ratio $q := m_2/m_1$ in the range 1/9 -- 1, with varying inclination angles $\iota=\{30^{\circ},45^{\circ},60^{\circ},80^{\circ},90^{\circ}\}$.
+An interferometric GW detector observes a linear combination of the two polarizations $h_+ := \mathrm{Re}\,\h$ and $h_\times := - \mathrm{Im}\, \h$
+\begin{equation}
+h^I(t) = F^I_+(\theta, \phi, \psi) \, h_+(t-t_0^I) + F_{\times}^I(\theta, \phi, \psi)\, {h}_{\times}(t-t_0^I), 
+\label{eq:det_response}
+\end{equation}
+where $F^I_+$ and $F^I_\times$ are the antenna pattern functions of the GW detector $I$, $t_0^I$ is the time of arrival of the signal at the detector, $(\theta, \phi)$ define the sky position and $\psi$ defines polarisation angle of the GW source, respectively. The signal is mixed with linear additive noise $n^I(t)$ in the detector, so that the observed data is $d^I(t) = h^I(t) + n^I(t)$. The noise can be modelled, to a good approximation, as a stationary Gaussian random process described by a power spectral density $S_n(f)$. By comparing theoretical templates of $h^I(t)$ with data $d$, we can infer the intrisic parameters of the binary as well as the extrinsic parameters describing the source position and orientation. 
 
-\subsection{Parameterized tests of GR}
-\label{2b}
-In order to test GR, we extend the waveform model by incorporating additional deviation parameters.  We consider four independent ways to formulate efficient parameterized tests:
-\begin{itemize}
-	\item We generalize the waveform model, following ~\cite{dhanpal2018}, to allow for inconsistency between the dominant mode and the higher order modes by  introducing a deviation $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the higher modes (details in Section \ref{sec3a}):
+As mentioned earlier, in GR the multipolar structure (i.e., ${\h}_{lm}(t)$) of the waveform from a binary black hole system is completely determined by its intrinsic parameters $\blambda$. Thus, if we estimate the parameters of the binary from different modes of the radiation, they have to be consistent with each other. However, if the true theory is different from GR or if the waveform is not emanated from a binary black hole system, this can, in general, change the multipolar structure of the waveform. Ref~\cite{Dhanpal:2018ufk} proposed a consistency test of the data with binary black holes in GR. The crux of the idea is to check the consistency of the intrinsic parameters estimated from different spherical harmonic modes of the waveform. Here we expand this idea and present different formulations of this test (i.e., different ways of introducing deviations from the GR multipolar waveform) and demonstrate these tests using simulated binary black hole observations. 
+
+To model the GR waveforms, we employ the recent phenomenological inspiral-merger-ringdown waveform model proposed by~\cite{Mehta:2017jpq}, which provide accurate Fourier-domain models of three sub-dominant spherical harmonic modes ($(\ell = 2, m=\pm1)$, $(\ell = 3, m=\pm3)$, $(\ell = 4, m = \pm4)$) apart from the dominant $(\ell = 2, m = \pm2)$ mode of the expected GW signals from non-spinning BBHs. The other spherical harmonic modes neglected in this work only introduce an inaccuracy (mismatch) of less than 1\% in the waveforms~\cite{Mehta:2017jpq}. 
+%We consider binaries with total mass $M := m_1 + m_2$ in the range $40 M_\odot$ -- 200 $M_\odot$ with mass ratio $q := m_2/m_1$ in the range 1/9 -- 1, with varying inclination angles $\iota=\{30^{\circ},45^{\circ},60^{\circ},80^{\circ},90^{\circ}\}$.
+
+%\subsection{Parameterized tests of GR}
+%\label{2b}
+%In order to test GR, we extend the waveform model by incorporating additional deviation parameters.  We consider four independent ways to formulate efficient parameterized tests:
+
+We introduce the following kinds of deviations in our GR waveform model: 
+
+\begin{enumerate}
+	\item Following ~\cite{dhanpal2018}, we generalize the GR waveform model Eq.~(\ref{eq:spherical_harmonics}) by allowing inconsistency between the intrinsic parameters determining the dominant mode and the higher order modes by introducing a set of deviation $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the higher modes (details in Section \ref{sec3a}):
 	\begin{eqnarray}
-	\h(t; \n, \blambda, \Delta \blambda) & = & \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
-	& + & \sum _{\text{H.O.M}} \Ylm (\n) \hlm(t, \blambda+\Delta \blambda).
+	\h(t; \n, \blambda, \Delta \blambda) & = &  \frac{1}{d_L} \left[ ~ \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda) \right. \nonumber \\ 
+	& + & \left. \sum _{\text{H.O.M}} \Ylm (\n) \hlm(t, \blambda+\Delta \blambda), \right]
 	\label{eq:test_1}
 	\end{eqnarray}
+where {H.O.M} indicates sum over higher order modes (all modes other than $\ell = 2, m = \pm 2$). 
 	
 	\item We modify the amplitudes of the higher modes and rewrite Eq.~(\ref{eq:spherical_harmonics}) as
 	\begin{eqnarray}
-	{\h}(t; n, \blambda, \Delta \btheta) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
-	& + & \frac{(1+{c_{lm}})}{d_L} \sum _{\text{H.O.M}} \Ylm (n) \hlm(t, \blambda),
+	{\h}(t; \n, \blambda, c_{\ell m}) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
+	& + & \frac{(1+{c_{\ell m}})}{d_L} \sum _{\text{H.O.M}} \Ylm (\n) \hlm(t, \blambda),
 	\label{eq:test_2}
 	\end{eqnarray}
-	where $c_{lm}$ is the deviation parameter and could be different for different higher order modes (details in Section \ref{sec3b}). 
+	where $c_{\ell m}$ is the deviation parameter and could be different for different higher order modes (details in Section \ref{sec3b}). 
 	
-	\item We include a deviation parameter $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the `cross' polarization of the GW radiation allowing a departure from GR (details in Section \ref{sec4a}):
-	\begin{eqnarray} 
-	\h(t; \blambda, \Delta \blambda) =  h_+(t; \blambda) - ih_\times(t; \blambda, \Delta \blambda),
-	\label{eq:test_3}
-	\end{eqnarray}
-	
-	\item We replace the two polarizations by 
-	\begin{eqnarray} 
-	\Hat{h_+}(f; \blambda)  \longrightarrow \Hat{h_+}(f; \blambda, \Delta \btheta) =h^{GR}_+ + i v f h^{GR}_{\times} 
-	\label{eq:test_4a}
-	\end{eqnarray}
-	\begin{eqnarray}
-\Hat{h_\times}(f; \blambda) \longrightarrow \Hat{h_\times}(f; \blambda, \Delta \btheta) =h^{GR}_\times - i v f h^{GR}_{+}
-	\label{eq:test_4b}
-	\end{eqnarray}
-	where $\btheta=\{v\}$ introduces deformation to the GR waveform and is exactly zero in GR (details in Section \ref{sec4b}).
+% 	\item We include a deviation parameter $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the `cross' polarization of the GW radiation allowing a departure from GR (details in Section \ref{sec4a}):
+% 	\begin{eqnarray} 
+% 	\h(t; \blambda, \Delta \blambda) =  h_+(t; \blambda) - ih_\times(t; \blambda, \Delta \blambda),
+% 	\label{eq:test_3}
+% 	\end{eqnarray}
+% 	
+% 	\item We replace the two polarizations by 
+% 	\begin{eqnarray} 
+% 	\Hat{h_+}(f; \blambda)  \longrightarrow \Hat{h_+}(f; \blambda, \Delta \btheta) =h^{GR}_+ + i v f h^{GR}_{\times} 
+% 	\label{eq:test_4a}
+% 	\end{eqnarray}
+% 	\begin{eqnarray}
+% \Hat{h_\times}(f; \blambda) \longrightarrow \Hat{h_\times}(f; \blambda, \Delta \btheta) =h^{GR}_\times - i v f h^{GR}_{+}
+% 	\label{eq:test_4b}
+% 	\end{eqnarray}
+% 	where $\btheta=\{v\}$ introduces deformation to the GR waveform and is exactly zero in GR (details in Section \ref{sec4b}).
 		
-\end{itemize}
+\end{enumerate}
 
 
 \subsection{Bayesian analysis}
-The gravitational wave strain observed by a detector can be expressed as
-\begin{equation}
-h(t) = F_+(\theta, \phi, \psi) \, h_+(t-t_0) + F_{\times}(\theta, \phi, \psi)\, {h}_{\times}(t-t_0), 
-\label{eq:det_response}
-\end{equation}
-where the antenna pattern functions of the GW detector $F_+$ and $F_\times$  depend only on the source location $(\theta, \phi)$ and polarization angle of the gravitational wave $\psi$.  The time of arrival of the signal at the detector is denoted by $t_0$. For coalescing BBH systems in quasi-circular orbits, the measured strain $h(t)$ is therefore described by a set of \emph{intrinsic} parameters $\blambda = \{M_c, q\}$ and \emph{extrinsic} parameters  $\btheta := \{t_0, \iota, \varphi_0, d_L, \theta, \phi, \psi\}$ in GR. In addition to the parameters that describe signals in GR, we introduce a set of intrinsic parameters $\Delta \blambda$ and extrinsic parameters $\Delta \btheta$  which captures any possible departure from GR.  (The nature of these deviation parameters is outlined in Section \ref{2b} while details are given in Section \ref{sec3} and Section \ref{sec4}). The deviation parameters $\Delta \blambda$ ($\Delta \btheta$) describes difference between the intrinsic (extrinsic) parameters used to generate the dominant and sub-dominant modes or the `plus' and `cross' polarizations. The combined set of parameters in our waveform model thus becomes $\bxi = \{\blambda, \btheta, \Delta \blambda\}$ (first \& third tests in Section \ref{2b}) or $\bxi = \{\blambda, \btheta, \Delta \btheta\}$ (second \& fourth tests in Section \ref{2b}). 
 
-We assume that the data $d(t) = n(t) + h(t;\xi)$, consists of noise and, occasionally, a GW signal $h(t;\xi)$, described by a set of parameters $\xi$. The noise is further assumed to be described by a stationary Gaussian random process of zero mean and a power spectrum density $S_n(f)$. Given data $d(t)$, we compute the posterior probability distribution of the combined set of parameters ${\bxi}$ using the Bayes theorem: 
+% The gravitational wave strain observed by a detector can be expressed as
+% \begin{equation}
+% h(t) = F_+(\theta, \phi, \psi) \, h_+(t-t_0) + F_{\times}(\theta, \phi, \psi)\, {h}_{\times}(t-t_0), 
+% \label{eq:det_response}
+% \end{equation}
+% where the antenna pattern functions of the GW detector $F_+$ and $F_\times$  depend only on the source location $(\theta, \phi)$ and polarization angle of the gravitational wave $\psi$.  The time of arrival of the signal at the detector is denoted by $t_0$. For coalescing BBH systems in quasi-circular orbits, the measured strain $h(t)$ is therefore described by a set of \emph{intrinsic} parameters $\blambda = \{M_c, q\}$ and \emph{extrinsic} parameters  $\btheta := \{t_0, \iota, \varphi_0, d_L, \theta, \phi, \psi\}$ in GR. In addition to the parameters that describe signals in GR, we introduce a set of intrinsic parameters $\Delta \blambda$ and extrinsic parameters $\Delta \btheta$  which captures any possible departure from GR.  (The nature of these deviation parameters is outlined in Section \ref{2b} while details are given in Section \ref{sec3} and Section \ref{sec4}). The deviation parameters $\Delta \blambda$ ($\Delta \btheta$) describes difference between the intrinsic (extrinsic) parameters used to generate the dominant and sub-dominant modes or the `plus' and `cross' polarizations. The combined set of parameters in our waveform model thus becomes $\bxi = \{\blambda, \btheta, \Delta \blambda\}$ (first \& third tests in Section \ref{2b}) or $\bxi = \{\blambda, \btheta, \Delta \btheta\}$ (second \& fourth tests in Section \ref{2b}). 
+
+We assume that the data $d^I(t) = n^I(t) + h^I(t;\xi)$ in each detector consist of noise and, occasionally, a GW signal $h(t;\xi)$, described by a set of parameters $\xi$. The noise is further assumed to be described by a stationary Gaussian random process of zero mean and a power spectrum density $S_n(f)$. Given data $d(t)$, we compute the posterior probability distribution of the combined set of parameters ${\bxi}$ using the Bayes theorem: 
 \begin{equation}
 P({\bxi} \, | \, d, H) = \frac{P({\bxi} \, | \, H) \, P (d \, | \, {\bxi}, H)}{P(d \, | \, H)}.
 \label{eq:Bayes_theorem}

@@ -143,11 +143,11 @@ where {H.O.M} indicates sum over higher order modes (all modes other than $\ell 
 \paragraph{Formulation 2:}
 	We modify the amplitudes of the higher modes and rewrite Eq.~(\ref{eq:spherical_harmonics}) as
 	\begin{eqnarray}
-	{\h}(t; \n, \blambda, c_{\ell m}) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
-	& + & \frac{(1+{c_{\ell m}})}{d_L} \sum _{\text{H.O.M}} \Ylm (\n) \hlm(t, \blambda),
+	{\h}(t; \n, \blambda, c_{\ell m}) & = & \frac{1}{d_L} \left[ \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda)  \right. \nonumber \\ 
+	& + & \left. \sum _{\text{H.O.M}} (1+{c_{\ell m}}) \, \Ylm (\n) \hlm(t, \blambda), \right] 
 	\label{eq:test_2}
 	\end{eqnarray}
-	where $c_{\ell m}$ is the deviation parameter and could be different for different higher order modes (details in Section \ref{sec:simulationsb}). 
+	where $c_{\ell m}$ is the deviation parameter and could be different for different higher order modes. We consident different combinations of ${c_{\ell m}}$ (details in Section \ref{sec:simulationsb}). 
 	
 % 	\item We include a deviation parameter $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the `cross' polarization of the GW radiation allowing a departure from GR (details in Section \ref{sec4a}):
 % 	\begin{eqnarray} 
@@ -209,8 +209,9 @@ We assume the chirp mass $M_c \in [1,200] M_\odot$ and mass ratio $q \in [0.05,1
 \section{Simulations and results}
 \label{sec:simulations}
 
-We now elaborate on the two tests of GR presented in Section \ref{2b}, based on checking the consistency between different spherical harmonic modes of the observed signal, and present results from simulated GR observations. Our strategy, developed below, is to introduce extra parameters in the higher order modes of radiation, both intrinsic and extrinsic, that describe inconsistency between different modes, and to constrain them using a Bayesian framework. 
+We now elaborate on the two formulations of the tests of GR presented in Section \ref{2b} and present results from simulated GR observations. Our strategy, as described earlier, is to introduce extra parameters in the higher order modes of radiation --- parameters describing inconsistency between different modes --- and to constrain them using a Bayesian framework. 
 
+\subsection{Formulation 1:}
 The first test we consider the formulation proposed in Eq.~\eqref{eq:test_1}. This follows the outline presented in ~\cite{dhanpal2018} to check for the consistency of intrinsic parameters $\blambda := \{M_c, q\}$ estimated from the dominant mode and the higher order modes. According to this, we would estimate the chirp mass and asymmetric mas ratio of the BBH from the leading quadrapolar mode of the observed signal. Independently, we would estimate them from the higher order modes. In GR, these two estimates of $M_c$ and $q$ should match and hence we expect the posterior distribution of $\Delta \blambda $ to be consistent with zero. While ~\cite{dhanpal2018} focuses on one performing this test with only one Advanced LIGO detector, we study the performance of this test in the case of the three detector Advanced LIGO-Virgo network. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -234,9 +235,10 @@ In Fig.~\ref{fig:hm_mcq_compare-1det_3det_GR_inj} we show that, as expected, the
 		%\caption{\emph{Middle panel}: the thick (thin) contours show the 50\% (90\%) credible regions in the joint posteriors of two parameters $\Delta M_c$ and $\Delta q$ that describe deviations in the estimated parameters using the quadrupole and non-quadrupole modes, estimated from a simulated GR signal. Solid black lines indicates the joint posterior obtained by network of three detectors in Advanced LIGO-Virgo setup, while dashed cyan lines show the  joint posterior obtained with only one Advanced LIGO detector. \emph{Side panels}: Black histograms show the 2-dimensional marginalized posteriors in $\Delta M_c$ and $\Delta q$, while the cyan histograms show the 1-dimensional posteriors in $\Delta M_c$ and $\Delta q$ estimated from the data by introducing only one deviation parameter (say, $\Delta M_c$) at a time, keeping the other fixed (say, $\Delta q = 0$). The posteriors are fully consistent with the GR prediction of $\Delta M_c = \Delta q = 0$ (shown by a ``+'' sign in the center panel and by thin black lines in side panels).  Solid lines indicates the posterior recovered by network of three detectors in Advanced LIGO-Virgo setup and dashed lines implies the posterior obtained with only one Advanced LIGO detector. The simulated GR signal corresponds to a binary with total mass $M = {80}M_\odot$ and mass ratio $q = 1/9$ and an inclination angle $\iota = {60^\circ}$ observed either by one Advanced LIGO detector or network of LIGO-Virgo detectors with an optimal SNR of 25. }
 		\label{fig:hm_mcq_compare-1det_3det_GR_inj}
 	\end{center} \end{figure}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  Figures~\ref{fig:delmc_delq_varyingM} and \ref{fig:delmc_delq_varyingq} show the 90\% credible intervals of the posteriors of the deviation parameters for binaries with varying masses, mass ratios and inclination angles, estimated using the three detector network. In all cases, we set the network SNR to be {25}. Note that only one deviation parameter ($\Delta M_c$ or $\Delta q$) is varied at a time.  We find that binaries with large mass ratios ($q < 1/ 2$) and inclination angles ($\iota > 60 ^\circ $) will allow precision tests of the GR predictions, reaching statistical uncertainties of $< 10^{-3}$ for $\Delta q$ and $< 10^{-2}$ for the dimensionless deviation parameter $\Delta M_c/M_c$. Our results are found to be consistent with the one detector analysis done in ~\cite{dhanpal2018}. We, however, notice that the 90\% interval for both the deviation parameters, in three detector analysis, decreases slightly (i.e., precision improved) as compared to the one detector case.
  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \begin{figure}[tbh]
  	\begin{center}
  		\includegraphics[scale=0.8]{figs/hm_9dim_dmcbymcinj_dq_diff_M.pdf}
@@ -252,48 +254,54 @@ In Fig.~\ref{fig:hm_mcq_compare-1det_3det_GR_inj} we show that, as expected, the
  	\caption{Same as Fig.~\ref{fig:delmc_delq_varyingM}, except that the horizontal axis reports the mass ratio $q$. All binaries correspond to a total mass $40M_{\odot}$.}
  	\label{fig:delmc_delq_varyingq}
  \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
-\subsection{Consistency between the amplitude and phase from different modes}
-\label{sec:simulationsb}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-While one can estimate the intrinsic parameters (chirp mass and mass ratio of the BBH) from the quadrapolar mode and the higher order modes independently and formulate an efficient test of GR, that is not the only way to do so. Another interesting parameterized test of GR with using multipolar structure of the waveform would involve introducing generic possible deviation parameters in the amplitudes of the higher order modes. We consider three different  ways to formulate such tests:
+\subsection{Formulation 2:}
 
- \begin{enumerate}
- 	\item We split the contributions from the dominant $(\ell = 2, m = \pm 2)$ mode of gravitational radiation, and the higher order modes in Eq.~(\ref{eq:spherical_harmonics}) and introduce a generic extrinsic deviation parameter $\Delta \btheta=\{c_1\}$ common for all the higher modes considered i.e. $(\ell = 2, m=\pm1)$, $(\ell = 3, m=\pm3)$, $(\ell = 4, m = \pm4)$.
- 	\begin{eqnarray}
- 	{\h}(t; n, \blambda, \Delta \btheta) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
- 	& + & \frac{(1+{c_1})}{d_L} \sum _{\text{H.O.M}} \Ylm (n) \hlm(t, \blambda),
- 	\label{eq:test_c1}
- 	\end{eqnarray}
- 	where  H.O.M represents the higher order modes, and $\blambda$ be the intrinsic parameters. 	
- 
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \begin{figure}[tbh]
- 	\begin{center}
- 		\includegraphics[scale=0.63]{figs/hist_c1_M_80_q_9_snr_25.pdf}
- 	\end{center} 
- 	\caption{The figure shows the posterior probability distribution of the deviation parameter $c_1$ estimated from the same simulated GR observation in \ref{fig:posterior_BBH_GR_inj}. Thin black lines shows the expected value in GR. The dotted lines mark the 90\% credible regions. }
- 	\label{fig:c1_hist}
- \end{figure}
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
- 	\item We then generalize the test by introducing a set of two different deviation parameter $\Delta \btheta=\{c_2, c_{34}\}$, where $c_2$ indicates the possible modification in the  $(\ell = 2, m=\pm1)$ mode and $c_{34}$ encodes a common deviation in $(\ell = 3, m=\pm3)$ and $(\ell = 4, m = \pm4)$ modes.
- 	\begin{eqnarray}
- 	{\h}(t; n, \blambda, \Delta \btheta) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
- 	& + & \frac{(1+{c_2})}{d_L} \sum_{m = \pm1} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda) \nonumber\\
- 	& + & \frac{(1+{c_{34}})}{d_L} \sum _{\text{33,44}} \Ylm (n) \hlm(t, \blambda),
- 	\label{eq:test_c2_c34}
- 	\end{eqnarray}
+Now we consider the formulation proposed in Eq.~\eqref{eq:test_2}, which involves introducing generic possible deviation parameters $c_{\ell m}$ in the amplitudes of the higher order modes. Indeed, the most general form of this test would treat all the $c_{\ell m}$ as free parameters. However, because of the correlation among these parameters and with some of the other parameters of the binary (such as the luminosity distance and inclination angle), this is likely to result in poor constraints on these parameters. Hence we consider different flavors of this test. 
 
-	
- 	\item In a futher generalization, we keep the amplitude of the quadrapole mode as well as the $(\ell = 2, m=\pm1)$ mode as predicted in GR and choose a set of two different deviation parameter $\Delta \btheta=\{c_3, c_{4}\}$ in the amplitudes of  $(\ell = 3, m=\pm3)$ mode and $(\ell = 4, m = \pm4)$ mode respectively.
- 	\begin{eqnarray}
- 	{\h}(t; n, \blambda, \Delta \btheta) & = & \frac{1}{d_L} \sum_{m = \pm2,\pm1} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
- 	& + & \frac{(1+{c_3})}{d_L} \sum_{m = \pm3} Y^{-2}_{3m} (n) {\h}_{3m}(t, \blambda) \nonumber\\
- 	& + & \frac{(1+{c_{4}})}{d_L} \sum _{m=\pm4} Y^{-2}_{4m} (n) {\h}_{4m}(t, \blambda),
- 	\label{eq:test_c3_c4}
- 	\end{eqnarray}
- \end{enumerate}
+\begin{enumerate}
+\item We set $c := c_{21} = c_{33 = 44}$ and estimate the posteriors of $c$ along with all other binary parameters present in the GR waveform.  
+\item We allow $c_{21}$ and $c_{3344} := c_{33 = 44} $ to vary and estimate the posteriors of $c_{21}$ and $c_{3344}$ along with all other binary parameters present in the GR waveform.  
+\item We fix $c_{21} = 0$ and vary $c_{33}$ and $c_{44}$, thus estimating the posteriors of $c_{33}$ and $c_{44}$. 
+\end{enumerate}
+
+%  \begin{enumerate}
+%  	\item We split the contributions from the dominant $(\ell = 2, m = \pm 2)$ mode of gravitational radiation, and the higher order modes in Eq.~(\ref{eq:spherical_harmonics}) and introduce a generic extrinsic deviation parameter $\Delta \btheta=\{c_1\}$ common for all the higher modes considered i.e. $(\ell = 2, m=\pm1)$, $(\ell = 3, m=\pm3)$, $(\ell = 4, m = \pm4)$.
+%  	\begin{eqnarray}
+%  	{\h}(t; n, \blambda, \Delta \btheta) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
+%  	& + & \frac{(1+{c_1})}{d_L} \sum _{\text{H.O.M}} \Ylm (n) \hlm(t, \blambda),
+%  	\label{eq:test_c1}
+%  	\end{eqnarray}
+%  	where  H.O.M represents the higher order modes, and $\blambda$ be the intrinsic parameters. 	
+%  
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  \begin{figure}[tbh]
+%  	\begin{center}
+%  		\includegraphics[scale=0.63]{figs/hist_c1_M_80_q_9_snr_25.pdf}
+%  	\end{center} 
+%  	\caption{The figure shows the posterior probability distribution of the deviation parameter $c_1$ estimated from the same simulated GR observation in \ref{fig:posterior_BBH_GR_inj}. Thin black lines shows the expected value in GR. The dotted lines mark the 90\% credible regions. }
+%  	\label{fig:c1_hist}
+%  \end{figure}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  
+%  	\item We then generalize the test by introducing a set of two different deviation parameter $\Delta \btheta=\{c_2, c_{34}\}$, where $c_2$ indicates the possible modification in the  $(\ell = 2, m=\pm1)$ mode and $c_{34}$ encodes a common deviation in $(\ell = 3, m=\pm3)$ and $(\ell = 4, m = \pm4)$ modes.
+%  	\begin{eqnarray}
+%  	{\h}(t; n, \blambda, \Delta \btheta) & = & \frac{1}{d_L} \sum_{m = \pm2} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
+%  	& + & \frac{(1+{c_2})}{d_L} \sum_{m = \pm1} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda) \nonumber\\
+%  	& + & \frac{(1+{c_{34}})}{d_L} \sum _{\text{33,44}} \Ylm (n) \hlm(t, \blambda),
+%  	\label{eq:test_c2_c34}
+%  	\end{eqnarray}
+% 
+% 	
+%  	\item In a futher generalization, we keep the amplitude of the quadrapole mode as well as the $(\ell = 2, m=\pm1)$ mode as predicted in GR and choose a set of two different deviation parameter $\Delta \btheta=\{c_3, c_{4}\}$ in the amplitudes of  $(\ell = 3, m=\pm3)$ mode and $(\ell = 4, m = \pm4)$ mode respectively.
+%  	\begin{eqnarray}
+%  	{\h}(t; n, \blambda, \Delta \btheta) & = & \frac{1}{d_L} \sum_{m = \pm2,\pm1} Y^{-2}_{2m} (n) {\h}_{2m}(t, \blambda)  \nonumber \\ 
+%  	& + & \frac{(1+{c_3})}{d_L} \sum_{m = \pm3} Y^{-2}_{3m} (n) {\h}_{3m}(t, \blambda) \nonumber\\
+%  	& + & \frac{(1+{c_{4}})}{d_L} \sum _{m=\pm4} Y^{-2}_{4m} (n) {\h}_{4m}(t, \blambda),
+%  	\label{eq:test_c3_c4}
+%  	\end{eqnarray}
+%  \end{enumerate}
 
 The set of deviation parameters $\Delta \btheta=\{c_1\}$, $\Delta \btheta=\{c_2, c_{34}\}$ and $\Delta \btheta=\{c_3, c_{4}\}$ encodes possible departure from  GR. If there is no evidence of GR to be violated, all these deviation parameters would be consistent with zero. On the other hand, if GR is wrong, the posterior of these parameters $\Delta \btheta$, estimated from observations, would show a discrepancy with the expected value i.e. $\Delta \btheta=0$. In Fig. \ref{fig:c1_hist}, we show an example of posterior distribution of $c_1$ from a simulated GR event with SNR 25, for a binary with total mass $M = 80M_{\odot}$, mass ratio $q=1/9$ and inclination angle $ {\iota}=60^{\circ} $.  We see that the posterior distribution are consistent with zero. Figure \ref{fig:constraint_c1} shows the 90\% credible interval for $c_1$.  The posterior probability densities of $\Delta \btheta=\{c_2, c_{34}\}$ and $\Delta \btheta=\{c_3, c_{4}\}$ estimated from the same simulated GR event (shown in Fig. \ref{fig:c2_c34} and \ref{fig:c3_c4}) are also found to be consistent with zero. We now estimate the expected constraints on these deviation parameters by injecting simulated GR waveforms. The constraints on $\btheta=\{c_2, c_{34}\}$ and $\Delta \btheta=\{c_3, c_{4}\}$ calculated from GR events are presented in Fig. \ref{fig:bounds_c2}, Fig. \ref{fig:bounds_c34}, Fig. \ref{fig:bounds_c3} and Fig. \ref{fig:bounds_c4}.
 
@@ -464,7 +472,6 @@ We then proceed to formulate two consistency tests of GR using the two different
 
 All bounds on the generalized deviation parameters reported in this paper have been obtained by performing the respective tests with only one simulated events. The constraints could be improved by performing the tests with combined set of simulated events.  
 \newpage
-\bibliographystyle{apsrev-nourl}
 \bibliography{TestGR.bib}
 
 \end{document}

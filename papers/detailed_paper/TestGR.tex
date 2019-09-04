@@ -30,6 +30,7 @@
 \newcommand{\ajith}[1]{\textcolor{red}{\textit{Ajith:#1}}}
 \newcommand{\checkthis}{\textcolor{magenta}{(CHECKTHIS)}}
 \newcommand{\vijay}[1]{\textcolor{cyan}{Vijay: #1}}
+\newcommand{\tousif}[1]{\textcolor{blue}{Tousif: #1}}
 \newcommand{\io}{\iota}
 \newcommand{\p}{\phi}
 \newcommand{\vp}{\varphi}
@@ -226,7 +227,7 @@ We consider two different ways to perform the test. First, we introduce \emph{on
 
 In Fig.~\ref{fig:hm_mcq_compare-1det_3det_GR_inj} we show that, as expected, the width of the posteriors of the deviation parameters become smaller (i.e., improved precision) when we perform the test with a network of three Advanced LIGO-Virgo detectors instead of using only one Advanced LIGO detector (for the same SNR). However, for a fixed SNR, the improvements in the precision is small (facor of $\sim ~\red{X}$), due to the fact that the improved information (e.g., sky localization) is not highly correlated with the intrinsic parameters $M_c, q$ nor the deviation parameters $\Delta M_c, q$. %A key difference between the one detector analysis in ~\cite{dhanpal2018} and the three detector analysis of this paper is that we now have three different times of arrival $\{ t_{0,H}, t_{0,L}, t_{0,V}\}$, compared to one in earlier case, that need to be sampled over. We instead choose to sample only the time of arrival of the signal at the center of earth and then compute $\{ t_{0,H}, t_{0,L}, t_{0,V}\}$ by adding a constant time delay between the geo-center and the respective detectors. 
 \ajith{What exactly are the parameters that are sampled? $t_0$ and $\theta$, $\phi$?}
- 
+ \tousif{$t_0$ and $\theta$, $\phi$, $\psi$ where $t_0$ is the time of arrival of the signal at the center of the earth. From there, $\{ t_{0,H}, t_{0,L}, t_{0,V}\}$ was computed.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htb] \begin{center}
@@ -336,7 +337,20 @@ The set of deviation parameters $\Delta \btheta=\{c_1\}$, $\Delta \btheta=\{c_2,
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.50]{figs/2d_c3_c4_M_80_q_9_SNR_50.pdf}
+	\end{center} 
+	\caption{The figure shows posterior probability distribution of the deviation parameters $c_2$, $c_3$ and $c_4$ for binaries with total mass $M=80$ $M_{\odot}$ and mass ratio $q=1/9$. The SNR of the signal is 50.}
+	\label{fig:constraint_c2_c3_c4}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 We observe that the constraints on the deviation parameters become narrower for binaries with large mass ratios ($q < 1/ 2$) and inclination angles ($\iota > 60 ^\circ $). We find that $c_1$ is better constrained than $\{c_2, c_{34}\}$ and $\{c_3, c_{4}\}$. However, the statistical uncertainties in $\Delta \btheta=\{c_1\}$, $\{c_2, c_{34}\}$ and $\{c_3, c_{4}\}$  are modest, reaching only $\sim$ $10^{-1}$. We note that the efficiency of these tests largely depends on the signal-to-noise distribution in the higher modes. These constraints could be significantly improved with third-generation ground/space based detectors as they will detect hundreds of signals with good SNR and, in turn, enhance the precision of parameter estimation. The low SNR in the higher modes has resulted prior railing for some of the sample chains of $\{c_2, c_{34}\}$ and $\{c_3, c_{4}\}$ during MCMC sampling for simulated GR events with binaries having smaller values of total mass, mass ratio and inclination angle. We find that such problems would not arise if the SNR in each of the higher order modes are reasonable high ($\sim 5$). Furthermore, the extrinsic deviation parameter $\Delta \btheta$, introduced in our tests, is slightly degenerate with the luminosity distance $d_L$. This degeneracy introduces some uncertainties in our estimation of bounds. 
+
+\tousif{One may also  allow all of the deviation parameters i.e. $c_{21}$, $c_{33}$ and $c_{44}$ to vary simultaneously and estimate their posterior. We show one example of the estimated posteriors of $c_{21}$, $c_{33}$ and $c_{44}$ in Fig \ref{fig:bounds_c2c34c3c4} for a binary with total mass $M=80$ $M_{\odot}$ and mass ratio $q=1/9$. The SNR of the signal is 50.}
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \begin{figure}[tbh]

@@ -131,7 +131,7 @@ To model the GR waveforms, we employ the recent phenomenological inspiral-merger
 
 We introduce the following kinds of deviations in our GR waveform model: 
 
-\paragraph{Formulation 1:}
+\paragraph{Formulation A:}
 	Following ~\cite{dhanpal2018}, we generalize the GR waveform model Eq.~(\ref{eq:spherical_harmonics}) by allowing inconsistency between the intrinsic parameters determining the dominant mode and the higher order modes by introducing a set of deviation $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the higher modes (details in Section \ref{sec:simulationsa}):
 	\begin{eqnarray}
 	\h(t; \n, \blambda, \Delta \blambda) & = &  \frac{1}{d_L} \left[ ~ \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda) \right. \nonumber \\ 
@@ -140,7 +140,7 @@ We introduce the following kinds of deviations in our GR waveform model:
 	\end{eqnarray}
 where {H.O.M} indicates sum over higher order modes (all modes other than $\ell = 2, m = \pm 2$). 
 	
-\paragraph{Formulation 2:}
+\paragraph{Formulation B:}
 	We modify the amplitudes of the higher modes and rewrite Eq.~(\ref{eq:spherical_harmonics}) as
 	\begin{eqnarray}
 	{\h}(t; \n, \blambda, c_{\ell m}) & = & \frac{1}{d_L} \left[ \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda)  \right. \nonumber \\ 
@@ -211,9 +211,6 @@ We assume the chirp mass $M_c \in [1,200] M_\odot$ and mass ratio $q \in [0.05,1
 
 We now elaborate on the two formulations of the tests of GR presented in Section \ref{2b} and present results from simulated GR observations. Our strategy, as described earlier, is to introduce extra parameters in the higher order modes of radiation --- parameters describing inconsistency between different modes --- and to constrain them using a Bayesian framework. 
 
-\subsection{Formulation 1:}
-The first test we consider the formulation proposed in Eq.~\eqref{eq:test_1}. This follows the outline presented in ~\cite{dhanpal2018} to check for the consistency of intrinsic parameters $\blambda := \{M_c, q\}$ estimated from the dominant mode and the higher order modes. According to this, we would estimate the chirp mass and asymmetric mas ratio of the BBH from the leading quadrapolar mode of the observed signal. Independently, we would estimate them from the higher order modes. In GR, these two estimates of $M_c$ and $q$ should match and hence we expect the posterior distribution of $\Delta \blambda $ to be consistent with zero. While ~\cite{dhanpal2018} focuses on one performing this test with only one Advanced LIGO detector, we study the performance of this test in the case of the three detector Advanced LIGO-Virgo network. 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htb] \begin{center}
 		\includegraphics[width=3.4in]{figs/hm_mcq_GR.pdf}
@@ -222,22 +219,14 @@ The first test we consider the formulation proposed in Eq.~\eqref{eq:test_1}. Th
 \end{center} \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We consider two different ways to perform the test. First, we introduce \emph{one} deviation parameter at a time. That is, $\Delta\blambda = {\Delta M_c}$ or $\Delta\blambda = {\Delta q}$. We then consider introducing a concurrent deviation in \emph{two} parameters $\Delta \blambda = \{\Delta M_c, \Delta q\}$. In Fig.~\ref{fig:posterior_BBH_GR_inj}, we show the results of the tests performed with GR waveform by varying either one parameter or two parameters, for a binary with total mass $M = 80M_{\odot}$, mass ratio $q=1/9$, inclination angle $ {\iota}=60^{\circ} $ producing a network signal-to-noise ratio  (SNR)  of 25 (SNR in higher modes is $\sim 10$). SNRs in individual detectors are: 15 in Advanced LIGO-Hanford, 18.9 in Advanced LIGO-Livingston and 6.7 in Virgo. The posterior probability density for both the parameters $\Delta q$ and $\Delta M_c$ are consistent with zero as one expect in GR. Furthermore, the deviation parameters are found to be better constrained when only one deviation parameter is allowed to vary at a time (either $\Delta M_c$ or $\Delta q$). This suggests that a consistency test with only one deviation parameter in the higher modes would allow a more efficient test. In the subsequent analysis, we therefore focus on varying only one deviation parameter at a time. 
-
-In Fig.~\ref{fig:hm_mcq_compare-1det_3det_GR_inj} we show that, as expected, the width of the posteriors of the deviation parameters become smaller (i.e., improved precision) when we perform the test with a network of three Advanced LIGO-Virgo detectors instead of using only one Advanced LIGO detector (for the same SNR). However, for a fixed SNR, the improvements in the precision is small (facor of $\sim ~\red{X}$), due to the fact that the improved information (e.g., sky localization) is not highly correlated with the intrinsic parameters $M_c, q$ nor the deviation parameters $\Delta M_c, q$. %A key difference between the one detector analysis in ~\cite{dhanpal2018} and the three detector analysis of this paper is that we now have three different times of arrival $\{ t_{0,H}, t_{0,L}, t_{0,V}\}$, compared to one in earlier case, that need to be sampled over. We instead choose to sample only the time of arrival of the signal at the center of earth and then compute $\{ t_{0,H}, t_{0,L}, t_{0,V}\}$ by adding a constant time delay between the geo-center and the respective detectors. 
-\ajith{What exactly are the parameters that are sampled? $t_0$ and $\theta$, $\phi$?}
- 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htb] \begin{center}
 		\includegraphics[width=3.4in]{figs/hm_mcq_1det_3det_compare_GR.pdf}
 		\caption{Same as Fig.~\ref{fig:posterior_BBH_GR_inj} except that the dashed traces show the posteriors estimated using a single Advanced LIGO detector with SNR of 25. It can be seen that, as expected, posteriors from the three detector observation are tighter.}
-		%\caption{\emph{Middle panel}: the thick (thin) contours show the 50\% (90\%) credible regions in the joint posteriors of two parameters $\Delta M_c$ and $\Delta q$ that describe deviations in the estimated parameters using the quadrupole and non-quadrupole modes, estimated from a simulated GR signal. Solid black lines indicates the joint posterior obtained by network of three detectors in Advanced LIGO-Virgo setup, while dashed cyan lines show the  joint posterior obtained with only one Advanced LIGO detector. \emph{Side panels}: Black histograms show the 2-dimensional marginalized posteriors in $\Delta M_c$ and $\Delta q$, while the cyan histograms show the 1-dimensional posteriors in $\Delta M_c$ and $\Delta q$ estimated from the data by introducing only one deviation parameter (say, $\Delta M_c$) at a time, keeping the other fixed (say, $\Delta q = 0$). The posteriors are fully consistent with the GR prediction of $\Delta M_c = \Delta q = 0$ (shown by a ``+'' sign in the center panel and by thin black lines in side panels).  Solid lines indicates the posterior recovered by network of three detectors in Advanced LIGO-Virgo setup and dashed lines implies the posterior obtained with only one Advanced LIGO detector. The simulated GR signal corresponds to a binary with total mass $M = {80}M_\odot$ and mass ratio $q = 1/9$ and an inclination angle $\iota = {60^\circ}$ observed either by one Advanced LIGO detector or network of LIGO-Virgo detectors with an optimal SNR of 25. }
 		\label{fig:hm_mcq_compare-1det_3det_GR_inj}
 	\end{center} \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- Figures~\ref{fig:delmc_delq_varyingM} and \ref{fig:delmc_delq_varyingq} show the 90\% credible intervals of the posteriors of the deviation parameters for binaries with varying masses, mass ratios and inclination angles, estimated using the three detector network. In all cases, we set the network SNR to be {25}. Note that only one deviation parameter ($\Delta M_c$ or $\Delta q$) is varied at a time.  We find that binaries with large mass ratios ($q < 1/ 2$) and inclination angles ($\iota > 60 ^\circ $) will allow precision tests of the GR predictions, reaching statistical uncertainties of $< 10^{-3}$ for $\Delta q$ and $< 10^{-2}$ for the dimensionless deviation parameter $\Delta M_c/M_c$. Our results are found to be consistent with the one detector analysis done in ~\cite{dhanpal2018}. We, however, notice that the 90\% interval for both the deviation parameters, in three detector analysis, decreases slightly (i.e., precision improved) as compared to the one detector case.
- 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \begin{figure}[tbh]
  	\begin{center}
@@ -256,13 +245,58 @@ In Fig.~\ref{fig:hm_mcq_compare-1det_3det_GR_inj} we show that, as expected, the
  \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Formulation 2:}
+\subsection{Formulation A:}
+The first test we consider the formulation proposed in Eq.~\eqref{eq:test_1}. This follows the outline presented in ~\cite{dhanpal2018} to check for the consistency of intrinsic parameters $\blambda := \{M_c, q\}$ estimated from the dominant mode and the higher order modes. According to this, we would estimate the chirp mass and asymmetric mas ratio of the BBH from the leading quadrapolar mode of the observed signal. Independently, we would estimate them from the higher order modes. In GR, these two estimates of $M_c$ and $q$ should match and hence we expect the posterior distribution of $\Delta \blambda $ to be consistent with zero. While ~\cite{dhanpal2018} focuses on one performing this test with only one Advanced LIGO detector, we study the performance of this test in the case of the three detector Advanced LIGO-Virgo network. 
+
+We consider two different ways to perform the test. First, we introduce \emph{one} deviation parameter at a time. That is, $\Delta\blambda = {\Delta M_c}$ or $\Delta\blambda = {\Delta q}$. We then consider introducing a concurrent deviation in \emph{two} parameters $\Delta \blambda = \{\Delta M_c, \Delta q\}$. In Fig.~\ref{fig:posterior_BBH_GR_inj}, we show the results of the tests performed with GR waveform by varying either one parameter or two parameters, for a binary with total mass $M = 80M_{\odot}$, mass ratio $q=1/9$, inclination angle $ {\iota}=60^{\circ} $ producing a network signal-to-noise ratio  (SNR)  of 25 (SNR in higher modes is $\sim 10$). SNRs in individual detectors are: 15 in Advanced LIGO-Hanford, 18.9 in Advanced LIGO-Livingston and 6.7 in Virgo. The posterior probability density for both the parameters $\Delta q$ and $\Delta M_c$ are consistent with zero as one expect in GR. Furthermore, the deviation parameters are found to be better constrained when only one deviation parameter is allowed to vary at a time (either $\Delta M_c$ or $\Delta q$). This suggests that a consistency test with only one deviation parameter in the higher modes would allow a more efficient test. In the subsequent analysis, we therefore focus on varying only one deviation parameter at a time. 
+
+In Fig.~\ref{fig:hm_mcq_compare-1det_3det_GR_inj} we show that, as expected, the width of the posteriors of the deviation parameters become smaller (i.e., improved precision) when we perform the test with a network of three Advanced LIGO-Virgo detectors instead of using only one Advanced LIGO detector (for the same SNR). However, for a fixed SNR, the improvements in the precision is small (facor of $\sim ~\red{X}$), due to the fact that the improved information (e.g., sky localization) is not highly correlated with the intrinsic parameters $M_c, q$ nor the deviation parameters $\Delta M_c, q$. %A key difference between the one detector analysis in ~\cite{dhanpal2018} and the three detector analysis of this paper is that we now have three different times of arrival $\{ t_{0,H}, t_{0,L}, t_{0,V}\}$, compared to one in earlier case, that need to be sampled over. We instead choose to sample only the time of arrival of the signal at the center of earth and then compute $\{ t_{0,H}, t_{0,L}, t_{0,V}\}$ by adding a constant time delay between the geo-center and the respective detectors. 
+\ajith{What exactly are the parameters that are sampled? $t_0$ and $\theta$, $\phi$?}
+
+ Figures~\ref{fig:delmc_delq_varyingM} and \ref{fig:delmc_delq_varyingq} show the 90\% credible intervals of the posteriors of the deviation parameters for binaries with varying masses, mass ratios and inclination angles, estimated using the three detector network. In all cases, we set the network SNR to be {25}. Note that only one deviation parameter ($\Delta M_c$ or $\Delta q$) is varied at a time.  We find that binaries with large mass ratios ($q < 1/ 2$) and inclination angles ($\iota > 60 ^\circ $) will allow precision tests of the GR predictions, reaching statistical uncertainties of $< 10^{-3}$ for $\Delta q$ and $< 10^{-2}$ for the dimensionless deviation parameter $\Delta M_c/M_c$. Our results are found to be consistent with the one detector analysis done in ~\cite{dhanpal2018}. We, however, notice that the 90\% interval for both the deviation parameters, in three detector analysis, decreases slightly (i.e., precision improved) as compared to the one detector case.
+ 
+\subsection{Formulation B:}
+\label{sec:formulationB}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  \begin{figure}[tbh]
+%  	\begin{center}
+%  		\includegraphics[scale=0.63]{figs/hist_c1_M_80_q_9_snr_25.pdf}
+%  	\end{center} 
+%  	\caption{The figure shows the posterior probability distribution of the deviation parameter $c$ estimated from the same simulated GR observation in Fig.~\ref{fig:posterior_BBH_GR_inj} (version 1 of the test described in Sec.~\ref{sec:formulationB}). Thin black lines shows the expected value in GR. The dotted lines mark the 90\% credible regions. \ajith{The difference between dashed and dotted lines not clear. Pl make the black vertical line solid. Also pl change the variable name from $c_1$ to $c$ in the plot}}
+%  	\label{fig:c1_hist}
+%  \end{figure}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[htb]
+	\centering
+ 		\includegraphics[height=2.1in]{figs/hist_c1_M_80_q_9_snr_25.pdf}
+		\includegraphics[height=2.4in]{figs/c2_c34_M_80_q_9_SNR_25.pdf}
+		\includegraphics[height=2.4in]{figs/c3_c4_M_80_q_9_SNR_25.pdf}
+		\label{fig:formulation_2_posteriors}
+ 	\caption{\emph{Left:} The posterior probability distribution of the deviation parameter $c$ estimated from the same simulated GR observation in Fig.~\ref{fig:posterior_BBH_GR_inj} (version 1 of the test described in Sec.~\ref{sec:formulationB}). Thin black lines shows the expected value in GR. The dotted lines mark the 90\% credible regions. \emph{Middle:} Posteriors on $c_{21}$ and $c_{3344}$ from the same simulated observation (versoin 2 of the test). \emph{Right:} Posteriors on $c_{33}$ and $c_{44}$ from the same simulated observation (versoin 3 of the test). \ajith{In the left plot, the difference between dashed and dotted lines not clear. Pl make the black vertical line solid. Use black only in the left plot to make it consistent with the 1D posteriors from the middle and right plots. Also pl change the variable names to $c$, $c_{21}$, $c_{3344}$, etc.}}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.85]{figs/90_percent_CI_c1.pdf}
+	\end{center} 
+	\caption{The width of 90\% credible regions of the posteriors of $c$ for binaries with different total mass $M$ (upper panel) and mass ratio $q$ (lower panel) and inclination angle $\iota$ (legends). All binaries considered in the upper panel have a mass ratio $q=1/9$. Binaries considered in the lower panel have total mass of $40M_{\odot}$. All the simulated observations produce a network SNR of 25 in Advanced LIGO-Virgo network.}
+	\label{fig:constraint_c1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 Now we consider the formulation proposed in Eq.~\eqref{eq:test_2}, which involves introducing generic possible deviation parameters $c_{\ell m}$ in the amplitudes of the higher order modes. Indeed, the most general form of this test would treat all the $c_{\ell m}$ as free parameters. However, because of the correlation among these parameters and with some of the other parameters of the binary (such as the luminosity distance and inclination angle), this is likely to result in poor constraints on these parameters. Hence we consider different flavors of this test. 
 
 \begin{enumerate}
-\item We set $c := c_{21} = c_{33 = 44}$ and estimate the posteriors of $c$ along with all other binary parameters present in the GR waveform.  
-\item We allow $c_{21}$ and $c_{3344} := c_{33 = 44} $ to vary and estimate the posteriors of $c_{21}$ and $c_{3344}$ along with all other binary parameters present in the GR waveform.  
+\item We set $c := c_{21} = c_{33} = c_{44}$ and estimate the posteriors of $c$ along with all other binary parameters present in the GR waveform.  
+\item We allow $c_{21}$ and $c_{3344} := c_{33} = c_{44} $ to vary and estimate the posteriors of $c_{21}$ and $c_{3344}$ along with all other binary parameters present in the GR waveform.  
 \item We fix $c_{21} = 0$ and vary $c_{33}$ and $c_{44}$, thus estimating the posteriors of $c_{33}$ and $c_{44}$. 
 \end{enumerate}
 
@@ -275,15 +309,6 @@ Now we consider the formulation proposed in Eq.~\eqref{eq:test_2}, which involve
 %  	\end{eqnarray}
 %  	where  H.O.M represents the higher order modes, and $\blambda$ be the intrinsic parameters. 	
 %  
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  \begin{figure}[tbh]
-%  	\begin{center}
-%  		\includegraphics[scale=0.63]{figs/hist_c1_M_80_q_9_snr_25.pdf}
-%  	\end{center} 
-%  	\caption{The figure shows the posterior probability distribution of the deviation parameter $c_1$ estimated from the same simulated GR observation in \ref{fig:posterior_BBH_GR_inj}. Thin black lines shows the expected value in GR. The dotted lines mark the 90\% credible regions. }
-%  	\label{fig:c1_hist}
-%  \end{figure}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  
 %  	\item We then generalize the test by introducing a set of two different deviation parameter $\Delta \btheta=\{c_2, c_{34}\}$, where $c_2$ indicates the possible modification in the  $(\ell = 2, m=\pm1)$ mode and $c_{34}$ encodes a common deviation in $(\ell = 3, m=\pm3)$ and $(\ell = 4, m = \pm4)$ modes.
 %  	\begin{eqnarray}
@@ -292,7 +317,6 @@ Now we consider the formulation proposed in Eq.~\eqref{eq:test_2}, which involve
 %  	& + & \frac{(1+{c_{34}})}{d_L} \sum _{\text{33,44}} \Ylm (n) \hlm(t, \blambda),
 %  	\label{eq:test_c2_c34}
 %  	\end{eqnarray}
-% 
 % 	
 %  	\item In a futher generalization, we keep the amplitude of the quadrapole mode as well as the $(\ell = 2, m=\pm1)$ mode as predicted in GR and choose a set of two different deviation parameter $\Delta \btheta=\{c_3, c_{4}\}$ in the amplitudes of  $(\ell = 3, m=\pm3)$ mode and $(\ell = 4, m = \pm4)$ mode respectively.
 %  	\begin{eqnarray}
@@ -303,18 +327,16 @@ Now we consider the formulation proposed in Eq.~\eqref{eq:test_2}, which involve
 %  	\end{eqnarray}
 %  \end{enumerate}
 
-The set of deviation parameters $\Delta \btheta=\{c_1\}$, $\Delta \btheta=\{c_2, c_{34}\}$ and $\Delta \btheta=\{c_3, c_{4}\}$ encodes possible departure from  GR. If there is no evidence of GR to be violated, all these deviation parameters would be consistent with zero. On the other hand, if GR is wrong, the posterior of these parameters $\Delta \btheta$, estimated from observations, would show a discrepancy with the expected value i.e. $\Delta \btheta=0$. In Fig. \ref{fig:c1_hist}, we show an example of posterior distribution of $c_1$ from a simulated GR event with SNR 25, for a binary with total mass $M = 80M_{\odot}$, mass ratio $q=1/9$ and inclination angle $ {\iota}=60^{\circ} $.  We see that the posterior distribution are consistent with zero. Figure \ref{fig:constraint_c1} shows the 90\% credible interval for $c_1$.  The posterior probability densities of $\Delta \btheta=\{c_2, c_{34}\}$ and $\Delta \btheta=\{c_3, c_{4}\}$ estimated from the same simulated GR event (shown in Fig. \ref{fig:c2_c34} and \ref{fig:c3_c4}) are also found to be consistent with zero. We now estimate the expected constraints on these deviation parameters by injecting simulated GR waveforms. The constraints on $\btheta=\{c_2, c_{34}\}$ and $\Delta \btheta=\{c_3, c_{4}\}$ calculated from GR events are presented in Fig. \ref{fig:bounds_c2}, Fig. \ref{fig:bounds_c34}, Fig. \ref{fig:bounds_c3} and Fig. \ref{fig:bounds_c4}.
+%The set of deviation parameters $\Delta \btheta=\{c_1\}$, $\Delta \btheta=\{c_2, c_{34}\}$ and $\Delta \btheta=\{c_3, c_{4}\}$ encodes possible departure from  GR. If there is no evidence of GR to be violated, all these deviation parameters would be consistent with zero. On the other hand, if GR is wrong, the posterior of these parameters $\Delta \btheta$, estimated from observations, would show a discrepancy with the expected value i.e. $\Delta \btheta=0$. 
+
+In Fig.~\ref{fig:formulation_2_posteriors}, we show example posteriors of the deviation parameters obtained from a simulated binary black hole system (in GR) with  a total mass $M = 80M_{\odot}$, mass ratio $q=1/9$ and inclination angle $ {\iota}=60^{\circ} $, producing an SNR of 25 in the Advanced LIGO-Virgo network. The left plot shows the posterior of the deviation parameter $c$ (version 1 of the test), while the middle plot show the posteriors of $c_{21}$ and $c_{3344}$ (version 2 of the test) and the right panel shows the posteriors on $c_{33}$ and $c_{44}$  (versoin 3 of the test). We see that all the posterior distributions are consistent with zero. 
+
+Figure \ref{fig:constraint_c1} shows the width of the 90\% credible regions in the posterior of $c$ as a function of the total mass and mass ratio of the binary (producing network SNR of 25 in all cases).   
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[scale=0.85]{figs/90_percent_CI_c1.pdf}
-	\end{center} 
-	\caption{The figure shows the width of 90\% credible intervals of $c_1$ for binaries with different total mass $M$ (upper panel)and mass ratio $q$ (lower panel) and inclination angle $\iota$ (legends). All binaries considered in the upper panel have a mass ratio $q=1/9$. Binaries considered in the lower panel have total mass of $40M_{\odot}$. The SNR is set to be 25.  }
-	\label{fig:constraint_c1}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The posterior probability densities of $\Delta \btheta=\{c_2, c_{34}\}$ and $\Delta \btheta=\{c_3, c_{4}\}$ estimated from the same simulated GR event (shown in Fig. \ref{fig:c2_c34} and \ref{fig:c3_c4}) are also found to be consistent with zero. We now estimate the expected constraints on these deviation parameters by injecting simulated GR waveforms. The constraints on $\btheta=\{c_2, c_{34}\}$ and $\Delta \btheta=\{c_3, c_{4}\}$ calculated from GR events are presented in Fig. \ref{fig:bounds_c2}, Fig. \ref{fig:bounds_c34}, Fig. \ref{fig:bounds_c3} and Fig. \ref{fig:bounds_c4}.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}[htb]

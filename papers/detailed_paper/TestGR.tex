@@ -333,6 +333,20 @@ Now we consider the formulation proposed in Eq.~\eqref{eq:test_2}, which involve
 
 In Fig.~\ref{fig:test2posts}, we show example posteriors of the deviation parameters obtained from a simulated binary black hole system (in GR) with  a total mass $M = 80M_{\odot}$, mass ratio $q=1/9$ and inclination angle $ {\iota}=60^{\circ} $, producing an SNR of 25 in the Advanced LIGO-Virgo network. The left plot shows the posterior of the deviation parameter $c$ (version 1 of the test), while the middle plot show the posteriors of $c_{21}$ and $c_{3344}$ (version 2 of the test) and the right panel shows the posteriors on $c_{33}$ and $c_{44}$  (versoin 3 of the test). We see that all the posterior distributions are consistent with zero. 
 
+A more general version of these tests with amplitude correction in the higher modes would be to assume that the deviation parameters are complex in nature i.e. they have a magnitude as well as a phase component. To demonstrate such test, we replace the real amplitude correction $c$ (version 1 of the test) with a complex correction $\tilde{c} = |\tilde{c}| \, e^{\phi_c}$. Figure~\ref{fig:c1_complex} shows the posterior probability distribution of both the magnitude and phase of the deviation parameter $\tilde{c}$ from the same simulated GR event described in Fig.~\ref{fig:test2posts}. We find that though the absolute value of complex correction is well constrained, the phase remains uninformative. Hence for all the future tests we restrict to real valued deviation parameters. 
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{figure}[tbh]
+ 	\begin{center}
+ 		\includegraphics[scale=0.8]{figs/M_80_q_9_SNR_25_complex_c1.pdf}
+ 	\end{center} 
+ 	\caption{The figure shows the posterior probability distribution of the absolute value $|c_1|$and argument $\phi_c$ complex deviation parameter $\tilde{c_1}$ estimated from the simulated GR event. Details are same as in \ref{fig:posterior_BBH_GR_inj}.}
+ 	\label{fig:c1_complex}
+ \end{figure}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+
+
 Figure \ref{fig:constraint_c} shows the width of the 90\% credible regions in the posterior of $c$  (version 1 of the test) as a function of the total mass and mass ratio of the binary (producing network SNR of 25 in all cases). Figure~\ref{fig:constraint_c21_c3344} shows the the width of the 90\% credible regions in the posteriors of $c_{21}$ and  $c_{3344}$  (version 2 of the test) while Fig.~\ref{fig:constraint_c33_c44} shows the same for $c_{33}$ and  $c_{44}$  (version 3 of the test). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -356,28 +370,11 @@ Figure \ref{fig:constraint_c} shows the width of the 90\% credible regions in th
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We observe that the constraints on the deviation parameters become narrower for binaries with larger mass ratios and inclination angles. We find that $c$ is, in general, better constrained than $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$. However, the statistical uncertainties in $c_1$, $\{c_2, c_{34}\}$ and $\{c_3, c_{4}\}$ are modest, reaching only $\sim$ 1 (as opposed to the parameters discussed in Sec.~\ref{sec:formulationA}, which can be constrained to a precision of $\sim 10^{-2}$). The statistical precision of these tests largely depends on the signal-to-noise distribution in the higher modes. These constraints could be significantly improved with third-generation ground based detectors or space based detectors as they will detect hundreds of signals with good SNR and, in turn, enhance the precision of parameter estimation. The low SNR in the higher modes has resulted prior railing for some of the sample chains of $\{c_2, c_{34}\}$ and $\{c_3, c_{4}\}$ during MCMC sampling for simulated GR events with binaries having smaller values of total mass, mass ratio and inclination angle. We find that such problems would not arise if the SNR in each of the higher order modes are reasonable high ($\sim 5$). Furthermore, the extrinsic deviation parameter $\Delta \btheta$, introduced in our tests, is slightly degenerate with the luminosity distance $d_L$. This degeneracy introduces some uncertainties in our estimation of bounds. 
-
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \begin{figure}[tbh]
- 	\begin{center}
- 		\includegraphics[scale=0.8]{figs/M_80_q_9_SNR_25_complex_c1.pdf}
- 	\end{center} 
- 	\caption{The figure shows the posterior probability distribution of the absolute value $|c_1|$and argument $\phi_c$ complex deviation parameter $\tilde{c_1}$ estimated from the simulated GR event. Details are same as in \ref{fig:posterior_BBH_GR_inj}.}
- 	\label{fig:c1_complex}
- \end{figure}
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
-A more generalized version of these tests with amplitude correction in the higher modes would be to assume that the deviation parameters $\Delta \btheta$ are complex in nature i.e. they have an amplitude as well as a phase component. To demonstrate such test, we replace the real amplitude correction $c_1$ in Eq. \ref{eq:test_c1} with a complex correction $\tilde{c_1}=|c_1|e^{\phi_c}$. In Fig. \ref{fig:c1_complex}, we show the posterior probability distribution of both the amplitude and phase of the deviation parameter $\tilde{c_1}$. We also estimate the expected bounds on $\tilde{c_1}$ from simulated GR events. We find that though the absolute value of complex correction is well constrained, the phase remains uninformative. 
+We observe that the constraints on the deviation parameters become narrower for binaries with larger mass ratios and inclination angles. We find that $c$ is, in general, better constrained than $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$. However, the statistical uncertainties in $c_1$, $\{c_2, c_{34}\}$ and $\{c_3, c_{4}\}$ are modest, reaching only $\sim$ 1 (as opposed to the parameters discussed in Sec.~\ref{sec:formulationA}, which can be constrained to a precision of $\sim 10^{-2}$). The statistical precision of these tests largely depends on the signal-to-noise distribution in the higher modes. These constraints could be significantly improved with third-generation ground based detectors or space based detectors as they will detect hundreds of signals with good SNR and, in turn, enhance the precision of parameter estimation. The low SNR in the higher modes has resulted prior railing for some of the sample chains of $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$ during MCMC sampling for simulated GR events with binaries having smaller values of total mass, mass ratio and inclination angle
+\ajith{Is this true? If yes, this means that we cannot trust these results. Right? If this is the case, we should either rerun these with wider priors, or set the y-axis in Figs 7 and 8 in such a way that these results are beyond the range shown in these plots}. We find that such problems would not arise if the SNR in each of the higher order modes are reasonable high ($\sim 5$). Furthermore, the deviation parameter introduced in our tests, are highly correlated with the luminosity distance $d_L$. This degeneracy introduces some uncertainties in our estimation of bounds.\ajith{Why would it introduce uncertainty in the bounds? Do you mean to say that the statistical uncertainties are larger and the bounds are poorer?}
 
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
-\section{Consistency between polarizations}
-\label{sec4}
-While one can exploit the multipolar structure of the gravitational wave radiation from BBH to formulate efficient tests of GR by introducing intrinsic and extrinsic deviation parameters in the higher order modes, similar tests could be devised with the `two' polarization states of the waveform. We present two such tests in this section and discuss the feasibility of performing such tests with current and future GW observations.
- 
 \section{Discussions \& Conclusion}
 In this paper, we have proposed a set of four tests of GR using the multipolar structure and different polarization states of the gravitational radiation from a BBH. These tests are, in design, analogous to the `no-hair' tests of BBH with different quasi-normal modes of radiation. We introduced several parameterized deviation parameters in the set of intrinsic and extrinsic sets of parameters in GR and place a constraint on them using a Bayesian framework with simulated GR events.
 

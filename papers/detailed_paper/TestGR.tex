@@ -193,7 +193,7 @@ For stationary Gaussian noise with power spectral density $S_n(f)$, the likeliho
 \begin{equation}
 P (d \, | \, {\bxi}, H) = \text{exp}\left[ -\frac{1}{2}\int_{f_\mathrm{low}}^{f_\mathrm{high}} \frac{|\tilde{d}(f) - \tilde{h}(f;{\bxi}, H)|^2}{S_n(f)}df\right],
 \end{equation}
-where $\tilde{d}(f)$ and $\tilde{h}(f)$ are the Fourier transforms of $d(t)$ and $h(t)$, respectively. The sensitivity bandwidth of the detector defines the limits of the integration $f_\mathrm{low}$ and $f_\mathrm{high}$. 
+where $\tilde{d}(f)$ and $\tilde{h}(f)$ are the Fourier transforms of $d(t)$ and $h(t)$, respectively. The sensitivity bandwidth of the detector defines the limits of the integration $f_\mathrm{low}$ and $f_\mathrm{high}$. \ajith{Probably we could slightly expand this section by properly writing the likelihood in terms of inner products and so on. Abhirup, would you like to take this up?}
 
 In this work, we consider a network of three global detectors consists of two Advanced LIGO detectors, at Hanford (H) and Livingston (L), and the Virgo detector (V) at Pisa. Advanced LIGO is considered to be in its ``high-power, zero-detuning'' configuration~\cite{aLIGOZeroDetHighPower} whereas Virgo is assumed to have its design-sensitivity. Assuming that the noise is uncorrelated in each detector, the network likelihood for data obtained from three detectors can thus be written as the product of the likelihoods in each detector
 \begin{equation}
@@ -206,15 +206,8 @@ Using simulated GR events, we compute the marginalized posterior distribution of
 
 We assume the chirp mass $M_c \in [1,200] M_\odot$ and mass ratio $q \in [0.05,1.0]$ of BBH to have uniform distribution. The prior density function on the location of the source is  taken  to  be  isotropically  distributed  on  the  sphere of  the  sky,  with $P({dL} \, | \, H)=d_{L}^{2}$ with $d_L \in [1,10000]$ Mpc. Furthermore, we use an  isotropic  prior  on  the  orientation  of  the  binary: $P({\iota,\varphi_0,\psi} \, | \, H)=\sin\iota$ with $\iota \in [0,\pi]$, $\varphi \in [0,2\pi]$ and $\psi \in [0,\pi]$. For all other parameters in $\bxi$, we use uniform priors.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
-\section{Simulations and results}
-\label{sec:simulations}
-
-We now elaborate on the two formulations of the tests of GR presented in Section \ref{2b} and present results from simulated GR observations. Our strategy, as described earlier, is to introduce extra parameters in the higher order modes of radiation --- parameters describing inconsistency between different modes --- and to constrain them using a Bayesian framework. 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htb] \begin{center}
+\begin{figure}[tb] \begin{center}
 		\includegraphics[width=3.4in]{figs/hm_mcq_GR.pdf}
 		\caption{\emph{Middle panel}: the thick (thin) contours show the 50\% (90\%) credible regions in the joint posteriors of two parameters $\Delta M_c$ and $\Delta q$ that describe deviations in the estimated parameters using the quadrupole and non-quadrupole modes, estimated from a simulated GR signal [see Eq.~\eqref{eq:test_1} for the formulation]. \emph{Side panels}: Black histograms show the 1-dimesional posteriors in one deviation parameter (say, $\Delta M_c$) estimated from the joint posteriors, which is marginalized over the other (say, $\Delta q$). The cyan histograms show the 1-dimensional posteriors in $\Delta M_c$ and $\Delta q$ estimated from the data by introducing only one deviation parameter (say, $\Delta M_c$) at a time, keeping the other fixed (say, $\Delta q = 0$). The posteriors are fully consistent with the GR prediction of $\Delta M_c = \Delta q = 0$ (shown by a ``+'' sign in the center panel and by thin black lines in side panels). The dotted lines mark the 90\% credible regions. The simulated GR signal corresponds to a binary with total mass $M = {80}M_\odot$ and mass ratio $q = 1/9$ and an inclination angle $\iota = {60^\circ}$ observed by Advanced LIGO-Virgo detectors network with an optimal SNR of 25. SNR split in individual detectors are: 15 in LIGO-Hanford, 18.9 in LIGO-Livingston and 6.7 in Advanced Virgo.}
 		\label{fig:posterior_BBH_GR_inj}
@@ -222,7 +215,7 @@ We now elaborate on the two formulations of the tests of GR presented in Section
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htb] \begin{center}
+\begin{figure}[tb] \begin{center}
 		\includegraphics[width=3.4in]{figs/hm_mcq_1det_3det_compare_GR.pdf}
 		\caption{Same as Fig.~\ref{fig:posterior_BBH_GR_inj} except that the dashed traces show the posteriors estimated using a single Advanced LIGO detector with SNR of 25. It can be seen that, as expected, posteriors from the three detector observation are tighter.}
 		\label{fig:hm_mcq_compare-1det_3det_GR_inj}
@@ -246,6 +239,12 @@ We now elaborate on the two formulations of the tests of GR presented in Section
  	\label{fig:delmc_delq_varyingq}
  \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
+\section{Simulations and results}
+\label{sec:simulations}
+
+We now elaborate on the two formulations of the tests of GR presented in Section \ref{2b} and present results from simulated GR observations. Our strategy, as described earlier, is to introduce extra parameters in the higher order modes of radiation --- parameters describing inconsistency between different modes --- and to constrain them using a Bayesian framework. 
 
 \subsection{Formulation A:}
 \label{sec:formulationA}
@@ -375,14 +374,44 @@ Figure \ref{fig:constraint_c} shows the width of the 90\% credible regions in th
 We observe that the constraints on the deviation parameters become narrower for binaries with larger mass ratios and inclination angles. We find that $c$ is, in general, better constrained than $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$. However, the statistical uncertainties in $c_1$, $\{c_2, c_{34}\}$ and $\{c_3, c_{4}\}$ are modest, reaching only $\sim$ 1 (as opposed to the parameters discussed in Sec.~\ref{sec:formulationA}, which can be constrained to a precision of $\sim 10^{-2}$). The statistical precision of these tests largely depends on the signal-to-noise distribution in the higher modes. These constraints could be significantly improved with third-generation ground based detectors or space based detectors as they will detect hundreds of signals with good SNR and, in turn, enhance the precision of parameter estimation. The low SNR in the higher modes has resulted prior railing for some of the sample chains of $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$ during MCMC sampling for simulated GR events with binaries having smaller values of total mass, mass ratio and inclination angle
 \ajith{Is this true? If yes, this means that we cannot trust these results. Right? If this is the case, we should either rerun these with wider priors, or set the y-axis in Figs 7 and 8 in such a way that these results are beyond the range shown in these plots}. We find that such problems would not arise if the SNR in each of the higher order modes are reasonable high ($\sim 5$). Furthermore, the deviation parameter introduced in our tests, are highly correlated with the luminosity distance $d_L$. This degeneracy introduces some uncertainties in our estimation of bounds.\ajith{Why would it introduce uncertainty in the bounds? Do you mean to say that the statistical uncertainties are larger and the bounds are poorer?}
 
+\section{Simulations with deviations from binary black holes in GR}
 
+\ajith{We can present a more detailed version fo the results presented in Dhanpal et al. I suggest the following figures: 1) comparison of the NSBH/BBH waveforms (perhaps amplitude and frequency of different modes in time domain) 2) 3-detector version of Fig 4 of Dhanpal et al}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb] 
+\begin{center}
+\includegraphics[width=3.4in]{figs/BBH_NSBH_q6_amp.pdf}
+\includegraphics[width=3.4in]{figs/BBH_NSBH_q6_freq.pdf}
+\label{fig:bbh_nsbh_waveforms}
+\end{center} 
+\caption{Time domain amplitude and frequency of different modes of the BBH and rescaled NSBH waveforms.}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{Waveform systematics}
+
+In all the simulations presented in the previous section, we have assumed that binary black holes have negligible spin angular momenta. While most of the binary black hole events detected by LIGO and Virgo do not appear to have significant spins~\cite{GWTC1}, black holes in binaries, in general, could be spinning. When non-spinning waveform templates are employed to perform the consistency test on GW observations of spinning binaries, the incomplete modeling of the templates can manifest as a deviation from GR. Here we make a first estimate of the effect of neglecting black hole spins in this test by performing the same analysis on simulated spinning binary black hole observations. We simulate spinning binary black hole observations making use of the numerical-relativity surrogate waveform family developed in~\cite{Varma2019} and perform the consistency test using the same non-spinning waveform family~\cite{Mehta} as the base GR waveform over which modifications are applied. 
+
+Figure~\ref{fig:posterior_spin} shows the posteriors in the deviation parameters $\Delta M_c/M_c$ and $\Delta q$ introduced in \eqref{eq:test_1} estimated from simulated binary black hole events with different values of spin. The consistency test is always performed using the non-spinning phenomenological waveform family~\cite{Mehta} as the base GR waveform. The effective spin $\chi_\mathrm{eff} = m_1 \chi_1 + m_2 \chi_2)/(m_1+m_2)$ of the simulated (target) waveforms is shown in the legends. It can be seen that, posteriors estimated from weakly spinning simulated waveforms are largely consistent with the GR values ($\Delta M_c = \Delta q = 0)$ while GW signals with significant spins ($\chi_\mathrm{eff} \gtrsim X)$ produce posteriors that are inconsistent with the GR value. Thus, it is important to model the spin effects in the templates for binaries with considerable spins. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb] 
+\begin{center}
+\includegraphics[width=3.4in]{figs/cartoon_plot.pdf}
+\label{fig:posterior_spin}
+\end{center} 
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Discussions \& Conclusion}
-In this paper, we have proposed a set of four tests of GR using the multipolar structure and different polarization states of the gravitational radiation from a BBH. These tests are, in design, analogous to the `no-hair' tests of BBH with different quasi-normal modes of radiation. We introduced several parameterized deviation parameters in the set of intrinsic and extrinsic sets of parameters in GR and place a constraint on them using a Bayesian framework with simulated GR events.
+In this paper, we have proposed a set of tests of the ``no-hair'' nature of binary black holes in GR based on a consistency test of the multipolar structure of the gravitational radiation. These tests are analogous to the tests of ``no-hair'' theorem for stationary black holes based on the consistency of different quasi-normal modes of a perturbed black hole~\cite{xx}. We proposed two formulations of this test, that introduce extra deviation parameters that goveren the amplitude and phase evolution of different spherical harmonic modes of the radiation, as well as ones affecting the amplitudes of different modes. Posterior distributions of these deviation parametrs can be estimated using a Bayesian framework. 
 
-We first revisited the test of GR, originally presented in~\cite{dhanpal2018}, based on the consistency between the estimates of Chirp mass and mass ratio of the BBH obtained independently from the leading quadrapole mode and the higher order modes; and generalized the test for a network of three realistic Advanced LIGO-Virgo detectors. The main idea of the test is inspired by the fact that different modes of radiation from the BBH should be uniquely described only by the same values of intrinsic parameters (chirp mass and mass ratio) . Our work illustrates that this formalism would enable one to perform a precision test of GR. However, this test requires appreciable SNR in the higher order modes of the observed GW signal. This severely restricts the number of events for which this test could be performed ($\sim$a few percent); but given LIGO-Virgo would observed hundreds of BBH mergers in coming years, we expect a reasonable number of such events to be observed.
+The first formulation is inspired by the fact that different modes of radiation from the BBH should be uniquely described only by the same values of intrinsic parameters (chirp mass and mass ratio), and hence these parameters estimated from different modes should be consistent to each other. We first revisited this formulation, originally presented in~\cite{dhanpal2018}. We presented the results expected from 3-detector observations of binary black holes using the Advanced LIGO-Virgo detectors. Results from our simulations suggest that upcoming observations using Advanced LIGO and Virgo will be able to put precise constraints on the deviation parameters. Indeed, this test requires appreciable SNR in the higher order modes of the observed GW signal, which is expected only for small fraction (a few percents~\cite{Dhanpal}) of detectable binary black hole events. However, given that LIGO-Virgo would observed hundreds of binary black hole mergers in coming years, we expect a reasonable number of such events to be observed.
 
-Furthermore, we check for the consistency between the amplitudes of different modes. In order to do so, we introduce a set of extra deviation parameters in the amplitudes for the higher modes. We consider the deviation parameters to be both real and complex. We find that assuming the deviation to be complex in nature does not give us any additional information. Though this test gives a modest precision with Advanced LIGO-Virgo detectors, the efficiency of such test is expected to increase manifold with the next generation of detectors (e.g. with Einstein Telescope or LISA). 
+In the second formulation, we check for the consistency between the amplitudes of different modes. In order to do so, we introduce a set of extra deviation parameters in the amplitudes for the higher modes. We see that these deviation parameters can be constrained only with modest precision in Advanced LIGO-Virgo. However, the precision of such a test is expected to increase manifold with the next generation of detectors (e.g. with Einstein Telescope or LISA). 
 
 We then proceed to formulate two consistency tests of GR using the two different polarization state of the observed signal. We note that, due to \textit{amplitude birefringence}, emitted gravitational waves are affected by a \textit{dephasing} as they propagate through distances. This leads to a `coupling' between `cross' and `plus' polarizations and results a relative enhancement/suppression of the `plus' and `cross' polarization states of the signal, compared to GR,  respectively. We propose two generic tests which can identify any such inconsistency with GR. Our first test  looks for any inconsistency in the estimates of the intrinsic parameters inferred from the two polarizations of the observed signal independently. In the second case, we conceptualize an extrinsic deviation parameter describing the strength of `coupling' (which is a measure of departure from GR; in GR, the deviation parameter would be zero) in the waveform and constrain it with simulated GR events. We demonstrate that both these tests would be highly efficient to detect any non-GR characteristic in the observed GW signal. 
 

@@ -26,10 +26,12 @@
 \DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.10] pzcmi7t}{}
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
 \newcommand{\comment}[1]{\textcolor{blue}{\textit{#1}}}
 \newcommand{\ajith}[1]{\textcolor{red}{\textit{Ajith:#1}}}
 \newcommand{\checkthis}{\textcolor{magenta}{(CHECKTHIS)}}
 \newcommand{\vijay}[1]{\textcolor{cyan}{Vijay: #1}}
+\newcommand{\tousif}[1]{\textcolor{magenta}{Tousif: #1}}
 \newcommand{\io}{\iota}
 \newcommand{\p}{\phi}
 \newcommand{\vp}{\varphi}
@@ -255,7 +257,7 @@ The first test we consider the formulation proposed in Eq.~\eqref{eq:test_1}. Th
 We consider two different ways to perform the test. First, we introduce \emph{one} deviation parameter at a time. That is, $\Delta\blambda = {\Delta M_c}$ or $\Delta\blambda = {\Delta q}$. We then consider introducing a concurrent deviation in \emph{two} parameters $\Delta \blambda = \{\Delta M_c, \Delta q\}$. In Fig.~\ref{fig:posterior_BBH_GR_inj}, we show the results of the tests performed with GR waveform by varying either one parameter or two parameters, for a binary with total mass $M = 80M_{\odot}$, mass ratio $q=1/9$, inclination angle $ {\iota}=60^{\circ} $ producing a network signal-to-noise ratio  (SNR)  of 25 (SNR in higher modes is $\sim 10$). SNRs in individual detectors are: 15 in Advanced LIGO-Hanford, 18.9 in Advanced LIGO-Livingston and 6.7 in Virgo. The posterior probability density for both the parameters $\Delta q$ and $\Delta M_c$ are consistent with zero as one expect in GR. Furthermore, the deviation parameters are found to be better constrained when only one deviation parameter is allowed to vary at a time (either $\Delta M_c$ or $\Delta q$). This suggests that a consistency test with only one deviation parameter in the higher modes would allow a more efficient test. In the subsequent analysis, we therefore focus on varying only one deviation parameter at a time. 
 
 In Fig.~\ref{fig:hm_mcq_compare-1det_3det_GR_inj} we show that, as expected, the width of the posteriors of the deviation parameters become smaller (i.e., improved precision) when we perform the test with a network of three Advanced LIGO-Virgo detectors instead of using only one Advanced LIGO detector (for the same SNR). However, for a fixed SNR, the improvements in the precision is small (facor of $\sim ~\red{X}$), due to the fact that the improved information (e.g., sky localization) is not highly correlated with the intrinsic parameters $M_c, q$ nor the deviation parameters $\Delta M_c, q$. %A key difference between the one detector analysis in ~\cite{dhanpal2018} and the three detector analysis of this paper is that we now have three different times of arrival $\{ t_{0,H}, t_{0,L}, t_{0,V}\}$, compared to one in earlier case, that need to be sampled over. We instead choose to sample only the time of arrival of the signal at the center of earth and then compute $\{ t_{0,H}, t_{0,L}, t_{0,V}\}$ by adding a constant time delay between the geo-center and the respective detectors. 
-\ajith{What exactly are the parameters that are sampled? $t_0$ and $\theta$, $\phi$?}
+\ajith{What exactly are the parameters that are sampled? $t_0$ and $\theta$, $\phi$?}. \tousif{ $t_0$ and $\theta$, $\phi$ and $\psi$. $t_0$ being the time of signal coming at the center fo the earth. Appropriate time shifts for detectors added later.}
 
  Figures~\ref{fig:delmc_delq_varyingM} and \ref{fig:delmc_delq_varyingq} show the 90\% credible intervals of the posteriors of the deviation parameters for binaries with varying masses, mass ratios and inclination angles, estimated using the three detector network. In all cases, we set the network SNR to be {25}. Note that only one deviation parameter ($\Delta M_c$ or $\Delta q$) is varied at a time.  We find that binaries with large mass ratios ($q < 1/ 2$) and inclination angles ($\iota > 60 ^\circ $) will allow precision tests of the GR predictions, reaching statistical uncertainties of $< 10^{-3}$ for $\Delta q$ and $< 10^{-2}$ for the dimensionless deviation parameter $\Delta M_c/M_c$. Our results are found to be consistent with the one detector analysis done in ~\cite{dhanpal2018}. We, however, notice that the 90\% interval for both the deviation parameters, in three detector analysis, decreases slightly (i.e., precision improved) as compared to the one detector case.
  
@@ -275,11 +277,11 @@ In Fig.~\ref{fig:hm_mcq_compare-1det_3det_GR_inj} we show that, as expected, the
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}[tbh]
 	\begin{center}
- 		\includegraphics[height=2.1in]{figs/hist_c1_M_80_q_9_snr_25.pdf}
+ 		\includegraphics[height=2.1in]{figs/hist_c1_M_80_q_9_SNR_25.pdf}
 		\includegraphics[height=2.4in]{figs/c2_c34_M_80_q_9_SNR_25.pdf}
 		\includegraphics[height=2.4in]{figs/c3_c4_M_80_q_9_SNR_25.pdf}
 	\end{center} 
- 	\caption{\emph{Left:} The posterior probability distribution of the deviation parameter $c$ estimated from the same simulated GR observation in Fig.~\ref{fig:posterior_BBH_GR_inj} (version 1 of the test described in Sec.~\ref{sec:formulationB}). Thin black lines shows the expected value in GR. The dotted lines mark the 90\% credible regions. \emph{Middle:} Posteriors on $c_{21}$ and $c_{3344}$ from the same simulated observation (versoin 2 of the test). \emph{Right:} Posteriors on $c_{33}$ and $c_{44}$ from the same simulated observation (versoin 3 of the test). \ajith{In the left plot, the difference between dashed and dotted lines not clear. Pl make the black vertical line solid. Use black only in the left plot to make it consistent with the 1D posteriors from the middle and right plots. Also pl change the variable names to $c$, $c_{21}$, $c_{3344}$, etc.}}
+ 	\caption{\emph{Left:} The posterior probability distribution of the deviation parameter $c$ estimated from the same simulated GR observation in Fig.~\ref{fig:posterior_BBH_GR_inj} (version 1 of the test described in Sec.~\ref{sec:formulationB}). Thin black lines shows the expected value in GR. The dotted lines mark the 90\% credible regions. \emph{Middle:} Posteriors on $c_{21}$ and $c_{3344}$ from the same simulated observation (versoin 2 of the test). \emph{Right:} Posteriors on $c_{33}$ and $c_{44}$ from the same simulated observation (versoin 3 of the test). \ajith{In the left plot, the difference between dashed and dotted lines not clear. Pl make the black vertical line solid. Use black only in the left plot to make it consistent with the 1D posteriors from the middle and right plots. Also pl change the variable names to $c$, $c_{21}$, $c_{3344}$, etc.} \tousif{done}}
 	\label{fig:test2posts}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -343,7 +345,7 @@ A more general version of these tests with amplitude correction in the higher mo
  	\begin{center}
  		\includegraphics[scale=0.8]{figs/M_80_q_9_SNR_25_complex_c1.pdf}
  	\end{center} 
- 	\caption{The figure shows the posterior probability distribution of the absolute value $|c_1|$and argument $\phi_c$ complex deviation parameter $\tilde{c_1}$ estimated from the simulated GR event. Details are same as in \ref{fig:posterior_BBH_GR_inj}.}
+ 	\caption{The figure shows the posterior probability distribution of the absolute value $|c|$and argument $\phi_c$ complex deviation parameter $\tilde{c}$ estimated from the simulated GR event. Details are same as in \ref{fig:posterior_BBH_GR_inj}.}
  	\label{fig:c1_complex}
  \end{figure}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -358,7 +360,7 @@ Figure \ref{fig:constraint_c} shows the width of the 90\% credible regions in th
 		\includegraphics[scale=0.75]{figs/90_percent_bounds_c2.pdf}
 		\includegraphics[scale=0.75]{figs/90_percent_bounds_c34.pdf}
 	\end{center}
-	\caption{Same as Fig.~\ref{fig:constraint_c} except that the posteriors are of the deviation parameters $c_{21}$ (left plots) and  $c_{3344}$ (right plots). \ajith{Pl change the variable names in the plot}}
+	\caption{Same as Fig.~\ref{fig:constraint_c} except that the posteriors are of the deviation parameters $c_{21}$ (left plots) and  $c_{3344}$ (right plots). \ajith{Pl change the variable names in the plot}\tousif{done}}
 	\label{fig:constraint_c21_c3344}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -368,13 +370,13 @@ Figure \ref{fig:constraint_c} shows the width of the 90\% credible regions in th
 	\centering
 	\includegraphics[scale=0.75]{figs/90_percent_bounds_c3.pdf}
 	\includegraphics[scale=0.75]{figs/90_percent_bounds_c4.pdf}
-	\caption{Same as Fig.~\ref{fig:constraint_c} except that the posteriors are of the deviation parameters $c_{33}$ (left plots) and  $c_{44}$ (right plots).  \ajith{Pl change the variable names in the plot}}
+	\caption{Same as Fig.~\ref{fig:constraint_c} except that the posteriors are of the deviation parameters $c_{33}$ (left plots) and  $c_{44}$ (right plots).  \ajith{Pl change the variable names in the plot} \tousif{done}}
 	\label{fig:constraint_c33_c44}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We observe that the constraints on the deviation parameters become narrower for binaries with larger mass ratios and inclination angles. We find that $c$ is, in general, better constrained than $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$. However, the statistical uncertainties in $c_1$, $\{c_2, c_{34}\}$ and $\{c_3, c_{4}\}$ are modest, reaching only $\sim$ 1 (as opposed to the parameters discussed in Sec.~\ref{sec:formulationA}, which can be constrained to a precision of $\sim 10^{-2}$). The statistical precision of these tests largely depends on the signal-to-noise distribution in the higher modes. These constraints could be significantly improved with third-generation ground based detectors or space based detectors as they will detect hundreds of signals with good SNR and, in turn, enhance the precision of parameter estimation. The low SNR in the higher modes has resulted prior railing for some of the sample chains of $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$ during MCMC sampling for simulated GR events with binaries having smaller values of total mass, mass ratio and inclination angle
-\ajith{Is this true? If yes, this means that we cannot trust these results. Right? If this is the case, we should either rerun these with wider priors, or set the y-axis in Figs 7 and 8 in such a way that these results are beyond the range shown in these plots}. We find that such problems would not arise if the SNR in each of the higher order modes are reasonable high ($\sim 5$). Furthermore, the deviation parameter introduced in our tests, are highly correlated with the luminosity distance $d_L$. This degeneracy introduces some uncertainties in our estimation of bounds.\ajith{Why would it introduce uncertainty in the bounds? Do you mean to say that the statistical uncertainties are larger and the bounds are poorer?}
+We observe that the constraints on the deviation parameters become narrower for binaries with larger mass ratios and inclination angles. We find that $c$ is, in general, better constrained than $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$. However, the statistical uncertainties in $c$, $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$ are modest, reaching only $\sim$ 1 (as opposed to the parameters discussed in Sec.~\ref{sec:formulationA}, which can be constrained to a precision of $\sim 10^{-2}$). The statistical precision of these tests largely depends on the signal-to-noise distribution in the higher modes. These constraints could be significantly improved with third-generation ground based detectors or space based detectors as they will detect hundreds of signals with good SNR and, in turn, enhance the precision of parameter estimation. The low SNR in the higher modes has resulted prior railing for some of the sample chains of $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$ during MCMC sampling for simulated GR events with binaries having smaller values of total mass, mass ratio and inclination angle - mainly for $\iota={30^{\circ},45^{\circ}}$. \blue{We exclude these runs from our analysis.}
+\ajith{Is this true? If yes, this means that we cannot trust these results. Right? If this is the case, we should either rerun these with wider priors, or set the y-axis in Figs 7 and 8 in such a way that these results are beyond the range shown in these plots}. \tousif{I excluded these runs, mostly inclination 30 and 45. The main reason of these railing is low SNR and thus rerun with wider prior won't help. We checked it before.}.We find that such problems would not arise if the SNR in each of the higher order modes are reasonable high ($\sim 5$). Furthermore, the deviation parameter introduced in our tests, are highly correlated with the luminosity distance $d_L$. This degeneracy introduces some uncertainties in our estimation of bounds.\ajith{Why would it introduce uncertainty in the bounds? Do you mean to say that the statistical uncertainties are larger and the bounds are poorer?} \tousif{I meant that dL and c are somewhat correlated as one can write a new dL1(dL,c) and may estimate that instead. The uncertainties in dL estimation is always large whch in turn would affect the uncertainties in c (?). Not sure whether it's proper way of saying.}
 
 \section{Simulations with deviations from binary black holes in GR}
 

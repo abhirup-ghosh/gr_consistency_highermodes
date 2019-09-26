@@ -1,0 +1,65 @@
+\begin{thebibliography}{6}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname bibnamefont\endcsname\relax
+  \def\bibnamefont#1{#1}\fi
+\expandafter\ifx\csname bibfnamefont\endcsname\relax
+  \def\bibfnamefont#1{#1}\fi
+\expandafter\ifx\csname citenamefont\endcsname\relax
+  \def\citenamefont#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{\citenamefont{Newman and Penrose}(1966)}]{NewmanPenrose}
+\bibinfo{author}{\bibfnamefont{E.~T.} \bibnamefont{Newman}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Penrose}},
+  \bibinfo{journal}{Journal of Mathematical Physics}
+  \textbf{\bibinfo{volume}{7}}, \bibinfo{pages}{863} (\bibinfo{year}{1966}),
+  \eprint{https://doi.org/10.1063/1.1931221},
+  \urlprefix\url{https://doi.org/10.1063/1.1931221}.
+
+\bibitem[{\citenamefont{Dhanpal et~al.}(2019)\citenamefont{Dhanpal, Ghosh,
+  Mehta, Ajith, and Sathyaprakash}}]{Dhanpal:2018ufk}
+\bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Dhanpal}},
+  \bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{Ghosh}},
+  \bibinfo{author}{\bibfnamefont{A.~K.} \bibnamefont{Mehta}},
+  \bibinfo{author}{\bibfnamefont{P.}~\bibnamefont{Ajith}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{B.~S.} \bibnamefont{Sathyaprakash}},
+  \bibinfo{journal}{Phys. Rev. D} \textbf{\bibinfo{volume}{99}},
+  \bibinfo{pages}{104056} (\bibinfo{year}{2019}), \eprint{1804.03297}.
+
+\bibitem[{\citenamefont{Mehta et~al.}(2017)\citenamefont{Mehta, Mishra, Varma,
+  and Ajith}}]{Mehta:2017jpq}
+\bibinfo{author}{\bibfnamefont{A.~K.} \bibnamefont{Mehta}},
+  \bibinfo{author}{\bibfnamefont{C.~K.} \bibnamefont{Mishra}},
+  \bibinfo{author}{\bibfnamefont{V.}~\bibnamefont{Varma}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{P.}~\bibnamefont{Ajith}},
+  \bibinfo{journal}{Phys. Rev.} \textbf{\bibinfo{volume}{D96}},
+  \bibinfo{pages}{124010} (\bibinfo{year}{2017}), \eprint{1708.03501}.
+
+\bibitem[{\citenamefont{Shoemaker}(2010)}]{aLIGOZeroDetHighPower}
+\bibinfo{author}{\bibfnamefont{D.}~\bibnamefont{Shoemaker}}
+  (\bibinfo{collaboration}{LIGO Scientific Collaboration}),
+  \bibinfo{journal}{LIGO Document T0900288-v3}  (\bibinfo{year}{2010}),
+  \urlprefix\url{https://dcc.ligo.org/LIGO-T0900288/public}.
+
+\bibitem[{\citenamefont{Foreman-Mackey
+  et~al.}(2013)\citenamefont{Foreman-Mackey, Hogg, Lang, and
+  Goodman}}]{foreman2013emcee}
+\bibinfo{author}{\bibfnamefont{D.}~\bibnamefont{Foreman-Mackey}},
+  \bibinfo{author}{\bibfnamefont{D.~W.} \bibnamefont{Hogg}},
+  \bibinfo{author}{\bibfnamefont{D.}~\bibnamefont{Lang}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Goodman}},
+  \bibinfo{journal}{Publications of the Astronomical Society of the Pacific}
+  \textbf{\bibinfo{volume}{125}}, \bibinfo{pages}{306} (\bibinfo{year}{2013}).
+
+\bibitem[{\citenamefont{Goodman and Weare}(2010)}]{goodman2010ensemble}
+\bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Goodman}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Weare}},
+  \bibinfo{journal}{Communications in applied mathematics and computational
+  science} \textbf{\bibinfo{volume}{5}}, \bibinfo{pages}{65}
+  (\bibinfo{year}{2010}).
+
+\end{thebibliography}

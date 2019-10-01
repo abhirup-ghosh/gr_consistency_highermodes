@@ -63,7 +63,6 @@
 \newcommand{\fqnm}{f}
 \newcommand{\sigmaqnm}{\sigma}
 \newcommand{\n}{\mathbf{n}}
-\newcommand{\bxi}{\bm{\xi}}
 \newcommand*{\skymapscale}{0.5}
 \newcommand*{\paramestscale}{0.455}
 
@@ -102,11 +101,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
 \section{Introduction}
 
-Recent gravitational-wave (GW) observations of colaescing compact binaries by LIGO and Virgo have provided a unique testbed for gravity. Due to their high compactness, the black holes and neutron stars in coalescing binaries are able to approach each other in close separations. They also move with speeds close to the speed of light before they merge. As a result the final orbits of their inspiral and the subsequent merger will probe the relativistic strong-field regime. The subsequent formation of a nascent black hole also offers intersting tests of the nature of the black hole through its perturbations. In addition, the GW observations also allow us to study various possible propagation effects of GWs, including dispersion and damping, and to constrain the presence of additional polarization modes that are absent in general relativity (GR). In addition, multimessenger observations of a compact binary merger allow us to measure the speed of GWs as well as to constrain violations of equivalence principle, Lorentz invariance violations and the presence of extra dimensions. 
+Recent gravitational-wave (GW) observations of colaescing compact binaries by LIGO and Virgo have provided a unique testbed for gravity. Due to their high compactness, the black holes and neutron stars in coalescing binaries are able to approach each other in close separations (comparable to their gravitational radii). They also move with speeds close to the speed of light before they merge. As a result the final orbits of their inspiral and the subsequent merger will probe the relativistic strong-field regime. The subsequent formation of a nascent black hole also offers intersting tests of the nature of the black hole through the study of its perturbations. In addition, the GW observations also allow us to study various possible propagation effects of GWs, including dispersion and damping, and to constrain the presence of additional polarization modes that are absent in general relativity (GR). In addition, multimessenger observations of a compact binary merger allow us to measure the speed of GWs as well as to constrain violations of equivalence principle, Lorentz invariance violations and the presence of extra dimensions. 
 
 One of the powerful probes of the nature of black holes that can be performed using GW observations is to test the ``no-hair'' theorem in GR --- the prediction that a stationary black hole in GR can be fully described solely by its mass, spin angular momentum and electric charge~\cite{Israel:1967,Israel:1968,Carter:1978}. As a consequence of this, the frequencies of the {quasi-normal modes}~\cite{Vishveshwara:1970zz,Press:1971wr,Chandrasekhar:1975zza} of the gravitational radiation from a perturbed black hole are fully determined by these parameters. If we are able to measure three quasi-normal mode frequencies, this allows, in principle, the determination of the mass, spin and charge of the black hole. Since astrophysical black holes are unlikely to possess significant electric charge, a black hole's mass and spin can be determined from the measurement of just two quasi-normal mode frequencies. If we are able to measure more than two quasi-normal modes, the black hole mass and spin estimated from multiple modes have to consistent with each other; otherwise it will point to a violation of the no-hair theorem~\cite{Dreyer:2003bv}
 
-In the same fashion, the dynamics and gravitational radiation from a binary black hole system in a quasi-circular orbit are uniquely determined by a small number of parameters (masses and spins of the black holes). Hence different spherical harmonic modes of the radiation have to be consistent with the same values of the black holes' masses and spins. Thus, the consistency between different modes of the observed signal is a powerful test that the radiation emanated from a binary black hole system. Inconsistency between different modes of the radiation would point to either a departure from GR, or the non-black hole nature of the compact objects --- a violation of the ``no-hair'' nature of the binary black hole system. 
+In the same fashion, the dynamics and gravitational radiation from a binary black hole system in a quasi-circular orbit are uniquely determined by a small number of parameters (masses and spins of the black holes). Hence different multipoles (spherical harmonic modes) of the radiation have to be consistent with the same values of the black holes' masses and spins. Thus, the consistency between different modes of the observed signal is a powerful test that the radiation emanated from a binary black hole system. Inconsistency between different modes of the radiation would point to either a departure from GR, or the non-black hole nature of the compact objects --- a violation of the ``no-hair'' nature of the binary black hole system. 
 
 Such a no-hair test for binary black holes was presented in~\cite{Dhanpal:2018ufk}. In this paper we present different formulations of such a test, demonstrate their application using simulated data and presents a first investigation of the systematic errors that need to be controlled before the test is applied to real GW observations. The rest of the paper is organized as follows: Section~\ref{sec:test} presents two different formulations of the test along with the Bayesian implementation. Section~\ref{sec:simulations} presents results from this test applined to simulated GW observations of binary black holes in GR, while Sec.~\ref{sec:simulation_nonbbh} presents results from simulated observations containing deviations from binary black holes in GR. Section~\ref{sec:waveformsyst} presents a first investigation of systematic errors due to neglecting the effect of black hole spins in the GR waveforms. Finally, Sec.~\ref{sec:conclusions} presents a summary and concluding remarks. 
 
@@ -121,77 +120,69 @@ Gravitational radiation from the coalescence of a binary black hole in GR can be
 &=& \frac{1}{d_L} \sum _{\ell=2}^{\infty} \sum _{m=-\ell}^{\ell} {\Ylm} (\n) \, {{\hlm}(t; {\blambda})}, 
 \label{eq:spherical_harmonics}
 \end{eqnarray}
-where $(h_+, h_{\times})$ are the two independent polarisations of gravitational radiation, $d_L$ the luminosity distance, ${\Ylm}$ spherical harmonics of weight $-2$ and $\n := \{\iota, \varphi_0\}$ the direction of radiation in the source frame. In GR, the leading order mode is the quadrupolar $\ell = 2, m = \pm 2$ mode, and the contribution of the higher modes to the signal depends on the total mass $M$, mass ratio $q$, spin angular momenta ${\mathbf S}_{1,2}$ and the inclination angle $\iota$.  The spherical harmonic modes, ${\h}_{lm}(t; \blambda)$, are uniquely determined by the \emph{intrinsic} parameters $\blambda$ of the system, the masses and spins of the two black holes, $\blambda$ (for a quasi-circular binary). In ~\cite{Dhanpal:2018ufk}, we presented a new test of GR based on the consistency between estimates of these parameters from the different spherical harmonic modes of a gravitational waveform. The test was based on the fact that, if the underlying theory of gravity is GR, then these independent estimates should be consistent with one another, or estimates of fractional deviations from the GR prediction should be consistent with zero. There are two different formulations of the test that we consider.
+where $h_+$ and $h_{\times})$ are the two independent polarisations of gravitational radiation, $d_L$ the luminosity distance to the source, ${\Ylm}$ spherical harmonics of weight $-2$ and $\n := \{\iota, \varphi_0\}$ the direction of radiation in the source frame. In GR, the leading order mode is the quadrupolar ($\ell = 2, m = \pm 2$) modes, and the contribution of the higher modes to the signal depends on the total mass $M$, mass ratio $q$, spin angular momenta ${\mathbf S}_{1,2}$ and the inclination angle $\iota$.  The spherical harmonic modes, ${\h}_{lm}(t; \blambda)$, are uniquely determined by the \emph{intrinsic} parameters $\blambda$ of the system, i.e., the masses and spins of the two black holes (for a quasi-circular binary). In this work, we model the gravitational radiation from non-spinning binary black holes using the phenomenological inspiral-merger-ringdown waveform family introduced in \cite{Mehta:2017jpq}. This waveform model includes the $(\ell = 2, m=\pm1)$, $(\ell = 3, m=\pm3)$ and $(\ell = 4, m = \pm4)$  modes of the radiation over and above the dominant $(\ell = 2, m = \pm2)$ mode. The other spherical harmonic modes neglected in this waveform model only introduce an inaccuracy (mismatch) of less than 1\% in the waveforms~\cite{Mehta:2017jpq}. 
+
+In ~\cite{Dhanpal:2018ufk}, we presented a new test of the ``no-hair'' nature of binary black holes in GR based on the consistency between estimates of these parameters from the different spherical harmonic modes of the gravitational radiation. The test was based on the fact that, if the radiation is produced by a binary black hole system described by GR, then these independent estimates should be consistent with one another. Hence the difference in these two estimates should be consistent with zero. There are two different formulations of the test that we consider.
 
 \paragraph{Formulation A:}
-	Following ~\cite{dhanpal2018}, we generalize the GR waveform model Eq.~(\ref{eq:spherical_harmonics}) by allowing inconsistencies between the intrinsic parameters estimated from the dominant mode and the higher order modes by introducing a set of deviation parameters $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the higher modes (details in Section \ref{sec:simulationsa}):
+	Following ~\cite{Dhanpal:2018ufk}, we generalize the GR waveform model Eq.~(\ref{eq:spherical_harmonics}) by allowing inconsistencies between the intrinsic parameters estimated from the dominant mode and the higher order modes by introducing a set of deviation parameters $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the higher modes: 
 	\begin{eqnarray}
 	\h(t; \n, \blambda, \Delta \blambda) & = &  \frac{1}{d_L} \left[ ~ \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda) \right. \nonumber \\ 
 	& + & \left. \sum _{\text{H.O.M}} \Ylm (\n) \hlm(t, \blambda+\Delta \blambda), \right]
 	\label{eq:test_1}
 	\end{eqnarray}
-where {H.O.M} indicates sum over higher order modes (all modes other than $\ell = 2, m = \pm 2$). 
+where {H.O.M} indicates sum over higher order modes (all modes other than $\ell = 2, m = \pm 2$). We then simultaneously estimate the posterior distributions of $\blambda$ and $\Delta \blambda$ along with other extrinsic parameters that describe the location and orientation of the binary (see Sec.~\ref{sec:bayesian_analsysis}). 
 
 \paragraph{Formulation B:}
-In this paper, we also investigate modifications made to the amplitude of the gravitational radiation by introducing fractional deviations to the luminosity distance and rewriting Eq.~(\ref{eq:spherical_harmonics}) as
+In this paper, we also investigate modifications made to the amplitude of the gravitational radiation by introducing deviations to the amplitude of non-quadrupole modes, and rewriting Eq.~(\ref{eq:spherical_harmonics}) as
 	\begin{eqnarray}
 	{\h}(t; \n, \blambda, c_{\ell m}) & = & \frac{1}{d_L} \left[ \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda)  \right. \nonumber \\ 
-	& + & \left. \sum _{\text{H.O.M}} (1+{c_{\ell m}}) \, \Ylm (\n) \hlm(t, \blambda), \right] 
+	& + & \left. \sum _{\text{H.O.M}} (1+{c_{\ell m}}) \, \Ylm (\n) \hlm(t, \blambda) \right] ,
 	\label{eq:test_2}
 	\end{eqnarray}
-	where $c_{\ell m}$ is the deviation parameter and could be different for different higher order modes. We consider different combinations of ${c_{\ell m}}$ (details in Section \ref{sec:simulationsb}). 
-
-We use the non-spinning phenomenological inspiral-merger-ringdown waveform model introduced in \cite{Mehta:2017jpq}\footnote{The waveform model includes the $(\ell = 2, m=\pm1)$, $(\ell = 3, m=\pm3)$, $(\ell = 4, m = \pm4)$) over and above the dominant $(\ell = 2, m = \pm2)$ mode. The other spherical harmonic modes neglected in this work only introduce an inaccuracy (mismatch) of less than 1\% in the waveforms~\cite{Mehta:2017jpq}.} and a Bayesian framework described in detail in section ~\ref{ssec:bayesian_analsysi	s} to estimate and constrain these extra parameters describing possible deviations from GR.
+	where $c_{\ell m}$ is a set of deviation parameters that could be different for different higher order modes. Here we simultaneously estimate the posterior distributions of $\blambda$ and ${c_{\ell m}}$  along with other extrinsic parameters that describe the location and orientation of the binary. We consider different combinations of ${c_{\ell m}}$ (details in Sec.~\ref{sec:formulationB}). 
 
 \subsection{Bayesian analysis}
-\label{ssec:bayesian_analsysis}
+\label{sec:bayesian_analsysis}
 
-The noise $n(t)$ in a gravitational wave detector can be safely described, over sufficiently short time intervals, as a stationary and Gaussian random process with zero mean and a power spectral density (PSD), $S_n(f)$. In the presence of a gravitational wave signal $h(t; \bxi)$ from a binary black hole merger described by a parameter set $\bxi$, we assume that the interferometric output of a detector $d(t)$ is an additive sum of the noise and the signal, i.e.:
+The noise $n(t)$ in a GW detector can be safely described, over sufficiently short time intervals, as a stationary and Gaussian random process with zero mean and a power spectral density (PSD), $S_n(f)$. In the presence of a GW signal $h(t; \btheta)$ from a binary black hole merger described by a parameter set $\btheta$ (which include the intrinsic and extrinsic parameters of the binary as well as the set of parameters describing deviations from GR), we assume that the detector data $d(t)$ is the sum of the noise and the signal, i.e.:
 \begin{equation}
-d(t) = n(t) + h(t; \bxi)
+d(t) = n(t) + h(t; \btheta). 
 \end{equation}
-A (quasi-circular) non-spinning binary black hole coalescence can be completely described by a 9-dimensional parameter set $\bxi = \{ \blambda, \chi \}$ in GR, where $\blambda = \{ M_c, q \}$ is the set of intrinsic parameters consisting of the chirp mass $M_c$ and the asymmetric mass ratio $q = m_2/m_1$ (with the convention $m_2 \leq m_1$), and $\chi = \{ d_L, \alpha, \delta, \iota, \psi, t_0, \phi_0 \}$, is the set of extrinsic parameters consisting of the luminosity distance $d_L$, the sky position $\{\alpha, \delta\}$ and orientation $\{\psi, \iota\}$ of the binary, and the time and phase at coalescence $\{t_0, \phi_0\}$ respectively.
+A (quasi-circular) non-spinning binary black hole coalescence can be completely described by a 9-dimensional parameter set $\btheta = \{ \blambda, \btheta \}$ in GR, where $\blambda = \{ M_c, q \}$ is the set of intrinsic parameters consisting of the chirp mass $M_c$ and the asymmetric mass ratio $q = m_2/m_1$ (with the convention $m_2 \leq m_1$), and $\btheta = \{ d_L, \alpha, \delta, \iota, \psi, t_0, \phi_0 \}$, is the set of extrinsic parameters consisting of the luminosity distance $d_L$, the sky position $\{\alpha, \delta\}$ and orientation $\{\psi, \iota\}$ of the binary, and the time and phase at coalescence $\{t_0, \phi_0\}$ respectively.
 
-Given the data $d(t)$ and the model hypothesis $H$ (GR), we use a Bayesian framework to obtain the posterior probability distribution on the parameter set $\bxi$, $P({\bxi} \, | \, d, H)$ through the Bayes Theorem:
+We use the Bayesian framework to obtain the posterior probability distribution $P({\btheta} \, | \, d)$ of the parameter set $\btheta$, through the Bayes Theorem:
 \begin{equation}
-P({\bxi} \, | \, d, H) = \frac{P({\bxi} \, | \, H) \, P (d \, | \, {\bxi}, H)}{P(d \, | \, H)}.
+P({\btheta} \, | \, d) = \frac{P({\btheta}) \, P (d \, | \, {\btheta})}{P(d)}.
 \label{eq:Bayes_theorem}
 \end{equation} 
-where, $P({\bxi} \, | \, H)$ denotes the prior probability distribution of the parameters given the Hypothesis, and $P (d \, | \, {\bxi}, H)$ is the likelihood function, the probability of observing data $d(t)$ given the model parameters $\bxi$. $P(d \, | \, H)$ is a normalization constant, called the \emph{evidence} or the \emph{marginal likelihood}, expressed as:
- \begin{equation}
- P(d \, | \, H)=\int p(d|\bxi, H)p(\bxi | H)d\bxi.
- \label{eq:evidence}
- \end{equation}
+where, $P({\btheta})$ denotes the prior probability distribution of the parameters, and $P (d \, | \, {\btheta})$ is the likelihood function, the probability of observing data $d(t)$ given the model parameters $\btheta$. $P(d)$ is a normalization constant, called the marginal likelihood: $P(d) = \int p(d|\btheta) \, p(\btheta) \, d\btheta$.
+% \subsubsection{Likelihood function}
+% For a stationary ergodic random process $n(t)$, the power spectral density $S_n(f)$ can be written as:
+% \begin{equation}
+% \langle \tilde{n}^*(f')\tilde{n}(f)\rangle = \frac{1}{2}S_n(f)\delta(f-f')
+% \end{equation}
+% where $\tilde{n}(f)$ is the Fourier transform of $n(t)$, and $delta(f)$ is the Dirac Delta function. If we further assume that the noise, $n(t)$ follows a Gaussian distribution with zero mean and a PSD $S_n(f)$, one can write 
+Under the assumption of the data mentioned above, the likelihood function $P(d \, | \, {\btheta})$ can be written as:
+\begin{equation}
+P (d \, | \, {\btheta}) \propto \exp \left[ -\frac{1}{2} \langle d - h({\btheta}), d - h({\btheta}) \rangle \right],
+\end{equation}
+where $\langle a, b \rangle$ describes the noise-weighted inner product defined as:
+\begin{equation}
+\langle a, b \rangle := 4 \Re \int_{f_\mathrm{low}}^{f_\mathrm{high}} \frac{\tilde{a}(f) \, \tilde{b}^*(f)}{S_n(f)}df
+\end{equation}
+where $\tilde{a}(f)$ denotes the Fourier transforms of $a(t)$, and the integration limits are defined by the sensitivity bandwidth of the detector, $f_\mathrm{low}$ and $f_\mathrm{high}$.
 
-\subsubsection{Likelihood function}
-For a stationary ergodic random process $n(t)$, the power spectral density $S_n(f)$ can be written as:
+In this work, we consider a network of three global detectors consists of two Advanced LIGO detectors, at Hanford (H) and Livingston (L), and the Virgo detector (V) at Pisa. Advanced LIGO is considered to be in its ``high-power, zero-detuning'' configuration~\cite{aLIGOZeroDetHighPower} whereas Virgo is assumed to have its design-sensitivity. Assuming that the noise is uncorrelated between detectors, the network likelihood for data obtained from three detectors can thus be written as the product of the likelihoods in each detector
 \begin{equation}
-\langle \tilde{n}^*(f')\tilde{n}(f)\rangle = \frac{1}{2}S_n(f)\delta(f-f')
-\end{equation}
-where $\tilde{n}(f)$ is the Fourier transform of $n(t)$, and $delta(f)$ is the Dirac Delta function. If we further assume that the noise, $n(t)$ follows a Gaussian distribution with zero mean and a PSD $S_n(f)$, one can write the likelihood function $P (d \, | \, {\bxi}, H) $ as:
-\begin{equation}
-P (d \, | \, {\bxi}, H) \propto e^{-(d -h({\bxi},H), d-h({\bxi},H))/2}
-\end{equation}
-where $(a,b)$ describes the noise-weighted inner product defined as:
-\begin{equation}
-(a,b) := 4Re \int_0^{\infty} \frac{\tilde{a}(f)\tilde{b}^*(f)}{S_n(f)}df
-\end{equation}
-The likelihood function can finally be simplified to:
-\begin{equation}
-P (d \, | \, {\bxi}, H) = \text{exp}\left[ -\frac{1}{2}\int_{f_\mathrm{low}}^{f_\mathrm{high}} \frac{|\tilde{d}(f) - \tilde{h}(f;{\bxi}, H)|^2}{S_n(f)}df\right],
-\end{equation}
-where $\tilde{d}(f)$ and $\tilde{h}(f)$ are the Fourier transforms of $d(t)$ and $h(t)$, respectively, and the integration limits are defined by the sensitivity bandwidth of the detector, $f_\mathrm{low}$ and $f_\mathrm{high}$.
-
-In this work, we consider a network of three global detectors consists of two Advanced LIGO detectors, at Hanford (H) and Livingston (L), and the Virgo detector (V) at Pisa. Advanced LIGO is considered to be in its ``high-power, zero-detuning'' configuration~\cite{aLIGOZeroDetHighPower} whereas Virgo is assumed to have its design-sensitivity. Assuming that the noise is uncorrelated in each detector, the network likelihood for data obtained from three detectors can thus be written as the product of the likelihoods in each detector
-\begin{equation}
-P (d \, | \, {\bxi}, H, S_n(f)) = \prod_{I \epsilon {H,L,V}} P (d^{I} \, | \, {\bxi}, H, S_{n_{i}}(f)).
+P (d \, | \, {\btheta}) = \prod_{I \epsilon {H,L,V}} P (d^{I} \, | \, {\btheta}).
 \end{equation}
 
-Using the Bayesian framework described above, we estimate $\bxi$ by stochastically sampling over the entire parameter space of interest. We use python-based affine-invariant ensemble sampler \texttt{emcee}~\cite{foreman2013emcee} for Markov chain Monte Carlo (MCMC) proposed by \cite{goodman2010ensemble} to obtain the posterior distribution $P(\bxi \, | \, d, H)$ of the full parameter set. Posterior distributions of particular parameters of interest, for example,  the set of parameters ${\Delta \blambda}$ or $c_{\ell m}$, describing deviation from the GR prediction of a BBH signal, are computed  by marginalizing the posterior over all other parameters $\{\blambda, \btheta\}$. If the data is consistent with a BBH signal in GR, we expect $P(\Delta \blambda \, | \, d, H)$ (or $P(\Delta c_{\ell m} \, | \, d, H)$) to be consistent with zero. 
+Using the Bayesian framework described above, we estimate the posterior probability distribution of $\btheta$ by stochastically sampling over the entire parameter space of interest. We use python-based affine-invariant ensemble sampler \textsc{emcee}~\cite{foreman2013emcee, goodman2010ensemble} to sample the likelihood over the parameter space and to obtain the posterior distribution $P(\btheta \, | \, d)$ of the full parameter set. Posterior distributions of particular parameters of interest, for example,  the set of parameters ${\Delta \blambda}$ or $c_{\ell m}$, describing deviation from the GR prediction of a binary black hole signal, are computed  by marginalizing the posterior over all other parameters. If the data is consistent with a binary black hole signal in GR, we expect $P(\Delta \blambda \, | \, d)$ (or $P(\Delta c_{\ell m} \, | \, d)$) to be consistent with zero. 
 
-Using simulated GR events, we compute the marginalized posterior distribution of the deviation parameters  ${\Delta \blambda}$ or $c_{\ell m}$. In order to compute the constraints on these parameters, we calculate the 90\% probability interval. Parameters which are recovered with greatest precision from the simulated GR signal will result smaller values for the credible interval and therefore would give more stringent test of GR with actual observation.
+Using simulated GR events, we compute the marginalized posterior distribution of the deviation parameters  ${\Delta \blambda}$ or $c_{\ell m}$. In order to compute the constraints on these parameters, we calculate the 90\% probability interval around the peak value. Parameters which are recovered with greatest precision from the simulated GR signal will result smaller values for the credible interval and therefore would give more stringent test of GR with actual observation.
 
-We assume the chirp mass $M_c \in [1,200] M_\odot$ and mass ratio $q \in [0.05,1.0]$ of BBH to have uniform distribution. The prior density function on the location of the source is  taken  to  be  isotropically  distributed  on  the  sphere of  the  sky,  with $P({dL} \, | \, H)=d_{L}^{2}$ with $d_L \in [1,10000]$ Mpc. Furthermore, we use an  isotropic  prior  on  the  orientation  of  the  binary: $P({\iota,\varphi_0,\psi} \, | \, H)=\sin\iota$ with $\iota \in [0,\pi]$, $\varphi \in [0,2\pi]$ and $\psi \in [0,\pi]$. For all other parameters in $\bxi$, we use uniform priors.
+We assume uniform priors on the chirp mass and mass ratio in the interval $M_c \in [1,200] M_\odot$ and $q \in [0.05,1.0]$. The prior on the location of the source is  taken to be isotropic on the sphere of  the  sky,  with $P({dL}) = d_{L}^{2}$ with $d_L \in [1,10000]$ Mpc. Furthermore, we use an  isotropic  prior  on  the  orientation  of  the  binary: $P({\iota,\varphi_0,\psi}) = \sin\iota$ with $\iota \in [0,\pi]$, $\varphi \in [0,2\pi]$ and $\psi \in [0,\pi]$. For all other parameters in $\btheta$, we use uniform priors.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb] \begin{center}

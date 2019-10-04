@@ -149,39 +149,6 @@ In this paper, we also investigate modifications made to the amplitude of the gr
 \subsection{Bayesian analysis}
 \label{sec:bayesian_analsysis}
 
-The noise $n(t)$ in a GW detector can be safely described, over sufficiently short time intervals, as a stationary and Gaussian random process with zero mean and a power spectral density (PSD), $S_n(f)$. In the presence of a GW signal $h(t; \btheta)$ from a binary black hole merger described by a parameter set $\btheta$ (which include the intrinsic and extrinsic parameters of the binary as well as the set of parameters describing deviations from GR), we assume that the detector data $d(t)$ is the sum of the noise and the signal, i.e.:
-\begin{equation}
-d(t) = n(t) + h(t; \btheta). 
-\end{equation}
-A (quasi-circular) non-spinning binary black hole coalescence can be completely described by a 9-dimensional parameter set $\btheta = \{ \blambda, \bxi\}$ in GR, where $\blambda = \{ M_c, q \}$ is the set of intrinsic parameters consisting of the chirp mass $M_c$ and the asymmetric mass ratio $q = m_2/m_1$ (with the convention $m_2 \leq m_1$), and $\bxi = \{ d_L, \alpha, \delta, \iota, \psi, t_0, \phi_0 \}$, is the set of extrinsic parameters consisting of the luminosity distance $d_L$, the sky position $\{\alpha, \delta\}$ and orientation $\{\psi, \iota\}$ of the binary, and the time and phase at coalescence $\{t_0, \phi_0\}$ respectively.
-
-We use the Bayesian framework to obtain the posterior probability distribution $P({\btheta} \, | \, d)$ of the parameter set $\btheta$, through the Bayes Theorem:
-\begin{equation}
-P({\btheta} \, | \, d) = \frac{P({\btheta}) \, P (d \, | \, {\btheta})}{P(d)}.
-\label{eq:Bayes_theorem}
-\end{equation} 
-where, $P({\btheta})$ denotes the prior probability distribution of the parameters, and $P (d \, | \, {\btheta})$ is the likelihood function, the probability of observing data $d(t)$ given the model parameters $\btheta$. $P(d)$ is a normalization constant, called the marginal likelihood: $P(d) = \int p(d|\btheta) \, p(\btheta) \, d\btheta$. Under the assumption of the data mentioned above, the likelihood function $P(d \, | \, {\btheta})$ can be written as:
-\begin{equation}
-P (d \, | \, {\btheta}) \propto \exp \left[ -\frac{1}{2} \langle d - h({\btheta}), d - h({\btheta}) \rangle \right],
-\end{equation}
-where $\langle a, b \rangle$ describes the noise-weighted inner product defined as:
-\begin{equation}
-\langle a, b \rangle := 4 \Re \int_{f_\mathrm{low}}^{f_\mathrm{high}} \frac{\tilde{a}(f) \, \tilde{b}^*(f)}{S_n(f)}df
-\end{equation}
-where $\tilde{a}(f)$ denotes the Fourier transforms of $a(t)$, and the integration limits are defined by the sensitivity bandwidth of the detector, $f_\mathrm{low}$ and $f_\mathrm{high}$.
-
-In this work, we consider a global 3-detector network of the two Advanced LIGO detectors at Hanford (H) and Livingston (L) and the Advanced Virgo detector (V) at Cascina, Italy. The Advanced LIGO detectors are assumed to be at a sensitivity described by their ``high-power, zero-detuning'' configuration~\cite{aLIGOZeroDetHighPower} whereas the Advanced Virgo detector PSD is assumed to the one described in [cite LIGO document LIGO-P1200087-v18]. Assuming that the noise between any two detectors is uncorrelated, the joint likelihood across the three detectors is written as a product of the likelihoods in each detector:
-\begin{equation}
-P (d \, | \, {\btheta}) = \prod_{I \epsilon {H,L,V}} P (d^{I} \, | \, {\btheta}).
-\end{equation}
-
-In this Bayesian framework, we proceed to estimate the posterior probability distribution of $\btheta$ by stochastically sampling over the parameter space, using a python-based affine-invariant ensemble sampler \textsc{emcee}~\cite{foreman2013emcee, goodman2010ensemble}. Subsequently, we marginalize over the \textit{nuisance} parameters to obtain the posterior distributions on the non-GR parameter set, ${\Delta \blambda}$ or $c_{\ell m}$. If the data is consistent with a binary black hole signal in GR, $P(\Delta \blambda \, | \, d)$ (or $P(\Delta c_{\ell m} \, | \, d)$) is expected to be consistent with zero. 
-
-\subsection{Priors}
-\label{sec:priors}
-
-We assume uniform prior probability distributions on the chirp mass and mass ratio in the interval $M_c \in [1,200] M_\odot$ and $q \in [0.05,1.0]$. The prior on the location of the source is  assumed to be isotropic on the sphere of  the  sky,  with $P({d_L}) \propto d_{L}^{2}$ where $d_L \in [1,10000]$ Mpc. We use an  isotropic  prior  on  the  orientation  of  the  binary: $P({\iota,\varphi_0,\psi}) \propto \sin\iota$ with $\iota \in [0,\pi)$, $\varphi \in [0,2\pi)$ and $\psi \in [0,\pi)$. For all other parameters in $\btheta$, we use uniform priors \abhirup{Need to specify ranges on the other parameters as well}.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[tb] \begin{center}
 		\includegraphics[width=3.4in]{figs/hm_mcq_GR.pdf}
@@ -216,9 +183,61 @@ We assume uniform prior probability distributions on the chirp mass and mass rat
  \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+The noise $n(t)$ in a GW detector can be safely described, over sufficiently short time intervals, as a stationary and Gaussian random process with zero mean and a power spectral density (PSD), $S_n(f)$. In the presence of a GW signal $h(t; \btheta)$ from a binary black hole merger described by a parameter set $\btheta$ (which include the intrinsic and extrinsic parameters of the binary as well as the set of parameters describing deviations from GR), we assume that the detector data $d(t)$ is the sum of the noise and the signal, i.e.:
+\begin{equation}
+d(t) = n(t) + h(t; \btheta). 
+\end{equation}
+A (quasi-circular) non-spinning binary black hole coalescence can be completely described by a 9-dimensional parameter set $\btheta = \{ \blambda, \bxi\}$ in GR, where $\blambda = \{ M_c, q \}$ is the set of intrinsic parameters consisting of the chirp mass $M_c$ and the asymmetric mass ratio $q = m_2/m_1$ (with the convention $m_2 \leq m_1$), and $\bxi = \{ d_L, \alpha, \delta, \iota, \psi, t_0, \phi_0 \}$, is the set of extrinsic parameters consisting of the luminosity distance $d_L$, the sky position $\{\alpha, \delta\}$ and orientation $\{\psi, \iota\}$ of the binary, and the time and phase at coalescence $\{t_0, \phi_0\}$ respectively.
+
+We use the Bayesian framework to obtain the posterior probability distribution $P({\btheta} \, | \, d)$ of the parameter set $\btheta$, through the Bayes Theorem:
+\begin{equation}
+P({\btheta} \, | \, d) = \frac{P({\btheta}) \, P (d \, | \, {\btheta})}{P(d)}.
+\label{eq:Bayes_theorem}
+\end{equation} 
+where, $P({\btheta})$ denotes the prior probability distribution of the parameters, and $P (d \, | \, {\btheta})$ is the likelihood function, the probability of observing data $d(t)$ given the model parameters $\btheta$. $P(d)$ is a normalization constant, called the marginal likelihood: $P(d) = \int p(d|\btheta) \, p(\btheta) \, d\btheta$. Under the assumption of the data mentioned above, the likelihood function $P(d \, | \, {\btheta})$ can be written as:
+\begin{equation}
+P (d \, | \, {\btheta}) \propto \exp \left[ -\frac{1}{2} \langle d - h({\btheta}), d - h({\btheta}) \rangle \right],
+\end{equation}
+where $\langle a, b \rangle$ describes the noise-weighted inner product defined as:
+\begin{equation}
+\langle a, b \rangle := 4 \Re \int_{f_\mathrm{low}}^{f_\mathrm{high}} \frac{\tilde{a}(f) \, \tilde{b}^*(f)}{S_n(f)}df
+\end{equation}
+where $\tilde{a}(f)$ denotes the Fourier transforms of $a(t)$, and the integration limits are defined by the sensitivity bandwidth of the detector, $f_\mathrm{low}$ and $f_\mathrm{high}$.
+
+In this work, we consider a global 3-detector network of the two Advanced LIGO detectors at Hanford (H) and Livingston (L) and the Advanced Virgo detector (V) at Cascina, Italy. The Advanced LIGO detectors are assumed to be at a sensitivity described by their ``high-power, zero-detuning'' configuration~\cite{aLIGOZeroDetHighPower} whereas the Advanced Virgo detector PSD is assumed to the one described in [cite LIGO document LIGO-P1200087-v18]. Assuming that the noise between any two detectors is uncorrelated, the joint likelihood across the three detectors is written as a product of the likelihoods in each detector:
+\begin{equation}
+P (d \, | \, {\btheta}) = \prod_{I \epsilon {H,L,V}} P (d^{I} \, | \, {\btheta}).
+\end{equation}
+
+In this Bayesian framework, we proceed to estimate the posterior probability distribution of $\btheta$ by stochastically sampling over the parameter space, using a python-based affine-invariant ensemble sampler \textsc{emcee}~\cite{foreman2013emcee, goodman2010ensemble}. Subsequently, we marginalize over the \textit{nuisance} parameters to obtain the posterior distributions on the non-GR parameter set, ${\Delta \blambda}$ or $c_{\ell m}$. If the data is consistent with a binary black hole signal in GR, $P(\Delta \blambda \, | \, d)$ (or $P(\Delta c_{\ell m} \, | \, d)$) is expected to be consistent with zero. 
+
+We assume uniform prior probability distributions on the chirp mass and mass ratio in the interval $M_c \in [1,200] M_\odot$ and $q \in [0.05,1.0]$. The prior on the location of the source is  assumed to be isotropic on the sphere of  the  sky,  with $P({d_L}) \propto d_{L}^{2}$ where $d_L \in [1,10000]$ Mpc. We use an  isotropic  prior  on  the  orientation  of  the  binary: $P({\iota,\varphi_0,\psi}) \propto \sin\iota$ with $\iota \in [0,\pi)$, $\varphi \in [0,2\pi)$ and $\psi \in [0,\pi)$. For all other parameters in $\btheta$, we use uniform priors \abhirup{Need to specify ranges on the other parameters as well}.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
 \section{Simulations of binary black holes in GR}
 \label{sec:simulations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[tbh]
+	\begin{center}
+ 		\includegraphics[height=2.0in]{figs/hist_c1_M_80_q_9_SNR_25.pdf}
+		\includegraphics[height=2.45in]{figs/c2_c34_M_80_q_9_SNR_25.pdf}
+		\includegraphics[height=2.45in]{figs/c3_c4_M_80_q_9_SNR_25.pdf}
+	\end{center} 
+ 	\caption{\emph{Left:} The posterior probability distribution of the deviation parameter $c$ estimated from the same simulated GR observation in Fig.~\ref{fig:posterior_BBH_GR_inj} (version 1 of the test described in Sec.~\ref{sec:formulationB}). Thin black lines shows the expected value in GR. The dotted lines mark the 90\% credible regions. \emph{Middle:} Posteriors on $c_{21}$ and $c_{3344}$ from the same simulated observation (version 2 of the test). \emph{Right:} Posteriors on $c_{33}$ and $c_{44}$ from the same simulated observation (version 3 of the test).} 
+	\label{fig:test2posts}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.85]{figs/90_percent_CI_c1.pdf}
+	\end{center} 
+	\caption{The width of 90\% credible regions of the posteriors of $c$ for binaries with different total mass $M$ (upper panel) and mass ratio $q$ (lower panel) and inclination angle $\iota$ (legends). All binaries considered in the upper panel have a mass ratio $q=1/9$. Binaries considered in the lower panel have total mass of $40M_{\odot}$. All the simulated observations produce a network SNR of 25 in Advanced LIGO-Virgo network.}
+	\label{fig:constraint_c}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 We use simulations of binary black hole events (as described in GR) to elaborate the two formulations of the tests presented in Sec.~\ref{sec:test}, i.e., by introducing extra parameters to describe the higher harmonics, and try to estimate and constrain them from the data, using a Bayesian framework.
 
@@ -235,44 +254,7 @@ Figures~\ref{fig:delmc_delq_varyingM} and \ref{fig:delmc_delq_varyingq} show the
 \subsection{Formulation B}
 \label{sec:formulationB}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}[tbh]
-	\begin{center}
- 		\includegraphics[height=2.0in]{figs/hist_c1_M_80_q_9_SNR_25.pdf}
-		\includegraphics[height=2.45in]{figs/c2_c34_M_80_q_9_SNR_25.pdf}
-		\includegraphics[height=2.45in]{figs/c3_c4_M_80_q_9_SNR_25.pdf}
-	\end{center} 
- 	\caption{\emph{Left:} The posterior probability distribution of the deviation parameter $c$ estimated from the same simulated GR observation in Fig.~\ref{fig:posterior_BBH_GR_inj} (version 1 of the test described in Sec.~\ref{sec:formulationB}). Thin black lines shows the expected value in GR. The dotted lines mark the 90\% credible regions. \emph{Middle:} Posteriors on $c_{21}$ and $c_{3344}$ from the same simulated observation (version 2 of the test). \emph{Right:} Posteriors on $c_{33}$ and $c_{44}$ from the same simulated observation (version 3 of the test).} 
-	\label{fig:test2posts}
-\end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[scale=0.85]{figs/90_percent_CI_c1.pdf}
-	\end{center} 
-	\caption{The width of 90\% credible regions of the posteriors of $c$ for binaries with different total mass $M$ (upper panel) and mass ratio $q$ (lower panel) and inclination angle $\iota$ (legends). All binaries considered in the upper panel have a mass ratio $q=1/9$. Binaries considered in the lower panel have total mass of $40M_{\odot}$. All the simulated observations produce a network SNR of 25 in Advanced LIGO-Virgo network.}
-	\label{fig:constraint_c}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-Now we consider the formulation proposed in Eq.~\eqref{eq:test_2}, which involves introducing generic possible deviation parameters $c_{\ell m}$ in the amplitudes of the higher order modes. Indeed, the most general form of this test would treat all the $c_{\ell m}$ as free parameters. However, because of the correlation among these parameters and with some of the other parameters of the binary (such as the luminosity distance and inclination angle), this is likely to result in poor constraints on these parameters. Hence we consider different flavors of this test. 
-
-\begin{enumerate}
-\item We set $c := c_{21} = c_{33} = c_{44}$ and estimate the posteriors of $c$ along with all other binary parameters present in the GR waveform.  
-\item We allow $c_{21}$ and $c_{3344} := c_{33} = c_{44} $ to vary and estimate the posteriors of $c_{21}$ and $c_{3344}$ along with all other binary parameters present in the GR waveform.  
-\item We fix $c_{21} = 0$ and vary $c_{33}$ and $c_{44}$, thus estimating the posteriors of $c_{33}$ and $c_{44}$. 
-\end{enumerate}
-
-In Fig.~\ref{fig:test2posts}, we show example posteriors of the deviation parameters obtained from a simulated binary black hole system (in GR) with  a total mass $M = 80M_{\odot}$, mass ratio $q=1/9$ and inclination angle $ {\iota}=60^{\circ} $, producing an SNR of 25 in the Advanced LIGO-Virgo network. The left plot shows the posterior of the deviation parameter $c$ (version 1 of the test), while the middle plot show the posteriors of $c_{21}$ and $c_{3344}$ (version 2 of the test) and the right panel shows the posteriors on $c_{33}$ and $c_{44}$  (version 3 of the test). We see that all the posterior distributions are consistent with zero. 
-
-A more general version of these tests with amplitude correction in the higher modes would be to assume that the deviation parameters are complex in nature i.e. they have a magnitude as well as a phase component. To demonstrate such test, we replace the real amplitude correction $c$ (version 1 of the test) with a complex correction $\tilde{c} = |\tilde{c}| \, e^{\phi_c}$. Figure~\ref{fig:c1_complex} shows the posterior probability distribution of both the magnitude and phase of the deviation parameter $\tilde{c}$ from the same simulated GR event described in Fig.~\ref{fig:test2posts}. We find that though the absolute value of complex correction is well constrained, the phase remains uninformative. Hence for all the future tests we restrict to real valued deviation parameters. 
-
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \begin{figure}[tbh]
  	\begin{center}
  		\includegraphics[width=2.8in]{figs/M_80_q_9_SNR_25_complex_c1.pdf}
@@ -282,10 +264,6 @@ A more general version of these tests with amplitude correction in the higher mo
  \end{figure}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-
-
-Figure \ref{fig:constraint_c} shows the width of the 90\% credible regions in the posterior of $c$  (version 1 of the test) as a function of the total mass and mass ratio of the binary (producing network SNR of 25 in all cases). Figure~\ref{fig:constraint_c21_c3344} shows the width of the 90\% credible regions in the posteriors of $c_{21}$ and  $c_{3344}$  (version 2 of the test) while Fig.~\ref{fig:constraint_c33_c44} shows the same for $c_{33}$ and  $c_{44}$  (version 3 of the test). 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}[tbh]
 	\begin{center}
@@ -307,28 +285,36 @@ Figure \ref{fig:constraint_c} shows the width of the 90\% credible regions in th
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Now we consider the formulation proposed in Eq.~\eqref{eq:test_2}, which involves introducing generic possible deviation parameters $c_{\ell m}$ in the amplitudes of the higher order modes. Indeed, the most general form of this test would treat all the $c_{\ell m}$ as free parameters. However, because of the correlation among these parameters and with some of the other parameters of the binary (such as the luminosity distance and inclination angle), this is likely to result in poor constraints on these parameters. Hence we consider different flavors of this test. 
+
+\begin{enumerate}
+\item We set $c := c_{21} = c_{33} = c_{44}$ and estimate the posteriors of $c$ along with all other binary parameters present in the GR waveform.  
+\item We allow $c_{21}$ and $c_{3344} := c_{33} = c_{44} $ to vary and estimate the posteriors of $c_{21}$ and $c_{3344}$ along with all other binary parameters present in the GR waveform.  
+\item We fix $c_{21} = 0$ and vary $c_{33}$ and $c_{44}$, thus estimating the posteriors of $c_{33}$ and $c_{44}$. 
+\end{enumerate}
+
+In Fig.~\ref{fig:test2posts}, we show example posteriors of the deviation parameters obtained from a simulated binary black hole system (in GR) with  a total mass $M = 80M_{\odot}$, mass ratio $q=1/9$ and inclination angle $ {\iota}=60^{\circ} $, producing an SNR of 25 in the Advanced LIGO-Virgo network. The left plot shows the posterior of the deviation parameter $c$ (version 1 of the test), while the middle plot show the posteriors of $c_{21}$ and $c_{3344}$ (version 2 of the test) and the right panel shows the posteriors on $c_{33}$ and $c_{44}$  (version 3 of the test). We see that all the posterior distributions are consistent with zero. 
+
+A more general version of these tests with amplitude correction in the higher modes would be to assume that the deviation parameters are complex in nature i.e. they have a magnitude as well as a phase component. To demonstrate such test, we replace the real amplitude correction $c$ (version 1 of the test) with a complex correction $\tilde{c} = |\tilde{c}| \, e^{\phi_c}$. Figure~\ref{fig:c1_complex} shows the posterior probability distribution of both the magnitude and phase of the deviation parameter $\tilde{c}$ from the same simulated GR event described in Fig.~\ref{fig:test2posts}. We find that though the absolute value of complex correction is well constrained, the phase remains uninformative. Hence for all the future tests we restrict to real valued deviation parameters. 
+
+Figure \ref{fig:constraint_c} shows the width of the 90\% credible regions in the posterior of $c$  (version 1 of the test) as a function of the total mass and mass ratio of the binary (producing network SNR of 25 in all cases). Figure~\ref{fig:constraint_c21_c3344} shows the width of the 90\% credible regions in the posteriors of $c_{21}$ and  $c_{3344}$  (version 2 of the test) while Fig.~\ref{fig:constraint_c33_c44} shows the same for $c_{33}$ and  $c_{44}$  (version 3 of the test). 
+
+
 We observe that the constraints on the deviation parameters become narrower for binaries with larger mass ratios and inclination angles. We find that $c$ is, in general, better constrained than $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$. However, the statistical uncertainties in $c$, $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$ are modest, reaching only $\sim$ 1 (as opposed to the parameters discussed in Sec.~\ref{sec:formulationA}, which can be constrained to a precision of $\sim 10^{-2}$). The statistical precision of these tests largely depends on the signal-to-noise distribution in the higher modes. These constraints could be significantly improved with third-generation ground based detectors or space based detectors as they will detect hundreds of signals with good SNR and, in turn, enhance the precision of parameter estimation. The low SNR in the higher modes has resulted in posteriors wider than the priors for $\{c_{21}, c_{3344}\}$ and $\{c_{33}, c_{44}\}$ for $\iota={30^{\circ},45^{\circ}}$. Hence these results are not presented. 
 
 
 \section{Simulations with deviations from binary black holes in GR}
 \label{sec:simulation_nonbbh}
 
-In this section we demonstrate that, if the multipole structure of the radiation is sufficiently different from that of a binary black hole system in GR (either when the underlying theory is different from GR or when the binary contains compact objects other than black holes), then this test should be able to identity this. Note however, that this will require the higher order modes to be observed with sufficient SNR, which typically happen for the case of massive binaries with large mass ratio observed with large inclination angles. Thus, this test is unlikely to distinguish black hole - neutron star binaries from binary black holes as the total mass of the system is unlikely to be greater than $\sim 50 M_\odot$ (going by the mass distribution of the black holes observed by LIGO and Virgo so far). Hence we rescale the gravitational waveform produced by the numerical relativity simulation of a non-spinning black hole-neutron star binary to a larger total mass so that the higher modes are observed with sufficient SNR. We use the  black hole-neutron star waveform with mass ratio ${1/6}$ from the numerical-relativity waveform catalog of the SXS collaboration~\cite{SXS-Catalog} (SXS:BHNS:0001; with component masses $8.4 M_\odot$ and $1.4 M_\odot$). We rescale this waveform to a total mass of $M = 120 M_\odot$ and use it as a proxy for a gravitational waveform from a binary consisting of at least one non-black hole compact object. Note that the rescaled signal will not correspond to a black hole-neutron star binary, as $m_2 \simeq 17 M_\odot$ is much larger than the maximum mass of a neutron star.  Figure~\ref{fig:bbh_nsbh_waveforms} compares the amplitude $|\hlm|(t)$ and instantaneous frequency $d\phi_{\ell m}(t)/dt$ of this waveform, along with a similar waveform from a non-spinning binary black hole system with the same mass ratio. The multipole structure of these waveforms can be seen to be slightly different. We hope that the test will be able to identify these differences provided higher modes are observed with sufficient SNR. 
-
-Figure~\ref{fig:non_bbh_posterior} shows the posteriors of the deviation parameters $\Delta M_c$ and $\Delta q$ estimated from a simulated observation containing this signal (darker contours), which are {inconsistent} with the GR prediction of binary black holes ($\Delta M_c = \Delta q = 0$). The Figure also shows the results of the test applied on a numerical relativity waveform from a binary black hole system with same parameters (lighter contours), which shows consistency with $\Delta M_c = \Delta q = 0$. The simulated signals correspond to binaries with inclination angle $\iota = 90^\circ$, producing SNR of 50 in the three detector Advanced LIGO-Virgo network. 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htb] 
 \begin{center}
-\includegraphics[width=3.4in]{figs/BBH_NSBH_q6_amp.pdf}
-\includegraphics[width=3.4in]{figs/BBH_NSBH_q6_freq.pdf}
+\includegraphics[width=3.4in]{figs/BBH_NSBH_waveforms.pdf}
 \end{center} 
-\caption{Time domain amplitude and frequency of different modes of the BBH and rescaled NSBH waveforms. \ajith{I will remake this figure}}
+\caption{Colored traces show the time domain amplitude $A_{\ell m} := |\hlm|$ (top panel) and instantaneous angular frequency $\omega_{\ell m} := d\phi_{\ell m}/dt$ of different modes (shown in legend) of a non-spinning binary black hole waveform with mass ratio $q = 1/6$. The black traces show the same for a re-scaled numerical relativity waveform from a neutron star-black hole simulation. The small oscillations here are numerical artifacts in the simulated waveform.}
 \label{fig:bbh_nsbh_waveforms}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htb] 
@@ -339,6 +325,10 @@ Figure~\ref{fig:non_bbh_posterior} shows the posteriors of the deviation paramet
 \label{fig:non_bbh_posterior}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we demonstrate that, if the multipole structure of the radiation is sufficiently different from that of a binary black hole system in GR (either when the underlying theory is different from GR or when the binary contains compact objects other than black holes), then this test should be able to identity this. Note however, that this will require the higher order modes to be observed with sufficient SNR, which typically happen for the case of massive binaries with large mass ratio observed with large inclination angles. Thus, this test is unlikely to distinguish black hole - neutron star binaries from binary black holes as the total mass of the system is unlikely to be greater than $\sim 50 M_\odot$ (going by the mass distribution of the black holes observed by LIGO and Virgo so far). Hence we rescale the gravitational waveform produced by the numerical relativity simulation of a non-spinning black hole-neutron star binary to a larger total mass so that the higher modes are observed with sufficient SNR. We use the  black hole-neutron star waveform with mass ratio ${1/6}$ from the numerical-relativity waveform catalog of the SXS collaboration~\cite{SXS-Catalog} (SXS:BHNS:0001; with component masses $8.4 M_\odot$ and $1.4 M_\odot$). We rescale this waveform to a total mass of $M = 120 M_\odot$ and use it as a proxy for a gravitational waveform from a binary consisting of at least one non-black hole compact object. Note that the rescaled signal will not correspond to a black hole-neutron star binary, as $m_2 \simeq 17 M_\odot$ is much larger than the maximum mass of a neutron star.  Figure~\ref{fig:bbh_nsbh_waveforms} compares the amplitude $|\hlm|(t)$ and instantaneous frequency $d\phi_{\ell m}(t)/dt$ of this waveform, along with a similar waveform from a non-spinning binary black hole system with the same mass ratio. The multipole structure of these waveforms can be seen to be slightly different. We hope that the test will be able to identify these differences provided higher modes are observed with sufficient SNR. 
+
+Figure~\ref{fig:non_bbh_posterior} shows the posteriors of the deviation parameters $\Delta M_c$ and $\Delta q$ estimated from a simulated observation containing this signal (darker contours), which are {inconsistent} with the GR prediction of binary black holes ($\Delta M_c = \Delta q = 0$). The Figure also shows the results of the test applied on a numerical relativity waveform from a binary black hole system with same parameters (lighter contours), which shows consistency with $\Delta M_c = \Delta q = 0$. The simulated signals correspond to binaries with inclination angle $\iota = 90^\circ$, producing SNR of 50 in the three detector Advanced LIGO-Virgo network. 
 
 
 

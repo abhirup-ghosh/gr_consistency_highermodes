@@ -213,7 +213,7 @@ P (d \, | \, {\btheta}) = \prod_{I \epsilon {H,L,V}} P (d^{I} \, | \, {\btheta})
 
 In this Bayesian framework, we proceed to estimate the posterior probability distribution of $\btheta$ by stochastically sampling over the parameter space, using a python-based affine-invariant ensemble sampler \textsc{emcee}~\cite{foreman2013emcee, goodman2010ensemble}. Subsequently, we marginalize over the \textit{nuisance} parameters to obtain the posterior distributions on the non-GR parameter set, ${\Delta \blambda}$ or $c_{\ell m}$. If the data is consistent with a binary black hole signal in GR, $P(\Delta \blambda \, | \, d)$ (or $P(\Delta c_{\ell m} \, | \, d)$) is expected to be consistent with zero. 
 
-We assume uniform prior probability distributions on the chirp mass and mass ratio in the interval $M_c \in [1,200] M_\odot$ and $q \in [0.05,1.0]$. The prior on the location of the source is  assumed to be isotropic on the sphere of  the  sky,  with $P({d_L}) \propto d_{L}^{2}$ where $d_L \in [1,10000]$ Mpc. We use an  isotropic  prior  on  the  orientation  of  the  binary: $P({\iota,\varphi_0,\psi}) \propto \sin\iota$ with $\iota \in [0,\pi)$, $\varphi \in [0,2\pi)$ and $\psi \in [0,\pi)$. For all other parameters in $\btheta$, we use uniform priors \abhirup{Need to specify ranges on the other parameters as well}.
+We assume uniform prior probability distributions on the chirp mass and mass ratio in the interval $M_c \in [1,200] M_\odot$ and $q \in [0.05,1.0]$. The prior on the location of the source is  assumed to be isotropic on the sphere of  the  sky,  with $P({d_L}) \propto d_{L}^{2}$ where $d_L \in [1,10000]$ Mpc. We use an  isotropic  prior  on  the  orientation  of  the  binary: $P({\iota,\varphi_0,\psi}) \propto \sin\iota$ with $\iota \in [0,\pi)$, $\varphi_0 \in [0,2\pi)$ and $\psi \in [0,\pi)$. For all other parameters in $\btheta$, we use uniform priors: $\alpha \in [0,2\pi)$, $\delta \in [0,2\pi)$ and $t_0 \in [-15,15]$. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%`
 \section{Simulations of binary black holes in GR}
@@ -231,15 +231,15 @@ We assume uniform prior probability distributions on the chirp mass and mass rat
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[h]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[tbh]
 	\begin{center}
-		\includegraphics[scale=0.85]{figs/90_percent_CI_c1.pdf}
+		\includegraphics[width=2.8in]{figs/M_80_q_9_SNR_25_complex_c1.pdf}
 	\end{center} 
-	\caption{The width of 90\% credible regions of the posteriors of $c$ for binaries with different total mass $M$ (upper panel) and mass ratio $q$ (lower panel) and inclination angle $\iota$ (legends). All binaries considered in the upper panel have a mass ratio $q=1/9$. Binaries considered in the lower panel have total mass of $40M_{\odot}$. All the simulated observations produce a network SNR of 25 in Advanced LIGO-Virgo network.}
-	\label{fig:constraint_c}
+	\caption{The figure shows the posterior probability distribution of the absolute value $|c|$ and argument $\phi_c$ complex deviation parameter $\tilde{c}$ estimated from the simulated GR event. Details are same as in \ref{fig:posterior_BBH_GR_inj}.}
+	\label{fig:c1_complex}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 We use simulations of binary black hole events (as described in GR) to elaborate the two formulations of the tests presented in Sec.~\ref{sec:test}, i.e., by introducing extra parameters to describe the higher harmonics, and try to estimate and constrain them from the data, using a Bayesian framework.
 
@@ -249,22 +249,22 @@ The first test we consider the formulation proposed in Eq.~\eqref{eq:test_1}. Th
 
 We consider two different ways to perform the test. First, we introduce \emph{one} deviation parameter at a time. That is, $\Delta\blambda = {\Delta M_c}$ or $\Delta\blambda = {\Delta q}$. We then consider introducing a concurrent deviation in \emph{two} parameters $\Delta \blambda = \{\Delta M_c, \Delta q\}$. In Fig.~\ref{fig:posterior_BBH_GR_inj}, we show the results of the tests performed with GR waveform by varying either one parameter or two parameters, for a binary with total mass $M = 80M_{\odot}$, mass ratio $q=1/9$, inclination angle $ {\iota}=60^{\circ} $ producing a network signal-to-noise ratio  (SNR)  of 25 (SNR in higher modes is $\sim 10$). SNRs in individual detectors are: 15 in Advanced LIGO-Hanford, 18.9 in Advanced LIGO-Livingston and 6.7 in Virgo. The posterior probability density for both the parameters $\Delta q$ and $\Delta M_c$ are consistent with zero as one expect in GR. Furthermore, the deviation parameters are found to be better constrained when only one deviation parameter is allowed to vary at a time (either $\Delta M_c$ or $\Delta q$). This suggests that a consistency test with only one deviation parameter in the higher modes would provide tighter constraints on deviations. In the subsequent analysis, we therefore focus on varying only one deviation parameter at a time. 
 
-In Fig.~\ref{fig:hm_mcq_compare-1det_3det_GR_inj} we show that, as expected, the width of the posteriors of the deviation parameters become smaller (i.e., improved precision) when we perform the test with a network of three Advanced LIGO-Virgo detectors instead of using only one Advanced LIGO detector (for the same SNR). However, for a fixed SNR, the improvements in the precision is small (factor of $\sim ~\red{XX}$), due to the fact that the improved information (e.g., sky localization) is not highly correlated with the intrinsic parameters $M_c, q$ nor the deviation parameters $\Delta M_c, q$. 
+In Fig.~\ref{fig:hm_mcq_compare-1det_3det_GR_inj} we show that, as expected, the width of the posteriors of the deviation parameters become smaller (i.e., improved precision) when we perform the test with a network of three Advanced LIGO-Virgo detectors instead of using only one Advanced LIGO detector (for the same SNR). However, for a fixed SNR, the improvements in the precision is small (factor of $\sim ~2-3$), due to the fact that the improved information (e.g., sky localization) is not highly correlated with the intrinsic parameters $M_c, q$ nor the deviation parameters $\Delta M_c, q$. 
 
 Figures~\ref{fig:delmc_delq_varyingM} and \ref{fig:delmc_delq_varyingq} show the 90\% credible intervals of the posteriors of the deviation parameters for binaries with varying masses, mass ratios and inclination angles, estimated using the three detector network. In all cases, we set the network SNR to be {25}. Note that only one deviation parameter ($\Delta M_c$ or $\Delta q$) is varied at a time.  We find that binaries with large mass ratios ($q < 1/ 2$) and inclination angles ($\iota > 60 ^\circ $) will allow precision tests of the GR predictions, reaching statistical uncertainties of $< 10^{-3}$ for $\Delta q$ and $< 10^{-2}$ for the dimensionless deviation parameter $\Delta M_c/M_c$. Our results are found to be consistent with the one detector analysis done in ~\cite{Dhanpal:2018ufk}. We, however, notice that the 90\% interval for both the deviation parameters, in three detector analysis, decreases slightly (i.e., precision improved) as compared to the one detector case.
  
 \subsection{Formulation B}
 \label{sec:formulationB}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \begin{figure}[tbh]
- 	\begin{center}
- 		\includegraphics[width=2.8in]{figs/M_80_q_9_SNR_25_complex_c1.pdf}
- 	\end{center} 
- 	\caption{The figure shows the posterior probability distribution of the absolute value $|c|$ and argument $\phi_c$ complex deviation parameter $\tilde{c}$ estimated from the simulated GR event. Details are same as in \ref{fig:posterior_BBH_GR_inj}.}
- 	\label{fig:c1_complex}
- \end{figure}
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.85]{figs/90_percent_CI_c1.pdf}
+	\end{center} 
+	\caption{The width of 90\% credible regions of the posteriors of $c$ for binaries with different total mass $M$ (upper panel) and mass ratio $q$ (lower panel) and inclination angle $\iota$ (legends). All binaries considered in the upper panel have a mass ratio $q=1/9$. Binaries considered in the lower panel have total mass of $40M_{\odot}$. All the simulated observations produce a network SNR of 25 in Advanced LIGO-Virgo network.}
+	\label{fig:constraint_c}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}[tbh]

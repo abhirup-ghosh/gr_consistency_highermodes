@@ -33,6 +33,7 @@
 \newcommand{\vijay}[1]{\textcolor{cyan}{Vijay: #1}}
 \newcommand{\tousif}[1]{\textcolor{magenta}{Tousif: #1}}
 \newcommand{\abhirup}[1]{\textcolor{magenta}{Abhirup: #1}}
+\newcommand{\ajitm}[1]{\textcolor{blue}{Ajitm: #1}}
 \newcommand{\io}{\iota}
 \newcommand{\p}{\phi}
 \newcommand{\vp}{\varphi}
@@ -366,15 +367,15 @@ Figure~\ref{fig:non_bbh_posterior} shows the posteriors of the deviation paramet
 
 In all the simulations presented in the previous section, we have assumed that binary black holes have negligible spin angular momenta. While most of the binary black hole events detected by LIGO and Virgo do not appear to have significant spins~\cite{abbott2019gwtc}, black holes in binaries, in general, could be spinning. When non-spinning waveform templates are employed to perform the consistency test on GW observations of spinning binaries, the incomplete modeling of the templates can manifest as a deviation from GR. Here we make a first estimate of the effect of neglecting black hole spins in this test by performing the same analysis on simulated spinning binary black hole observations. We simulate spinning binary black hole observations making use of the numerical-relativity surrogate waveform family developed in~\cite{varma2019surrogate} and perform the consistency test using the same non-spinning waveform family~\cite{Mehta:2017jpq} as the base GR waveform over which modifications are applied. 
 
-Figure~\ref{fig:posterior_spin} shows the posteriors in the deviation parameters $\Delta M_c/M_c$ and $\Delta q$ introduced in Eq.\eqref{eq:test_1} estimated from simulated binary black hole events with different values of spin. The consistency test is always performed using the non-spinning phenomenological waveform family~\cite{Mehta:2017jpq} as the base GR waveform. The effective spin $\chi_\mathrm{eff} = m_1 \chi_1 + m_2 \chi_2)/(m_1+m_2)$ of the simulated (target) waveforms is shown in the legends. It can be seen that, posteriors estimated from weakly spinning simulated waveforms are largely consistent with the GR values ($\Delta M_c = \Delta q = 0)$ while GW signals with significant spins ($\chi_\mathrm{eff} \gtrsim X)$ produce posteriors that are inconsistent with the GR value. Thus, it is important to model the spin effects in the templates for binaries with considerable spins. 
-
+\ajitm{Figure~\ref{fig:posterior_low_spin} and Figure~\ref{fig:posterior_high_spin} show the posteriors in the deviation parameters $\Delta M_c/M_c$ and $\Delta q$ introduced in Eq.\eqref{eq:test_1} estimated from simulated binary black hole events with different values of spin. The consistency test is always performed using the non-spinning phenomenological waveform family~\cite{Mehta:2017jpq} as the base GR waveform. The dimensionless spins of the component black holes are shown in the legends. Figure~\ref{fig:posterior_low_spin} shows the posteriors in the deviation parameters $\Delta M_c/M_c$ and $\Delta q$ for low spins, while Figure~\ref{fig:posterior_high_spin} shows the same for high spins.   It can be seen that, posteriors estimated from spinning simulated waveforms are consistent with the GR values ($\Delta M_c = \Delta q = 0)$. However, the widths of the deviation parameters $\Delta M_c/M_c$ and $\Delta q$ increase significantly for high spins of the primary component black hole. This suggests that one should use an accurate spinning waveform model if one wants to perform such tests on highly spinning signals}.
+%The effective spin $\chi_\mathrm{eff} = m_1 \chi_1 + m_2 \chi_2)/(m_1+m_2)$ of the simulated (target) waveforms is shown in the legends.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htb] 
 \begin{center}
-\includegraphics[width=3.4in]{figs/cartoon_plot.pdf}
-\label{fig:posterior_spin}
-\caption{Fake posteriors from spinning injections. Replace this with right plots}
+\includegraphics[width=3.4in]{figs/M_80_q_4_sur_phenom_diffchi.pdf}
 \end{center} 
+\caption{Posteriors of the deviation parameters $\Delta M_c/M_c$ and $\Delta q$  for the spinning injections along with the non-spinning injection (magenta dashed curve). The legends show the spins of the component black holes. We see that  width of the posteriors are larger for non-zero spins compared to the non-spinning binary black holes. }
+\label{fig:posterior_low_spin}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -384,6 +385,16 @@ Figure~\ref{fig:posterior_spin} shows the posteriors in the deviation parameters
 In this paper, we have proposed a set of tests of the ``no-hair'' nature of binary black holes in GR based on a consistency test of the multipolar structure of the gravitational radiation. These tests are analogous to the tests of ``no-hair'' theorem for stationary black holes based on the consistency of different quasi-normal modes of a perturbed black hole~\cite{xx}. We proposed two formulations of this test, that introduce extra deviation parameters that govern the amplitude and phase evolution of different spherical harmonic modes of the radiation, as well as ones affecting the amplitudes of different modes. Posterior distributions of these deviation parameters can be estimated using a Bayesian framework. 
 
 The first formulation is inspired by the fact that different modes of radiation from the binary black holes should be uniquely described only by the same values of intrinsic parameters (chirp mass and mass ratio), and hence these parameters estimated from different modes should be consistent to each other. We first revisited this formulation, originally presented in~\cite{Dhanpal:2018ufk}. We presented the results expected from 3-detector observations of binary black holes using the Advanced LIGO-Virgo detectors. Results from our simulations suggest that upcoming observations using Advanced LIGO and Virgo will be able to put precise constraints on the deviation parameters. Indeed, this test requires appreciable SNR in the higher order modes of the observed GW signal, which is expected only for small fraction (a few percents~\cite{Dhanpal:2018ufk}) of detectable binary black hole events. However, given that LIGO-Virgo would observed hundreds of binary black hole mergers in coming years, we expect a reasonable number of such events to be observed. We also demonstrate that, if the observed signal is not produced by a binary black hole system in GR, the test is able to identify this, provided that the SNR is high enough. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb] 
+	\begin{center}
+		\includegraphics[width=3.4in]{figs/M_80_q_4_sur_phenom_diffchi_high_chi_eff.pdf}
+	\end{center} 
+\caption{Same as Figure~\ref{fig:posterior_low_spin} but for high primary component spins. We can see that the width of the deviation parameters increase significantly. \ajitm{I will put a better picture latter.}}
+\label{fig:posterior_high_spin}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In the second formulation, we check for the consistency between the amplitudes of different modes. In order to do so, we introduce a set of extra deviation parameters in the amplitudes for the higher modes. We see that these deviation parameters can be constrained only with modest precision in Advanced LIGO-Virgo. However, the precision of such a test is expected to increase manifold with the next generation of detectors (e.g. with Einstein Telescope or LISA). 
 

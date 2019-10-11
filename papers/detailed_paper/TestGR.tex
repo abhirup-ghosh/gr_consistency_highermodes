@@ -109,9 +109,9 @@ One of the powerful probes of the nature of black holes that can be performed us
 
 In a similar fashion we expect the dynamics and gravitational radiation from a binary black hole system in a quasi-circular orbit to be uniquely determined by a small number of parameters (masses and spins of the black holes). Hence different multipoles (spherical harmonic modes) of the radiation have to be consistent with the same values of the black holes' masses and spins. Thus, the consistency between different modes of the observed signal is a powerful test that the radiation is produced by a binary black hole system. Inconsistency between different modes of the radiation would point to either a departure from GR, or the non-black hole nature of the compact objects --- a violation of the ``no-hair'' nature of the binary black hole system. 
 
-Such a no-hair test for binary black holes was presented in~\cite{Dhanpal:2018ufk}. The main idea of this test is to test the consistency of the the source parameters estimated from the quadrupole (leading order) modes and higher order modes separately. In spirit, this idea is similar to checking the consistency of cosmological parameters estimated from the low- and high multipoles of the cosmilc microwave background radiation (see, e.g.,~\cite{Aghanim:2018eyx}). In this paper we present different formulations of such a test, demonstrate their application using simulated data and present a first investigation of the systematic errors that need to be controlled before the test is applied to real GW observations. 
+Such a no-hair test for binary black holes was presented in~\cite{Dhanpal:2018ufk}. The main idea of this test is to test the consistency of the the source parameters estimated from the quadrupole (leading order) modes and higher order modes separately. In spirit, this idea is similar to checking the consistency of cosmological parameters estimated from the low- and high multipoles of the cosmic microwave background radiation (see, e.g.,~\cite{Aghanim:2018eyx}). In this paper we present different formulations of such a test, demonstrate their application using simulated data and present a first investigation of the systematic errors that need to be controlled before the test is applied to real GW observations. 
 
-Indeed, this test requires the higher order modes of the radiation to be detected with sufficient signal-to-noise ratio (SNR). This entail the observation of binaries with large mass ratios and/or highly misaligned spins with high inclination angles (angle between the orbital angular momentum and the line of sight). Since the gravitational radiation is primarily beamed parallel/antiparallel to the oribtal angular momentum, GW observations have a selection bias towards binaries with small inclination angles, and hence the contribution from higher modes is likely to be small for most observed systems. However, considering Advanced LIGO and Virgo are expected to detect hundreds of binary black hole mergers in the next few years, we are likely to detect a small number of high-mass ratio binaries in inclined orbits which enables this test to be performed~\cite{Dhanpal:2018ufk}. There is already preliminary evidence of higher modes in one of the binary black hole events detected by LIGO and Virgo during their second observing run~\cite{Chatziioannou:2019dsz}. 
+Indeed, this test requires the higher order modes of the radiation to be detected with sufficient signal-to-noise ratio (SNR). This entail the observation of binaries with large mass ratios and/or highly misaligned spins with high inclination angles (angle between the orbital angular momentum and the line of sight). Since the gravitational radiation is primarily beamed parallel/anti-parallel to the orbital angular momentum, GW observations have a selection bias towards binaries with small inclination angles, and hence the contribution from higher modes is likely to be small for most observed systems. However, considering Advanced LIGO and Virgo are expected to detect hundreds of binary black hole mergers in the next few years, we are likely to detect a small number of high-mass ratio binaries in inclined orbits which enables this test to be performed~\cite{Dhanpal:2018ufk}. There is already preliminary evidence of higher modes in one of the binary black hole events detected by LIGO and Virgo during their second observing run~\cite{Chatziioannou:2019dsz}. 
 
 %Most of the tests of GR performed using past GW observations rely on the power in the leading quadrupolar modes \cite{LSC_2016grtests,gw170104,ligo2019tests,abbott2019tests,abbott2017gravitational}. However there have been work~
 % AJITH: If we want to discuss the importance of higher modes in GW data analysis (which, in my opinion, is a tangential point), I am not sure if these are the papers to cite. For eg. 
@@ -126,32 +126,42 @@ The rest of the paper is organized as follows: Section~\ref{sec:test} presents t
 \section{Testing the consistency of different multipoles of the radiation}
 \label{sec:test}
 
-\subsection{Formulation of the test}
+\subsection{Multipolar gravitational waveforms from binary black holes}
 
 Gravitational radiation from the coalescence of a binary black hole in GR can be written as a superposition of $-2$ spin-weighted spherical harmonics ~\cite{NewmanPenrose}:
 \begin{eqnarray}
 \h(t; \n, \blambda) &:=& h_+(t; \n, \blambda) - i \, h_\times(t; \n, \blambda) \\
-&=& \frac{1}{d_L} \sum _{\ell=2}^{\infty} \sum _{m=-\ell}^{\ell} {\Ylm} (\n) \, {{\hlm}(t; {\blambda})}, 
+&=& \sum _{\ell=2}^{\infty} \sum _{m=-\ell}^{\ell} {\Ylm} (\n) \, {{\hlm}(t; {\blambda})}, 
 \label{eq:spherical_harmonics}
 \end{eqnarray}
-where $h_+$ and $h_{\times}$ are the two independent polarizations of gravitational radiation, $d_L$ the luminosity distance to the source, ${\Ylm}$ spherical harmonics of weight $-2$ and $\n := \{\iota, \varphi_0\}$ the direction of radiation in the source frame. In GR, the leading order mode is the quadrupolar ($\ell = 2, m = \pm 2$) modes, and the contribution of the higher modes to the signal depends on the total mass $M$, mass ratio $q$, spin angular momenta ${\mathbf S}_{1,2}$ and the inclination angle $\iota$.  The spherical harmonic modes, ${\h}_{lm}(t; \blambda)$, are uniquely determined by the \emph{intrinsic} parameters $\blambda$ of the system, i.e., the masses and spins of the two black holes (for a quasi-circular binary). In this work, we model the gravitational radiation from non-spinning binary black holes using the phenomenological inspiral-merger-ringdown waveform family introduced in \cite{Mehta:2017jpq}. This waveform model includes the $(\ell = 2, m=\pm1)$, $(\ell = 3, m=\pm3)$ and $(\ell = 4, m = \pm4)$  modes of the radiation over and above the dominant $(\ell = 2, m = \pm2)$ mode. The other spherical harmonic modes neglected in this waveform model only introduce an inaccuracy (mismatch) of less than 1\% in the waveforms~\cite{Mehta:2017jpq}. 
+where $h_+$ and $h_{\times}$ are the two independent polarizations of gravitational radiation, ${\Ylm}$ spherical harmonics of weight $-2$ and $\n := \{\iota, \varphi_0\}$ the direction of radiation in the source frame. The spherical harmonic modes can be computed from the full radiation as 
+\begin{equation}
+\hlm(t; {\blambda}) := \int_0^{2\pi}  d\varphi_0 \int_0^{\pi} \h(t; \n, \blambda) \, {\Ylm}^\star (\n) \, \sin \iota \, d\iota, 
+\label{eq:sphar_modes}
+\end{equation}
+where the integration is over the full sphere~\footnote{Note that while we are able to theoretically compute the spherical harmonic modes of the radiation from a binary, it is not possible to estimate the modes from the observed signal, since the observed signal $\h(t; \n, \blambda) $ is a particular linear combination of the modes. This is very different, for example, from the observation of cosmic microwave background radiation where the radiation is measured over the entire sphere and hence the radiation multipoles can be computed using a decomposition similar to Eq.\eqref{eq:sphar_modes}.}. In GR, the leading order mode is the quadrupolar ($\ell = 2, m = \pm 2$) modes. The relative contribution of the higher modes to the signal $\h(t; \n, \blambda)$ depends on the total mass $M$, mass ratio $q$, spin angular momenta ${\mathbf S}_{1,2}$ and the orientation of the binary $\n$. 
 
-In ~\cite{Dhanpal:2018ufk}, we presented a new test of the ``no-hair'' nature of binary black holes in GR based on the consistency between estimates of these parameters from the different spherical harmonic modes of the gravitational radiation. The test was based on the fact that, if the radiation is produced by a binary black hole system described by GR, then these independent estimates should be consistent with one another. Hence the difference in these two estimates should be consistent with zero. There are two different formulations of the test that we consider in this paper.
+The spherical harmonic modes, ${\h}_{lm}(t; \blambda)$, are uniquely determined by the \emph{intrinsic} parameters $\blambda$ of the system, i.e., the masses and spins of the two black holes (for a quasi-circular binary). Thus, by comparing these theoretical waveforms with data (see, e.g. Sec~\ref{sec:bayesian_analsysis}), one can estimate these parameters. In this work, we model the gravitational radiation from non-spinning binary black holes using the phenomenological inspiral-merger-ringdown waveform family introduced in \cite{Mehta:2017jpq}. This waveform model includes the $(\ell = 2, m=\pm1)$, $(\ell = 3, m=\pm3)$ and $(\ell = 4, m = \pm4)$  modes of the radiation over and above the dominant $(\ell = 2, m = \pm2)$ mode. The other spherical harmonic modes neglected in this waveform model only introduce an inaccuracy (mismatch) of less than 1\% in the waveforms~\cite{Mehta:2017jpq}. 
+
+
+\subsection{Formulation of the test}
+
+In ~\cite{Dhanpal:2018ufk}, we presented a new test of the ``no-hair'' nature of binary black holes in GR based on the consistency of different multipoles (spherical harmonic modes) of the radiation. In spirit, this involves estimating the intrinsic parameters of the binary from different multipoles of the radiation and checking their consistency. If the parameters estimated from two different modes are inconsistent with each other, this would imply that the multipolar structure of the radiation is inconsistent with what is expected from a binary black hole system in GR. In practice, we are unable to extract the different multipoles of the radiation from the observed GW signal. Hence we introduce extra parameters in the signal model that allows discrepancies between different modes and estimate those parameters along with the standard set of parameters that describe the GW signal. If the signal is consistent with that produced by a binary black hole system in GR, the additional parameters will be consistent with zero. 
 
 \paragraph{Formulation A:}
 	Following ~\cite{Dhanpal:2018ufk}, we generalize the GR waveform model Eq.~(\ref{eq:spherical_harmonics}) by allowing inconsistencies between the intrinsic parameters estimated from the dominant mode and the higher order modes by introducing a set of deviation parameters $\Delta \blambda := \{\Delta M_c, \Delta q\}$ in the higher modes: 
 	\begin{eqnarray}
-	\h(t; \n, \blambda, \Delta \blambda) & = &  \frac{1}{d_L} \left[ ~ \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda) \right. \nonumber \\ 
-	& + & \left. \sum _{\text{H.O.M}} \Ylm (\n) \hlm(t, \blambda+\Delta \blambda), \right]
-	\label{eq:test_1}
+	\h(t; \n, \blambda, \Delta \blambda) & = &    \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda) \nonumber \\ 
+	& + &  \sum _{\text{H.O.M}} \Ylm (\n) \hlm(t, \blambda+\Delta \blambda), 	
+\label{eq:test_1}
 	\end{eqnarray}
 where {H.O.M} indicates sum over higher order modes (all modes other than $\ell = 2, m = \pm 2$). We then simultaneously estimate the posterior distributions of $\blambda$ and $\Delta \blambda$ along with other extrinsic parameters that describe the location and orientation of the binary (see Sec.~\ref{sec:bayesian_analsysis}). 
 
 \paragraph{Formulation B:}
 In this paper, we also investigate modifications made to the amplitude of the gravitational radiation by introducing deviations to the amplitude of non-quadrupole modes, and rewriting Eq.~(\ref{eq:spherical_harmonics}) as
 	\begin{eqnarray}
-	{\h}(t; \n, \blambda, c_{\ell m}) & = & \frac{1}{d_L} \left[ \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda)  \right. \nonumber \\ 
-	& + & \left. \sum _{\text{H.O.M}} (1+{c_{\ell m}}) \, \Ylm (\n) \hlm(t, \blambda) \right] ,
+	{\h}(t; \n, \blambda, c_{\ell m}) & = & \sum_{m = \pm2} Y^{-2}_{2m} (\n) {\h}_{2m}(t, \blambda)   \nonumber \\ 
+	& + &  \sum _{\text{H.O.M}} (1+{c_{\ell m}}) \, \Ylm (\n) \hlm(t, \blambda) ,
 	\label{eq:test_2}
 	\end{eqnarray}
 	where $c_{\ell m}$ is a set of deviation parameters that could be different for different higher order modes. Here we simultaneously estimate the posterior distributions of $\blambda$ and ${c_{\ell m}}$  along with other extrinsic parameters that describe the location and orientation of the binary. We consider different combinations of ${c_{\ell m}}$ (details in Sec.~\ref{sec:formulationB}). 
@@ -192,6 +202,14 @@ In this paper, we also investigate modifications made to the amplitude of the gr
  	\label{fig:delmc_delq_varyingq}
  \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Each interferometric GW detector $I$ detects a linear combination of the two polarizations $h_+$ and $h_\times$, given by 
+\begin{eqnarray}
+h^I(t) & = \frac{1}{d_L} \, \left [ F^I_+(\alpha, \delta, \psi) \, h_+(t-t_0; \n, \blambda) \right. \\ 
+       & \left. + F^I_{\times}(\alpha, \delta, \psi)\, h_\times(t-t_0; \n, \blambda) \right]
+\label{eq:det_response}
+\end{eqnarray}
+where ${d_L}$ is the luminosity distance to the source, $F^I_+$ and $F^I_\times$ are the antenna pattern functions of the detector $I$, $t_0$ is the time of arrival of the signal at the detector, and $(\alpha, \delta), \psi$ define the sky position and polarisation angle of the GW source, respectively. Above, we have neglected the time dependence of the antenna pattern functions, which is a good assumption for the case of the transient signals that we consider in this work. 
 
 The noise $n(t)$ in a GW detector can be safely described, over sufficiently short time intervals, as a stationary and Gaussian random process with zero mean and a power spectral density (PSD), $S_n(f)$. In the presence of a GW signal $h(t; \btheta)$ from a binary black hole merger described by a parameter set $\btheta$ (which include the intrinsic and extrinsic parameters of the binary as well as the set of parameters describing deviations from GR), we assume that the detector data $d(t)$ is the sum of the noise and the signal, i.e.:
 \begin{equation}

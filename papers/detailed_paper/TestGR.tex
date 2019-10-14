@@ -365,29 +365,19 @@ Figure~\ref{fig:non_bbh_posterior} shows the posteriors of the deviation paramet
 \section{Waveform systematics}
 \label{sec:waveformsyst}
 
-In all the simulations presented in the previous section, we have assumed that binary black holes have negligible spin angular momenta. While most of the binary black hole events detected by LIGO and Virgo do not appear to have significant spins~\cite{abbott2019gwtc}, black holes in binaries, in general, could be spinning. When non-spinning waveform templates are employed to perform the consistency test on GW observations of spinning binaries, the incomplete modeling of the templates can manifest as a deviation from the predicted beavior of a binary black hole signal in GR. Here we make a first estimate of the effect of neglecting black hole spins in this test by performing the same analysis on simulated spinning binary black hole observations. We simulate spinning binary black hole observations making use of the numerical-relativity surrogate waveform family developed in~\cite{varma2019surrogate} and perform the consistency test using the same non-spinning waveform family~\cite{Mehta:2017jpq} as the base GR waveform over which modifications are applied. 
+In all the simulations presented in the previous section, we have assumed that binary black holes have negligible spin angular momenta. While most of the binary black hole events detected by LIGO and Virgo do not appear to have significant spins~\cite{abbott2019gwtc}, black holes in binaries, in general, could be spinning. When non-spinning waveform templates are employed to perform the consistency test on GW observations of spinning binaries, the incomplete modeling of the templates can manifest as a deviation from the predicted behavior of a binary black hole signal in GR. Here we make a first estimate of the effect of neglecting black hole spins in this test by performing the same analysis on simulated spinning binary black hole observations. We simulate spinning binary black hole observations making use of the numerical-relativity surrogate waveform family developed in~\cite{varma2019surrogate} and perform the consistency test using the same non-spinning waveform family~\cite{Mehta:2017jpq} as the base GR waveform over which modifications are applied. 
 
-Figure~\ref{fig:posterior_spin} shows the posteriors in the deviation parameters $\Delta M_c/M_c$ and $\Delta q$ introduced in Eq.\eqref{eq:test_1} estimated from simulated binary black hole events with different values of spin (dimensionless spins $\chi_{1,2}$ shown in legends). The consistency test is always performed using the non-spinning phenomenological waveform family~\cite{Mehta:2017jpq} as the base GR waveform. The dimensionless spins of the component black holes are shown in the legends. Figure~\ref{fig:posterior_spin} shows the posteriors in the deviation parameters $\Delta M_c/M_c$ and $\Delta q$ for low spins, while Figure~\ref{fig:posterior_high_spin} shows the same for high spins.   It can be seen that, posteriors estimated from spinning simulated waveforms are consistent with the GR values ($\Delta M_c = \Delta q = 0)$. However, the widths of the deviation parameters $\Delta M_c/M_c$ and $\Delta q$ increase significantly for high spins of the primary component black hole. This suggests that one should use an accurate spinning waveform model if one wants to perform such tests on highly spinning signals}. \tousif{I guess we can also mention 'For high spin injections, though the posteriors of $\Delta M_c/M_c$ and $\Delta q$ broadly are consistent with GR value \{0,0\} at the 90\% level, the peaks of the posteriors shows a bias from the injection'.}
-%The effective spin $\chi_\mathrm{eff} = m_1 \chi_1 + m_2 \chi_2)/(m_1+m_2)$ of the simulated (target) waveforms is shown in the legends.
+Figure~\ref{fig:posterior_spin} shows the posteriors in the deviation parameters $\Delta M_c$ and $\Delta q$ introduced in Eq.\eqref{eq:test_1} estimated from simulated binary black hole events with different values of spin (dimensionless spins $\chi_{1,2}$ shown in legends). The left plot corresponds to simulations with low spins, while the right plot to high spins.  For high spin injections, though the posteriors of $\Delta M_c/M_c$ and $\Delta q$ broadly are consistent with GR value (0, 0) at the 90\% level, the peaks of the posteriors show a bias from the injected value. Additionally, the widths of the deviation parameters increase significantly for high spins of the primary black hole. This suggests that one should use an accurate spinning waveform model if one wants to perform such tests on highly spinning signals. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}[tbh] 
 \begin{center}
 \includegraphics[width=3.3in]{figs/M_80_q_4_sur_phenom_diffchi.pdf}
 \includegraphics[width=3.3in]{figs/M_80_q_4_sur_phenom_diffchi_high_chi_eff.pdf}
 \end{center} 
-\caption{Posteriors of the deviation parameters $\Delta M_c/M_c$ and $\Delta q$  for the spinning injections along with the non-spinning injection (magenta dashed curve). The legends show the spins of the component black holes. We see that  width of the posteriors are larger for non-zero spins compared to the non-spinning binary black holes. }
+\caption{Posteriors of the deviation parameters $\Delta M_c$ and $\Delta q$ for binary black hole injections with different values of component spins $\chi_1$ and $\chi_2$ (shown in legends). The left plot corresponds to low spins and the right to high spins. The results from non-spinning injections is also shown, for comparison (left). We see that width of the posteriors from the highly spinning injections are much large as compared to that from non-spinning or low-spin injections (note the different axis ranges in the left and right plots).} 
 \label{fig:posterior_spin}
 \end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htb] 
-	\begin{center}
-		\includegraphics[width=3.4in]{figs/M_80_q_4_sur_phenom_diffchi_high_chi_eff.pdf}
-	\end{center} 
-\caption{Same as Figure~\ref{fig:posterior_spin} but for high primary component spins. We can see that the width of the deviation parameters increase significantly. \ajitm{I will put a better picture latter.}}
-\label{fig:posterior_high_spin}
-\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 

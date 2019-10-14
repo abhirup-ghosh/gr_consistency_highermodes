@@ -1,4 +1,4 @@
-\begin{thebibliography}{15}
+\begin{thebibliography}{31}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname bibnamefont\endcsname\relax
   \def\bibnamefont#1{#1}\fi
@@ -21,6 +21,102 @@
   \bibinfo{author}{\bibfnamefont{B.~S.} \bibnamefont{Sathyaprakash}},
   \bibinfo{journal}{Phys. Rev. D} \textbf{\bibinfo{volume}{99}},
   \bibinfo{pages}{104056} (\bibinfo{year}{2019}), \eprint{1804.03297}.
+
+\bibitem[{\citenamefont{{Abbott et al.}}(2016)}]{LSC_2016grtests}
+\bibinfo{author}{\bibfnamefont{B.~P.} \bibnamefont{{Abbott et al.}}}
+  (\bibinfo{collaboration}{LIGO Scientific and Virgo Collaborations}),
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{116}},
+  \bibinfo{pages}{221101} (\bibinfo{year}{2016}),
+  \urlprefix\url{http://link.aps.org/doi/10.1103/PhysRevLett.116.221101}.
+
+\bibitem[{\citenamefont{Abbott et~al.}(2017{\natexlab{a}})}]{gw170104}
+\bibinfo{author}{\bibfnamefont{B.~P.} \bibnamefont{Abbott}}
+  \bibnamefont{et~al.} (\bibinfo{collaboration}{LIGO Scientific and Virgo
+  Collaboration}), \bibinfo{journal}{Phys. Rev. Lett.}
+  \textbf{\bibinfo{volume}{118}}, \bibinfo{pages}{221101}
+  (\bibinfo{year}{2017}{\natexlab{a}}),
+  \urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevLett.118.221101}.
+
+\bibitem[{\citenamefont{Collaboration et~al.}(2019)\citenamefont{Collaboration,
+  Collaboration et~al.}}]{ligo2019tests}
+\bibinfo{author}{\bibfnamefont{L.~S.} \bibnamefont{Collaboration}},
+  \bibinfo{author}{\bibfnamefont{V.}~\bibnamefont{Collaboration}},
+  \bibnamefont{et~al.}, \bibinfo{journal}{arXiv preprint arXiv:1903.04467}
+  (\bibinfo{year}{2019}).
+
+\bibitem[{\citenamefont{Abbott et~al.}(2019{\natexlab{a}})\citenamefont{Abbott,
+  Abbott, Abbott, Acernese, Ackley, Adams, Adams, Addesso, Adhikari, Adya
+  et~al.}}]{abbott2019tests}
+\bibinfo{author}{\bibfnamefont{B.}~\bibnamefont{Abbott}},
+  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Abbott}},
+  \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Abbott}},
+  \bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Acernese}},
+  \bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Ackley}},
+  \bibinfo{author}{\bibfnamefont{C.}~\bibnamefont{Adams}},
+  \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Adams}},
+  \bibinfo{author}{\bibfnamefont{P.}~\bibnamefont{Addesso}},
+  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Adhikari}},
+  \bibinfo{author}{\bibfnamefont{V.}~\bibnamefont{Adya}}, \bibnamefont{et~al.},
+  \bibinfo{journal}{Physical review letters} \textbf{\bibinfo{volume}{123}},
+  \bibinfo{pages}{011102} (\bibinfo{year}{2019}{\natexlab{a}}).
+
+\bibitem[{\citenamefont{Abbott et~al.}(2017{\natexlab{b}})\citenamefont{Abbott,
+  Abbott, Abbott, Acernese, Ackley, Adams, Adams, Addesso, Adhikari, Adya
+  et~al.}}]{abbott2017gravitational}
+\bibinfo{author}{\bibfnamefont{B.~P.} \bibnamefont{Abbott}},
+  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Abbott}},
+  \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Abbott}},
+  \bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Acernese}},
+  \bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Ackley}},
+  \bibinfo{author}{\bibfnamefont{C.}~\bibnamefont{Adams}},
+  \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Adams}},
+  \bibinfo{author}{\bibfnamefont{P.}~\bibnamefont{Addesso}},
+  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Adhikari}},
+  \bibinfo{author}{\bibfnamefont{V.}~\bibnamefont{Adya}}, \bibnamefont{et~al.},
+  \bibinfo{journal}{The Astrophysical Journal Letters}
+  \textbf{\bibinfo{volume}{848}}, \bibinfo{pages}{L13}
+  (\bibinfo{year}{2017}{\natexlab{b}}).
+
+\bibitem[{\citenamefont{Abbott et~al.}(2016)}]{GW150914}
+\bibinfo{author}{\bibfnamefont{B.~P.} \bibnamefont{Abbott}}
+  \bibnamefont{et~al.} (\bibinfo{collaboration}{LIGO Scientific Collaboration
+  and Virgo Collaboration}), \bibinfo{journal}{Phys. Rev. Lett.}
+  \textbf{\bibinfo{volume}{116}}, \bibinfo{pages}{061102}
+  (\bibinfo{year}{2016}),
+  \urlprefix\url{http://link.aps.org/doi/10.1103/PhysRevLett.116.061102}.
+
+\bibitem[{\citenamefont{Berti et~al.}(2009)\citenamefont{Berti, Cardoso, and
+  Starinets}}]{Berti:2009kk}
+\bibinfo{author}{\bibfnamefont{E.}~\bibnamefont{Berti}},
+  \bibinfo{author}{\bibfnamefont{V.}~\bibnamefont{Cardoso}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{A.~O.} \bibnamefont{Starinets}},
+  \bibinfo{journal}{Class. Quant. Grav.} \textbf{\bibinfo{volume}{26}},
+  \bibinfo{pages}{163001} (\bibinfo{year}{2009}), \eprint{0905.2975}.
+
+\bibitem[{\citenamefont{Samajdar and Arun}(2017)}]{samajdar2017projected}
+\bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{Samajdar}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Arun}},
+  \bibinfo{journal}{Physical Review D} \textbf{\bibinfo{volume}{96}},
+  \bibinfo{pages}{104027} (\bibinfo{year}{2017}).
+
+\bibitem[{\citenamefont{Will}(1998)}]{Will:1997bb}
+\bibinfo{author}{\bibfnamefont{C.~M.} \bibnamefont{Will}},
+  \bibinfo{journal}{Phys. Rev.} \textbf{\bibinfo{volume}{D57}},
+  \bibinfo{pages}{2061} (\bibinfo{year}{1998}), \eprint{gr-qc/9709011}.
+
+\bibitem[{\citenamefont{Isi and Weinstein}(2017)}]{isi2017probing}
+\bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Isi}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{A.~J.} \bibnamefont{Weinstein}},
+  \bibinfo{journal}{arXiv preprint arXiv:1710.03794}  (\bibinfo{year}{2017}).
+
+\bibitem[{\citenamefont{Pardo et~al.}(2018)\citenamefont{Pardo, Fishbach, Holz,
+  and Spergel}}]{Pardo:2018ipy}
+\bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Pardo}},
+  \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Fishbach}},
+  \bibinfo{author}{\bibfnamefont{D.~E.} \bibnamefont{Holz}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{D.~N.} \bibnamefont{Spergel}},
+  \bibinfo{journal}{JCAP} \textbf{\bibinfo{volume}{1807}}, \bibinfo{pages}{048}
+  (\bibinfo{year}{2018}), \eprint{1801.08160}.
 
 \bibitem[{\citenamefont{Israel}(1967)}]{Israel:1967}
 \bibinfo{author}{\bibfnamefont{W.}~\bibnamefont{Israel}},
@@ -69,6 +165,11 @@
   \bibinfo{journal}{Class. Quant. Grav.} \textbf{\bibinfo{volume}{21}},
   \bibinfo{pages}{787} (\bibinfo{year}{2004}), \eprint{gr-qc/0309007}.
 
+\bibitem[{\citenamefont{Aghanim et~al.}(2018)}]{Aghanim:2018eyx}
+\bibinfo{author}{\bibfnamefont{N.}~\bibnamefont{Aghanim}} \bibnamefont{et~al.}
+  (\bibinfo{collaboration}{Planck}) (\bibinfo{year}{2018}),
+  \eprint{1807.06209}.
+
 \bibitem[{\citenamefont{Chatziioannou et~al.}(2019)}]{Chatziioannou:2019dsz}
 \bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Chatziioannou}}
   \bibnamefont{et~al.} (\bibinfo{year}{2019}), \eprint{1903.06742}.
@@ -116,5 +217,61 @@
 \bibitem[{SXS()}]{SXS-Catalog}
 \bibinfo{note}{SXS Gravitational Waveform Database},
   \urlprefix\url{http://www.black-holes.org/waveforms/}.
+
+\bibitem[{\citenamefont{Abbott et~al.}(2019{\natexlab{b}})\citenamefont{Abbott,
+  Abbott, Abbott, Abraham, Acernese, Ackley, Adams, Adhikari, Adya, Affeldt
+  et~al.}}]{abbott2019gwtc}
+\bibinfo{author}{\bibfnamefont{B.}~\bibnamefont{Abbott}},
+  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Abbott}},
+  \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Abbott}},
+  \bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Abraham}},
+  \bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Acernese}},
+  \bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Ackley}},
+  \bibinfo{author}{\bibfnamefont{C.}~\bibnamefont{Adams}},
+  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Adhikari}},
+  \bibinfo{author}{\bibfnamefont{V.}~\bibnamefont{Adya}},
+  \bibinfo{author}{\bibfnamefont{C.}~\bibnamefont{Affeldt}},
+  \bibnamefont{et~al.}, \bibinfo{journal}{Physical Review X}
+  \textbf{\bibinfo{volume}{9}}, \bibinfo{pages}{031040}
+  (\bibinfo{year}{2019}{\natexlab{b}}).
+
+\bibitem[{\citenamefont{Varma et~al.}(2019)\citenamefont{Varma, Field, Scheel,
+  Blackman, Kidder, and Pfeiffer}}]{varma2019surrogate}
+\bibinfo{author}{\bibfnamefont{V.}~\bibnamefont{Varma}},
+  \bibinfo{author}{\bibfnamefont{S.~E.} \bibnamefont{Field}},
+  \bibinfo{author}{\bibfnamefont{M.~A.} \bibnamefont{Scheel}},
+  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Blackman}},
+  \bibinfo{author}{\bibfnamefont{L.~E.} \bibnamefont{Kidder}},
+  \bibnamefont{and} \bibinfo{author}{\bibfnamefont{H.~P.}
+  \bibnamefont{Pfeiffer}}, \bibinfo{journal}{Physical Review D}
+  \textbf{\bibinfo{volume}{99}}, \bibinfo{pages}{064045}
+  (\bibinfo{year}{2019}).
+
+\bibitem[{\citenamefont{London et~al.}(2018)\citenamefont{London, Khan,
+  Fauchon-Jones, Garc{\'\i}a, Hannam, Husa, Jim{\'e}nez-Forteza, Kalaghatgi,
+  Ohme, and Pannarale}}]{london2018first}
+\bibinfo{author}{\bibfnamefont{L.}~\bibnamefont{London}},
+  \bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Khan}},
+  \bibinfo{author}{\bibfnamefont{E.}~\bibnamefont{Fauchon-Jones}},
+  \bibinfo{author}{\bibfnamefont{C.}~\bibnamefont{Garc{\'\i}a}},
+  \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Hannam}},
+  \bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Husa}},
+  \bibinfo{author}{\bibfnamefont{X.}~\bibnamefont{Jim{\'e}nez-Forteza}},
+  \bibinfo{author}{\bibfnamefont{C.}~\bibnamefont{Kalaghatgi}},
+  \bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Ohme}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Pannarale}},
+  \bibinfo{journal}{Physical review letters} \textbf{\bibinfo{volume}{120}},
+  \bibinfo{pages}{161102} (\bibinfo{year}{2018}).
+
+\bibitem[{\citenamefont{Cotesta et~al.}(2018)\citenamefont{Cotesta, Buonanno,
+  Boh{\'e}, Taracchini, Hinder, and Ossokine}}]{cotesta2018enriching}
+\bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Cotesta}},
+  \bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{Buonanno}},
+  \bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{Boh{\'e}}},
+  \bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{Taracchini}},
+  \bibinfo{author}{\bibfnamefont{I.}~\bibnamefont{Hinder}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Ossokine}},
+  \bibinfo{journal}{Physical Review D} \textbf{\bibinfo{volume}{98}},
+  \bibinfo{pages}{084028} (\bibinfo{year}{2018}).
 
 \end{thebibliography}

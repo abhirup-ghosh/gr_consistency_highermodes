@@ -1,4 +1,4 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{33}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname bibnamefont\endcsname\relax
   \def\bibnamefont#1{#1}\fi
@@ -164,6 +164,27 @@
   \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Lopez-Aleman}},
   \bibinfo{journal}{Class. Quant. Grav.} \textbf{\bibinfo{volume}{21}},
   \bibinfo{pages}{787} (\bibinfo{year}{2004}), \eprint{gr-qc/0309007}.
+
+\bibitem[{\citenamefont{Kastha et~al.}(2018)\citenamefont{Kastha, Gupta, Arun,
+  Sathyaprakash, and Van Den~Broeck}}]{kastha2018testing}
+\bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Kastha}},
+  \bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{Gupta}},
+  \bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Arun}},
+  \bibinfo{author}{\bibfnamefont{B.~S.} \bibnamefont{Sathyaprakash}},
+  \bibnamefont{and} \bibinfo{author}{\bibfnamefont{C.}~\bibnamefont{Van
+  Den~Broeck}}, \bibinfo{journal}{Physical Review D}
+  \textbf{\bibinfo{volume}{98}}, \bibinfo{pages}{124033}
+  (\bibinfo{year}{2018}).
+
+\bibitem[{\citenamefont{Kastha et~al.}(2019)\citenamefont{Kastha, Gupta, Arun,
+  Sathyaprakash, and Broeck}}]{kastha2019testing}
+\bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Kastha}},
+  \bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{Gupta}},
+  \bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Arun}},
+  \bibinfo{author}{\bibfnamefont{B.}~\bibnamefont{Sathyaprakash}},
+  \bibnamefont{and} \bibinfo{author}{\bibfnamefont{C.~V.~D.}
+  \bibnamefont{Broeck}}, \bibinfo{journal}{arXiv preprint arXiv:1905.07277}
+  (\bibinfo{year}{2019}).
 
 \bibitem[{\citenamefont{Aghanim et~al.}(2018)}]{Aghanim:2018eyx}
 \bibinfo{author}{\bibfnamefont{N.}~\bibnamefont{Aghanim}} \bibnamefont{et~al.}

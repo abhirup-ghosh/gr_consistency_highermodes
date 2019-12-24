@@ -1,4 +1,4 @@
-\begin{thebibliography}{33}
+\begin{thebibliography}{34}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname bibnamefont\endcsname\relax
   \def\bibnamefont#1{#1}\fi
@@ -109,6 +109,14 @@
   \bibinfo{author}{\bibfnamefont{A.~J.} \bibnamefont{Weinstein}},
   \bibinfo{journal}{arXiv preprint arXiv:1710.03794}  (\bibinfo{year}{2017}).
 
+\bibitem[{\citenamefont{Visinelli et~al.}(2018)\citenamefont{Visinelli, Bolis,
+  and Vagnozzi}}]{Visinelli:2017bny}
+\bibinfo{author}{\bibfnamefont{L.}~\bibnamefont{Visinelli}},
+  \bibinfo{author}{\bibfnamefont{N.}~\bibnamefont{Bolis}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Vagnozzi}},
+  \bibinfo{journal}{Phys. Rev.} \textbf{\bibinfo{volume}{D97}},
+  \bibinfo{pages}{064039} (\bibinfo{year}{2018}), \eprint{1711.06628}.
+
 \bibitem[{\citenamefont{Pardo et~al.}(2018)\citenamefont{Pardo, Fishbach, Holz,
   and Spergel}}]{Pardo:2018ipy}
 \bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Pardo}},
@@ -191,6 +199,23 @@
   (\bibinfo{collaboration}{Planck}) (\bibinfo{year}{2018}),
   \eprint{1807.06209}.
 
+\bibitem[{\citenamefont{Abbott et~al.}(2019{\natexlab{b}})\citenamefont{Abbott,
+  Abbott, Abbott, Abraham, Acernese, Ackley, Adams, Adhikari, Adya, Affeldt
+  et~al.}}]{abbott2019gwtc}
+\bibinfo{author}{\bibfnamefont{B.}~\bibnamefont{Abbott}},
+  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Abbott}},
+  \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Abbott}},
+  \bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Abraham}},
+  \bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Acernese}},
+  \bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Ackley}},
+  \bibinfo{author}{\bibfnamefont{C.}~\bibnamefont{Adams}},
+  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Adhikari}},
+  \bibinfo{author}{\bibfnamefont{V.}~\bibnamefont{Adya}},
+  \bibinfo{author}{\bibfnamefont{C.}~\bibnamefont{Affeldt}},
+  \bibnamefont{et~al.}, \bibinfo{journal}{Physical Review X}
+  \textbf{\bibinfo{volume}{9}}, \bibinfo{pages}{031040}
+  (\bibinfo{year}{2019}{\natexlab{b}}).
+
 \bibitem[{\citenamefont{Chatziioannou et~al.}(2019)}]{Chatziioannou:2019dsz}
 \bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Chatziioannou}}
   \bibnamefont{et~al.} (\bibinfo{year}{2019}), \eprint{1903.06742}.
@@ -238,23 +263,6 @@
 \bibitem[{SXS()}]{SXS-Catalog}
 \bibinfo{note}{SXS Gravitational Waveform Database},
   \urlprefix\url{http://www.black-holes.org/waveforms/}.
-
-\bibitem[{\citenamefont{Abbott et~al.}(2019{\natexlab{b}})\citenamefont{Abbott,
-  Abbott, Abbott, Abraham, Acernese, Ackley, Adams, Adhikari, Adya, Affeldt
-  et~al.}}]{abbott2019gwtc}
-\bibinfo{author}{\bibfnamefont{B.}~\bibnamefont{Abbott}},
-  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Abbott}},
-  \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Abbott}},
-  \bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Abraham}},
-  \bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Acernese}},
-  \bibinfo{author}{\bibfnamefont{K.}~\bibnamefont{Ackley}},
-  \bibinfo{author}{\bibfnamefont{C.}~\bibnamefont{Adams}},
-  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Adhikari}},
-  \bibinfo{author}{\bibfnamefont{V.}~\bibnamefont{Adya}},
-  \bibinfo{author}{\bibfnamefont{C.}~\bibnamefont{Affeldt}},
-  \bibnamefont{et~al.}, \bibinfo{journal}{Physical Review X}
-  \textbf{\bibinfo{volume}{9}}, \bibinfo{pages}{031040}
-  (\bibinfo{year}{2019}{\natexlab{b}}).
 
 \bibitem[{\citenamefont{Varma et~al.}(2019)\citenamefont{Varma, Field, Scheel,
   Blackman, Kidder, and Pfeiffer}}]{varma2019surrogate}
